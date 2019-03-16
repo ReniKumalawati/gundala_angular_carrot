@@ -10,10 +10,10 @@ export class ItemServiceService {
   constructor(private http: HttpClient) { }
 
   findItemByBazarId(id) {
-    return this.http.get(environment.endpoint + "/api/item/findByBazaarId?id=" + id);
+    return this.http.get(environment.endpoint + '/api/items/findByBazaarId?id=' + id);
   }
 
   deleteItemById(id) {
-    return this.http.delete(environment.endpoint + "/api/item?id=" + id)
+    return this.http.delete(environment.endpoint + '/api/items/' + id);
   }
 }

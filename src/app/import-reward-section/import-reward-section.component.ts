@@ -11,7 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
-  formReward = {name: '', carrot_amt: 0, active: false, id: 10}
+  formReward = {name: '', carrot_amt: 0, active: false}
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
