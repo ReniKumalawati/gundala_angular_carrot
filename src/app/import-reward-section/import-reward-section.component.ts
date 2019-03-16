@@ -11,11 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
-<<<<<<< HEAD
-  formReward = {name: '', carrot_amt: 0, active: false, id: ''}
-=======
   formReward = {name: '', carrot_amt: 0, active: false}
->>>>>>> da638d74489af1e2572bdda7c68a1c2ebcbf7033
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -57,7 +53,6 @@ export class ImportRewardSectionComponent implements OnInit {
   openEditModal(data, content) {
     this.formReward.name = data.name;
     this.formReward.carrot_amt = data.carrot_amt;
-    this.formReward.id = data.id;
     this.open(content)
   }
 
