@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import {ItemServiceService} from '../service/item-service.service';
 import {calcBindingFlags} from '@angular/core/src/view/util';
 import {callbackify} from 'util';
-
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-create-bazar',
   templateUrl: './create-bazar.component.html',
@@ -19,15 +20,22 @@ export class CreateBazarComponent implements OnInit {
   formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: ''}}
   param: any;
   baz: any;
+  itemForm: FormGroup;
+  itemValue = {name: '', carrot_amt: 0};
   constructor(
     private formBuilder: FormBuilder,
     private emp: EmployeeService,
-    private bazarService : BazarService,
-    private route : ActivatedRoute,
-    private itemService: ItemServiceService
+    private bazarService: BazarService,
+    private route: ActivatedRoute,
+    private itemService: ItemServiceService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
+    this.itemForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      carrot_amt: ['', Validators.required]
+    });
     this.param = this.route.params;
     this.bazarForm = this.formBuilder.group({
       bazaarName: ['', Validators.required],
@@ -80,4 +88,14 @@ export class CreateBazarComponent implements OnInit {
     })
   }
 
+  submit () {
+    console.log("kkkkk");
+  }
+  open(content) {
+    this.modalService.open(content);
+  }
+
+  close() {
+    this.modalService.dismissAll();
+  }
 }

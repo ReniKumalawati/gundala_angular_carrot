@@ -91,8 +91,9 @@
             </tr>
             </tbody>
           </table>
+
           <div class="text-center mt-5">
-            <a href="#" class="btn btn-info text-center"><i class="fa fa-plus-circle"></i> ADD MORE ITEMS</a>
+            <a href="javascript:void(0)" (click)="open(contentItem)" class="btn btn-info text-center"><i class="fa fa-plus-circle"></i> ADD MORE ITEMS</a>
           </div>
         </div>
       </div>
@@ -106,3 +107,32 @@
   </div>
   </form>
 </section>
+<ng-template #contentItem let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Add Item For Bazaar</h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="itemForm" (ngSubmit)="submit()" >
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="text">Type Name</label>
+        <input id="text" name="text" type="text" class="form-control here" formControlName="name" [(ngModel)]="itemValue.name">
+        <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+          <div *ngIf="messageForm.controls.name.errors.required">Please insert name!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="text1">Carrot</label>
+        <input id="text1" name="text1" type="text" class="form-control here" formControlName="carrot_amt" [(ngModel)]="itemValue.carrot_amt">
+        <div *ngIf="submitted && messageForm.controls.carrot_amt.errors" class="error">
+          <div *ngIf="messageForm.controls.carrot_amt.errors.required">Please insert Carrot's Amount!</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-dark">Sumbit</button>
+    </div>
+  </form>
+</ng-template>
