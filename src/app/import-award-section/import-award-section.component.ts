@@ -11,7 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ImportAwardSectionComponent implements OnInit {
   awardsData: Object;
   messageForm: FormGroup;
-  formAward = {type_name: '', carrot_amt: 0, active: false, id: 10, type: ''}
+  formAward = {type_name: '', carrot_amt: 0, active: false, id: '', type: ''};
   constructor(private data: AwardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -24,9 +24,9 @@ export class ImportAwardSectionComponent implements OnInit {
   }
   findAllAward() {
     this.data.findAllAwards().subscribe(callback => {
-      this.awardsData = callback
-      console.log('bbbbbb')
-    })
+      this.awardsData = callback;
+      console.log('bbbbbb');
+    });
   }
   open(content) {
     this.modalService.open(content);
@@ -36,24 +36,24 @@ export class ImportAwardSectionComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  submit () {
+  submit() {
     this.data.insertAwardIntoDB(this.formAward).subscribe(callback => {
       this.findAllAward();
       this.close();
-    })
+    });
   }
 
   active(award, status) {
     if (status) {
       award.active = true;
     } else {
-      award.active = false
+      award.active = false;
     }
 
-    console.log(award)
+    console.log(award);
     this.data.updateAward(award, award.id).subscribe(callback => {
       this.findAllAward();
       this.close();
-    })
+    });
   }
 }

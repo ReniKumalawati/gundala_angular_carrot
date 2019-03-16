@@ -21,6 +21,7 @@ import { ImportRewardSectionComponent } from './import-reward-section/import-rew
 import { ImportAwardSectionComponent } from './import-award-section/import-award-section.component';
 import { LoginComponent } from './login/login.component';
 import { CreateBazarComponent } from './create-bazar/create-bazar.component';
+import { ImportSocialFoundationSectionComponent } from './import-social-foundation-section/import-social-foundation-section.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CreateBazarComponent } from './create-bazar/create-bazar.component';
     ImportRewardSectionComponent,
     ImportAwardSectionComponent,
     LoginComponent,
-    CreateBazarComponent
+    CreateBazarComponent,
+    ImportSocialFoundationSectionComponent
   ],
   imports: [
     NgbModule,
