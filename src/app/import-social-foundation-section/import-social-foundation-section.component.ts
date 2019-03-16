@@ -68,4 +68,11 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     this.open(content);
   }
 
+  removeSocialFoundationFromDB(id) {
+    this.data.deleteSocialFoundationFromDB(id).subscribe(callback => {
+      this.findAllSocialFoundation();
+      this.close();
+    })
+  }
+
 }

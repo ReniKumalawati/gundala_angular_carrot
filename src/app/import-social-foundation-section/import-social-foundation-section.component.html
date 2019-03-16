@@ -29,7 +29,8 @@
         <td>
           <a class="active-row" href="javascript:void(0)" *ngIf="socialFoundation.active === true" (click)="active(socialFoundation, false)"> Deactivate </a>
           <a class="active-row" href="javascript:void(0)" *ngIf="socialFoundation.active === false" (click)="active(socialFoundation, true)"> Activate </a>
-          <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(socialFoundation, contentSocialFoundation)">| Edit </a>
+          <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(socialFoundation, contentSocialFoundation)">| Edit |</a>
+          <a class="delete-row" href="javascript:void(0)" (click)="removeSocialFoundationFromDB(socialFoundation.id)">Delete</a>
         </td>
       </tr>
       </tbody>

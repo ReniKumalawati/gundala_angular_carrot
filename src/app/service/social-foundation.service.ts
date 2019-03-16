@@ -17,6 +17,10 @@ export class SocialFoundationService {
   }
 
   updateSocialFoundation(data, id) {
-    return this.http.put(environment.endpoint + "/api/socialfoundation" + id, data);
+    return this.http.put(environment.endpoint + "/api/socialfoundations/" + id, data);
+  }
+
+  deleteSocialFoundationFromDB(id){
+    return this.http.delete(environment.endpoint + "/api/socialfoundations/" + id);
   }
 }
