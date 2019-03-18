@@ -73,20 +73,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let bazar of bazarItem">
+            <tr *ngFor="let item of bazarItem">
               <th scope="row">1</th>
-              <td>{{bazar.itemName}}</td>
-              <td>{{bazar.itemDescription}}</td>
+              <td>{{item.itemName}}</td>
+              <td>{{item.itemDescription}}</td>
               <td>
                 <img src="assets/img/bazaar_vespa.jpg" class="table-image" alt="">
               </td>
-              <td>{{bazar.exchangeRate}}</td>
-              <td>{{bazar.totalItem}}</td>
-              <td>{{bazar.approvalStatus}}</td>
-              <td>{{bazar.saleStatus}}</td>
-              <td>{{bazar.itemSold}}</td>
+              <td>{{item.exchangeRate}}</td>
+              <td>{{item.totalItem}}</td>
+              <td>{{item.approvalStatus}}</td>
+              <td>{{item.saleStatus}}</td>
+              <td>{{item.itemSold}}</td>
               <td>
-                <a href="javascript:void(0)" (click)="deleteItemFromBazarById(bazar.id)">Delete</a> | <a href="#"> Edit</a>
+                <a href="javascript:void(0)" (click)="deleteItemFromBazarById(item.id)">Delete</a> |
+                <a href="javascript:void(0)" (click)="editItem(item.id, contentItem)"> Edit</a>
               </td>
             </tr>
             </tbody>
@@ -110,24 +111,66 @@
 <ng-template #contentItem let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h5 class="modal-title" id="modal-basic-title">Add Item For Bazaar</h5>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <button type="button" class="close" aria-label="Close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <form [formGroup]="itemForm" (ngSubmit)="submit()" >
     <div class="modal-body">
       <div class="form-group">
-        <label for="text">Type Name</label>
-        <input id="text" name="text" type="text" class="form-control here" formControlName="name" [(ngModel)]="itemValue.name">
-        <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
-          <div *ngIf="messageForm.controls.name.errors.required">Please insert name!</div>
+        <label for="text">Item's Name</label>
+        <input id="text" name="text" type="text" class="form-control here" formControlName="itemName" [(ngModel)]="itemValue.itemName">
+        <div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">
+          <div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>
         </div>
       </div>
       <div class="form-group">
-        <label for="text1">Carrot</label>
-        <input id="text1" name="text1" type="text" class="form-control here" formControlName="carrot_amt" [(ngModel)]="itemValue.carrot_amt">
-        <div *ngIf="submitted && messageForm.controls.carrot_amt.errors" class="error">
-          <div *ngIf="messageForm.controls.carrot_amt.errors.required">Please insert Carrot's Amount!</div>
+        <label for="text">Item's Description</label>
+        <input  name="text" type="text" class="form-control here" formControlName="itemDescription" [(ngModel)]="itemValue.itemDescription">
+        <div *ngIf="submitted && messageForm.controls.itemDescription.errors" class="error">
+          <div *ngIf="messageForm.controls.itemDescription.errors.required">Please insert name!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Exchange Rate</label>
+        <input  name="text1" type="text" class="form-control here" formControlName="exchangeRate" [(ngModel)]="itemValue.exchangeRate">
+        <div *ngIf="submitted && messageForm.controls.exchangeRate.errors" class="error">
+          <div *ngIf="messageForm.controls.exchangeRate.errors.required">Please insert Carrot's Amount!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Total Item</label>
+        <input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">
+        <div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">
+          <div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Aproval Status</label><br>
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="approvalStatus" [(ngModel)]="itemValue.approvalStatus">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="false">False
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="true"> True
+          </label>
+        </div>
+        <div *ngIf="submitted && messageForm.controls.approvalStatus.errors" class="error">
+          <div *ngIf="messageForm.controls.approvalStatus.errors.required">Please insert Carrot's Amount!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Sale Status</label><br>
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="saleStatus" [(ngModel)]="itemValue.saleStatus">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="false">False
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="true"> True
+          </label>
+        </div>
+        <div *ngIf="submitted && messageForm.controls.saleStatus.errors" class="error">
+          <div *ngIf="messageForm.controls.saleStatus.errors.required">Please insert Carrot's Amount!</div>
         </div>
       </div>
     </div>
