@@ -12,8 +12,4 @@ export class AuthenticationService {
   login(email: string, password: string) {
     return this.data.login({email: email, password: password});
   }
-
-  logout() {
-    localStorage.removeItem('currentUser');
-  }
 }

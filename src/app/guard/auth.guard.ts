@@ -10,17 +10,23 @@ export class AuthGuard implements CanActivate {
       if (localStorage.getItem('currentUser')) {
         // logged in so return true
         location.href = '/'
+        console.log('aa');
         return false;
       }
+      console.log('bb');
       return true;
     } else {
       if (localStorage.getItem('currentUser')) {
         // logged in so return true
+        // location.href = '/src/app/login/login.component.html'
+        console.log('cc');
         return true;
       }
 
+      console.log('dd');
       location.href = '/login'
       return false;
     }
   }
+
 }

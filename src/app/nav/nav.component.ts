@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../service/authentication.service';
 
 @Component({
   selector: 'app-nav',
@@ -13,4 +14,8 @@ export class NavComponent implements OnInit {
     console.log('naaavvvv')
   }
 
+  onClick(){
+      localStorage.removeItem('currentUser');
+      // localStorage.clear(); //ini bisa juga buat hapus semua data di localStorage
+  }
 }
