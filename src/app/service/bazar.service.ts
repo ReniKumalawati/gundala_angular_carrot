@@ -21,4 +21,8 @@ export class BazarService {
   findBazarById(id) {
     return this.http.get(environment.endpoint + "/api/bazaar/" + id);
   }
+
+  updateBazarById(id, data) {
+    return this.http.put(environment.endpoint + "/api/bazaar/" + id, data);
+  }
 }
