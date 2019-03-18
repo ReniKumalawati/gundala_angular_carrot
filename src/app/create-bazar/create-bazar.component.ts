@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import {ItemServiceService} from '../service/item-service.service';
 import {calcBindingFlags} from '@angular/core/src/view/util';
 import {callbackify} from 'util';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-create-bazar',
