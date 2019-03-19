@@ -12,6 +12,7 @@ import {ItemDetailComponent} from './item-detail/item-detail.component'
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './guard/auth.guard';
 import {CreateBazarComponent} from './create-bazar/create-bazar.component';
+import {TransactionHistoryComponent} from './transaction-history/transaction-history.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   { path: 'create-bazar', component: CreateBazarComponent, canActivate: [AuthGuard]},
   { path: 'edit-bazar/:id', component: CreateBazarComponent, canActivate: [AuthGuard]},
+  { path: 'transaction-histories', component: TransactionHistoryComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

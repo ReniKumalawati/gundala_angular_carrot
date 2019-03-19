@@ -44,6 +44,7 @@ export class CreateBazarComponent implements OnInit {
     this.param = this.route.params;
     this.bazarForm = this.formBuilder.group({
       bazaarName: ['', Validators.required],
+      status: [''],
       startPeriod: ['', Validators.required],
       endPeriod: ['', Validators.required],
       owner: ['', Validators.required],

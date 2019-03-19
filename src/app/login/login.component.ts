@@ -23,8 +23,23 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.login.login(this.formLogin.email, this.formLogin.password).subscribe(callback => {
       this.employee = callback
-      localStorage.setItem("currentUser", this.employee.employee)
-    })
+      localStorage.setItem("currentUser", this.employee.employee);
+      localStorage.setItem("currentBasket", this.employee.basket);
+      switch (this.employee.role) {
+        case 'MANAGER':
+          location.href = '/manager';
+          break;
+        case 'ADMIN':
+          location.href = '/administrator';
+          break;
+        case 'ROOT_ADMIN':
+          location.href = '/';
+          break;
+        default:
+          location.href = '/employee';
+          break;
+      }
+    });
   }
 
 }

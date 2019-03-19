@@ -1,0 +1,124 @@
+<main role="main" class="container">
+  <h2 class="mt-4 pl-0 text-grey ml-0">
+        <span class="back-button">
+          <a href="index-employee.html"><img src="assets/img/back.png" alt="" class="back" /></a>
+        </span>
+    TRANSACTION HISTORY
+  </h2>
+</main>
+<section class="mini-dashboard my-4">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row box-reward px-0 mr-0">
+          <div class="col-md-4 my-auto">
+            <img src="assets/img/mc-icon-carrot.png" alt="" class="img-fluid rounded-circle">
+          </div>
+          <div class="col-md-8 my-auto">
+            <p class="sub-title">Reward</p>
+            <h2 class="text-white">{{reward}} Carrots</h2>
+              <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">
+                Share carrot!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row box-shared px-0 mr-0">
+          <div class="col-md-4 my-auto">
+            <img src="assets/img/mc-icon-carrot.png" alt="" class="img-fluid rounded-circle">
+          </div>
+          <div class="col-md-8 my-auto">
+            <p class="sub-title">Shared</p>
+            <h2 class="text-white">{{shared}} Carrots</h2>
+              <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">
+                Share carrot!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row box-bazaar px-0">
+          <div class="col-md-4 my-auto">
+            <img src="assets/img/mc-icon-carrot.png" alt="" class="img-fluid rounded-circle">
+          </div>
+          <div class="col-md-8 my-auto">
+            <p class="sub-title">Bazaar</p>
+            <h2 class="text-white">{{bazaar}} Carrots</h2>
+              <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">
+                Share carrot!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="transaction-history my-4">
+  <div class="container search-box">
+    <div class="row d-flex align-content-end">
+      <div class="col-md-12">
+        <!--<form>-->
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="carrot-type">Type</label>
+                <div>
+                  <select id="carrot-type" name="carrot-type" class="custom-select">
+                    <option value="type1">Rewards</option>
+                    <option value="type2">Shared</option>
+                    <option value="type3">Bazaar</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="">Date From</label>
+                <input id="" name="" type="date" class="form-control here">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="date-to">Date To</label>
+                <input id="date-to" name="date-to" type="date" class="form-control here">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="vis-none">Date To</label>
+                <button name="submit" type="submit" class="btn btn-primary btn-block">Search</button>
+              </div>
+            </div>
+          </div>
+        <!--</form>-->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 p-0">
+        <table class="table table-hover mt-3">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type</th>
+            <th scope="col">To/From</th>
+            <th scope="col">Description</th>
+            <th scope="col">Carrot</th>
+            <th scope="col">Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let transaction of transactionLists">
+            <th scope="row">1</th>
+            <td>{{transaction.type}}</td>
+            <td>{{transaction.to != user.name ? transaction.to : transaction.from}}</td>
+            <td>{{transaction.description}}</td>
+            <td>{{transaction.carrot_amt}}</td>
+            <td>{{transaction.transactiondate | date:'medium'}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

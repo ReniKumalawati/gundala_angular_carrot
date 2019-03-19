@@ -45,6 +45,20 @@
                 <label for="endDate">End Period</label>
                 <input id="endDate" name="endDate" type="date" class="form-control here" formControlName="endPeriod" [(ngModel)]="formBaxar.endPeriod">
               </div>
+              <div class="form-group">
+                <label>Sale Status</label><br>
+                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="status" [(ngModel)]="formBaxar.status">
+                  <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" [value]="false">False
+                  </label>
+                  <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" [value]="true"> True
+                  </label>
+                </div>
+                <div *ngIf="submitted && messageForm.controls.status.errors" class="error">
+                  <div *ngIf="messageForm.controls.status.errors.required">Please insert Carrot's Amount!</div>
+                </div>
+              </div>
             </div>
           </div>
       </div>

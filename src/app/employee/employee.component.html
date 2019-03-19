@@ -11,8 +11,8 @@
             <img src="assets/img/user.jpg" alt="" class="img-fluid rounded-circle">
           </div>
           <div class="col-md-8 my-auto">
-            <h4 class="mb-0 text-white">Henokh Santoso</h4>
-            <p class="text-white">Mitrais Employee</p>
+            <h4 class="mb-0 text-white">{{employee.name}}</h4>
+            <p class="text-white">{{employee.role}}</p>
             <!-- <a href="edit-profile.html" class="badge badge-white">Edit Profile</a> -->
           </div>
         </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="col-md-8 my-auto">
             <h4 class="text-white">Carrots Transaction History</h4>
-            <a href="transaction-history.html" class="badge badge-white">View</a>
+            <a href="/transaction-histories" class="badge badge-white">View</a>
           </div>
         </div>
       </div>
@@ -45,147 +45,54 @@
   </div>
 </section>
 
-<section class="bazaar-1-item mb-4">
+<section class="bazaar-1-item mb-4" *ngFor="let bzr of bazar">
   <div class="container search-box pb-4">
-    <div class="row d-flex">
+    <div class="row d-flex" *ngIf="bzr.items.length == 1">
       <div class="col-md-12">
         <hr class="box-title-hr">
-        <h4 class="my-2 box-title">APRIL MOP BAZAAR</h4>
+        <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
-      <div class="col-md-6 br-1">
-        <img src="assets/img/bazaar_vespa.jpg" class="img-fluid p-3" alt="">
-      </div>
-      <div class="col-md-6 align-self-center p-5">
-        <h3>2018 Vespa 946 Limited Edition</h3>
-        <h4><strong class="carrot-orange">350.000 Carrots</strong></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eius velit dolores exercitationem porro tempore, ipsa suscipit quia. Libero voluptate quibusdam neque numquam error quas ipsa hic voluptatem aliquam, necessitatibus.</p>
-        <a href="/item-detail/1" class="btn btn-carrot radius-5">Buy</a>
-      </div>
+        <div class="col-md-6 br-1">
+          <img src="assets/img/bazaar_vespa.jpg" class="img-fluid p-3" alt="">
+        </div>
+        <div class="col-md-6 align-self-center p-5">
+          <h3>{{bzr.items[0].itemName}}</h3>
+          <h4><strong class="carrot-orange">{{bzr.items[0].exchangeRate}} Carrots</strong></h4>
+          <p>{{bzr.items[0].itemDescription}}</p>
+          <a href="item-details.html" class="btn btn-carrot radius-5">Buy</a>
+        </div>
     </div>
-  </div>
-</section>
-
-<section class="bazaar-2-items mb-4">
-  <div class="container search-box pb-4">
-    <div class="row">
+    <div class="row" *ngIf="bzr.items.length == 2">
       <div class="col-md-12">
         <hr class="box-title-hr">
-        <h4 class="my-2 box-title">Black Friday Bazaar</h4>
+        <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
-      <div class="col-md-6 br-1">
+      <div class="col-md-6 br-1" *ngFor="let itm of bzr.items">
         <div class="text-center">
           <img src="assets/img/bazaar_macbook.jpg" class="img-fluid p-3 bazaar-item mb-3" alt="">
         </div>
         <div class="px-3">
-          <h3>2017 15" Macbook Pro with Touchbar</h3>
-          <h4><strong class="carrot-orange">150.000 Carrots</strong></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eius velit dolores exercitationem porro tempore, ipsa suscipit quia. Libero voluptate quibusdam neque numquam error quas ipsa hic voluptatem aliquam, necessitatibus.</p>
-          <a href="item-details.html" class="btn btn-carrot radius-5">Buy</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="text-center">
-          <img src="assets/img/bazaar_iphone.jpg" class="img-fluid p-3 bazaar-item mb-3" alt="">
-        </div>
-        <div class="px-3">
-          <h3>iPhone X 64Gb</h3>
-          <h4><strong class="carrot-orange">85.000 Carrots</strong></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eius velit dolores exercitationem porro tempore, ipsa suscipit quia. Libero voluptate quibusdam neque numquam error quas ipsa hic voluptatem aliquam, necessitatibus.</p>
+          <h3>{{itm.itemName}}</h3>
+          <h4><strong class="carrot-orange">{{itm.exchangeRate}} Carrots</strong></h4>
+          <p>{{itm.itemDescription}}</p>
           <a href="item-details.html" class="btn btn-carrot radius-5">Buy</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="bazaar-3-items mb-4">
-  <div class="container search-box pb-4">
-    <div class="row d-flex align-content-end">
+    <div class="row d-flex align-content-end" *ngIf="bzr.items.length >= 3">
       <div class="col-md-12">
         <hr class="box-title-hr">
-        <h4 class="my-2 box-title">Easter Bazaar</h4>
+        <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col-md-4">
+    <div class="row mt-3" *ngIf="bzr.items.length == 3">
+      <div class="col-md-4" *ngFor="let itm of bzr.items">
         <div class="card">
           <img class="card-img-top" src="assets/img/bazaar_macbook.jpg" alt="Bazaar Item">
           <div class="card-body">
-            <h5 class="card-title">15" MacBook Pro</h5>
-            <p class="card-text">150.000 Carrots</p>
-          </div>
-          <a href="#" class="btn btn-carrot">BUY</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img class="card-img-top" src="assets/img/bazaar_iphone.jpg" alt="Bazaar Item">
-          <div class="card-body">
-            <h5 class="card-title">iPhone X 64Gb</h5>
-            <p class="card-text">85.000 Carrots</p>
-          </div>
-          <a href="#" class="btn btn-carrot">BUY</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img class="card-img-top" src="assets/img/bazaar_helmet.jpg" alt="Bazaar Item">
-          <div class="card-body">
-            <h5 class="card-title">Fly Helmet</h5>
-            <p class="card-text">1.000 Carrots</p>
-          </div>
-          <a href="#" class="btn btn-carrot">BUY</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="bazaar mb-4 pb-5">
-  <div class="container search-box pb-4">
-    <div class="row d-flex align-content-end">
-      <div class="col-md-12">
-        <hr class="box-title-hr">
-        <h4 class="my-2 box-title">Mid-Year Bazaar</h4>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="assets/img/bazaar_macbook.jpg" alt="Bazaar Item">
-          <div class="card-body">
-            <h5 class="card-title">15" MacBook Pro</h5>
-            <p class="card-text">150.000 Carrots</p>
-          </div>
-          <a href="#" class="btn btn-carrot">BUY</a>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="assets/img/bazaar_iphone.jpg" alt="Bazaar Item">
-          <div class="card-body">
-            <h5 class="card-title">iPhone X 64Gb</h5>
-            <p class="card-text">85.000 Carrots</p>
-          </div>
-          <a href="#" class="btn btn-carrot">BUY</a>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="assets/img/bazaar_helmet.jpg" alt="Bazaar Item">
-          <div class="card-body">
-            <h5 class="card-title">Fly Helmet</h5>
-            <p class="card-text">1.000 Carrots</p>
-          </div>
-          <a href="#" class="btn btn-carrot">BUY</a>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img class="card-img-top" src="assets/img/bazaar_burger.jpg" alt="Bazaar Item">
-          <div class="card-body">
-            <h5 class="card-title">Burger King Voucher</h5>
-            <p class="card-text">500 Carrots</p>
+            <h5 class="card-title">{{itm.itemName}}</h5>
+            <p class="card-text">{{itm.exchangeRate}} Carrots</p>
           </div>
           <a href="#" class="btn btn-carrot">BUY</a>
         </div>
