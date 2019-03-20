@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RewardsService} from '../service/rewards.service';
+import {RewardsService} from '../../service/rewards.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

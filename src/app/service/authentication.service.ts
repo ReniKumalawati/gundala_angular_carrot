@@ -9,6 +9,10 @@ export class AuthenticationService {
     return localStorage.getItem('currentUser');
   }
 
+  public currentBasket() {
+    return localStorage.getItem('currentBasket');
+  }
+
   login(email: string, password: string) {
     return this.data.login({email: email, password: password});
   }

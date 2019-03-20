@@ -1,0 +1,72 @@
+.btn {
+  margin-left: 0px;
+}
+
+.form-label-group {
+  margin-top: 1rem;
+}
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 3rem;
+}
+
+.card-body {
+  background-color: white;
+}
+.card-signin .card-body {
+  padding: 2rem;
+}
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+.form-label-group input {
+  border-radius: 2rem;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+.btn-mitrais {
+  color: white;
+  background-color: #6607C5;
+  border-radius: 3rem;
+}
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}

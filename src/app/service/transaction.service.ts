@@ -12,4 +12,8 @@ export class TransactionService {
   findAllTransactionByEmployeeId(id) {
     return this.http.get(environment.endpoint + '/api/transactions/' + id);
   }
+
+  insertTansactionToDB(data) {
+    return this.http.post(environment.endpoint + '/api/transactions', data);
+  }
 }

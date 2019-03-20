@@ -59,7 +59,8 @@
           <h3>{{bzr.items[0].itemName}}</h3>
           <h4><strong class="carrot-orange">{{bzr.items[0].exchangeRate}} Carrots</strong></h4>
           <p>{{bzr.items[0].itemDescription}}</p>
-          <a href="item-details.html" class="btn btn-carrot radius-5">Buy</a>
+          <a href="/item-detail/{{bzr.items[0].id}}" class="btn btn-carrot radius-5" *ngIf="bzr.items[0].itemSold < bzr.items[0].totalItem">Buy</a>
+          <p *ngIf="bzr.items[0].itemSold >= bzr.items[0].totalItem">Sold out</p>
         </div>
     </div>
     <div class="row" *ngIf="bzr.items.length == 2">
@@ -75,7 +76,7 @@
           <h3>{{itm.itemName}}</h3>
           <h4><strong class="carrot-orange">{{itm.exchangeRate}} Carrots</strong></h4>
           <p>{{itm.itemDescription}}</p>
-          <a href="item-details.html" class="btn btn-carrot radius-5">Buy</a>
+          <a href="/item-detail/{{itm.id}}" class="btn btn-carrot radius-5">Buy</a>
         </div>
       </div>
     </div>
@@ -94,7 +95,7 @@
             <h5 class="card-title">{{itm.itemName}}</h5>
             <p class="card-text">{{itm.exchangeRate}} Carrots</p>
           </div>
-          <a href="#" class="btn btn-carrot">BUY</a>
+          <a href="/item-detail/{{itm.id}}" class="btn btn-carrot">BUY</a>
         </div>
       </div>
     </div>
