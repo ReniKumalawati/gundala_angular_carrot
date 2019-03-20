@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateBazarComponent } from './create-bazar/create-bazar.component';
 import { ImportSocialFoundationSectionComponent } from './import-social-foundation-section/import-social-foundation-section.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     LoginComponent,
     CreateBazarComponent,
     ImportSocialFoundationSectionComponent,
-    TransactionHistoryComponent
+    TransactionHistoryComponent,
+    ProfileComponent
   ],
   imports: [
     NgbModule,

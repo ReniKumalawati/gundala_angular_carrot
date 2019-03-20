@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.login.login(this.formLogin.email, this.formLogin.password).subscribe(callback => {
+      console.log('login callback   ' + callback);
+      console.log('login callback   ' + JSON.stringify(callback));
+      debugger;
       this.employee = callback
       localStorage.setItem("currentUser", this.employee.employee);
       localStorage.setItem("currentBasket", this.employee.basket);

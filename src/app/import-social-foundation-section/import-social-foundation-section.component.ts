@@ -13,7 +13,11 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   socialFoundationData: Object;
   messageForm: FormGroup;
   formSocialFoundation = {name: '', description: '', min_carrot: '', total_carrot: 0, active: false, id: ''};
-  constructor(private data: SocialFoundationService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
+  constructor(
+    private data: SocialFoundationService, 
+    private modalService: NgbModal, 
+    private formBuilder: FormBuilder
+    ) { }
 
   ngOnInit() {
     console.log('cccccc');

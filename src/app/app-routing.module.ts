@@ -13,12 +13,14 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './guard/auth.guard';
 import {CreateBazarComponent} from './create-bazar/create-bazar.component';
 import {TransactionHistoryComponent} from './transaction-history/transaction-history.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard]},
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
   { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard]},
   { path: 'merchant', component: MerchantComponent, canActivate: [AuthGuard]},
   { path: 'farmer', component: FarmerComponent, canActivate: [AuthGuard]},

@@ -9,7 +9,7 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  login (data) {
+  login(data) {
     return this.http.post( environment.endpoint + "/login", data);
   }
 
