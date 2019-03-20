@@ -15,7 +15,6 @@ export class ImportRewardSectionComponent implements OnInit {
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log('aaaaa')
     this.messageForm = this.formBuilder.group({
       name: ['', Validators.required],
       carrot_amt: ['', Validators.required]

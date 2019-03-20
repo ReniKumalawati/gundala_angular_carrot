@@ -24,6 +24,9 @@ import { CreateBazarComponent } from './create-bazar/create-bazar.component';
 import { ImportSocialFoundationSectionComponent } from './administrator/import-social-foundation-section/import-social-foundation-section.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { TransactionsComponent } from './administrator/transactions/transactions.component';
+import { GroupsComponent } from './administrator/groups/groups.component';
+import { GroupsManagerComponent } from './manager/groups-manager/groups-manager.component';
+import { DetailGroupComponent } from './manager/detail-group/detail-group.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { TransactionsComponent } from './administrator/transactions/transactions
     CreateBazarComponent,
     ImportSocialFoundationSectionComponent,
     TransactionHistoryComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    GroupsComponent,
+    GroupsManagerComponent,
+    DetailGroupComponent
   ],
   imports: [
     NgbModule,

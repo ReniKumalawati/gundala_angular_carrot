@@ -16,4 +16,16 @@ export class TransactionService {
   insertTansactionToDB(data) {
     return this.http.post(environment.endpoint + '/api/transactions', data);
   }
+
+  findAllTransactionPending() {
+    return this.http.get(environment.endpoint + '/api/transactions/pending');
+  }
+
+  approve (id) {
+    return this.http.patch(environment.endpoint + '/api/transactions/approve?id=' + id, {});
+  }
+
+  decline (id) {
+    return this.http.patch(environment.endpoint + '/api/transactions/decline?id=' + id, {});
+  }
 }
