@@ -1,7 +1,7 @@
 <main role="main" class="container1">
   <h2 class="my-4 pl-0 text-grey ml-0">
          <span class="back-button">
-           <a href="index-employee.html"><img src="img/back.png" alt="" class="back" /></a>
+           <a href="index-employee.html"><img src="assets/img/back.png" alt="" class="back" /></a>
          </span>
     2018 Vespa 946 Limited Edition
   </h2>
@@ -12,17 +12,17 @@
     <div class="row d-flex">
       <div class="col-md-12">
         <hr class="box-title-hr">
-        <h4 class="my-2 box-title">APRIL MOP BAZAAR</h4>
+        <!--<h4 class="my-2 box-title">{{item.bazaar.bazaarName}}</h4>-->
       </div>
       <div class="col-md-6 br-1">
         <img src="assets/img/bazaar_vespa.jpg" class="img-fluid p-3" alt="">
       </div>
       <div class="col-md-6 align-self-center p-5">
-        <h3>2018 Vespa 946 Limited Edition</h3>
-        <h4><strong class="carrot-orange">350.000 Carrots</strong></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eius velit dolores exercitationem porro tempore, ipsa suscipit quia. Libero voluptate quibusdam neque numquam error quas ipsa hic voluptatem aliquam, necessitatibus.</p>
-        <p class="btn-disabled radius-5">Buy</p>
-        <p class="mt-2"><small class="text-danger">You don't have enough carrots to buy this item.</small></p>
+        <h3>{{item.itemName}}</h3>
+        <h4><strong class="carrot-orange">{{item.exchangeRate}} Carrots</strong></h4>
+        <p>{{item.itemDescription}}</p>
+        <p class="btn btn-carrot radius-5" *ngIf="item.exchangeRate <= basket.carrot_amt" (click)="createTransaction()">Buy</p>
+        <p class="mt-2" *ngIf="item.exchangeRate > basket.carrot_amt"><small class="text-danger">You don't have enough carrots to buy this item.</small></p>
       </div>
     </div>
   </div>

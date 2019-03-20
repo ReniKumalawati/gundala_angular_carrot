@@ -31,7 +31,7 @@
           <div class="col-md-8 my-auto">
             <p class="sub-title">Shared</p>
             <h2 class="text-white">{{shared}} Carrots</h2>
-              <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">
+              <a class="badge badge-white" href="javascript:void(0)" (click)="open(contentShare)">
                 Share carrot!</a>
           </div>
         </div>
@@ -122,3 +122,47 @@
     </div>
   </div>
 </section>
+<ng-template #contentShare let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Share your carrot</h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="shareForm" (ngSubmit)="submit()">
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Type Name</label>
+        {{detail_to}}
+        <select class="form-control here" formControlName="detail_to" [(ngModel)]="shareValue.detail_to">
+          <option value="">Choose your college</option>
+          <option *ngFor="let item of recentDob" [ngValue]="item">
+            {{item.employee.name}}
+          </option>
+        </select>
+        <div *ngIf="submitted && messageForm.controls.employee.errors" class="error">
+          <div *ngIf="messageForm.controls.employee.errors.required">Please insert name!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Carrot's Amount</label>
+        <input name="text" type="number" class="form-control here" formControlName="carrot_amt" [(ngModel)]="shareValue.carrot_amt">
+        <div *ngIf="submitted && messageForm.controls.carrot_amt.errors" class="error">
+          <div *ngIf="messageForm.controls.carrot_amt.errors.required">Please insert carrot's ammout!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-group">
+          <label>Comments</label>
+          <textarea name="text" type="text" class="form-control here" formControlName="description" [(ngModel)]="shareValue.description"></textarea>
+          <div *ngIf="submitted && messageForm.controls.description.errors" class="error">
+            <div *ngIf="messageForm.controls.description.errors.required">Please insert name!</div>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </div>
+  </form>
+</ng-template>

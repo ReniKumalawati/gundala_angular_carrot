@@ -1,0 +1,58 @@
+<div style="background-color: white">
+  <div class="col-md-12">
+    <hr class="box-title-hr">
+    <h4 class="my-2 box-title">Group LIST
+    <button type="button" class="btn btn-info pull-right" (click)="open(contentGroup)">
+      <i class="fa fa-plus-circle"></i> ADD Group
+    </button>
+    </h4>
+  </div>
+  <div class="col-md-12">
+    <table id="table-mr" class="table table-hover mt-3">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let group of groupData">
+        <td>{{group.name}}</td>
+        <td>{{group.type}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<ng-template #contentGroup let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Add New Manager Reward</h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="groupForm" (ngSubmit)="submit()" >
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="text">Name</label>
+        <input id="text" name="text" type="text" class="form-control here" formControlName="name" [(ngModel)]="groupValue.name">
+        <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+          <div *ngIf="messageForm.controls.name.errors.required">Please insert name!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select class="form-control here" formControlName="type" [(ngModel)]="groupValue.type">
+          <option value="STAFF">STAFF</option>
+          <option value="MANAGEMENT">MANAGEMENT</option>
+        </select>
+        <div *ngIf="submitted && messageForm.controls.type.errors" class="error">
+          <div *ngIf="messageForm.controls.type.errors.required">Please insert Carrot's Amount!</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </div>
+  </form>
+</ng-template>

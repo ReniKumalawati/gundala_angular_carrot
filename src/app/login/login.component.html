@@ -1,24 +1,33 @@
-<section class="admin-tabs py-3">
-  <div class="container">
-      <h2>Login</h2>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label >Username</label>
-          <input type="text" formControlName="email" class="form-control" [(ngModel)]="formLogin.email">
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">email is required</div>
+<section>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5 rounded mb-0">
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <img src="https://carrot.mitrais.com/carrot/assets/img/mitrais-logo.png" alt="mitrais-carrot" class="img-fluid">
           </div>
+          <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-label-group">
+              <input type="text" id="username" name="username" class="form-control" placeholder="Email" required="" autofocus="" formControlName="email" [(ngModel)]="formLogin.email">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">email is required</div>
+              </div>
+            </div>
+            <div class="form-label-group">
+              <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="" [(ngModel)]="formLogin.password" formControlName="password">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+            </div>
+            <button class="btn btn-mitrais btn-block" type="submit">
+              <i class="fa fa-lock"></i>
+              Sign In
+            </button>
+          </form>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" formControlName="password" class="form-control" [(ngModel)]="formLogin.password"/>
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-carrot btn-block">Log In</button>
-        </div>
-      </form>
+      </div>
+    </div>
   </div>
+</div>
 </section>

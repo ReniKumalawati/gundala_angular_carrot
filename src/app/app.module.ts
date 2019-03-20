@@ -17,13 +17,20 @@ import { MerchantComponent } from './merchant/merchant.component';
 import { FarmerComponent } from './farmer/farmer.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
-import { ImportRewardSectionComponent } from './import-reward-section/import-reward-section.component';
-import { ImportAwardSectionComponent } from './import-award-section/import-award-section.component';
+import { ImportRewardSectionComponent } from './administrator/import-reward-section/import-reward-section.component';
+import { ImportAwardSectionComponent } from './administrator/import-award-section/import-award-section.component';
 import { LoginComponent } from './login/login.component';
 import { CreateBazarComponent } from './create-bazar/create-bazar.component';
-import { ImportSocialFoundationSectionComponent } from './import-social-foundation-section/import-social-foundation-section.component';
+import { ImportSocialFoundationSectionComponent } from './administrator/import-social-foundation-section/import-social-foundation-section.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+<<<<<<< HEAD
 import { ProfileComponent } from './profile/profile.component';
+=======
+import { TransactionsComponent } from './administrator/transactions/transactions.component';
+import { GroupsComponent } from './administrator/groups/groups.component';
+import { GroupsManagerComponent } from './manager/groups-manager/groups-manager.component';
+import { DetailGroupComponent } from './manager/detail-group/detail-group.component';
+>>>>>>> c9d3d796e5e30b39f801c940e6cf1a679368b502
 
 @NgModule({
   declarations: [
@@ -45,7 +52,14 @@ import { ProfileComponent } from './profile/profile.component';
     CreateBazarComponent,
     ImportSocialFoundationSectionComponent,
     TransactionHistoryComponent,
+<<<<<<< HEAD
     ProfileComponent
+=======
+    TransactionsComponent,
+    GroupsComponent,
+    GroupsManagerComponent,
+    DetailGroupComponent
+>>>>>>> c9d3d796e5e30b39f801c940e6cf1a679368b502
   ],
   imports: [
     NgbModule,

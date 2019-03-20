@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RewardsService} from '../service/rewards.service';
+import {RewardsService} from '../../service/rewards.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -15,7 +15,6 @@ export class ImportRewardSectionComponent implements OnInit {
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log('aaaaa')
     this.messageForm = this.formBuilder.group({
       name: ['', Validators.required],
       carrot_amt: ['', Validators.required]

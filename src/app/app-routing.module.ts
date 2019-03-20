@@ -13,7 +13,11 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './guard/auth.guard';
 import {CreateBazarComponent} from './create-bazar/create-bazar.component';
 import {TransactionHistoryComponent} from './transaction-history/transaction-history.component';
+<<<<<<< HEAD
 import {ProfileComponent} from './profile/profile.component';
+=======
+import {DetailGroupComponent} from './manager/detail-group/detail-group.component';
+>>>>>>> c9d3d796e5e30b39f801c940e6cf1a679368b502
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -30,6 +34,7 @@ const routes: Routes = [
   { path: 'create-bazar', component: CreateBazarComponent, canActivate: [AuthGuard]},
   { path: 'edit-bazar/:id', component: CreateBazarComponent, canActivate: [AuthGuard]},
   { path: 'transaction-histories', component: TransactionHistoryComponent, canActivate: [AuthGuard]},
+  { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

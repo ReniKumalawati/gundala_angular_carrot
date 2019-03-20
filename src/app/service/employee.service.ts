@@ -16,4 +16,12 @@ export class EmployeeService {
   findEmployeeByRole(role) {
     return this.http.get( environment.endpoint + "/api/employees/role?role=" + role);
   }
+
+  findRecentDOBOfEmployee() {
+    return this.http.get(environment.endpoint + "/api/employees/recentdob");
+  }
+
+  findBasketByEmployeeId(id) {
+    return this.http.get(environment.endpoint + "/api/basket/" + id);
+  }
 }
