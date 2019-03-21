@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       console.log('login callback   ' + callback);
       console.log('login callback   ' + JSON.stringify(callback));
       debugger;
-      this.employee = callback
+      this.employee = callback;
       localStorage.setItem("currentUser", this.employee.employee);
       localStorage.setItem("currentBasket", this.employee.basket);
       switch (this.employee.role) {
