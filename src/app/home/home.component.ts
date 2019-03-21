@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {DataService} from '../service/data.service'
+import {AuthenticationService} from '../service/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,11 @@ import {DataService} from '../service/data.service'
 })
 export class HomeComponent implements OnInit {
   users: Object;
-  constructor(private data: DataService) { }
+  user: any;
+  constructor(private data: DataService, private authentication: AuthenticationService) { }
 
   ngOnInit() {
+    this.user = JSON.parse(this.authentication.currentEmployee());
     this.data.getUsers().subscribe(data => {
       this.users = data
     })

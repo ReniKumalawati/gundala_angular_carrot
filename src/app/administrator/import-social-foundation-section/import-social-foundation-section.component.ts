@@ -12,7 +12,7 @@ import { SocialFoundationService } from '../../service/social-foundation.service
 export class ImportSocialFoundationSectionComponent implements OnInit {
   socialFoundationData: Object;
   messageForm: FormGroup;
-  formSocialFoundation = {name: '', description: '', min_carrot: '', total_carrot: 0, active: false, id: ''};
+  formSocialFoundation = {name: '', description: '', min_carrot: '', total_carrot: 0, status: false, id: ''};
   constructor(
     private data: SocialFoundationService, 
     private modalService: NgbModal, 
@@ -70,11 +70,11 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     }
   }
 
-  active(socialFoundation, active) {
-    if (active) {
-      socialFoundation.active = true;
+  active(socialFoundation, status) {
+    if (status) {
+      socialFoundation.status = true;
     } else {
-      socialFoundation.active = false;
+      socialFoundation.status = false;
     }
 
     console.log(socialFoundation);
@@ -88,7 +88,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     this.formSocialFoundation.name = data.name;
     this.formSocialFoundation.description = data.description;
     this.formSocialFoundation.min_carrot = data.min_carrot;
-    this.formSocialFoundation.active = data.active;
+    this.formSocialFoundation.status = data.status;
     this.formSocialFoundation.id = data.id;
     this.open(content);
   }

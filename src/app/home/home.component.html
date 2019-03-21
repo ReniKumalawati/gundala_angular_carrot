@@ -13,10 +13,10 @@
     </div>
     <div class="col-md-12">
       <a href="/employee" class="btn btn-carrot radius-5"> Employee</a>
-      <a href="/manager" class="btn btn-carrot radius-5"> Manager</a>
-      <a href="/merchant" class="btn btn-carrot radius-5"> Merchant</a>
-      <a href="/farmer" class="btn btn-carrot radius-5"> Farmer / Stockist</a>
-      <a href="/administrator" class="btn btn-carrot radius-5"> Administrator</a>
+      <a href="/manager" class="btn btn-carrot radius-5" *ngIf="user.role == 'MANAGER' || user.role == 'ROOT_ADMIN'"> Manager</a>
+      <a href="/merchant" class="btn btn-carrot radius-5" *ngIf="user.role == 'ADMIN' || user.role == 'ROOT_ADMIN'"> Merchant</a>
+      <a href="/farmer" class="btn btn-carrot radius-5" *ngIf="user.role == 'ROOT_ADMIN'"> Farmer / Stockist</a>
+      <a href="/administrator" class="btn btn-carrot radius-5" *ngIf="user.role == 'ADMIN' || user.role == 'ROOT_ADMIN'"> Administrator</a>
     </div>
   </div>
 </section>
