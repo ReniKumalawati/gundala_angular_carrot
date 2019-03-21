@@ -19,13 +19,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="barnName">Name</label>
-                <input id="barnName" name="barnName" type="text" class="form-control here" disabled>
+                <input *ngIf="itemGroup" id="barnName" name="barnName" type="text" class="form-control here" disabled value="{{itemGroup.name}}">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label >Type</label>
-                <input class="form-control here" disabled>
+                <input *ngIf="itemGroup" class="form-control here" disabled value="{{itemGroup.type}}">
               </div>
             </div>
           </div>
@@ -39,6 +39,9 @@
           <h4 class="my-2 box-title">Group's Employee</h4>
         </div>
         <div class="col-md-12">
+          <a href="javascript:void(0)"  class="btn btn-info pull-right" (click)="open(contentEmployee)">
+            <i class="fa fa-plus-circle"></i> ADD MORE Employee
+          </a>
           <table class="table table-hover mt-3">
             <thead>
             <tr>
@@ -74,10 +77,6 @@
             </tr>
             </tbody>
           </table>
-
-          <div class="text-center mt-5">
-            <a href="javascript:void(0)"  class="btn btn-info text-center"><i class="fa fa-plus-circle"></i> ADD MORE Employee</a>
-          </div>
         </div>
       </div>
     </div>
@@ -153,3 +152,28 @@
     <!--</div>-->
   <!--</form>-->
 <!--</ng-template>-->
+<ng-template #contentEmployee let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Add Employee For Group</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="addEmployee" (ngSubmit)="submit()" >
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Employee</label>
+        <select class="form-control here" formControlName="employee" [(ngModel)]="employee">
+          <option *ngFor="let employee of allEmployee" [ngValue]="employee">{{employee.name}}</option>
+        </select>
+        <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
+        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
+          <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-dark">Sumbit</button>
+    </div>
+  </form>
+</ng-template>

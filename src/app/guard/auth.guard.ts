@@ -6,6 +6,8 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    // console.log(route);
+    // return false;
     if (location.pathname == '/login') {
       if (localStorage.getItem('currentUser')) {
         // logged in so return true
@@ -16,14 +18,10 @@ export class AuthGuard implements CanActivate {
       console.log('bb');
       return true;
     } else {
-      if (localStorage.getItem('currentUser')) {
-        // logged in so return true
-        // location.href = '/src/app/login/login.component.html'
-        console.log('cc');
+      if (typeof localStorage.getItem('currentUser') == 'string') {
         return true;
       }
-
-      console.log('dd');
+      localStorage.clear();
       location.href = '/login'
       return false;
     }

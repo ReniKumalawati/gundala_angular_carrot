@@ -39,15 +39,35 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   }
 
   close() {
+    this.messageForm.reset();
     this.modalService.dismissAll();
   }
 
   submit() {
-    delete this.formSocialFoundation.id;
-    this.data.insertSocialFoundationIntoDB(this.formSocialFoundation).subscribe(callback => {
-      this.findAllSocialFoundation();
-      this.close();
-    });
+    if (this.messageForm.invalid) {
+      alert('please fulfill the form first');
+      return;
+    }
+
+    if (this.formSocialFoundation.id != '') {
+      let id: any;
+      id = this.formSocialFoundation.id;
+      delete this.formSocialFoundation.id;
+      this.data.updateSocialFoundation(this.formSocialFoundation, id).subscribe(callback => {
+        let kembalian: any;
+        kembalian = callback;
+        this.findAllSocialFoundation();
+        this.close();
+      });
+    } else {
+      delete this.formSocialFoundation.id;
+      this.data.insertSocialFoundationIntoDB(this.formSocialFoundation).subscribe(callback => {
+        let kembalian: any;
+        kembalian = callback;
+        this.findAllSocialFoundation();
+        this.close();
+      });
+    }
   }
 
   active(socialFoundation, active) {

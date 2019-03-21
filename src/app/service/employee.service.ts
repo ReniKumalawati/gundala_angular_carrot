@@ -24,4 +24,8 @@ export class EmployeeService {
   findBasketByEmployeeId(id) {
     return this.http.get(environment.endpoint + "/api/basket/" + id);
   }
+
+  insertGroupIntoEmployee(id, data) {
+    return this.http.patch(environment.endpoint + "/api/employees/" + id + "/updgroup", data);
+  }
 }
