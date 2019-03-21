@@ -11,7 +11,7 @@ import {ItemServiceService} from '../service/item-service.service';
 })
 export class EmployeeComponent implements OnInit {
   employee: any;
-  bazar: any;
+  bazar = [];
   constructor(
     private auth: AuthenticationService,
     private bazarService: BazarService,
@@ -20,21 +20,36 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.employee = JSON.parse(this.auth.currentEmployee());
-    console.log(this.employee);
     this.findBazar();
   }
 
   findBazar() {
-    this.bazarService.findBazarByStatus(true).subscribe(callback => {
-      this.bazar = callback;
-      for (let bz of this.bazar) {
-        bz.items = [];
-        this.itemService.findItemByBazarId(bz.id).subscribe(callback => {
-          bz.items = callback;
-          console.log(callback);
-        })
+    const group = this.employee.group;
+    if (group.length > 0) {
+      const bazars = [];
+      let index = 1;
+      for (let g of group) {
+        if (g.bazaars !== undefined) {
+          for (let b of g.bazaars) {
+            b.items = [];
+            this.bazar.push(b);
+            bazars.push({id: b.id});
+          }
+        }
+        if (index === group.length) {
+          this.itemService.findItemByMultipleBazarId(bazars).subscribe(callback => {
+            const item = callback;
+            for (const singleItem of item) {
+              const indexBazar = bazars.findIndex(x => x.id === singleItem.bazaar.id);
+              if (indexBazar > -1) {
+                this.bazar[indexBazar].items.push(singleItem);
+              }
+            }
+          });
+        }
+        index++;
       }
-    })
+    }
   }
 
 }

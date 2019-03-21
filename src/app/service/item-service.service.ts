@@ -13,6 +13,10 @@ export class ItemServiceService {
     return this.http.get(environment.endpoint + '/api/items/findByBazaarId?id=' + id);
   }
 
+  findItemByMultipleBazarId(data) {
+    return this.http.post(environment.endpoint + '/api/items/findByMultipleBazaarId', data);
+  }
+
   deleteItemById(id) {
     return this.http.delete(environment.endpoint + '/api/items/' + id);
   }
