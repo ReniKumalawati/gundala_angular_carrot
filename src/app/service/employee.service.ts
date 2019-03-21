@@ -26,6 +26,14 @@ export class EmployeeService {
   }
 
   insertGroupIntoEmployee(id, data) {
-    return this.http.patch(environment.endpoint + "/api/employees/" + id + "/updgroup", data);
+    return this.http.patch(environment.endpoint + "/api/employees/addgroup/"+ id , data);
+  }
+
+  findAllMemberOfAGroup(id) {
+    return this.http.get(environment.endpoint + "/api/employees/group-member/" + id);
+  }
+
+  removeEmployeeFromGroup(id, data) {
+    return this.http.patch(environment.endpoint + "/api/employees/delgroup/" + id, data);
   }
 }

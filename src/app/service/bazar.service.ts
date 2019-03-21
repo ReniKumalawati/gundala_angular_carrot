@@ -29,4 +29,12 @@ export class BazarService {
   findBazarByStatus(status) {
     return this.http.get(environment.endpoint + "/api/bazaar/status?status=" + status);
   }
+
+  insertGroupIntoBazaar(id, data) {
+    return this.http.patch(environment.endpoint + "/api/groups/add-bazaar/" + id, data);
+  }
+
+  removeGroupFrpmBazar(id, data) {
+    return this.http.patch(environment.endpoint + "/api/groups/del-bazaar/" + id, data);
+  }
 }

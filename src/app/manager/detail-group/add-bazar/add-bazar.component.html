@@ -1,0 +1,62 @@
+<div class="container search-box mt-3">
+  <div class="row pb-md-3">
+    <div class="col-md-12">
+      <hr class="box-title-hr">
+      <h4 class="my-2 box-title">Group's Bazaar</h4>
+    </div>
+    <div class="col-md-12">
+      <a href="javascript:void(0)"  class="btn btn-info pull-right" (click)="open(contentBazaar)">
+        <i class="fa fa-plus-circle"></i> ADD MORE Bazarr
+      </a>
+      <table class="table table-hover mt-3">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Start Periode</th>
+          <th scope="col">End Periode</th>
+          <th scope="col" class="priority-table">Action</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="bazaarByGroup">
+        <tr *ngFor="let bazar of bazaarByGroup">
+          <th scope="row"></th>
+          <td>{{bazar.bazaarName}}</td>
+          <td>{{bazar.bazaarDescription}}</td>
+          <td>{{bazar.startPeriod}}</td>
+          <td>{{bazar.endPeriod}}</td>
+          <td>
+            <a href="javascript:void(0)" (click)="removeBazaarFromGroup(bazar.id)">Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #contentBazaar let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Add Bazaar For Group</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="addBazaar" (ngSubmit)="submit()" >
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Bazaar</label>
+        <select class="form-control here" formControlName="bazaar" [(ngModel)]="bazaar">
+          <option *ngFor="let singleBazar of bazarData" [ngValue]="singleBazar">{{singleBazar.bazaarName}}</option>
+        </select>
+        <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
+        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
+        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-dark">Sumbit</button>
+    </div>
+  </form>
+</ng-template>

@@ -46,33 +46,18 @@
             <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Item Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Picture</th>
-              <th scope="col">Exchange Rate</th>
-              <th scope="col">Total Item</th>
-              <th scope="col">Auto Approve</th>
-              <th scope="col">Item on Sale</th>
-              <th scope="col">Sold</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
               <th scope="col" class="priority-table">Action</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td></td>
-              <td></td>
+            <tbody *ngIf="employeeByGroup">
+            <tr *ngFor="let emp of employeeByGroup">
+              <th scope="row"></th>
+              <td>{{emp.name}}</td>
+              <td>{{emp.emailAddress}}</td>
               <td>
-                <img src="assets/img/bazaar_vespa.jpg" class="table-image" alt="">
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <a href="javascript:void(0)">Delete</a> |
-                <a href="javascript:void(0)"> Edit</a>
+                <a href="javascript:void(0)" (click)="removeEmployeefromGroup(emp.id)">Delete</a>
               </td>
             </tr>
             </tbody>
@@ -80,78 +65,8 @@
         </div>
       </div>
     </div>
+  <app-add-bazar *ngIf="itemGroup" [group]="itemGroup"></app-add-bazar>
 </section>
-<!--<ng-template #contentItem let-c="close" let-d="dismiss">-->
-  <!--<div class="modal-header">-->
-    <!--<h5 class="modal-title" id="modal-basic-title">Add Item For Bazaar</h5>-->
-    <!--<button type="button" class="close" aria-label="Close" (click)="close()">-->
-      <!--<span aria-hidden="true">&times;</span>-->
-    <!--</button>-->
-  <!--</div>-->
-  <!--<form [formGroup]="itemForm" (ngSubmit)="submit()" >-->
-    <!--<div class="modal-body">-->
-      <!--<div class="form-group">-->
-        <!--<label for="text">Item's Name</label>-->
-        <!--<input id="text" name="text" type="text" class="form-control here" formControlName="itemName" [(ngModel)]="itemValue.itemName">-->
-        <!--<div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="text">Item's Description</label>-->
-        <!--<input  name="text" type="text" class="form-control here" formControlName="itemDescription" [(ngModel)]="itemValue.itemDescription">-->
-        <!--<div *ngIf="submitted && messageForm.controls.itemDescription.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.itemDescription.errors.required">Please insert name!</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Exchange Rate</label>-->
-        <!--<input  name="text1" type="text" class="form-control here" formControlName="exchangeRate" [(ngModel)]="itemValue.exchangeRate">-->
-        <!--<div *ngIf="submitted && messageForm.controls.exchangeRate.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.exchangeRate.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Total Item</label>-->
-        <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
-        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Aproval Status</label><br>-->
-        <!--<div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="approvalStatus" [(ngModel)]="itemValue.approvalStatus">-->
-          <!--<label ngbButtonLabel class="btn-primary">-->
-            <!--<input ngbButton type="radio" [value]="false">False-->
-          <!--</label>-->
-          <!--<label ngbButtonLabel class="btn-primary">-->
-            <!--<input ngbButton type="radio" [value]="true"> True-->
-          <!--</label>-->
-        <!--</div>-->
-        <!--<div *ngIf="submitted && messageForm.controls.approvalStatus.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.approvalStatus.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Sale Status</label><br>-->
-        <!--<div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="saleStatus" [(ngModel)]="itemValue.saleStatus">-->
-          <!--<label ngbButtonLabel class="btn-primary">-->
-            <!--<input ngbButton type="radio" [value]="false">False-->
-          <!--</label>-->
-          <!--<label ngbButtonLabel class="btn-primary">-->
-            <!--<input ngbButton type="radio" [value]="true"> True-->
-          <!--</label>-->
-        <!--</div>-->
-        <!--<div *ngIf="submitted && messageForm.controls.saleStatus.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.saleStatus.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="modal-footer">-->
-      <!--<button type="submit" class="btn btn-outline-dark">Sumbit</button>-->
-    <!--</div>-->
-  <!--</form>-->
-<!--</ng-template>-->
 <ng-template #contentEmployee let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h5 class="modal-title" id="modal-basic-title">Add Employee For Group</h5>

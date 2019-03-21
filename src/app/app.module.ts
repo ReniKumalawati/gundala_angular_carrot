@@ -28,6 +28,7 @@ import { TransactionsComponent } from './administrator/transactions/transactions
 import { GroupsComponent } from './administrator/groups/groups.component';
 import { GroupsManagerComponent } from './manager/groups-manager/groups-manager.component';
 import { DetailGroupComponent } from './manager/detail-group/detail-group.component';
+import { AddBazarComponent } from './manager/detail-group/add-bazar/add-bazar.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DetailGroupComponent } from './manager/detail-group/detail-group.compon
     TransactionsComponent,
     GroupsComponent,
     GroupsManagerComponent,
-    DetailGroupComponent
+    DetailGroupComponent,
+    AddBazarComponent
   ],
   imports: [
     NgbModule,
