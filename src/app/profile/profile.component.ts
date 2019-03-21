@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit {
   }
 
   profileSubmit() {
-    // console.log('submit - previous data' + JSON.stringify(employee));
     this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
       this.employee = callback;
       localStorage.setItem('currentUser', JSON.stringify(this.employee));
@@ -52,20 +51,6 @@ export class ProfileComponent implements OnInit {
     });
 
   }
-
-  // renewLocalStorage() {
-  //   // this.emp.login(this.employee.emailAddress, this.employeeForm.password).subscribe(callback => {
-  //   //   console.log('login callback   ' + callback);
-  //   //   console.log('login callback   ' + JSON.stringify(callback));
-  //   //   debugger;
-  //   //   this.employee = callback;
-  //   //   localStorage.setItem('currentUser', this.employee.employee);
-  //   // });
-  //   this.emp.findEmployeeById(this.employee.id).subscribe(
-  //     // localStorage.setItem("currentUser", JSON.stringify(this.employee));
-  //   // });
-  //   });
-  // }
 
   backToEmployee() {
     location.href = 'employee';

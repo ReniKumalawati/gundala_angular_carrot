@@ -25,10 +25,10 @@
         <td>{{socialFoundation.description}}</td>
         <td>{{socialFoundation.min_carrot}}</td>
         <td>{{socialFoundation.total_carrot}}</td>
-        <td>{{socialFoundation.active ? 'Active' : 'Inactive'}}</td>
+        <td>{{socialFoundation.status ? 'Active' : 'Inactive'}}</td>
         <td>
-          <a class="active-row" href="javascript:void(0)" *ngIf="socialFoundation.active === true" (click)="active(socialFoundation, false)"> Deactivate </a>
-          <a class="active-row" href="javascript:void(0)" *ngIf="socialFoundation.active === false" (click)="active(socialFoundation, true)"> Activate </a>
+          <a class="status-row" href="javascript:void(0)" *ngIf="socialFoundation.status === true" (click)="active(socialFoundation, false)"> Deactivate </a>
+          <a class="status-row" href="javascript:void(0)" *ngIf="socialFoundation.status === false" (click)="active(socialFoundation, true)"> Activate </a>
           <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(socialFoundation, contentSocialFoundation)">| Edit |</a>
           <a class="delete-row" href="javascript:void(0)" (click)="removeSocialFoundationFromDB(socialFoundation.id)">Delete</a>
         </td>
