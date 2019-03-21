@@ -3,9 +3,6 @@
     <div class="col-md-6">
       <h2 class="mt-4 pl-0 text-grey ml-0">FARMER DASHBOARD</h2>
     </div>
-    <div class="col-md-6">
-      <a href="create-barn.html" class="btn btn-primary mt-4 float-right">CREATE BARN</a>
-    </div>
   </div>
 
 </main>
@@ -19,27 +16,144 @@
       </div>
       <div style="overflow-x: auto" class="col-md-12">
         <table class="table table-bordered mt-3">
-          <tr>
-            <th rowspan="2">No</th>
-            <th rowspan="2">Name</th>
-            <th colspan="2">Period</th>
-            <th rowspan="2">Owner</th>
-            <th rowspan="2">Total Carrot</th>
-            <th rowspan="2">Carrot Left</th>
-            <th rowspan="2">Status</th>
-            <th rowspan="2">Released</th>
-            <th rowspan="2">Action</th>
-          </tr>
-          <tr>
-            <td>Start</td>
-            <td>End</td>
-          </tr>
+          <thead>
+            <tr>
+              <th rowspan="2">No</th>
+              <th rowspan="2">Name</th>
+              <th colspan="2">Period</th>
+              <th rowspan="2">Owner</th>
+              <th rowspan="2">Total Carrot</th>
+              <th rowspan="2">Carrot Left</th>
+              <th rowspan="2">Status</th>
+              <th rowspan="2">Released</th>
+              <th rowspan="2">Action</th>
+            </tr>
+            <tr>
+              <td>Start</td>
+              <td>End</td>
+            </tr>
+          </thead>
           <tbody id="tbody">
-
+            <tr *ngFor="let barn of barnData">
+              <td>{{barn.key}}</td>
+              <td>{{barn.name}}</td>
+              <td>{{barn.startPeriod}}</td>
+              <td>{{barn.endPeriod}}</td>
+              <td>{{barn.owner.name}}</td>
+              <td>{{barn.totalCarrot}}</td>
+              <td>{{barn.carrotLeft}}</td>
+              <td>{{barn.status ? 'Active' : 'Inactive'}} |
+                <a class="status-row" href="javascript:void(0)" *ngIf="barn.status === true"
+                  (click)="active(barn, false)"> Deactivate </a>
+                <a class="status-row" href="javascript:void(0)" *ngIf="barn.status === false"
+                  (click)="active(barn, true)"> Activate </a>
+              </td>
+              <td>{{barn.released ? 'Released' : 'Pending'}} |
+                <a class="status-row" href="javascript:void(0)" *ngIf="barn.released === true"
+                  (click)="release(barn, false)"> Pending </a>
+                <a class="status-row" href="javascript:void(0)" *ngIf="barn.released === false"
+                  (click)="release(barn, true)"> Released </a>
+              </td>
+              <td>
+                <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(barn, contentBarn)">Edit | </a>
+                <a class="delete-row" href="javascript:void(0)" (click)="removeBarn(barn.id)">Delete</a>
+              </td>
+            </tr>
           </tbody>
-
         </table>
+        <div class="text-center mb-3">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info" (click)="open(contentBarn)">
+            <i class="fa fa-plus-circle"></i> ADD BARN
+          </button>
+        </div>
       </div>
     </div>
   </div>
+  <ng-template #contentBarn let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title-barn">Add New Barn</h5>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form [formGroup]="messageForm" (ngSubmit)="submit()">
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="input1">Barn Name</label>
+          <input type="text" class="form-control here" formControlName="name" [(ngModel)]="formBarn.name">
+          <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+            <div *ngIf="messageForm.controls.name.errors.required">Please insert barn name!</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="input2">Barn Owner</label>
+          <select class="form-control here" formControlName="owner" [(ngModel)]="formBarn.owner.name">
+            <option *ngFor="let employee of adminData" [ngValue]="employee.name">{{employee.name}}</option>
+          </select>
+          <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+            <div *ngIf="messageForm.controls.name.errors.required">Please select barn owner!</div>
+          </div>
+        </div>
+        <div>
+          <th>
+            <div class="form-group">
+              <label>Barn Start Period</label>
+              <input type="date" class="form-control here" formControlName="startPeriod"
+                [(ngModel)]="formBarn.startPeriod">
+              <div *ngIf="submitted && messageForm.controls.startPeriod.errors" class="error">
+                <div *ngIf="messageForm.controls.startPeriod.errors.required">Please insert the start date!</div>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="form-group">
+              <label>Barn End Period</label>
+              <input id="input4" type="date" class="form-control here" formControlName="endPeriod"
+                [(ngModel)]="formBarn.endPeriod">
+              <div *ngIf="submitted && messageForm.controls.endPeriod.errors" class="error">
+                <div *ngIf="messageForm.controls.endPeriod.errors.required">Please insert the finish date!</div>
+              </div>
+            </div>
+          </th>
+        </div>
+        <div class="form-group">
+          <label>Total Carrot</label>
+          <input id="input5" type="number" class="form-control here" formControlName="totalCarrot"
+            [(ngModel)]="formBarn.totalCarrot">
+          <div *ngIf="submitted && messageForm.controls.totalCarrot.errors" class="error">
+            <div *ngIf="messageForm.controls.totalCarrot.errors.required">Please insert the total carrot in this barn!
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Barn Status</label>
+          <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="status"
+            [(ngModel)]="formBarn.status">
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" [value]="false"> Inactive
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" [value]="true"> Active
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Barn Release Status</label>
+          <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="released"
+            [(ngModel)]="formBarn.released">
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" [value]="false"> Pending
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" [value]="true"> Released
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+      </div>
+    </form>
+  </ng-template>
 </section>

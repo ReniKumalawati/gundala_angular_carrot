@@ -53,7 +53,7 @@ import { DetailGroupComponent } from './manager/detail-group/detail-group.compon
     TransactionsComponent,
     GroupsComponent,
     GroupsManagerComponent,
-    DetailGroupComponent
+    DetailGroupComponent,
   ],
   imports: [
     NgbModule,
