@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   employee: any;
   employeeData: Object;
   formEmployee: FormGroup;
-  employeeForm = {address: '', password: '', profilePicture: '', emailAddress: ''};
+  employeeForm = {address: '', password: '', profilePicture: ''};
   constructor(
     private emp: ProfileService,
     private modalService: NgbModal,
@@ -23,8 +23,7 @@ export class ProfileComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.employee = JSON.parse(this.auth.currentEmployee());
-    this.renewLocalStorage();
+    this.retrieveEmp();
     this.employeeForm.profilePicture = this.employee.profilePicture;
     this.employeeForm.address = this.employee.address;
     this.employeeForm.password = this.employee.password;
@@ -35,34 +34,38 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  retrieveEmp () {
+    this.employee = JSON.parse(this.auth.currentEmployee());
+    if (typeof this.employee.dob == 'string') {
+      let split = this.employee.dob.split('-');
+      this.employee.dob = {year: split[0], month: split[1], day: split[2]}
+    }
+  }
+
   profileSubmit() {
     // console.log('submit - previous data' + JSON.stringify(employee));
-    this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe();
-    this.renewLocalStorage();
-    console.log('new current employee:   ' + localStorage.currentUser);
-
-    // console.log("submit - updated employee" + JSON.stringify(this.employee));
-  }
-
-  renewLocalStorage() {
-    this.emp.login(this.employee.emailAddress, this.employeeForm.password).subscribe(callback => {
-    //   console.log('login callback   ' + callback);
-    //   console.log('login callback   ' + JSON.stringify(callback));
-    //   debugger;
-    //   this.employee = callback;
-    //   localStorage.setItem('currentUser', this.employee.employee);
-    // });
-    this.emp.findEmployeeById(this.employee.id).subscribe(callback => {
-      console.log('callback   ' + callback);
-      console.log('callback   ' + JSON.stringify(callback));
+    this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
       this.employee = callback;
-      console.log('findEmployeeById:   s' + JSON.stringify(this.employee));
-      console.log('findEmployeeById:   p' + JSON.parse(this.employee));
-      localStorage.setItem('currentUser', JSON.parse(this.employee));
-      // localStorage.setItem("currentUser", JSON.stringify(this.employee));
+      localStorage.setItem('currentUser', JSON.stringify(this.employee));
+      console.log('new current employee:   ' + localStorage.currentUser);
+      this.retrieveEmp();
     });
-    })
+
   }
+
+  // renewLocalStorage() {
+  //   // this.emp.login(this.employee.emailAddress, this.employeeForm.password).subscribe(callback => {
+  //   //   console.log('login callback   ' + callback);
+  //   //   console.log('login callback   ' + JSON.stringify(callback));
+  //   //   debugger;
+  //   //   this.employee = callback;
+  //   //   localStorage.setItem('currentUser', this.employee.employee);
+  //   // });
+  //   this.emp.findEmployeeById(this.employee.id).subscribe(
+  //     // localStorage.setItem("currentUser", JSON.stringify(this.employee));
+  //   // });
+  //   });
+  // }
 
   backToEmployee() {
     location.href = 'employee';
