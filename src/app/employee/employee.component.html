@@ -87,7 +87,7 @@
         <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
     </div>
-    <div class="row mt-3" *ngIf="bzr.items.length == 3">
+    <div class="row mt-3" *ngIf="bzr.items.length >= 3">
       <div class="col-md-4" *ngFor="let itm of bzr.items">
         <div class="card">
           <img class="card-img-top" src="assets/img/bazaar_macbook.jpg" alt="Bazaar Item">
