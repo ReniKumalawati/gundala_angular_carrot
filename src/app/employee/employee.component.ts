@@ -25,7 +25,7 @@ export class EmployeeComponent implements OnInit {
 
   findBazar() {
     const group = this.employee.group;
-    if (group.length > 0) {
+    if (group) {
       const bazars = [];
       let index = 1;
       for (let g of group) {
@@ -39,10 +39,12 @@ export class EmployeeComponent implements OnInit {
         if (index === group.length) {
           this.itemService.findItemByMultipleBazarId(bazars).subscribe(callback => {
             const item = callback;
-            for (const singleItem of item) {
-              const indexBazar = bazars.findIndex(x => x.id === singleItem.bazaar.id);
-              if (indexBazar > -1) {
-                this.bazar[indexBazar].items.push(singleItem);
+            for (let singleItem in item) {
+              if (item.hasOwnProperty(singleItem)) {
+                const indexBazar = bazars.findIndex(x => x.id === item[singleItem].bazaar.id);
+                if (indexBazar > -1) {
+                  this.bazar[indexBazar].items.push(item[singleItem]);
+                }
               }
             }
           });
