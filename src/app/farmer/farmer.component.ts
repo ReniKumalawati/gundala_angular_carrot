@@ -19,7 +19,7 @@ export class FarmerComponent implements OnInit {
   messageForm: FormGroup;
   barnTemp: Object;
   formBarn = {name: '', owner: '', startPeriod: '', endPeriod: '',
-              totalCarrot: '', status: '', released: '', id: ''};
+              totalCarrot: '', status: '', released: ''};
   constructor(
     private data: FarmService,
     private profile: ProfileService,
@@ -99,15 +99,17 @@ export class FarmerComponent implements OnInit {
   open(content) {
     this.messageForm.reset();
     this.modalService.open(content);
+    console.log('open content, id =  ' + this.barnTemp);
   }
 
   close() {
     this.messageForm.reset();
     this.modalService.dismissAll();
+    this.barnTemp = undefined;
   }
 
   openEditModal(data, content) {
-    this.formBarn.id = data.id;
+    this.barnTemp = data.id;
     this.formBarn.name = data.name;
     this.formBarn.owner = data.owner;
     this.formBarn.startPeriod = data.startPeriod;
@@ -115,6 +117,7 @@ export class FarmerComponent implements OnInit {
     this.formBarn.totalCarrot = data.totalCarrot;
     this.formBarn.status = data.status;
     this.formBarn.released = data.released;
+    console.log('open edit modal, id =  ' + this.barnTemp);
     this.open(content);
   }
 
@@ -123,27 +126,27 @@ export class FarmerComponent implements OnInit {
       alert('please fulfill the form first');
       return;
     }
-    console.log('initial submit:  ' + this.formBarn);
-    if (this.formBarn.id != '') {
-      delete this.formBarn.id;
+    console.log('initial submit:  ' + JSON.stringify(this.formBarn));
+    if (this.barnTemp != undefined) {
       let ownerTmp: any;
       ownerTmp = this.formBarn.owner;
       delete ownerTmp.dob;
       this.formBarn.owner = ownerTmp;
-      console.log('formid found submit:  ' + JSON.stringify(this.formBarn));
-      this.data.updateBarnInDB(this.formBarn, this.formBarn.id).subscribe(callback => {
+      console.log('formid found submit to update:  ' + JSON.stringify(this.formBarn));
+      this.data.updateBarnInDB(this.formBarn, this.barnTemp).subscribe(callback => {
         let kembalian: any;
         kembalian = callback;
+        console.log (kembalian)
         this.findAllBarns();
         this.close();
       });
     } else {
-      delete this.formBarn.id;
+      delete this.barnTemp;
       let ownerTmp: any;
       ownerTmp = this.formBarn.owner;
       delete ownerTmp.dob;
       this.formBarn.owner = ownerTmp;
-      console.log('formid not found submit:  ' + JSON.stringify(this.formBarn));
+      console.log('formid not found submit to postnew:  ' + JSON.stringify(this.formBarn));
       this.data.insertBarnIntoDB(this.formBarn).subscribe(callback => {
         let kembalian: any;
         kembalian = callback;

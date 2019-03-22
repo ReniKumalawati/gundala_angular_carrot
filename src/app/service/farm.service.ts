@@ -18,8 +18,6 @@ export class FarmService {
     return this.http.put(environment.endpoint + '/api/barns?id=' + id, data);
   }
   deleteBarnInDB(id) {
-    this.http.delete(environment.endpoint + '/api/barns?id=' + id);
-    console.log('barn' + id + 'deleted');
-    return this.findAllBarns();
+    return this.http.delete(environment.endpoint + '/api/barns?id=' + id);
   }
 }
