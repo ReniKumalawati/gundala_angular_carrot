@@ -32,4 +32,8 @@ export class ItemServiceService {
   updateItemById(id, data) {
     return this.http.put(environment.endpoint + '/api/items/' + id, data );
   }
+
+  uploadimage(id, data) {
+    return this.http.post(environment.endpoint + '/api/items/uploadImage/' + id, data );
+  }
 }

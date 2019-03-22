@@ -7,12 +7,14 @@ import {ItemServiceService} from '../service/item-service.service';
 import {calcBindingFlags} from '@angular/core/src/view/util';
 import {callbackify} from 'util';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {environment} from '../../environments/environment';
 @Component({
   selector: 'app-create-bazar',
   templateUrl: './create-bazar.component.html',
   styleUrls: ['./create-bazar.component.scss']
 })
 export class CreateBazarComponent implements OnInit {
+  url = environment.endpoint;
   bazarItem: Object;
   bazarForm: FormGroup;
   adminData: Object;
@@ -21,6 +23,7 @@ export class CreateBazarComponent implements OnInit {
   baz: any;
   itemForm: FormGroup;
   singleItem: any;
+  base64Encode = '';
   itemValue = {id: '', itemName: '', itemDescription: '', exchangeRate: 0, totalItem: 0, approvalStatus: false, saleStatus: false, itemSold: 0, bazaar: {id: ''}};
   private id: string;
   constructor(
@@ -108,15 +111,33 @@ export class CreateBazarComponent implements OnInit {
       this.id = this.itemValue.id;
       delete this.itemValue.id;
       this.itemService.updateItemById(this.id, this.itemValue).subscribe(callback => {
-        this.id = '';
-        this.findAllItemByBazarId(this.param.value.id);
-        this.close();
+        if (this.base64Encode !== '') {
+          this.itemService.uploadimage(this.id, {img: this.base64Encode}).subscribe(callback => {
+            this.id = '';
+            this.findAllItemByBazarId(this.param.value.id);
+            this.close();
+            this.base64Encode = '';
+          });
+        } else {
+          this.id = '';
+          this.findAllItemByBazarId(this.param.value.id);
+          this.close();
+        }
       })
     } else{
       delete this.itemValue.id;
       this.itemService.insertItemIntoDB(this.itemValue).subscribe(cllback => {
-        this.findAllItemByBazarId(this.param.value.id);
-        this.close();
+        let kembalian: any = cllback;
+        if (this.base64Encode !== '') {
+          this.itemService.uploadimage(kembalian.id, {img: this.base64Encode}).subscribe(callback => {
+            this.findAllItemByBazarId(this.param.value.id);
+            this.close();
+            this.base64Encode = '';
+          });
+        } else {
+          this.findAllItemByBazarId(this.param.value.id);
+          this.close();
+        }
       });
     }
   }
@@ -143,5 +164,16 @@ export class CreateBazarComponent implements OnInit {
       this.itemValue.itemSold = this.singleItem.itemSold;
       this.open(content)
     })
+  }
+
+  onFileChange(event) {
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.base64Encode = reader.result.toString().split(',')[1];
+      };
+    }
   }
 }

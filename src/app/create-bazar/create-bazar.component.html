@@ -92,7 +92,7 @@
               <td>{{item.itemName}}</td>
               <td>{{item.itemDescription}}</td>
               <td>
-                <img src="assets/img/bazaar_vespa.jpg" class="table-image" alt="">
+                <img src="{{url + '/images/'+item.pictureUrl}}" class="table-image" alt="" *ngIf="item.pictureUrl">
               </td>
               <td>{{item.exchangeRate}}</td>
               <td>{{item.totalItem}}</td>
@@ -137,6 +137,13 @@
         <div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">
           <div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>
         </div>
+      </div>
+      <div class="form-group">
+        <label for="text">Item's Image</label>
+        <input type="file" id="avatar" (change)="onFileChange($event)" #fileInput>
+        <!--<div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">-->
+          <!--<div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>-->
+        <!--</div>-->
       </div>
       <div class="form-group">
         <label for="text">Item's Description</label>
