@@ -15,11 +15,11 @@ import { EmployeeService } from '../service/employee.service';
 export class FarmerComponent implements OnInit {
   barnData: Object;
   employeeData: Object;
-  adminData: Object;
+  rootAdminData: Object;
   messageForm: FormGroup;
+  barnTemp: Object;
   formBarn = {name: '', owner: '', startPeriod: '', endPeriod: '',
-              totalCarrot: '', carrotLeft: '', status: '',
-              released: '', awards: '', id: ''};
+              totalCarrot: '', status: '', released: '', id: ''};
   constructor(
     private data: FarmService,
     private profile: ProfileService,
@@ -29,19 +29,18 @@ export class FarmerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.findAllBarns();
-    this.findAllEmployeeByRole();
     this.messageForm = this.formBuilder.group({
       name: ['', Validators.required],
       owner: ['', Validators.required],
       startPeriod: ['', Validators.required],
       endPeriod: ['', Validators.required],
       totalCarrot: ['', Validators.required],
-      carrotLeft: [''],
       status: ['', Validators.required],
       released: ['', Validators.required],
       awards: [''],
     });
+    this.findAllBarns();
+    this.findAllEmployeeByRole();
   }
 
   findAllBarns() {
@@ -51,12 +50,12 @@ export class FarmerComponent implements OnInit {
   }
 
   findAllEmployeeByRole() {
-    this.emp.findEmployeeByRole('ADMIN').subscribe(callback => {
-      this.adminData = callback;
-    })
+    this.emp.findEmployeeByRole('ROOT_ADMIN').subscribe(callback => {
+      this.rootAdminData = callback;
+    });
   }
 
-  findAllEmployee(){
+  findAllEmployee() {
     this.profile.findAllEmployee().subscribe(callback => {
       console.log(callback);
       this.employeeData = callback;
@@ -64,6 +63,7 @@ export class FarmerComponent implements OnInit {
   }
 
   removeBarn(id){
+    console.log('id' + id);
     this.data.deleteBarnInDB(id).subscribe();
     this.findAllBarns();
   }
@@ -97,6 +97,7 @@ export class FarmerComponent implements OnInit {
   }
 
   open(content) {
+    this.messageForm.reset();
     this.modalService.open(content);
   }
 
@@ -106,6 +107,7 @@ export class FarmerComponent implements OnInit {
   }
 
   openEditModal(data, content) {
+    this.formBarn.id = data.id;
     this.formBarn.name = data.name;
     this.formBarn.owner = data.owner;
     this.formBarn.startPeriod = data.startPeriod;
@@ -113,7 +115,6 @@ export class FarmerComponent implements OnInit {
     this.formBarn.totalCarrot = data.totalCarrot;
     this.formBarn.status = data.status;
     this.formBarn.released = data.released;
-    this.formBarn.awards = data.awards;
     this.open(content);
   }
 
@@ -122,11 +123,15 @@ export class FarmerComponent implements OnInit {
       alert('please fulfill the form first');
       return;
     }
+    console.log('initial submit:  ' + this.formBarn);
     if (this.formBarn.id != '') {
-      let id: any;
-      id = this.formBarn.id;
       delete this.formBarn.id;
-      this.data.updateBarnInDB(this.formBarn, id).subscribe(callback => {
+      let ownerTmp: any;
+      ownerTmp = this.formBarn.owner;
+      delete ownerTmp.dob;
+      this.formBarn.owner = ownerTmp;
+      console.log('formid found submit:  ' + JSON.stringify(this.formBarn));
+      this.data.updateBarnInDB(this.formBarn, this.formBarn.id).subscribe(callback => {
         let kembalian: any;
         kembalian = callback;
         this.findAllBarns();
@@ -134,6 +139,11 @@ export class FarmerComponent implements OnInit {
       });
     } else {
       delete this.formBarn.id;
+      let ownerTmp: any;
+      ownerTmp = this.formBarn.owner;
+      delete ownerTmp.dob;
+      this.formBarn.owner = ownerTmp;
+      console.log('formid not found submit:  ' + JSON.stringify(this.formBarn));
       this.data.insertBarnIntoDB(this.formBarn).subscribe(callback => {
         let kembalian: any;
         kembalian = callback;
