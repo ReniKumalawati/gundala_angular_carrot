@@ -22,11 +22,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.login.login(this.formLogin.email, this.formLogin.password).subscribe(callback => {
-      console.log('login callback   ' + callback);
-      console.log('login callback   ' + JSON.stringify(callback));
-      debugger;
       this.employee = callback;
-      localStorage.setItem("currentUser", this.employee.employee);
+      if (this.employee.status === 'gagal') {
+        alert(this.employee.message);
+        location.href = '/login';
+      } else {
+        localStorage.setItem("currentUser", this.employee.employee);
       localStorage.setItem("currentBasket", this.employee.basket);
       switch (this.employee.role) {
         case 'MANAGER':
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
         default:
           location.href = '/employee';
           break;
+      }
       }
     });
   }
