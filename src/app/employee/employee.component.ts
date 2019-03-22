@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
 import {BazarService} from '../service/bazar.service';
 import {ItemServiceService} from '../service/item-service.service';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -10,6 +11,7 @@ import {ItemServiceService} from '../service/item-service.service';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
+  url = environment.endpoint;
   employee: any;
   bazar = [];
   constructor(
