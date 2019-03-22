@@ -10,6 +10,7 @@ import { SocialFoundationService } from '../../service/social-foundation.service
   styleUrls: ['./import-social-foundation-section.component.scss']
 })
 export class ImportSocialFoundationSectionComponent implements OnInit {
+  sfTemp: Object;
   socialFoundationData: Object;
   messageForm: FormGroup;
   formSocialFoundation = {name: '', description: '', min_carrot: '', total_carrot: 0, status: false, id: ''};
@@ -41,6 +42,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   close() {
     this.messageForm.reset();
     this.modalService.dismissAll();
+    this.sfTemp = undefined;
   }
 
   submit() {
@@ -49,7 +51,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
       return;
     }
 
-    if (this.formSocialFoundation.id != '') {
+    if (this.formSocialFoundation.id != undefined) {
       let id: any;
       id = this.formSocialFoundation.id;
       delete this.formSocialFoundation.id;
@@ -85,6 +87,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   }
 
   openEditModal(data, content) {
+    this.sfTemp = data.id;
     this.formSocialFoundation.name = data.name;
     this.formSocialFoundation.description = data.description;
     this.formSocialFoundation.min_carrot = data.min_carrot;
