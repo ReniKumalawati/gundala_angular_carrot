@@ -41,7 +41,7 @@ export class GroupsComponent implements OnInit {
     this.modalService.dismissAll();
   }
   submit () {
-      delete this.groupValue;
+      delete this.groupValue.id;
       this.groupService.insertGroupToDB(this.groupValue).subscribe(callback => {
         this.findAllGroups();
         this.close();

@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'create-bazar', component: CreateBazarComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN']}},
   { path: 'edit-bazar/:id', component: CreateBazarComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN']}},
   { path: 'transaction-histories', component: TransactionHistoryComponent, canActivate: [AuthGuard],
-    data: {permission: ['ADMIN', 'ROOT_ADMIN']}},
+    data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
   { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthGuard], data: {permission: ['MANAGER', 'ROOT_ADMIN']}},
 ];
 
