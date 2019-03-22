@@ -92,7 +92,7 @@
               <td>{{item.itemName}}</td>
               <td>{{item.itemDescription}}</td>
               <td>
-                <img src="{{url + '/images/'+item.pictureUrl}}" class="table-image" alt="" *ngIf="item.pictureUrl">
+                <img src="{{'data:image/jpeg;base64,' +item.pictureUrl}}" class="table-image" alt="" *ngIf="item.pictureUrl">
               </td>
               <td>{{item.exchangeRate}}</td>
               <td>{{item.totalItem}}</td>
