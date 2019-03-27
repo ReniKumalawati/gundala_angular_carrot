@@ -16,6 +16,14 @@ export class SocialFoundationService {
     return this.http.post(environment.endpoint + "/api/socialfoundations", data);
   }
 
+  insertSocialFoundationIntoGroup(id, data) {
+    return this.http.patch(environment.endpoint + "/api/groups/add-social/" + id, data);
+  }
+
+  removeSocialFoundationIntoGroup(id, data) {
+    return this.http.patch(environment.endpoint + "/api/groups/del-social/" + id, data);
+  }
+
   updateSocialFoundation(data, id) {
     return this.http.put(environment.endpoint + "/api/socialfoundations/" + id, data);
   }

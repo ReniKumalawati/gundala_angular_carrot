@@ -6,6 +6,7 @@ import {calcBindingFlags} from '@angular/core/src/view/util';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {any} from 'codelyzer/util/function';
+import {GroupService} from '../service/group.service';
 
 @Component({
   selector: 'app-transaction-history',
@@ -13,6 +14,8 @@ import {any} from 'codelyzer/util/function';
   styleUrls: ['./transaction-history.component.scss']
 })
 export class TransactionHistoryComponent implements OnInit {
+  dn = ['BIRTHDAY', 'DONATION'];
+  type = '';
   user: any;
   currentBasket: any;
   transactionLists: any;
@@ -20,15 +23,18 @@ export class TransactionHistoryComponent implements OnInit {
   reward: any;
   bazaar: any;
   recentDob: any;
+  employee: any;
   shareForm: FormGroup;
+  sosFoundData = [];
   shareValue = {from: '', to: '',
                 detail_to: {id: '', name: '', employee: {id:'', dob: '', name: ''}},
-                detail_from: {id: '', name: '', employee: {id:'', name: '', dob: ''}},
-                carrot_amt: 0, type: 'SHARED', description: ''};
+                detail_from: {id: '', name: '', employee: {id:'', name: '', dob: '', group: []}},
+                carrot_amt: 0, type: 'SHARED', description: '', socialFoundation: {id: '', name: ''}};
   constructor(private auth: AuthenticationService,
               private transactionService: TransactionService,
               private  employeeService: EmployeeService,
               private formBuilder: FormBuilder,
+              private groupService: GroupService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -42,6 +48,25 @@ export class TransactionHistoryComponent implements OnInit {
     this.currentBasket = JSON.parse(this.auth.currentBasket());
     this.findAllTransactionsById();
     this.findAllRecentDob();
+    this.findSocialFoundationByGroup()
+  }
+
+  findSocialFoundationByGroup () {
+    const group = this.user.group;
+    this.sosFoundData = [];
+    if (group) {
+      for (let g of group) {
+        console.log(g)
+        this.groupService.findById(g.id).subscribe(callback => {
+          let data: any = callback;
+          if (data.socialFoundations) {
+            data.socialFoundations.forEach(e => {
+              this.sosFoundData.push(e)
+            })
+          }
+        });
+      }
+    }
   }
 
   findAllRecentDob () {
@@ -92,11 +117,18 @@ export class TransactionHistoryComponent implements OnInit {
   }
 
   submit() {
-    delete this.shareValue.detail_to.employee.dob;
-    this.shareValue.to = this.shareValue.detail_to.employee.name;
     this.shareValue.detail_from = this.currentBasket;
     this.shareValue.from = this.user.name;
+    this.shareValue.type = this.type
+    if (this.type === 'DONATION') {
+      delete this.shareValue.detail_to;
+      this.shareValue.to = this.shareValue.socialFoundation.name;
+    } else {
+      delete this.shareValue.detail_to.employee.dob;
+      this.shareValue.to = this.shareValue.detail_to.employee.name;
+    }
     delete this.shareValue.detail_from.employee.dob;
+    delete this.shareValue.detail_from.employee.group;
     console.log(this.shareValue);
     this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
       this.close();
@@ -111,5 +143,14 @@ export class TransactionHistoryComponent implements OnInit {
   close() {
     this.modalService.dismissAll();
     this.shareForm.reset();
+  }
+
+  detect(e) {
+    let split = e.split(' ');
+    if (split.length > 1) {
+      this.type = split[1]
+    } else {
+      this.type = ''
+    }
   }
 }

@@ -14,15 +14,17 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let transaction of pendingTransactions">
-        <td>{{transaction.from}}</td>
-        <td>{{transaction.type}}</td>
-        <td>{{transaction.description}}</td>
-        <td>
-          <a class="delete-row" href="javascript:void(0)" (click)="decline(transaction.id)">Decline</a> |
-          <a class="edit-row" href="javascript:void(0)" (click)="approve(transaction.id)"> Approve</a>
-        </td>
-      </tr>
+      <template *ngFor="let transaction of pendingTransactions">
+        <tr *ngIf="transaction.type == 'DONATION'">
+          <td>{{transaction.from}}</td>
+          <td>{{transaction.type}}</td>
+          <td>{{transaction.description}}</td>
+          <td>
+            <a class="delete-row" href="javascript:void(0)" (click)="decline(transaction.id)">Decline</a> |
+            <a class="edit-row" href="javascript:void(0)" (click)="approve(transaction.id)"> Approve</a>
+          </td>
+        </tr>
+      </template>
       </tbody>
     </table>
   </div>
