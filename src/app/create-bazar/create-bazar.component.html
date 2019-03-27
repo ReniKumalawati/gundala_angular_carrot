@@ -92,7 +92,7 @@
               <td>{{item.itemName}}</td>
               <td>{{item.itemDescription}}</td>
               <td>
-                <img src="{{url + '/images/'+item.pictureUrl}}" class="table-image" alt="" *ngIf="item.pictureUrl">
+                <img src="{{item.pictureUrl}}" class="table-image" alt="" *ngIf="item.pictureUrl">
               </td>
               <td>{{item.exchangeRate}}</td>
               <td>{{item.totalItem}}</td>
@@ -140,7 +140,10 @@
       </div>
       <div class="form-group">
         <label for="text">Item's Image</label>
-        <input type="file" id="avatar" (change)="onFileChange($event)" #fileInput>
+        <div>
+        <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="" >
+        <input type="file" accept="images" id="avatar" (change)="onFileChange($event)" #fileInput>
+      </div>
         <!--<div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">-->
           <!--<div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>-->
         <!--</div>-->
@@ -196,7 +199,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-outline-dark">Sumbit</button>
+      <button type="submit" class="btn btn-outline-dark">Submit</button>
     </div>
   </form>
 </ng-template>
