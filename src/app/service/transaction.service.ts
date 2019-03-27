@@ -32,4 +32,9 @@ export class TransactionService {
   findTransactionByBazar(id) {
     return this.http.get(environment.endpoint + '/api/transactions/by-bazaar/' + id);
   }
+
+  getEarnedCarrot(id) {
+    console.log(id)
+    return this.http.get(environment.endpoint + '/api/transactions/total-earned/' + id);
+  }
 }

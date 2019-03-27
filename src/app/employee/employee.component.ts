@@ -3,6 +3,7 @@ import {AuthenticationService} from '../service/authentication.service';
 import {BazarService} from '../service/bazar.service';
 import {ItemServiceService} from '../service/item-service.service';
 import {environment} from '../../environments/environment';
+import {TransactionService} from '../service/transaction.service';
 
 
 @Component({
@@ -14,15 +15,29 @@ export class EmployeeComponent implements OnInit {
   url = environment.endpoint;
   employee: any;
   bazar = [];
+  total = 0;
+  basket: any;
   constructor(
     private auth: AuthenticationService,
     private bazarService: BazarService,
+    private transactionService: TransactionService,
     private itemService: ItemServiceService
   ) { }
 
   ngOnInit() {
     this.employee = JSON.parse(this.auth.currentEmployee());
+    this.basket = JSON.parse(this.auth.currentBasket());
     this.findBazar();
+    this.getTotalEarnedCarrot();
+  }
+
+  getTotalEarnedCarrot () {
+    this.transactionService.getEarnedCarrot(this.basket.id).subscribe(callback => {
+      let kembalian: any = callback;
+      if (kembalian.length > 0) {
+        this.total = kembalian[0].total;
+      }
+    })
   }
 
   findBazar() {

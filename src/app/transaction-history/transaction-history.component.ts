@@ -94,21 +94,15 @@ export class TransactionHistoryComponent implements OnInit {
         transaction.transactiondate = new Date(transaction.transaction_date).getTime();
         switch (transaction.type) {
           case 'SHARED':
-            if (transaction.to == this.user.name) {
+            if (transaction.from == this.user.name) {
               this.shared = this.shared + transaction.carrot_amt;
-            } else {
-              this.shared = this.shared - transaction.carrot_amt;
             }
             break;
-            case 'REWARD':
-            if (transaction.to == this.user.name) {
+            case 'DONATION':
               this.reward = this.reward + transaction.carrot_amt;
-            } else {
-              this.reward = this.reward - transaction.carrot_amt;
-            }
             break;
           case 'BAZAAR':
-            this.bazaar = this.bazaar - transaction.carrot_amt;
+            this.bazaar = this.bazaar + transaction.carrot_amt;
             break;
         }
       }
@@ -119,8 +113,8 @@ export class TransactionHistoryComponent implements OnInit {
   submit() {
     this.shareValue.detail_from = this.currentBasket;
     this.shareValue.from = this.user.name;
-    this.shareValue.type = this.type
     if (this.type === 'DONATION') {
+      this.shareValue.type = this.type
       delete this.shareValue.detail_to;
       this.shareValue.to = this.shareValue.socialFoundation.name;
     } else {
