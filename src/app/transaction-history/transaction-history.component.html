@@ -16,8 +16,8 @@
             <img src="assets/img/mc-icon-carrot.png" alt="" class="img-fluid rounded-circle">
           </div>
           <div class="col-md-8 my-auto">
-            <p class="sub-title">Reward</p>
-            <h2 class="text-white">{{reward}} Carrots</h2>
+            <p class="sub-title">Social Foundation</p>
+            <h2 class="text-white">{{reward}} Carrots Spent</h2>
               <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">
                 Share carrot!</a>
           </div>
@@ -30,7 +30,7 @@
           </div>
           <div class="col-md-8 my-auto">
             <p class="sub-title">Shared</p>
-            <h2 class="text-white">{{shared}} Carrots</h2>
+            <h2 class="text-white">{{shared}} Carrots Spent</h2>
               <a class="badge badge-white" href="javascript:void(0)" (click)="open(contentShare)">
                 Share carrot!</a>
           </div>
@@ -43,7 +43,7 @@
           </div>
           <div class="col-md-8 my-auto">
             <p class="sub-title">Bazaar</p>
-            <h2 class="text-white">{{bazaar}} Carrots</h2>
+            <h2 class="text-white">{{bazaar}} Carrots Spent</h2>
               <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">
                 Share carrot!</a>
           </div>
@@ -132,12 +132,30 @@
   <form [formGroup]="shareForm" (ngSubmit)="submit()">
     <div class="modal-body">
       <div class="form-group">
-        <label>Type Name</label>
-        {{detail_to}}
+        <label>Sharing Type</label>
+        <select class="form-control here" formControlName="detail_to" (change)="detect($event.target.value)">
+          <option value="" selected> Pilih tipe </option>
+          <option *ngFor="let e of dn" [ngValue]="e">{{e}}</option>
+        </select>
+      </div>
+      <div class="form-group" *ngIf="type === 'BIRTHDAY'">
+        <label>Colleagues</label>
         <select class="form-control here" formControlName="detail_to" [(ngModel)]="shareValue.detail_to">
-          <option value="">Choose your college</option>
+          <option value="">Choose your Colleague</option>
           <option *ngFor="let item of recentDob" [ngValue]="item">
             {{item.employee.name}}
+          </option>
+        </select>
+        <div *ngIf="submitted && messageForm.controls.employee.errors" class="error">
+          <div *ngIf="messageForm.controls.employee.errors.required">Please insert name!</div>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="type === 'DONATION'">
+        <label>Social Foundation</label>
+        <select class="form-control here" formControlName="detail_to" [(ngModel)]="shareValue.socialFoundation">
+          <option value="">Choose Social Foundation</option>
+          <option *ngFor="let item of sosFoundData" [ngValue]="item">
+            {{item.name}}
           </option>
         </select>
         <div *ngIf="submitted && messageForm.controls.employee.errors" class="error">

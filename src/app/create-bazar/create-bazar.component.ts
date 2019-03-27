@@ -18,8 +18,12 @@ export class CreateBazarComponent implements OnInit {
   bazarItem: Object;
   bazarForm: FormGroup;
   adminData: Object;
+<<<<<<< HEAD
   imageSrc: String;
   formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: ''}}
+=======
+  formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: '', dob: ''}}
+>>>>>>> bb0726e296b52a532e9a4426065d7fa9df2aad7c
   param: any;
   baz: any;
   itemForm: FormGroup;
@@ -92,6 +96,7 @@ export class CreateBazarComponent implements OnInit {
 
   onSubmit() {
     if (this.param.value.id != null) {
+      delete this.formBaxar.owner.dob;
       this.bazarService.updateBazarById(this.param.value.id, this.formBaxar).subscribe(callback => {
         location.href = '/merchant';
       })

@@ -37,4 +37,8 @@ export class BazarService {
   removeGroupFrpmBazar(id, data) {
     return this.http.patch(environment.endpoint + "/api/groups/del-bazaar/" + id, data);
   }
+
+  findBazaarByOwnerId(id) {
+    return this.http.get(environment.endpoint + "/api/bazaar/bazar-by-owner/" + id);
+  }
 }

@@ -55,7 +55,7 @@ export class ItemDetailComponent implements OnInit {
                       detail_from: this.basket,
                       carrot_amt: this.item.exchangeRate,
                       type: 'BAZAAR',
-                      description: 'But an Item in ' + this.item.bazaar.bazaarName,
+                      description: 'Buy an Item in ' + this.item.bazaar.bazaarName,
                       requested_item: this.item};
     delete shareValue.detail_from.employee.dob
     this.transactionService.insertTansactionToDB(shareValue).subscribe(callback => {

@@ -30,6 +30,8 @@ import { GroupsManagerComponent } from './manager/groups-manager/groups-manager.
 import { DetailGroupComponent } from './manager/detail-group/detail-group.component';
 import { AddBazarComponent } from './manager/detail-group/add-bazar/add-bazar.component';
 import { GroubAchievementComponent } from './manager/detail-group/groub-achievement/groub-achievement.component';
+import { MerchantTransactionComponent } from './merchant/merchant-transaction/merchant-transaction.component';
+import { GroupSocialFoundationComponent } from './manager/detail-group/group-social-foundation/group-social-foundation.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { GroubAchievementComponent } from './manager/detail-group/groub-achievem
     GroupsManagerComponent,
     DetailGroupComponent,
     AddBazarComponent,
-    GroubAchievementComponent
+    GroubAchievementComponent,
+    MerchantTransactionComponent,
+    GroupSocialFoundationComponent
   ],
   imports: [
     NgbModule,
