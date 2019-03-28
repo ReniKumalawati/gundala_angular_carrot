@@ -18,7 +18,12 @@ export class CreateBazarComponent implements OnInit {
   bazarItem: Object;
   bazarForm: FormGroup;
   adminData: Object;
+<<<<<<< HEAD
+  imageSrc: String;
+  formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: ''}}
+=======
   formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: '', dob: ''}}
+>>>>>>> bb0726e296b52a532e9a4426065d7fa9df2aad7c
   param: any;
   baz: any;
   itemForm: FormGroup;
@@ -45,6 +50,7 @@ export class CreateBazarComponent implements OnInit {
       saleStatus: ['']
     });
     this.param = this.route.params;
+    console.log(JSON.stringify(this.param));
     this.bazarForm = this.formBuilder.group({
       bazaarName: ['', Validators.required],
       status: [''],
@@ -173,6 +179,7 @@ export class CreateBazarComponent implements OnInit {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
+        this.imageSrc = reader.result.toString();
         this.base64Encode = reader.result.toString().split(',')[1];
       };
     }

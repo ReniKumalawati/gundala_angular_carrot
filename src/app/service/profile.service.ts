@@ -15,7 +15,7 @@ export class ProfileService {
     return this.http.get(environment.endpoint + '/api/employees');
   }
   updateEmployeeIntoDB(data, id){
-    console.log('data di request' + JSON.stringify(data));
+    console.log('data di request update' + JSON.stringify(data));
     console.log('id di request' + JSON.stringify(id));
     return this.http.patch(environment.endpoint + '/api/employees/' + id, data);
   }
@@ -24,5 +24,9 @@ export class ProfileService {
   }
   login(email: string, password: string) {
     return this.data.login({email: email, password: password});
+  }
+  uploadEmployeeImage(id, data) {
+    console.log('data di request upload' + JSON.stringify(data));
+    return this.http.post(environment.endpoint + '/api/employees/uploadImage/' + id, data );
   }
 }
