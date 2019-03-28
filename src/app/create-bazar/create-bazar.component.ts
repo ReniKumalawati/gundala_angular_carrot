@@ -14,16 +14,11 @@ import {environment} from '../../environments/environment';
   styleUrls: ['./create-bazar.component.scss']
 })
 export class CreateBazarComponent implements OnInit {
-  url = environment.endpoint;
   bazarItem: Object;
   bazarForm: FormGroup;
   adminData: Object;
-<<<<<<< HEAD
   imageSrc: String;
-  formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: ''}}
-=======
   formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: '', dob: ''}}
->>>>>>> bb0726e296b52a532e9a4426065d7fa9df2aad7c
   param: any;
   baz: any;
   itemForm: FormGroup;
