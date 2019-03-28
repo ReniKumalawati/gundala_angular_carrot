@@ -14,8 +14,7 @@
       </tr>
       </thead>
       <tbody>
-      <template *ngFor="let transaction of pendingTransactions">
-        <tr *ngIf="transaction.type == 'DONATION'">
+        <tr *ngFor="let transaction of pendingTransactions">
           <td>{{transaction.from}}</td>
           <td>{{transaction.type}}</td>
           <td>{{transaction.description}}</td>
@@ -24,7 +23,6 @@
             <a class="edit-row" href="javascript:void(0)" (click)="approve(transaction.id)"> Approve</a>
           </td>
         </tr>
-      </template>
       </tbody>
     </table>
   </div>

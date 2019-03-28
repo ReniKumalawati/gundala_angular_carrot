@@ -12,7 +12,7 @@ export class ContactComponent implements OnInit {
   success = false;
   constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
+  ngOnInit() {this.submitted = false;
     this.messageForm = this.formBuilder.group({
       name: ['', Validators.required],
       message: ['', Validators.required]

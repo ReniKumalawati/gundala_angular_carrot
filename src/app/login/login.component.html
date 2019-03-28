@@ -10,14 +10,14 @@
           <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-label-group">
               <input type="text" id="username" name="username" class="form-control" placeholder="Email" required="" autofocus="" formControlName="email" [(ngModel)]="formLogin.email">
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">email is required</div>
+              <div *ngIf="submitted && loginForm.controls.email.errors" class="invalid-feedback">
+                <div *ngIf="loginForm.email.errors.required">email is required</div>
               </div>
             </div>
             <div class="form-label-group">
               <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="" [(ngModel)]="formLogin.password" formControlName="password">
-              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="submitted && loginForm.controls.password.errors" class="invalid-feedback">
+                <div *ngIf="loginForm.password.errors.required">Password is required</div>
               </div>
             </div>
             <button class="btn btn-mitrais btn-block" type="submit">

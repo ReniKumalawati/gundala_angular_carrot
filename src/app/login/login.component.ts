@@ -10,6 +10,7 @@ import {AuthenticationService} from '../service/authentication.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   employee: any;
+  submitted = false;
   formLogin = {email: '', password: ''}
   constructor(private formBuilder: FormBuilder, private login: AuthenticationService) { }
 
