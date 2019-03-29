@@ -33,6 +33,11 @@ img.center {
   margin-right: auto;
 }
 
+img.center:hover {
+  // filter: grayscale(100%);
+  -webkit-filter: blur(100%);
+  border: 2px solid #ff6f3d;
+}
 // .btn {
 //   position: absolute;
 //   top: 50%;
@@ -60,4 +65,5 @@ img.center {
   background-color: #24292e!important;
   color: white;
   padding: 5px 5px;
+  letter-spacing: 1px;
 }

@@ -27,7 +27,7 @@
                 <!-- <img class="thumbnailpicture" src="imageSrc" alt="" *ngIf="employee.profilePicture"> -->
                 <div class="container">
                   <img class="img-fluid rounded-circle center" id="blah" [src]="imageSrc" alt="">
-                  <button class="edit-button">Edit</button>
+                  <button class="edit-button">Change Image</button>
                   <input type="file" accept="images" id="avatar" (change)="onFileChange($event)"
                     class="form-control here" formControlName="profilePicture">
                 </div>
@@ -81,7 +81,7 @@
     <div class="container mt-3">
       <div class="row d-flex">
         <div class="col-md-12 py-3 px-md-0">
-          <button type="submit" class="btn btn-carrot radius-5 pull-right">UPDATE DATA</button>
+          <button type="submit" class="btn btn-carrot radius-5 pull-right">Save Changes</button>
         </div>
       </div>
     </div>
