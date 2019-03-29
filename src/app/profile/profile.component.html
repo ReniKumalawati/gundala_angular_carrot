@@ -23,32 +23,47 @@
           <div class="row justify-content-center align-items-center">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="text">Item's Image</label>
+                <label class="center" for="text">Item's Image</label>
                 <!-- <img class="thumbnailpicture" src="imageSrc" alt="" *ngIf="employee.profilePicture"> -->
-                <div>
-                  <img class="img-fluid rounded-circle" id="blah" [src]="imageSrc" alt="">
+                <div class="container">
+                  <img class="img-fluid rounded-circle center" id="blah" [src]="imageSrc" alt="">
+                  <button class="edit-button">Edit</button>
                   <input type="file" accept="images" id="avatar" (change)="onFileChange($event)"
                     class="form-control here" formControlName="profilePicture">
                 </div>
+
                 <div *ngIf="submitted && formEmployee.controls.profilePicture.errors" class="error">
                   <div *ngIf="formEmployee.controls.profilePicture.errors.required">Please insert the picture!</div>
                 </div>
               </div>
+
               <div class="form-group">
-                <label>Employee Name: {{employee.name}}</label>
+                <label class="info-label">Name:</label> <br/>
+                <label class="info-data">{{employee.name}}</label>
               </div>
+
               <div class="form-group">
-                <label for="employeeDoB">Birth Date: {{employee.dob.day}} - {{employee.dob.month}} -
-                  {{employee.dob.year}}</label>
+                <label class="info-label" for="employeeEmail">Email Address: </label> <br/> 
+                <label class="info-data">{{employee.emailAddress}}</label>
               </div>
+
               <div class="form-group">
-                <label for="employeeAddress">Employee Address: {{employee.address}}</label>
+                <label class="info-label" for="employeeDoB">Date of Birth: </label> <br/> 
+                <label class="info-data">{{employee.dob.day}} - {{employee.dob.month}} - {{employee.dob.year}}</label>
+              </div>
+
+              <div class="form-group">
+                <label class="info-label">Role: </label> <br/> 
+                <label class="info-data">{{employee.role}}</label>
+              </div>
+
+              <div class="form-group">
+                <label for="employeeAddress">Address: </label> <br/> 
+                <!-- <label>{{employee.address}}</label> -->
                 <input id="employeeAddress" name="employeeAddress" type="textar" class="form-control here"
                   formControlName="address" [(ngModel)]="employeeForm.address">
               </div>
-              <div class="form-group">
-                <label for="employeeEmail">Email Address: {{employee.emailAddress}}</label>
-              </div>
+
               <div class="form-group">
                 <label for="employeePassword">Password: {{employee.password}}</label>
                 <input id="employeePassword" name="employeePassword" type="textar" class="form-control here"
@@ -57,9 +72,7 @@
                   <div *ngIf="formEmployee.controls.employeePassword.errors.required">Please insert the picture!</div>
                 </div>
               </div>
-              <div class="form-group">
-                <label>Employee Role: {{employee.role}}</label>
-              </div>
+
             </div>
           </div>
         </div>
