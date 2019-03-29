@@ -20,31 +20,27 @@
         <div class="col-md-12 ">
           <hr class="box-title-hr">
           <h4 class="mt-2 mb-4 box-title">EMPLOYEE DETAILS</h4>
-          <div class="row">
+          <div class="row justify-content-center align-items-center">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="text">Item's Image</label>
                 <!-- <img class="thumbnailpicture" src="imageSrc" alt="" *ngIf="employee.profilePicture"> -->
                 <div>
-                  <img id="blah" [src]="imageSrc" alt="">
+                  <img class="img-fluid rounded-circle" id="blah" [src]="imageSrc" alt="">
                   <input type="file" accept="images" id="avatar" (change)="onFileChange($event)"
-                    class="form-control here" formControlName="profilePicture"
-                    >
+                    class="form-control here" formControlName="profilePicture">
                 </div>
                 <div *ngIf="submitted && formEmployee.controls.profilePicture.errors" class="error">
                   <div *ngIf="formEmployee.controls.profilePicture.errors.required">Please insert the picture!</div>
                 </div>
               </div>
-
               <div class="form-group">
                 <label>Employee Name: {{employee.name}}</label>
               </div>
-
               <div class="form-group">
                 <label for="employeeDoB">Birth Date: {{employee.dob.day}} - {{employee.dob.month}} -
                   {{employee.dob.year}}</label>
               </div>
-
               <div class="form-group">
                 <label for="employeeAddress">Employee Address: {{employee.address}}</label>
                 <input id="employeeAddress" name="employeeAddress" type="textar" class="form-control here"
