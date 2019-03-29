@@ -12,7 +12,7 @@
 .info-label {
   font-family: 'Montserrat', sans-serif;
   font-size: 16pt;
-  font-weight: 500;
+  font-weight: bold;
   text-transform: none;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -34,24 +34,9 @@ img.center {
 }
 
 img.center:hover {
-  // filter: grayscale(100%);
   -webkit-filter: blur(100%);
-  border: 2px solid #ff6f3d;
+  border: 3px solid #3B2170
 }
-// .btn {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   // transform: translate(-50%, -50%);
-//   // -ms-transform: translate(-50%, -50%);
-//   background-color: #555;
-//   color: white;
-//   font-size: 16px;
-//   padding: 5px 5px;
-//   border: none;
-//   cursor: pointer;
-//   border-radius: 5px;
-// }
 
 .edit-button {
   font-size: 11pt;
@@ -66,4 +51,11 @@ img.center:hover {
   color: white;
   padding: 5px 5px;
   letter-spacing: 1px;
+}
+
+.btn span.icon {
+  background: url(../../assets/img/back.png) no-repeat;
+  float: left;
+  width: 10px;
+  height: 40px;
 }
