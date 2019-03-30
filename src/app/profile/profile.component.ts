@@ -47,6 +47,7 @@ export class ProfileComponent implements OnInit {
   }
 
   profileSubmit() {
+    if (this.base64Encode !== '') {
       this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
       this.emp.uploadEmployeeImage(this.employee.id, { img: this.base64Encode }).subscribe(callback => {
         // this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
@@ -58,6 +59,9 @@ export class ProfileComponent implements OnInit {
           window.alert('employee data updated');
         });
       });
+    } else {
+      window.alert('please select an image');
+    }
   }
 
   backToEmployee() {
