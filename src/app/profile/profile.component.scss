@@ -34,7 +34,7 @@ img.center {
 }
 
 img.center:hover {
-  -webkit-filter: blur(100%);
+  // -webkit-filter: blur(100%);
   border: 3px solid #3B2170
 }
 
@@ -53,9 +53,9 @@ img.center:hover {
   letter-spacing: 1px;
 }
 
-.btn span.icon {
-  background: url(../../assets/img/back.png) no-repeat;
-  float: left;
-  width: 10px;
-  height: 40px;
-}
+// .btn span.icon {
+//   background: url(../../assets/img/back.png) no-repeat;
+//   float: left;
+//   width: 10px;
+//   height: 40px;
+// }
