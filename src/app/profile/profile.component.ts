@@ -47,28 +47,30 @@ export class ProfileComponent implements OnInit {
   }
 
   profileSubmit() {
-    if (this.base64Encode !== '') {
       this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
-      this.emp.uploadEmployeeImage(this.employee.id, { img: this.base64Encode }).subscribe(callback => {
-        // this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
-          console.log(callback)
+      if (this.base64Encode !== '') {
+        this.emp.uploadEmployeeImage(this.employee.id, { img: this.base64Encode }).subscribe(callback => {
           this.employee = callback;
           localStorage.setItem('currentUser', JSON.stringify(this.employee));
           console.log('new current employee:   ' + localStorage.currentUser);
           this.retrieveEmp();
           window.alert('employee data updated');
         });
-      });
-    } else {
-      window.alert('please select an image');
-    }
+      } else {
+        this.employee = callback;
+        localStorage.setItem('currentUser', JSON.stringify(this.employee));
+        console.log('new current employee:   ' + localStorage.currentUser);
+        this.retrieveEmp();
+        window.alert('employee data updated');
+      }
+    });
   }
 
-  backToEmployee() {
+backToEmployee() {
     location.href = 'employee';
   }
 
-  onFileChange(event) {
+onFileChange(event) {
     console.log('but why');
     const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {

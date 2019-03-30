@@ -2,7 +2,7 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
     <a class="navbar-brand" href="/">
-      <img src="assets/img/mitrais-logo.png" alt="">
+      <img id="homeLogo" src="assets/img/mitrais-logo.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
         </li>
         <li class="nav-item logout">
           <a class="nav-link logout" id="logoutButton">
-            <i class="fa fa-sign-out" aria-hidden="true" (click)="goLogout()"></i>
+            <button class="fa fa-sign-out" aria-hidden="true" (click)="goLogout()"></button>
           </a>
         </li>
       </ul>
