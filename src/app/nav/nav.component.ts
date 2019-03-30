@@ -15,7 +15,6 @@ export class NavComponent implements OnInit {
   }
 
   goLogout(){
-      //localStorage.removeItem('currentUser');
       location.href = '/';
       localStorage.clear(); //ini bisa juga buat hapus semua data di localStorage
   }
