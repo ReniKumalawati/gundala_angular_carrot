@@ -13,7 +13,8 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-  background: url('assets/img/mitrais-carrot-bg-pattern.png') #f36f38;
+  // background: url('assets/img/mitrais-carrot-bg-pattern.png') #f36f38;
+  background: url('assets/img/mitrais-carrot-bg-pattern.png') #ffc938;
   background-position: bottom right;
   background-repeat: repeat;
   /* font-family: 'Verdana', sans-serif; */
@@ -24,14 +25,16 @@ body {
   margin-bottom: 10px;
 }
 .footer {
-  position: relative;
+  position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px;
   /* Vertically center the text there */
-  background-color: #e0e4ee;
+  // background-color: #e0e4ee;
+  background-color: #f5dcb2;
+  opacity: 0.5;
 }
 
 h2 {
@@ -674,4 +677,9 @@ a:hover {
 .fa-sign-out {
   font-size: 25px;
   color: #888;
+}
+
+.bg-light {
+  background-color: #d9e4e6!important;
+  // background-color: #f5d176!important;
 }
