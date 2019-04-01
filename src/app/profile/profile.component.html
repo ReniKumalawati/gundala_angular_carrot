@@ -23,7 +23,7 @@
           <div class="row justify-content-center align-items-center">
             <div class="col-md-6">
               <div class="form-group">
-                <label class="center" for="text">Item's Image</label>
+                <label class="center" for="text">Profile picture</label>
                 <!-- <img class="thumbnailpicture" src="imageSrc" alt="" *ngIf="employee.profilePicture"> -->
                 <!-- <div class="container">
                   <img class="img-fluid rounded-circle center" id="blah" [src]="imageSrc" alt="">
@@ -36,9 +36,14 @@
                   <label for="file-input" class="text">
                     <img class="img-fluid rounded-circle" id="blah" [src]="imageSrc" alt="">
                   </label>
-                  <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
-                    class="form-control here" formControlName="profilePicture" />
+                  <!-- <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
+                    class="form-control here" formControlName="profilePicture" /> -->
                 </div>
+              </div>
+
+              <div class="form-group">
+                <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
+                    class="form-control here" formControlName="profilePicture" />
               </div>
 
               <div class="form-group">
