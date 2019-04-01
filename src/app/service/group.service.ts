@@ -20,4 +20,8 @@ export class GroupService {
   findById(id) {
     return this.http.get(environment.endpoint + "/api/groups/" + id);
   }
+
+  updateGroup (id, data) {
+    return this.http.put(environment.endpoint + "/api/groups/" + id, data);
+  }
 }

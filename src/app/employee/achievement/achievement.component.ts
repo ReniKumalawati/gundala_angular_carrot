@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../service/authentication.service';
+import {EmployeeService} from '../../service/employee.service';
+import {TransactionService} from '../../service/transaction.service';
 
 @Component({
   selector: 'app-achievement',
@@ -8,13 +10,17 @@ import {AuthenticationService} from '../../service/authentication.service';
 })
 export class AchievementComponent implements OnInit {
   employee: any;
+  basket: any;
   achievementdata:any = [];
   constructor(
     private auth: AuthenticationService,
+    private employeeservice: EmployeeService,
+    private transactionService: TransactionService
   ) { }
 
   ngOnInit() {
     this.employee = JSON.parse(this.auth.currentEmployee());
+    this.basket = JSON.parse(this.auth.currentBasket());
     this.findAchievement()
   }
 
@@ -26,27 +32,38 @@ export class AchievementComponent implements OnInit {
         console.log(g)
         if (g.achievements) {
           for (let achievement of g.achievements) {
-            this.achievementdata.push(achievement)
+            achievement.group = g;
+            this.achievementdata.push(achievement);
           }
         }
       }
     }
   }
 
-  createTransaction() {
-    console.log(this.employee.group)
-    // let shareValue = {from: this.employee.name,
-    //   to: 'REWARD',
-    //   detail_from: this.basket,
-    //   carrot_amt: this.item.exchangeRate,
-    //   type: 'BAZAAR',
-    //   description: 'Buy an Item in ' + this.item.bazaar.bazaarName,
-    //   requested_item: this.item};
-    // delete shareValue.detail_from.employee.dob
-    // this.transactionService.insertTansactionToDB(shareValue).subscribe(callback => {
-    //   console.log(callback);
-    //   this.findBasketByEmployeeId();
-    // });
+  createTransaction(achievement) {
+    console.log(achievement)
+    this.employeeservice.findFrezeerByOwner(achievement.group.owner.id).subscribe(callback => {
+      let frezeer: any = callback;
+      delete frezeer.employee.dob;
+      let shareValue = {
+        from: frezeer.employee.name,
+        to: this.employee.name,
+        detail_from: frezeer,
+        detail_to: this.basket,
+        carrot_amt: achievement.carrot,
+        type: 'REWARD',
+        description: achievement.title};
+      delete shareValue.detail_to.employee.dob
+      delete shareValue.detail_to.employee.group
+      delete shareValue.detail_from.created_at
+      delete shareValue.detail_from.updated_at
+      delete shareValue.detail_from.employee.group
+      delete shareValue.detail_from.employee.dob
+      this.transactionService.insertTansactionToDB(shareValue).subscribe(callback => {
+        console.log(callback);
+        this.findAchievement();
+      });
+    })
   }
 
 }

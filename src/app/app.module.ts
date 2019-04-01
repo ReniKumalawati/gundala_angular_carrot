@@ -33,6 +33,7 @@ import { GroubAchievementComponent } from './manager/detail-group/groub-achievem
 import { MerchantTransactionComponent } from './merchant/merchant-transaction/merchant-transaction.component';
 import { GroupSocialFoundationComponent } from './manager/detail-group/group-social-foundation/group-social-foundation.component';
 import { AchievementComponent } from './employee/achievement/achievement.component';
+import { ClaimComponent } from './manager/claim/claim.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { AchievementComponent } from './employee/achievement/achievement.compone
     GroubAchievementComponent,
     MerchantTransactionComponent,
     GroupSocialFoundationComponent,
-    AchievementComponent
+    AchievementComponent,
+    ClaimComponent
   ],
   imports: [
     NgbModule,

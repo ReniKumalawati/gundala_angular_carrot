@@ -82,9 +82,11 @@ export class MerchantTransactionComponent implements OnInit {
 
   decline() {
     this.selectedIdTransaction.forEach((e, index) => {
-      if (index == (this.selectedIdTransaction.length - 1)) {
-        this.getTransactionByBazar()
-      }
+      this.transactionService.decline(e).subscribe(callback => {
+        if (index == (this.selectedIdTransaction.length - 1)) {
+          this.getTransactionByBazar()
+        }
+      })
     })
   }
 

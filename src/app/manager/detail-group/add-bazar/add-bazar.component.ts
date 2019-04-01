@@ -46,10 +46,14 @@ export class AddBazarComponent implements OnInit {
     this.groupService.findById(this.group.id).subscribe(callback => {
       this.bazaarByGroup = callback;
       this.bazaarByGroup = this.bazaarByGroup.bazaars;
-      for (let bzr of this.bazaarByGroup) {
-        this.bazarId.push(bzr.id);
+      if (this.bazaarByGroup) {
+        for (let bzr of this.bazaarByGroup) {
+          this.bazarId.push(bzr.id);
+        }
+        this.findallBazar();
+      } else {
+        this.findallBazar();
       }
-      this.findallBazar();
     })
    }
 

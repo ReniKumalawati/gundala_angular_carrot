@@ -36,4 +36,8 @@ export class EmployeeService {
   removeEmployeeFromGroup(id, data) {
     return this.http.patch(environment.endpoint + "/api/employees/delgroup/" + id, data);
   }
+
+  findFrezeerByOwner (id) {
+    return this.http.get(environment.endpoint + "/api/freezer/by-owner/" + id);
+  }
 }
