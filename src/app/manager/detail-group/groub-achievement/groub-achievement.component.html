@@ -5,7 +5,7 @@
       <h4 class="my-2 box-title">Group's Achievement</h4>
     </div>
     <div class="col-md-12">
-      <a href="javascript:void(0)"  class="btn btn-info pull-right" (click)="open(contentBazaar)">
+      <a href="javascript:void(0)"  class="btn btn-info pull-right" (click)="open(contentAchievement)">
         <i class="fa fa-plus-circle"></i> ADD MORE Achievement
       </a>
       <table class="table table-hover mt-3">
@@ -14,20 +14,18 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
-          <th scope="col">Start Periode</th>
-          <th scope="col">End Periode</th>
+          <th scope="col">Carrot</th>
           <th scope="col" class="priority-table">Action</th>
         </tr>
         </thead>
-        <tbody *ngIf="bazaarByGroup">
-        <tr *ngFor="let bazar of bazaarByGroup">
+        <tbody *ngIf="achievementByGroup">
+        <tr *ngFor="let achievement of achievementByGroup">
           <th scope="row"></th>
-          <td>{{bazar.bazaarName}}</td>
-          <td>{{bazar.bazaarDescription}}</td>
-          <td>{{bazar.startPeriod}}</td>
-          <td>{{bazar.endPeriod}}</td>
+          <td>{{achievement.title}}</td>
+          <td>{{achievement.description}}</td>
+          <td>{{achievement.carrot}}</td>
           <td>
-            <a href="javascript:void(0)" (click)="removeBazaarFromGroup(bazar.id)">Delete</a>
+            <a href="javascript:void(0)" (click)="removeAchievementFromGroup(achievement.id)">Delete</a>
           </td>
         </tr>
         </tbody>
@@ -46,8 +44,8 @@
     <div class="modal-body">
       <div class="form-group">
         <label>Achievement</label>
-        <select class="form-control here" formControlName="bazaar" [(ngModel)]="bazaar">
-          <option *ngFor="let singleBazar of bazarData" [ngValue]="singleBazar">{{singleBazar.bazaarName}}</option>
+        <select class="form-control here" formControlName="achievement" [(ngModel)]="achievement">
+          <option *ngFor="let singleAchievement of achievementData" [ngValue]="singleAchievement">{{singleAchievement.title}}</option>
         </select>
         <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
         <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->

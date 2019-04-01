@@ -16,6 +16,7 @@ import {GroupService} from '../service/group.service';
 export class TransactionHistoryComponent implements OnInit {
   dn = ['BIRTHDAY', 'DONATION'];
   type = '';
+  searchForm: FormGroup;
   user: any;
   currentBasket: any;
   transactionLists: any;
@@ -26,6 +27,7 @@ export class TransactionHistoryComponent implements OnInit {
   employee: any;
   shareForm: FormGroup;
   sosFoundData = [];
+  search = {type: 'ALL', from: '', to: ''};
   shareValue = {from: '', to: '',
                 detail_to: {id: '', name: '', employee: {id:'', dob: '', name: ''}},
                 detail_from: {id: '', name: '', employee: {id:'', name: '', dob: '', group: []}},
@@ -43,6 +45,12 @@ export class TransactionHistoryComponent implements OnInit {
       type: ['', Validators.required],
       description: ['', Validators.required],
       carrot_amt: ['', Validators.required],
+    });
+
+    this.searchForm = this.formBuilder.group({
+      type: ['', Validators.required],
+      from: ['', Validators.required],
+      to: ['', Validators.required]
     });
     this.user = JSON.parse(this.auth.currentEmployee());
     this.currentBasket = JSON.parse(this.auth.currentBasket());
@@ -146,5 +154,28 @@ export class TransactionHistoryComponent implements OnInit {
     } else {
       this.type = ''
     }
+  }
+
+  doSearch() {
+    let to = 0;
+    let from = 0;
+    if (this.search.to === '') {
+      to = Date.now() * 1000
+    } else{
+      to = new Date(this.search.to).getTime()
+    }
+
+    if (this.search.from === '') {
+      from = new Date('01-01-19970').getTime()
+    } else {
+      from = new Date(this.search.from).getTime()
+    }
+    this.transactionService.findTransactionByStatusAndDate({type: this.search.type, from: from, to: to})
+      .subscribe(callback => {
+        this.transactionLists = callback;
+        for (let transaction of this.transactionLists) {
+          transaction.transactiondate = new Date(transaction.transaction_date).getTime();
+        }
+      })
   }
 }

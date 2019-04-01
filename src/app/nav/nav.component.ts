@@ -17,6 +17,7 @@ export class NavComponent implements OnInit {
     const pillElementMrc = document.querySelector('#linkMerchant');
     const pillElementFrm = document.querySelector('#linkFarmer');
     const pillElementAdm = document.querySelector('#linkAdmin');
+    const pillElementRwd = document.querySelector('#linkReward');
 
     this.jsonNav = JSON.parse(localStorage.currentUser);
     this.navEmp = JSON.stringify(this.jsonNav.role);
@@ -38,10 +39,13 @@ export class NavComponent implements OnInit {
       pillElementAdm.remove();
       pillElementFrm.remove();
       pillElementMrc.remove();
+      pillElementRwd.remove();
       break;
 
       case('"ADMIN"'):
       pillElementMgr.remove();
+      pillElementFrm.remove();
+      pillElementRwd.remove();
       break;
 
     }

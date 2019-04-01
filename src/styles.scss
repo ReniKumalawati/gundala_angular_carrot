@@ -14,9 +14,8 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   // background: url('assets/img/mitrais-carrot-bg-pattern.png') #f36f38;
-  // background:  #f36f38;
-  // background:  #eff1f2;
-  background: #4a515f;
+  background: #cde4f2;
+  // background: #dbeded; 
   background-position: bottom right;
   background-repeat: repeat;
   /* font-family: 'Verdana', sans-serif; */
@@ -27,7 +26,7 @@ body {
   margin-bottom: 10px;
 }
 .footer {
-  position: absolute;
+  //position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -195,7 +194,7 @@ table td {
 }
 
 .card:hover {
-  box-shadow: 0 -4px 38px hsla(0, 0%, 100%, .28), 0 15px 40px rgba(207, 216, 226, .71);
+  // box-shadow: 0 -4px 38px hsla(0, 0%, 100%, .28), 0 15px 40px rgba(207, 216, 226, .71);
   transition: 0.3s all ease;
 }
 
@@ -693,4 +692,9 @@ a:hover {
   // border-bottom-left-radius: 15px 15px;
   // border-bottom-right-radius: 20px 20px;
   // border-radius: 0px 0px 15px 15px;
+}
+
+.sectiona {
+  margin-top:1.5rem;
+  min-height: 74vh;
 }

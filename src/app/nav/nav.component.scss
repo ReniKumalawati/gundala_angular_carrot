@@ -5,6 +5,10 @@ header {
     font-weight: bold;
   }
 
+  .nav-link.active {
+    color: white;
+  }
+
   nav {
     justify-self: right;
     // margin-bottom: 2em;

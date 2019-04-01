@@ -32,6 +32,7 @@ import { AddBazarComponent } from './manager/detail-group/add-bazar/add-bazar.co
 import { GroubAchievementComponent } from './manager/detail-group/groub-achievement/groub-achievement.component';
 import { MerchantTransactionComponent } from './merchant/merchant-transaction/merchant-transaction.component';
 import { GroupSocialFoundationComponent } from './manager/detail-group/group-social-foundation/group-social-foundation.component';
+import { AchievementComponent } from './employee/achievement/achievement.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { GroupSocialFoundationComponent } from './manager/detail-group/group-soc
     AddBazarComponent,
     GroubAchievementComponent,
     MerchantTransactionComponent,
-    GroupSocialFoundationComponent
+    GroupSocialFoundationComponent,
+    AchievementComponent
   ],
   imports: [
     NgbModule,
