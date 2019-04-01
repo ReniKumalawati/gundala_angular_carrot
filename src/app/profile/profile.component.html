@@ -25,16 +25,20 @@
               <div class="form-group">
                 <label class="center" for="text">Item's Image</label>
                 <!-- <img class="thumbnailpicture" src="imageSrc" alt="" *ngIf="employee.profilePicture"> -->
-                <div class="container">
+                <!-- <div class="container">
                   <img class="img-fluid rounded-circle center" id="blah" [src]="imageSrc" alt="">
-                  <button class="edit-button">Change Image</button>
+                  <button class="edit-button"> edot</button>
                   <input type="file" accept="images" id="avatar" (change)="onFileChange($event)"
                     class="form-control here" formControlName="profilePicture">
-                </div>
-
-                <!-- <div *ngIf="submitted && formEmployee.controls.profilePicture.errors" class="error">
-                  <div *ngIf="formEmployee.controls.profilePicture.errors.required">Please insert the picture!</div>
                 </div> -->
+
+                <div class="image-upload">
+                  <label for="file-input" class="text">
+                    <img class="img-fluid rounded-circle" id="blah" [src]="imageSrc" alt="">
+                  </label>
+                  <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
+                    class="form-control here" formControlName="profilePicture" />
+                </div>
               </div>
 
               <div class="form-group">
@@ -60,14 +64,15 @@
               <div class="form-group">
                 <label class="info-label" for="employeeAddress">Address: </label> <br />
                 <!-- <label>{{employee.address}}</label> -->
-                <input class="info-data" id="employeeAddress" name="employeeAddress" type="textar" class="form-control here"
-                  formControlName="address" [(ngModel)]="employeeForm.address">
+                <input class="info-data" id="employeeAddress" name="employeeAddress" type="textar"
+                  class="form-control here" formControlName="address" [(ngModel)]="employeeForm.address">
               </div>
 
               <div class="form-group">
                 <label class="info-label" for="employeePassword">Password:</label>
-                <input class="info-data" id="employeePassword" name="employeePassword" type="textar" class="form-control here"
-                  formControlName="password" value="{{employee.password}}" [(ngModel)]="employeeForm.password">
+                <input class="info-data" id="employeePassword" name="employeePassword" type="textar"
+                  class="form-control here" formControlName="password" value="{{employee.password}}"
+                  [(ngModel)]="employeeForm.password">
                 <div *ngIf="submitted && formEmployee.controls.employeePassword.errors" class="error">
                   <div *ngIf="formEmployee.controls.employeePassword.errors.required">Please insert the picture!</div>
                 </div>

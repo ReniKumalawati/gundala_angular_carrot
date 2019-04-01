@@ -27,13 +27,20 @@
   padding-bottom: 5px;
 }
 
-img.center {
+label.text {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-img.center:hover {
+img.img-fluid {
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img.img-fluid:hover {
   // -webkit-filter: blur(100%);
   border: 3px solid #3B2170
 }
@@ -59,3 +66,7 @@ img.center:hover {
 //   width: 10px;
 //   height: 40px;
 // }
+
+.image-upload>input {
+  display: none;
+}
