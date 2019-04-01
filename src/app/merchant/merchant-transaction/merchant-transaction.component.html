@@ -13,36 +13,45 @@
         <hr class="box-title-hr">
         <h4 class="my-2 box-title">FILTER TRANSACTION</h4>
       </div>
+      <form [formGroup]="searchForm" (ngSubmit)="doSearch()">
       <div class="col-md-12">
           <div class="row">
+            <!--<div class="col-md-4">-->
+              <!--<div class="form-group">-->
+                <!--<label for="text">Bazaar Name</label>-->
+                <!--<input id="text" name="text" type="text" class="form-control here" placeholder="dropdown bazaar name created by merchant">-->
+              <!--</div>-->
+            <!--</div>-->
             <div class="col-md-4">
               <div class="form-group">
-                <label for="text">Bazaar Name</label>
-                <input id="text" name="text" type="text" class="form-control here" placeholder="dropdown bazaar name created by merchant">
+                <label>Item Name</label>
+                <select class="form-control here" formControlName="item" [(ngModel)]="search.item">
+                  <option value="ALL">ALL</option>
+                  <option *ngFor="let itemData of item" [ngValue]="itemData">{{itemData}}</option>
+                </select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="text">Item Name</label>
-                <input name="text" type="text" class="form-control here" placeholder="dropdown item name on selected bazaar">
+                <label>Status</label>
+                <select class="form-control here" formControlName="status" [(ngModel)]="search.status">
+                  <option value="ALL">ALL</option>
+                  <option value="PENDING">PENDING</option>
+                  <option value="APPROVED">APPROVED</option>
+                  <option value="DECLINE">DECLINE</option>
+                </select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="">Status</label>
-                <input id="" name="" type="text" class="form-control here" placeholder="Dropdown Status">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="">Date From</label>
-                <input name="" type="date" class="form-control here">
+                <label>Date From</label>
+                <input name="" type="date" class="form-control here" formControlName="from" [(ngModel)]="search.from">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="date-to">Date To</label>
-                <input id="date-to" name="date-to" type="date" class="form-control here">
+                <input id="date-to" name="date-to" type="date" class="form-control here" formControlName="to" [(ngModel)]="search.to">
               </div>
             </div>
             <div class="col-md-4">
@@ -53,6 +62,7 @@
             </div>
           </div>
       </div>
+      </form>
     </div>
   </div>
 </section>
@@ -81,7 +91,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let transaction of transactions">
+          <tr *ngFor="let transaction of transactionsData">
             <th scope="row">
               <input type="checkbox" class="form-control" (change)="checkbox(transaction.id)" *ngIf="transaction.status === 'PENDING'">
             </th>

@@ -12,17 +12,28 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class MerchantTransactionComponent implements OnInit {
   user: any;
   bazaar: any;
+  searchForm: FormGroup;
   transactions: any;
+  transactionsData = [];
   selectedIdTransaction = [];
+  search = {item: 'ALL', status: 'ALL  ', from: '', to: ''};
+  item = [];
   constructor(
     private bazaarService: BazarService,
     private authentication: AuthenticationService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.user = JSON.parse(this.authentication.currentEmployee());
     this.getBazaarByOwner();
+    this.searchForm = this.formBuilder.group({
+      item: ['', Validators.required],
+      status: ['', Validators.required],
+      from: ['', Validators.required],
+      to: ['', Validators.required]
+    });
   }
 
   checkbox(id) {
@@ -47,7 +58,15 @@ export class MerchantTransactionComponent implements OnInit {
   getTransactionByBazar () {
       this.transactionService.findTransactionByBazar(this.bazaar.id).subscribe(callback => {
         this.transactions = callback;
-        console.log(this.transactions)
+        this.item = [];
+        this.transactionsData = [];
+        for (let transaction of this.transactions) {
+          transaction.transactiondate = new Date(transaction.transaction_date).getTime();
+          this.transactionsData.push(transaction)
+          if (this.item.indexOf(transaction.requested_item.itemName) < 0) {
+            this.item.push(transaction.requested_item.itemName);
+          }
+        }
       });
   }
 
@@ -69,4 +88,43 @@ export class MerchantTransactionComponent implements OnInit {
     })
   }
 
+  doSearch() {
+    let from = 0;
+    let to = 0;
+    if (this.search.from != '') {
+      from = new Date(this.search.from).getTime()
+    } else {
+      from = new Date('01-01-1970').getTime()
+    }
+
+    if (this.search.to != '') {
+      to = new Date(this.search.to).getTime()
+    } else {
+      to = Date.now() * 1000
+    }
+    this.transactionsData = [];
+    for(let transaction of this.transactions) {
+      if (this.search.item != 'ALL') {
+        if (transaction.requested_item.itemName === this.search.item && transaction.transactiondate >= from && transaction.transactiondate <= to) {
+          if (this.search.status != 'ALL') {
+            if (transaction.status === this.search.status) {
+              this.transactionsData.push(transaction)
+            }
+          } else {
+            this.transactionsData.push(transaction)
+          }
+        }
+      } else {
+        if (transaction.transactiondate >= from && transaction.transactiondate <= to) {
+          if (this.search.status != 'ALL') {
+            if (transaction.status === this.search.status) {
+              this.transactionsData.push(transaction)
+            }
+          } else {
+            this.transactionsData.push(transaction)
+          }
+        }
+      }
+    }
+  }
 }

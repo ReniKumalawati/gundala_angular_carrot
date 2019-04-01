@@ -12,7 +12,6 @@ import {TransactionService} from '../service/transaction.service';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
-  url = environment.endpoint;
   employee: any;
   bazar = [];
   total = 0;

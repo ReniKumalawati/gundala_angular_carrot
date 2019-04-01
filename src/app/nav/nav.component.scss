@@ -5,6 +5,10 @@ header {
     font-weight: bold;
   }
 
+  .nav-link.active {
+    color: white;
+  }
+
   nav {
     justify-self: right;
 
@@ -21,7 +25,9 @@ header {
           font-size: .8em;
 
           &:hover {
-            background: #8E2BFF;
+            //background: #8E2BFF;
+            background-color: #1892d1;
+            color: white;
           }
         }
       }

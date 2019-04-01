@@ -3,7 +3,7 @@ import {BazarService} from '../../../service/bazar.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GroupService} from '../../../service/group.service';
-import {RewardsService} from "../../../service/rewards.service";
+import {AchievementService} from '../../../service/achievement.service';
 @Component({
   selector: 'app-groub-achievement',
   templateUrl: './groub-achievement.component.html',
@@ -11,48 +11,52 @@ import {RewardsService} from "../../../service/rewards.service";
 })
 export class GroubAchievementComponent implements OnInit {
   @Input('group') group: any;
-  rewardData = [];
-  bazaar: any;
+  achievementData = [];
+  achievement: any;
   addAchievement: FormGroup;
-  bazaarByGroup: any
-  bazarId = [];
+  achievementByGroup: any
+  achievementId = [];
   constructor(
     private bazarService : BazarService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private groupService: GroupService,
-    private rewardService: RewardsService
+    private achievementService: AchievementService
   ) { }
 
   ngOnInit() {
     this.addAchievement = this.formBuilder.group({
-      bazaar: ['', Validators.required]
+      achievement: ['', Validators.required]
     });
-    // this.findAllBazaarByGroup();
+    this.findAllAchievementByGroup();
   }
-  findallReward() {
-    this.rewardService.findAllRewards().subscribe(callback => {
-      // this.rewardData = callback;
-      // let bzTemp: any;
-      // bzTemp = callback;
-      // for (let bzr of bzTemp) {
-      //   if (!this.bazarId.includes(bzr.id)) {
-      //     this.bazarData.push(bzr);
-      //   }
-      // }
+  findallAchievement() {
+    this.achievementData = [];
+    this.achievementService.findAllAchievement().subscribe(callback => {
+      let achievementData: any = callback;
+      for (let ach of achievementData) {
+        if (!this.achievementId.includes(ach.id)) {
+          this.achievementData.push(ach);
+        }
+      }
     })
   }
 
-  findAllRewardByGroup () {
-    // this.bazarId = [];
-    // this.groupService.findById(this.group.id).subscribe(callback => {
-    //   this.bazaarByGroup = callback;
-    //   this.bazaarByGroup = this.bazaarByGroup.bazaars;
-    //   for (let bzr of this.bazaarByGroup) {
-    //     this.bazarId.push(bzr.id);
-    //   }
-    //   this.findallBazar();
-    // })
+  findAllAchievementByGroup () {
+    this.achievementId = [];
+    this.groupService.findById(this.group.id).subscribe(callback => {
+      this.achievementByGroup = callback;
+      this.achievementByGroup = this.achievementByGroup.achievements;
+      console.log(this.achievementByGroup)
+      if (this.achievementByGroup) {
+        for (let achievement of this.achievementByGroup) {
+          this.achievementId.push(achievement.id);
+        }
+        this.findallAchievement();
+      } else {
+        this.findallAchievement();
+      }
+    });
   }
 
   open(content) {
@@ -65,18 +69,17 @@ export class GroubAchievementComponent implements OnInit {
   }
 
   submit () {
-    this.bazarService.insertGroupIntoBazaar(this.group.id, [{id: this.bazaar.id}]).subscribe(callback => {
+    console.log(this.achievement)
+    this.achievementService.insertAchievementIntoGroup(this.group.id, [{id: this.achievement.id}]).subscribe(callback => {
       this.close();
-      // this.findAllBazaarByGroup();
-      // this.findallBazar();
+      this.findAllAchievementByGroup();
     });
   }
 
-  removeBazaarFromGroup(id) {
-    this.bazarService.removeGroupFrpmBazar(this.group.id, {id: id}).subscribe(callback => {
+  removeAchievementFromGroup(id) {
+    this.achievementService.removeAchievementFromGroup(this.group.id, {id: id}).subscribe(callback => {
       this.close();
-      // this.findAllBazaarByGroup();
-      // this.findallBazar();
+      this.findAllAchievementByGroup();
     });
   }
 }

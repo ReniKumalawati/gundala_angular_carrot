@@ -34,7 +34,10 @@ export class TransactionService {
   }
 
   getEarnedCarrot(id) {
-    console.log(id)
     return this.http.get(environment.endpoint + '/api/transactions/total-earned/' + id);
+  }
+
+  findTransactionByStatusAndDate(data) {
+    return this.http.get(environment.endpoint + '/api/transactions/by-date-status?type=' + data.type + "&&startDate=" + data.from + "&&endDate=" + data.to);
   }
 }

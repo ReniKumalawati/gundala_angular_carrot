@@ -58,16 +58,18 @@
   <div class="container search-box">
     <div class="row d-flex align-content-end">
       <div class="col-md-12">
-        <!--<form>-->
+        <form [formGroup]="searchForm" (ngSubmit)="doSearch()">
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
                 <label for="carrot-type">Type</label>
                 <div>
-                  <select id="carrot-type" name="carrot-type" class="custom-select">
-                    <option value="type1">Rewards</option>
-                    <option value="type2">Shared</option>
-                    <option value="type3">Bazaar</option>
+                  <select id="carrot-type" name="carrot-type" class="custom-select" formControlName="type" [(ngModel)]="search.type">
+                    <option value="ALL">ALL</option>
+                    <option value="REWARD">Rewards</option>
+                    <option value="SHARED">Shared</option>
+                    <option value="BAZAAR">Bazaar</option>
+                    <option value="DONATION">Donation</option>
                   </select>
                 </div>
               </div>
@@ -75,13 +77,13 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="">Date From</label>
-                <input id="" name="" type="date" class="form-control here">
+                <input id="" name="" type="date" class="form-control here" [(ngModel)]="search.from" formControlName="from">
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label for="date-to">Date To</label>
-                <input id="date-to" name="date-to" type="date" class="form-control here">
+                <input id="date-to" name="date-to" type="date" class="form-control here" [(ngModel)]="search.to" formControlName="to">
               </div>
             </div>
             <div class="col-md-3">
@@ -91,7 +93,7 @@
               </div>
             </div>
           </div>
-        <!--</form>-->
+        </form>
       </div>
     </div>
     <div class="row">
