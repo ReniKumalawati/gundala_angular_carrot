@@ -19,7 +19,6 @@ body {
   background: #4a515f;
   background-position: bottom right;
   background-repeat: repeat;
-  overflow: scroll;
   /* font-family: 'Verdana', sans-serif; */
 }
 .btn {
@@ -38,6 +37,7 @@ body {
   // background-color: #e0e4ee;
   background-color: #fff;
   opacity: 0.5;
+  // margin-top: 1.5rem;
 }
 
 h2 {
@@ -58,7 +58,7 @@ code {
 }
 
 .navbar-light {
-  border-bottom: 1px solid #d9d9d9;
+  // border-bottom: 1px solid #d9d9d9;
 }
 
 .navbar-brand img,
