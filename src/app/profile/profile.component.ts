@@ -26,7 +26,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.retrieveEmp();
-    this.imageSrc = this.employee.profilePicture.toString();
+    if(this.employee.profilePicture){
+      this.imageSrc = this.employee.profilePicture.toString();
+    }
+   
     console.log(this.imageSrc);
     this.employeeForm.profilePicture = this.imageSrc;
     this.employeeForm.address = this.employee.address;

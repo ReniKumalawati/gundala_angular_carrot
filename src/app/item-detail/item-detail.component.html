@@ -3,7 +3,7 @@
          <span class="back-button">
            <a href="/employee"><img src="assets/img/back.png" alt="" class="back" /></a>
          </span>
-    2018 Vespa 946 Limited Edition
+    {{item.itemName}}
   </h2>
 </main>
 
@@ -21,8 +21,9 @@
         <h3>{{item.itemName}}</h3>
         <h4><strong class="carrot-orange">{{item.exchangeRate}} Carrots</strong></h4>
         <p>{{item.itemDescription}}</p>
-        <p class="btn btn-carrot radius-5" *ngIf="item.exchangeRate <= basket.carrot_amt" (click)="createTransaction()">Buy</p>
+        <p class="btn btn-carrot radius-5" *ngIf="item.exchangeRate <= basket.carrot_amt && item.totalItem > 0" (click)="createTransaction()">Buy</p>
         <p class="mt-2" *ngIf="item.exchangeRate > basket.carrot_amt"><small class="text-danger">You don't have enough carrots to buy this item.</small></p>
+        <p class="mt-2" *ngIf="item.totalItem < 1"><small class="text-danger">Item is out of Stock</small></p>
       </div>
     </div>
   </div>
