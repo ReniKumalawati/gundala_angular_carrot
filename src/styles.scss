@@ -14,9 +14,8 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   // background: url('assets/img/mitrais-carrot-bg-pattern.png') #f36f38;
-  // background:  #f36f38;
-  // background:  #eff1f2;
-  background: #4a515f;
+  background: #cde4f2;
+  // background: #dbeded; 
   background-position: bottom right;
   background-repeat: repeat;
   /* font-family: 'Verdana', sans-serif; */
@@ -195,7 +194,7 @@ table td {
 }
 
 .card:hover {
-  box-shadow: 0 -4px 38px hsla(0, 0%, 100%, .28), 0 15px 40px rgba(207, 216, 226, .71);
+  // box-shadow: 0 -4px 38px hsla(0, 0%, 100%, .28), 0 15px 40px rgba(207, 216, 226, .71);
   transition: 0.3s all ease;
 }
 
@@ -665,10 +664,6 @@ a:hover {
   overflow-x: auto;
 }
 
-.link_table:visited {
-  color:palevioletred;
-}
-
 .container1 {
   margin-top: 90px;
   margin-left: 7rem;
@@ -682,19 +677,11 @@ a:hover {
   color: #888;
 }
 
-.bg-light {
-  // background-color: #d9e4e6!important;
-  // background-color: #f5d176!important;
-  // background-color: #DAF7A6!important;
-  // background-color: #ffd8c7!important;
-}
-
-.navbar {
-  // border-bottom-left-radius: 15px 15px;
-  // border-bottom-right-radius: 20px 20px;
-  // border-radius: 0px 0px 15px 15px;
-}
-
 .sectiona {
-  min-height: 70vh;
+  margin-top:5em;
+  min-height: 76vh;
+}
+
+.mt-button{
+  margin-top: 2rem!important;
 }
