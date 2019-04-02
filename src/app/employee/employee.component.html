@@ -1,13 +1,13 @@
-<main role="main" class="container1">
-  <h2 class="mt-4 pl-0 text-grey ml-0">DASHBOARD</h2>
+<main role="main" class="container">
+  <h2 class="mt-4 pt-4 pl-0 text-grey ml-0">DASHBOARD</h2>
 </main>
-<section class="mini-dashboard my-4">
+<section class="mini-dashboard my-3">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
         <div class="row box-profile soft-shadow px-0 mr-0">
           <div class="col-md-4 my-auto">
-            <img src="{{employee.profilePicture}}" alt="" class="img-fluid rounded-circle">
+            <img src="{{employee.profilePicture}}" alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
           </div>
           <div class="col-md-8 my-auto">
             <h4 class="mb-0 text-white">{{employee.name}}</h4>
@@ -19,7 +19,7 @@
       <div class="col-md-4">
         <div class="row box-carrot px-0 mr-0">
           <div class="col-md-4 my-auto">
-            <img src=" assets/img/mc-icon-carrot.png" alt="" class="img-fluid rounded-circle">
+            <img src=" assets/img/carrot-receive.svg" alt="" class="img-fluid">
           </div>
           <div class="col-md-8 my-auto">
             <h4 class="text-white">You've earned {{total}} carrots!</h4>

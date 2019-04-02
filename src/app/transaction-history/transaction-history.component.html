@@ -1,7 +1,7 @@
 <main role="main" class="container">
   <h2 class="mt-4 pl-0 text-grey ml-0 mt-button">
     <span class="back-button">
-      <a href="index-employee.html"><img src="assets/img/back.png" alt="" class="back" /></a>
+      <a href="employee"><img src="assets/img/back.png" alt="" class="back" /></a>
     </span>
     TRANSACTION HISTORY
   </h2>
@@ -109,6 +109,7 @@
               <th scope="col">Description</th>
               <th scope="col">Carrot</th>
               <th scope="col">Date</th>
+              <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -119,6 +120,7 @@
               <td>{{transaction.description}}</td>
               <td>{{transaction.carrot_amt}}</td>
               <td>{{transaction.transactiondate | date:'medium'}}</td>
+              <td>{{transaction.status}}</td>
             </tr>
           </tbody>
         </table>

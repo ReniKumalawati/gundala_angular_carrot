@@ -39,7 +39,7 @@
               <td>{{barn.name}}</td>
               <td>{{barn.startPeriod}}</td>
               <td>{{barn.endPeriod}}</td>
-              <td>{{barn.owner.name}}</td>
+              <td width="5%">{{barn.owner.name}}</td>
               <td>{{barn.totalCarrot}}</td>
               <td>{{barn.totalCarrot - 0}}</td>
               <td>{{barn.status ? 'Active' : 'Inactive'}} |
@@ -55,8 +55,23 @@
                   (click)="release(barn, true)"> Released </a>
               </td>
               <td>
-                <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(barn, contentBarn)">Edit | </a>
-                <a class="delete-row" href="javascript:void(0)" (click)="removeBarn(barn.id)">Delete</a>
+                <!-- <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(barn, contentBarn)">Edit | </a> -->
+                <button type="button" class="btn btn-info" (click)="open(contentBarn)">
+                  <!-- <i class="material-icons md-18">edit</i> Edit -->
+                  <i class="far fa-edit"></i> Edit
+                </button>
+                <!-- <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(barn, contentBarn)">
+                  <i class="material-icons md-18">edit</i>
+                  Edit
+                </a> -->
+                <button type="button" class="btn btn-danger" (click)="open(contentBarn)">
+                  <!-- <i class="material-icons md-18">delete</i> Delete -->
+                  <i class="far fa-trash-alt"></i> Delete
+                </button>
+                <!-- <a class="edit-row" href="javascript:void(0)" (click)="removeBarn(barn.id)">
+                  <i class="material-icons md-18">delete</i>
+                  Delete
+                </a> -->
               </td>
             </tr>
           </tbody>
