@@ -6,18 +6,23 @@
   <div class="col-md-12">
     <table id="table-mr" class="table table-hover mt-3">
       <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Type</th>
-        <th scope="col">Action</th>
-      </tr>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Action</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let group of groupData">
-        <td>{{group.name}}</td>
-        <td>{{group.type}}</td>
-        <td><a href="/detail-group/{{group.id}}" class="btn btn-info">Manage</a></td>
-      </tr>
+        <tr *ngFor="let group of groupData">
+          <td>{{group.name}}</td>
+          <td>{{group.type}}</td>
+          <td>
+            <a href="/detail-group/{{group.id}}" class="btn btn-info">
+              <i class="fas fa-wrench"></i>
+              Manage
+            </a>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
