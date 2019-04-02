@@ -1,0 +1,31 @@
+<div style="background-color: white">
+  <div class="col-md-12">
+    <hr class="box-title-hr">
+    <h4 class="my-2 box-title">Senior Manager to Transfer</h4>
+  </div>
+  <div class="col-md-12">
+    <table id="table-mr" class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Manager Name List</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trx of transactionData">
+          <td></td>
+          <!-- Get Manager List Name -->
+          <td>{{trx.description}}</td>
+          <!-- Create Action Button -->
+          <td>
+            <div *ngIf="trx.status === 'PENDING'">
+              <!-- <a href="javascript:void(0)" class="btn btn-info" (click)="approve(trx.id)">Approve</a>
+              <a href="javascript:void(0)" (click)="decline(trx.id)" class="btn btn-info">Decline</a> -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

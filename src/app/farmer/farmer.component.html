@@ -42,30 +42,13 @@
               <td width="5%">{{barn.owner.name}}</td>
               <td>{{barn.totalCarrot}}</td>
               <td>{{barn.totalCarrot - 0}}</td>
-              <td>{{barn.status ? 'Active' : 'Inactive'}} |
-                <a class="status-row" href="javascript:void(0)" *ngIf="barn.status === true"
-                  (click)="active(barn, false)"> Deactivate </a>
-                <a class="status-row" href="javascript:void(0)" *ngIf="barn.status === false"
-                  (click)="active(barn, true)"> Activate </a>
-              </td>
-              <td>{{barn.released ? 'Released' : 'Pending'}} |
-                <a class="status-row" href="javascript:void(0)" *ngIf="barn.released === true"
-                  (click)="release(barn, false)"> Pending </a>
-                <a class="status-row" href="javascript:void(0)" *ngIf="barn.released === false"
-                  (click)="release(barn, true)"> Released </a>
-              </td>
+              <td>{{barn.status ? 'Active' : 'Inactive'}}</td>
+              <td>{{barn.released ? 'Released' : 'Pending'}}</td>
               <td>
-                <!-- <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(barn, contentBarn)">Edit | </a> -->
-                <button type="button" class="btn btn-info" (click)="open(contentBarn)">
-                  <!-- <i class="material-icons md-18">edit</i> Edit -->
+                <button type="button" class="btn btn-info" (click)="openEditModal(barn, contentBarn)">
                   <i class="far fa-edit"></i> Edit
                 </button>
-                <!-- <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(barn, contentBarn)">
-                  <i class="material-icons md-18">edit</i>
-                  Edit
-                </a> -->
-                <button type="button" class="btn btn-danger" (click)="open(contentBarn)">
-                  <!-- <i class="material-icons md-18">delete</i> Delete -->
+                <button type="button" class="btn btn-danger" (click)="removeBarn(barn.id)">
                   <i class="far fa-trash-alt"></i> Delete
                 </button>
                 <!-- <a class="edit-row" href="javascript:void(0)" (click)="removeBarn(barn.id)">
