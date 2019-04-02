@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -35,6 +35,9 @@ import { GroupSocialFoundationComponent } from './manager/detail-group/group-soc
 import { AchievementComponent } from './employee/achievement/achievement.component';
 import { ClaimComponent } from './manager/claim/claim.component';
 import { ModalLoadingComponent } from './partial/modal-loading/modal-loading.component';
+import { AchievementListComponent } from './employee/achievement/achievement-list/achievement-list.component';
+import { AchievedComponent } from './employee/achievement/achieved/achieved.component';
+import {AuthService} from './interceptors/auth.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,9 @@ import { ModalLoadingComponent } from './partial/modal-loading/modal-loading.com
     GroupSocialFoundationComponent,
     AchievementComponent,
     ClaimComponent,
-    ModalLoadingComponent
+    ModalLoadingComponent,
+    AchievementListComponent,
+    AchievedComponent
   ],
   imports: [
     NgbModule,
@@ -76,7 +81,7 @@ import { ModalLoadingComponent } from './partial/modal-loading/modal-loading.com
     HttpClientModule, // service harus di import
     ReactiveFormsModule,
   ],
-  providers: [NgbActiveModal],
+  providers: [NgbActiveModal, {provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true}],
   entryComponents: [
     ModalLoadingComponent
   ],

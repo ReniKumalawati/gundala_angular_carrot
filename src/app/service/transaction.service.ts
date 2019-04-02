@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-
+  employee : any;
   constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+  }
 
   findAllTransactionByEmployeeId(id) {
     return this.http.get(environment.endpoint + '/api/transactions/' + id);
