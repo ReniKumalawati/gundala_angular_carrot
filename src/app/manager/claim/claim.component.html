@@ -7,7 +7,7 @@
     <table id="table-mr" class="table table-hover mt-3">
       <thead>
       <tr>
-        <th scope="col">From</th>
+        <th scope="col">To</th>
         <th scope="col">Description</th>
         <th scope="col">Type</th>
         <th scope="col">Status</th>
@@ -16,7 +16,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let trx of transactionData">
-        <td>{{trx.from}}</td>
+        <td>{{trx.to}}</td>
         <td>{{trx.description}}</td>
         <td>{{trx.type}}</td>
         <td>{{trx.status}}</td>

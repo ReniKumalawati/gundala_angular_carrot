@@ -106,11 +106,13 @@ export class TransactionHistoryComponent implements OnInit {
               this.shared = this.shared + transaction.carrot_amt;
             }
             break;
-            case 'DONATION':
+          case 'DONATION':
               this.reward = this.reward + transaction.carrot_amt;
             break;
           case 'BAZAAR':
-            this.bazaar = this.bazaar + transaction.carrot_amt;
+            if (transaction.satus == "APPROVED"){
+              this.bazaar = this.bazaar + transaction.carrot_amt;
+            }
             break;
         }
       }
