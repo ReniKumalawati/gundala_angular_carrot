@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +34,14 @@ import { MerchantTransactionComponent } from './merchant/merchant-transaction/me
 import { GroupSocialFoundationComponent } from './manager/detail-group/group-social-foundation/group-social-foundation.component';
 import { AchievementComponent } from './employee/achievement/achievement.component';
 import { ClaimComponent } from './manager/claim/claim.component';
+<<<<<<< HEAD
 import { SeniorManagerComponent } from './manager/senior-manager/senior-manager.component';
+=======
+import { ModalLoadingComponent } from './partial/modal-loading/modal-loading.component';
+import { AchievementListComponent } from './employee/achievement/achievement-list/achievement-list.component';
+import { AchievedComponent } from './employee/achievement/achieved/achieved.component';
+import {AuthService} from './interceptors/auth.service';
+>>>>>>> b2b6983033ecf5cc6051938b42fd50fec31cb1c3
 
 @NgModule({
   declarations: [
@@ -67,7 +74,13 @@ import { SeniorManagerComponent } from './manager/senior-manager/senior-manager.
     GroupSocialFoundationComponent,
     AchievementComponent,
     ClaimComponent,
+<<<<<<< HEAD
     SeniorManagerComponent
+=======
+    ModalLoadingComponent,
+    AchievementListComponent,
+    AchievedComponent
+>>>>>>> b2b6983033ecf5cc6051938b42fd50fec31cb1c3
   ],
   imports: [
     NgbModule,
@@ -76,7 +89,10 @@ import { SeniorManagerComponent } from './manager/senior-manager/senior-manager.
     HttpClientModule, // service harus di import
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [NgbActiveModal, {provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true}],
+  entryComponents: [
+    ModalLoadingComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
