@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalLoadingComponent} from '../partial/modal-loading/modal-loading.component';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,11 @@ export class LoginComponent implements OnInit {
   employee: any;
   submitted = false;
   formLogin = {email: '', password: ''}
-  constructor(private formBuilder: FormBuilder, private login: AuthenticationService) { }
+  load: boolean = false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private login: AuthenticationService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -22,8 +28,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.modalService.open(ModalLoadingComponent)
     this.login.login(this.formLogin.email, this.formLogin.password).subscribe(callback => {
       this.employee = callback;
+      this.modalService.dismissAll()
       if (this.employee.status === 'gagal') {
         alert(this.employee.message);
         location.href = '/login';

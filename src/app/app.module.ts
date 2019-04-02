@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +34,7 @@ import { MerchantTransactionComponent } from './merchant/merchant-transaction/me
 import { GroupSocialFoundationComponent } from './manager/detail-group/group-social-foundation/group-social-foundation.component';
 import { AchievementComponent } from './employee/achievement/achievement.component';
 import { ClaimComponent } from './manager/claim/claim.component';
+import { ModalLoadingComponent } from './partial/modal-loading/modal-loading.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ClaimComponent } from './manager/claim/claim.component';
     MerchantTransactionComponent,
     GroupSocialFoundationComponent,
     AchievementComponent,
-    ClaimComponent
+    ClaimComponent,
+    ModalLoadingComponent
   ],
   imports: [
     NgbModule,
@@ -74,7 +76,10 @@ import { ClaimComponent } from './manager/claim/claim.component';
     HttpClientModule, // service harus di import
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [NgbActiveModal],
+  entryComponents: [
+    ModalLoadingComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

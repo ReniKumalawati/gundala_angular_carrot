@@ -48,17 +48,17 @@ export class AchievementComponent implements OnInit {
       let shareValue = {
         from: frezeer.employee.name,
         to: this.employee.name,
-        detail_from: frezeer,
+        frezeer_from: frezeer,
         detail_to: this.basket,
         carrot_amt: achievement.carrot,
         type: 'REWARD',
         description: achievement.title};
       delete shareValue.detail_to.employee.dob
       delete shareValue.detail_to.employee.group
-      delete shareValue.detail_from.created_at
-      delete shareValue.detail_from.updated_at
-      delete shareValue.detail_from.employee.group
-      delete shareValue.detail_from.employee.dob
+      delete shareValue.frezeer_from.created_at
+      delete shareValue.frezeer_from.updated_at
+      delete shareValue.frezeer_from.employee.group
+      delete shareValue.frezeer_from.employee.dob
       this.transactionService.insertTansactionToDB(shareValue).subscribe(callback => {
         console.log(callback);
         this.findAchievement();
