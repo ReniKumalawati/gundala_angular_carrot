@@ -15,6 +15,7 @@ export class GroupsComponent implements OnInit {
   groupValue: any = {name: '', type: '', id: '', owner: {id: ''}}
   submitted = false;
   manager: any;
+  idOwner = '';
   id = '';
   constructor(
     private groupService: GroupService,
@@ -56,8 +57,10 @@ export class GroupsComponent implements OnInit {
     this.modalService.dismissAll();
   }
   submit () {
+    console.log(this.id)
     if (this.id !== '') {
       delete this.groupValue.id
+      this.groupValue.owner.id = this.idOwner
       this.groupService.updateGroup(this.id, this.groupValue).subscribe(callback => {
         this.id = ''
         this.findAllGroups();
@@ -73,8 +76,12 @@ export class GroupsComponent implements OnInit {
   }
 
   openEdit(data, content) {
+    delete data.owner
     this.id = data.id;
     this.groupValue = data
+    if (!this.groupValue.owner) {
+      this.groupValue.owner = {id: ''}  
+    }
     this.open(content);
   }
 }
