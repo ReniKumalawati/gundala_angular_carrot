@@ -34,6 +34,7 @@ import { MerchantTransactionComponent } from './merchant/merchant-transaction/me
 import { GroupSocialFoundationComponent } from './manager/detail-group/group-social-foundation/group-social-foundation.component';
 import { AchievementComponent } from './employee/achievement/achievement.component';
 import { ClaimComponent } from './manager/claim/claim.component';
+import { FunnelComponent } from './farmer/funnel/funnel.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ClaimComponent } from './manager/claim/claim.component';
     MerchantTransactionComponent,
     GroupSocialFoundationComponent,
     AchievementComponent,
-    ClaimComponent
+    ClaimComponent,
+    FunnelComponent
   ],
   imports: [
     NgbModule,
