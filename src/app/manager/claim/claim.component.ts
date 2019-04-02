@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {GroupService} from '../../service/group.service';
 import {TransactionService} from '../../service/transaction.service';
 import {AuthenticationService} from '../../service/authentication.service';
 
