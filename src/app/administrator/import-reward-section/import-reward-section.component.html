@@ -8,17 +8,27 @@
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Type Name</th>
+        <th scope="col">Title</th>
         <th scope="col">Carrot</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
       <tbody id="tbodyRewardtype" *ngIf="rewardsData">
       <tr *ngFor="let reward of rewardsData">
         <td scope="row">{{reward.key}}</td>
-        <td>{{reward.name}}</td>
-        <td>{{reward.carrot_amt}}</td>
+        <td>{{reward.title}}</td>
+        <td>{{reward.carrot}}</td>
+        <td>{{reward.description}}</td>
+        <td> {{reward.status ? 'Active' : 'Inactive' }}</td>
         <td>
+          <a class="delete-row" href="javascript:void(0)" (click)="inactive(reward)" *ngIf="reward.status">
+            Inactive
+          </a>
+          <a class="delete-row" href="javascript:void(0)" (click)="activate(reward)" *ngIf="!reward.status">
+            Activate
+          </a>|
           <a class="delete-row" href="javascript:void(0)" (click)="removeRewardFromDB(reward.id)">Delete</a> |
           <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(reward, contentReward)"> Edit</a>
         </td>
@@ -44,16 +54,23 @@
     <div class="modal-body">
       <div class="form-group">
         <label for="text">Type Name</label>
-        <input id="text" name="text" type="text" class="form-control here" formControlName="name" [(ngModel)]="formReward.name">
-        <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
-          <div *ngIf="messageForm.controls.name.errors.required">Please insert name!</div>
+        <input id="text" name="text" type="text" class="form-control here" formControlName="title" [(ngModel)]="formReward.title">
+        <div *ngIf="submitted && messageForm.controls.title.errors" class="error">
+          <div *ngIf="messageForm.controls.title.errors.required">Please insert name!</div>
         </div>
       </div>
       <div class="form-group">
         <label for="text1">Carrot</label>
-        <input id="text1" name="text1" type="text" class="form-control here" formControlName="carrot_amt" [(ngModel)]="formReward.carrot_amt">
-        <div *ngIf="submitted && messageForm.controls.carrot_amt.errors" class="error">
-          <div *ngIf="messageForm.controls.carrot_amt.errors.required">Please insert Carrot's Amount!</div>
+        <input id="text1" name="text1" type="text" class="form-control here" formControlName="carrot" [(ngModel)]="formReward.carrot">
+        <div *ngIf="submitted && messageForm.controls.carrot.errors" class="error">
+          <div *ngIf="messageForm.controls.carrot.errors.required">Please insert Carrot's Amount!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input name="text1" type="text" class="form-control here" formControlName="description" [(ngModel)]="formReward.description">
+        <div *ngIf="submitted && messageForm.controls.description.errors" class="error">
+          <div *ngIf="messageForm.controls.description.errors.required">Please insert Carrot's Amount!</div>
         </div>
       </div>
     </div>
@@ -62,3 +79,4 @@
     </div>
   </form>
 </ng-template>
+<!--<app-modal-loading></app-modal-loading>-->

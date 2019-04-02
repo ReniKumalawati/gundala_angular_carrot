@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RewardsService} from '../../service/rewards.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalLoadingComponent} from '../../partial/modal-loading/modal-loading.component';
 
 @Component({
   selector: 'app-import-reward-section',
@@ -11,18 +12,21 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
-  formReward = {name: '', carrot_amt: 0, active: false}
+  formReward = {title: '', carrot: 0, status: false, description: ''}
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      carrot_amt: ['', Validators.required]
+      title: ['', Validators.required],
+      carrot: ['', Validators.required],
+      description: ['', Validators.required]
     });
     this.findAllRewards()
   }
   findAllRewards() {
+    // this.modalService.open(ModalLoadingComponent)
     this.data.findAllRewards().subscribe(callback => {
+      // this.close()
       this.rewardsData = callback
     })
   }
@@ -36,6 +40,7 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   submit () {
+    this.modalService.open(ModalLoadingComponent)
     this.data.insertRewardIntoDB(this.formReward).subscribe(callback => {
       console.log(callback)
       this.findAllRewards();
@@ -50,9 +55,32 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   openEditModal(data, content) {
-    this.formReward.name = data.name;
-    this.formReward.carrot_amt = data.carrot_amt;
+    this.formReward.title = data.title;
+    this.formReward.carrot = data.carrot;
+    this.formReward.description = data.description;
     this.open(content)
+  }
+
+  activate(data) {
+    this.modalService.open(ModalLoadingComponent)
+    data.status = true
+    let id = data.id
+    delete data.id
+    this.data.updateReward(data, id).subscribe(callback => {
+      this.close()
+      this.findAllRewards()
+    })
+  }
+
+  inactive(data) {
+    this.modalService.open(ModalLoadingComponent)
+    data.status = false
+    let id = data.id
+    delete data.id
+    this.data.updateReward(data, id).subscribe(callback => {
+      this.close()
+      this.findAllRewards()
+    })
   }
 
 }

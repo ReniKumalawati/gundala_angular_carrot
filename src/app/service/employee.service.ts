@@ -40,4 +40,8 @@ export class EmployeeService {
   findFrezeerByOwner (id) {
     return this.http.get(environment.endpoint + "/api/freezer/by-owner/" + id);
   }
+
+  findAchievementbyEmployee(id) {
+    return this.http.get(environment.endpoint + "/api/employees/achievement?id=" + id);
+  }
 }
