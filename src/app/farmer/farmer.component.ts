@@ -62,7 +62,7 @@ export class FarmerComponent implements OnInit {
     });
   }
 
-  removeBarn(id){
+  removeBarn(id) {
     console.log('id' + id);
     this.data.deleteBarnInDB(id).subscribe();
     this.findAllBarns();

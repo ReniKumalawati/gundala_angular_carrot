@@ -16,13 +16,13 @@ export class FunnelComponent implements OnInit {
   currentFreezer: any;
   employeeData: any;
   shareForm: FormGroup;
-  shareValue = {from: '', to: '',
+  shareValue = { from: '', to: '',
                 freezer_to: {id: '', name: '', employee: {id:'', dob: '', name: ''}},
                 freezer_from: {id: '', name: '', employee: {id:'', name: '', dob: '', group: []}},
                 carrot_amt: 0, type: 'FUNNEL', description: ''};
   constructor(
     private auth: AuthenticationService,
-    private employeeService : EmployeeService,
+    private employeeService: EmployeeService,
     private transactionService: TransactionService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal
@@ -36,23 +36,15 @@ export class FunnelComponent implements OnInit {
     });
 
     this.user = JSON.parse(this.auth.currentEmployee());
-    this.currentFreezer = JSON.parse(this.auth.currentBasket());
+    this.currentFreezer = JSON.parse(this.auth.currentFreezer());
     this.findAllSeniorManager();
   }
 
-  findAllSeniorManager(){
+  findAllSeniorManager() {
     this.employeeService.findEmployeeByRole('SENIOR_MANAGER').subscribe(callback => {
       this.employeeData = callback;
-      console.log(this.employeeData)
-    })
-  }
-  open(content) {
-    this.modalService.open(content);
-  }
-  
-  close() {
-    this.modalService.dismissAll();
-    this.shareForm.reset();
+      console.log(this.employeeData);
+    });
   }
 
   submit() {
@@ -65,6 +57,13 @@ export class FunnelComponent implements OnInit {
       this.close();
       this.findAllSeniorManager();
     });
+  }
+  open(content) {
+    this.modalService.open(content);
+  }
+  close() {
+    this.modalService.dismissAll();
+    this.shareForm.reset();
   }
 }
 
