@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from 'src/app/service/authentication.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import {TransactionService} from 'src/app/service/transaction.service';
+import {GroupService} from '../../service/group.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {group} from '@angular/animations';
 
 
 @Component({
@@ -19,13 +21,14 @@ export class FunnelComponent implements OnInit {
   empTempId: any;
   freezer: any;
   shareValue = { from: '', to: '',
-                freezer_to: {id: '', name: '', created_at:'', updated_at:'', employee: {id:'', dob: '', name: '', group:[]}},
-                freezer_from: {id: '', name: '', employee: {id:'', name: '', dob: '', group: []}},
+                freezer_to: {id: '', name: '', created_at: '', updated_at: '', employee: {id: '', dob: '', name: '', group: []}},
+                freezer_from: {id: '', name: '', employee: {id: '', name: '', dob: '', group: []}},
                 carrot_amt: 0, type: 'FUNNEL', description: ''};
   constructor(
     private auth: AuthenticationService,
     private employeeService: EmployeeService,
     private transactionService: TransactionService,
+    private groupService: GroupService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal
     ) { }
@@ -54,7 +57,7 @@ export class FunnelComponent implements OnInit {
     this.shareValue.from = this.user.name;
     delete this.shareValue.freezer_from.employee.dob;
     delete this.shareValue.freezer_from.employee.group;
-    this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback =>{
+    this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback => {
       this.freezer = callback;
       this.shareValue.freezer_to = this.freezer;
       delete this.shareValue.freezer_to.employee.dob;
@@ -68,9 +71,22 @@ export class FunnelComponent implements OnInit {
       });
     });
   }
+/*  findSum(): number {
+    return
+  }*/
   open(content, data) {
     this.modalService.open(content);
     this.empTempId = data.id;
+
+    let sum: number;
+    let listGroup: any;
+    this.groupService.findGroupIdByOwner(this.empTempId).subscribe( callback => {
+      listGroup = callback;
+      console.log(listGroup);
+/*      this.groupService.findStaffSum(listGroup[0]).subscribe(callback => {
+        this.shareValue.carrot_amt = callback;
+      });*/
+    });
   }
   close() {
     this.modalService.dismissAll();
