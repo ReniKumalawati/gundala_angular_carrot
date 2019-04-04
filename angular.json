@@ -89,7 +89,7 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
+              "src/assets/acarrot.png",
               "src/assets"
             ]
           }
