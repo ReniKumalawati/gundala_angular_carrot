@@ -14,6 +14,7 @@ import {TransactionService} from '../service/transaction.service';
 export class EmployeeComponent implements OnInit {
   employee: any;
   bazar = [];
+  sf = [];
   total = 0;
   basket: any;
   constructor(
@@ -26,7 +27,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.employee = JSON.parse(this.auth.currentEmployee());
     this.basket = JSON.parse(this.auth.currentBasket());
-    this.findBazar();
+    this.findBazarAndSF();
     this.getTotalEarnedCarrot();
   }
 
@@ -39,7 +40,7 @@ export class EmployeeComponent implements OnInit {
     })
   }
 
-  findBazar() {
+  findBazarAndSF() {
     const group = this.employee.group;
     if (group) {
       const bazars = [];
@@ -52,6 +53,13 @@ export class EmployeeComponent implements OnInit {
             bazars.push({id: b.id});
           }
         }
+
+        if (g.socialFoundations !== undefined) {
+          for (let b of g.socialFoundations) {
+            this.sf.push(b);
+          }
+        }
+
         if (index === group.length) {
           this.itemService.findItemByMultipleBazarId(bazars).subscribe(callback => {
             const item = callback;
