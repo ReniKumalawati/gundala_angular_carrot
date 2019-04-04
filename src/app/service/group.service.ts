@@ -24,4 +24,8 @@ export class GroupService {
   updateGroup (id, data) {
     return this.http.put(environment.endpoint + "/api/groups/" + id, data);
   }
+
+  findGroupIdByOwner(ownerId) {
+    return this.http.get(environment.endpoint+ "/api/groups/getGroupId/" +ownerId);
+  }
 }
