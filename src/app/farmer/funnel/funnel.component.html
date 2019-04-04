@@ -16,7 +16,7 @@
         <tr *ngFor="let employee of employeeData">
           <td>{{employee.name}}</td>
           <td>{{employee.emailAddress}}</td>
-          <td><a href="javascript:void(0)" (click)="open(contentShare)" class="btn btn-info">Send Carrot</a></td>
+          <td><a href="javascript:void(0)" (click)="open(contentShare, employee)" class="btn btn-info">Send Carrot</a></td>
         </tr>
         </tbody>
       </table>

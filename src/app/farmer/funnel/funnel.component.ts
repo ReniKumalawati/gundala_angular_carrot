@@ -16,8 +16,10 @@ export class FunnelComponent implements OnInit {
   currentFreezer: any;
   employeeData: any;
   shareForm: FormGroup;
+  empTempId: any;
+  freezer: any;
   shareValue = { from: '', to: '',
-                freezer_to: {id: '', name: '', employee: {id:'', dob: '', name: ''}},
+                freezer_to: {id: '', name: '', created_at:'', updated_at:'', employee: {id:'', dob: '', name: '', group:[]}},
                 freezer_from: {id: '', name: '', employee: {id:'', name: '', dob: '', group: []}},
                 carrot_amt: 0, type: 'FUNNEL', description: ''};
   constructor(
@@ -44,7 +46,6 @@ export class FunnelComponent implements OnInit {
     this.employeeService.findEmployeeByRole('SENIOR_MANAGER').subscribe(callback => {
       this.employeeData = callback;
       this.employeeData = this.employeeData.listEmployee;
-      console.log(this.employeeData);
     });
   }
 
@@ -53,14 +54,23 @@ export class FunnelComponent implements OnInit {
     this.shareValue.from = this.user.name;
     delete this.shareValue.freezer_from.employee.dob;
     delete this.shareValue.freezer_from.employee.group;
-    console.log(this.shareValue);
-    this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
-      this.close();
-      this.findAllSeniorManager();
+    this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback =>{
+      this.freezer = callback;
+      this.shareValue.freezer_to = this.freezer;
+      delete this.shareValue.freezer_to.employee.dob;
+      delete this.shareValue.freezer_to.employee.group;
+      delete this.shareValue.freezer_to.created_at;
+      delete this.shareValue.freezer_to.updated_at;
+      console.log(this.shareValue);
+      this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
+        this.close();
+        this.findAllSeniorManager();
+      });
     });
   }
-  open(content) {
+  open(content, data) {
     this.modalService.open(content);
+    this.empTempId = data.id;
   }
   close() {
     this.modalService.dismissAll();
