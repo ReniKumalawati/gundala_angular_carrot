@@ -13,15 +13,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trx of transactionData">
-          <td></td>
+        <tr>
+          <!-- Nomor Urut -->
+          <td>nomor</td>
           <!-- Get Manager List Name -->
-          <td>{{trx.description}}</td>
+          <td>list nama</td>
           <!-- Create Action Button -->
           <td>
-            <div *ngIf="trx.status === 'PENDING'">
-              <!-- <a href="javascript:void(0)" class="btn btn-info" (click)="approve(trx.id)">Approve</a>
-              <a href="javascript:void(0)" (click)="decline(trx.id)" class="btn btn-info">Decline</a> -->
+            <div>
+              <button _ngcontent-c3="" class="btn btn-info" type="button">
+                <i class="fas fa-cog"></i> Manage
+              </button>
             </div>
           </td>
         </tr>

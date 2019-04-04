@@ -2,9 +2,10 @@
   <div class="row d-flex">
     <div class="col-md-6">
       <h2 class="my-3 pl-0 text-grey ml-0">
-                    <span class="back-button">
-                      <button type="button" class="btn-clear" data-toggle="modal" data-target="#exampleModalCenter" ><img src="assets/img/back.png" alt="" class="back" /></button>
-                    </span>
+        <span class="back-button">
+          <button type="button" class="btn-clear" data-toggle="modal" data-target="#exampleModalCenter"><img
+              src="assets/img/back.png" alt="" class="back" /></button>
+        </span>
         Create Bazaar
       </h2>
     </div>
@@ -14,24 +15,27 @@
 </main>
 <section class="create-barn-form pt-2 pb-5">
   <form [formGroup]="bazarForm" (ngSubmit)="onSubmit()">
-  <div class="container search-box pt-2">
-    <div class="row">
-      <div class="col-md-12 ">
-        <hr class="box-title-hr">
-        <h4 class="mt-2 mb-4 box-title">BAZAAR DETAILS</h4>
+    <div class="container search-box pt-2">
+      <div class="row">
+        <div class="col-md-12 ">
+          <hr class="box-title-hr">
+          <h4 class="mt-2 mb-4 box-title">BAZAAR DETAILS</h4>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="barnName">Bazaar Name</label>
-                <input id="barnName" name="barnName" type="text" class="form-control here" formControlName="bazaarName" [(ngModel)]="formBaxar.bazaarName">
+                <input id="barnName" name="barnName" type="text" class="form-control here" formControlName="bazaarName"
+                  [(ngModel)]="formBaxar.bazaarName">
               </div>
               <div class="form-group">
                 <label for="startDate">Start Period</label>
-                <input id="startDate" name="startDate" type="date" class="form-control here" formControlName="startPeriod" [(ngModel)]="formBaxar.startPeriod">
+                <input id="startDate" name="startDate" type="date" class="form-control here"
+                  formControlName="startPeriod" [(ngModel)]="formBaxar.startPeriod">
               </div>
               <div class="form-group">
                 <label for="carrotEmployee">Bazaar Description</label>
-                <input id="carrotEmployee" name="carrotEmployee" type="textar" class="form-control here" formControlName="bazaarDescription" [(ngModel)]="formBaxar.bazaarDescription">
+                <input id="carrotEmployee" name="carrotEmployee" type="textar" class="form-control here"
+                  formControlName="bazaarDescription" [(ngModel)]="formBaxar.bazaarDescription">
               </div>
             </div>
             <div class="col-md-6">
@@ -43,11 +47,13 @@
               </div>
               <div class="form-group">
                 <label for="endDate">End Period</label>
-                <input id="endDate" name="endDate" type="date" class="form-control here" formControlName="endPeriod" [(ngModel)]="formBaxar.endPeriod">
+                <input id="endDate" name="endDate" type="date" class="form-control here" formControlName="endPeriod"
+                  [(ngModel)]="formBaxar.endPeriod">
               </div>
               <div class="form-group">
                 <label>Sale Status</label><br>
-                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="status" [(ngModel)]="formBaxar.status">
+                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="status"
+                  [(ngModel)]="formBaxar.status">
                   <label ngbButtonLabel class="btn-primary">
                     <input ngbButton type="radio" [value]="false">False
                   </label>
@@ -61,9 +67,9 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
-  </div>
     <div class="container search-box mt-3">
       <div class="row pb-md-3">
         <div class="col-md-12">
@@ -73,53 +79,60 @@
         <div class="col-md-12">
           <table class="table table-hover mt-3">
             <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Item Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Picture</th>
-              <th scope="col">Exchange Rate</th>
-              <th scope="col">Total Item</th>
-              <th scope="col">Auto Approve</th>
-              <th scope="col">Item on Sale</th>
-              <th scope="col">Sold</th>
-              <th scope="col" class="priority-table">Action</th>
-            </tr>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Exchange Rate</th>
+                <th scope="col">Total Item</th>
+                <th scope="col">Auto Approve</th>
+                <th scope="col">Item on Sale</th>
+                <th scope="col">Sold</th>
+                <th scope="col" class="priority-table">Action</th>
+              </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let item of bazarItem">
-              <th scope="row">1</th>
-              <td>{{item.itemName}}</td>
-              <td>{{item.itemDescription}}</td>
-              <td>
-                <img src="{{item.pictureUrl}}" class="table-image" alt="" *ngIf="item.pictureUrl">
-              </td>
-              <td>{{item.exchangeRate}}</td>
-              <td>{{item.totalItem}}</td>
-              <td>{{item.approvalStatus}}</td>
-              <td>{{item.saleStatus}}</td>
-              <td>{{item.itemSold}}</td>
-              <td>
-                <a href="javascript:void(0)" (click)="deleteItemFromBazarById(item.id)">Delete</a> |
-                <a href="javascript:void(0)" (click)="editItem(item.id, contentItem)"> Edit</a>
-              </td>
-            </tr>
+              <tr *ngFor="let item of bazarItem">
+                <th width="1%" scope="row">1</th>
+                <td width="1%">{{item.itemName}}</td>
+                <td width="5%">{{item.itemDescription}}</td>
+                <td width="5%">
+                  <img src="{{item.pictureUrl}}" class="table-image" alt="" *ngIf="item.pictureUrl">
+                </td>
+                <td width="1%">{{item.exchangeRate}}</td>
+                <td width="1%">{{item.totalItem}}</td>
+                <td width="1%">{{item.approvalStatus}}</td>
+                <td width="1%">{{item.saleStatus}}</td>
+                <td width="1%">{{item.itemSold}}</td>
+                <td>
+                  <!-- <a href="javascript:void(0)" (click)="deleteItemFromBazarById(item.id)">Delete</a> | -->
+                  <!-- <a href="javascript:void(0)" (click)="editItem(item.id, contentItem)"> Edit</a> -->
+                  <button type="button" class="btn btn-info" (click)="editItem(item.id, contentItem)">
+                    <i class=" fas fa-cog"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-danger" (click)="deleteItemFromBazarById(item.id)">
+                    <i class="far fa-trash-alt"></i> Delete
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
 
           <div class="text-center mt-5">
-            <a href="javascript:void(0)" (click)="open(contentItem)" class="btn btn-info text-center"><i class="fa fa-plus-circle"></i> ADD MORE ITEMS</a>
+            <a href="javascript:void(0)" (click)="open(contentItem)" class="btn btn-info text-center"><i
+                class="fa fa-plus-circle"></i> ADD MORE ITEMS</a>
           </div>
         </div>
       </div>
     </div>
-  <div class="container mt-3">
-    <div class="row d-flex">
-      <div class="col-md-12 py-3 px-md-0">
-        <button type="submit" class="btn btn-carrot radius-5 pull-right">CREATE BAZAAR</button>
+    <div class="container mt-3">
+      <div class="row d-flex">
+        <div class="col-md-12 py-3 px-md-0">
+          <button type="submit" class="btn btn-carrot radius-5 pull-right">CREATE BAZAAR</button>
+        </div>
       </div>
     </div>
-  </div>
   </form>
 </section>
 <ng-template #contentItem let-c="close" let-d="dismiss">
@@ -129,11 +142,12 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form [formGroup]="itemForm" (ngSubmit)="submit()" >
+  <form [formGroup]="itemForm" (ngSubmit)="submit()">
     <div class="modal-body">
       <div class="form-group">
         <label for="text">Item's Name</label>
-        <input id="text" name="text" type="text" class="form-control here" formControlName="itemName" [(ngModel)]="itemValue.itemName">
+        <input id="text" name="text" type="text" class="form-control here" formControlName="itemName"
+          [(ngModel)]="itemValue.itemName">
         <div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">
           <div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>
         </div>
@@ -141,37 +155,41 @@
       <div class="form-group">
         <label for="text">Item's Image</label>
         <div>
-        <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="" >
-        <input type="file" accept="images" id="avatar" (change)="onFileChange($event)" #fileInput>
-      </div>
+          <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="">
+          <input type="file" accept="images" id="avatar" (change)="onFileChange($event)" #fileInput>
+        </div>
         <!--<div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>-->
+        <!--<div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>-->
         <!--</div>-->
       </div>
       <div class="form-group">
         <label for="text">Item's Description</label>
-        <input  name="text" type="text" class="form-control here" formControlName="itemDescription" [(ngModel)]="itemValue.itemDescription">
+        <input name="text" type="text" class="form-control here" formControlName="itemDescription"
+          [(ngModel)]="itemValue.itemDescription">
         <div *ngIf="submitted && messageForm.controls.itemDescription.errors" class="error">
           <div *ngIf="messageForm.controls.itemDescription.errors.required">Please insert name!</div>
         </div>
       </div>
       <div class="form-group">
         <label>Exchange Rate</label>
-        <input  name="text1" type="text" class="form-control here" formControlName="exchangeRate" [(ngModel)]="itemValue.exchangeRate">
+        <input name="text1" type="text" class="form-control here" formControlName="exchangeRate"
+          [(ngModel)]="itemValue.exchangeRate">
         <div *ngIf="submitted && messageForm.controls.exchangeRate.errors" class="error">
           <div *ngIf="messageForm.controls.exchangeRate.errors.required">Please insert Carrot's Amount!</div>
         </div>
       </div>
       <div class="form-group">
         <label>Total Item</label>
-        <input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">
+        <input name="text1" type="text" class="form-control here" formControlName="totalItem"
+          [(ngModel)]="itemValue.totalItem">
         <div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">
           <div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>
         </div>
       </div>
       <div class="form-group">
         <label>Aproval Status</label><br>
-        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="approvalStatus" [(ngModel)]="itemValue.approvalStatus">
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="approvalStatus"
+          [(ngModel)]="itemValue.approvalStatus">
           <label ngbButtonLabel class="btn-primary">
             <input ngbButton type="radio" [value]="false">False
           </label>
@@ -185,7 +203,8 @@
       </div>
       <div class="form-group">
         <label>Sale Status</label><br>
-        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="saleStatus" [(ngModel)]="itemValue.saleStatus">
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="saleStatus"
+          [(ngModel)]="itemValue.saleStatus">
           <label ngbButtonLabel class="btn-primary">
             <input ngbButton type="radio" [value]="false">False
           </label>

@@ -1,0 +1,59 @@
+<div style="background-color: white">
+    <div class="col-md-12">
+      <hr class="box-title-hr">
+      <h4 class="my-2 box-title">SENIOR MANAGER LIST</h4>
+    </div>
+    <div class="col-md-12">
+      <table id="table-mr" class="table table-hover mt-3">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employee of employeeData">
+          <td>{{employee.name}}</td>
+          <td>{{employee.emailAddress}}</td>
+          <td><a href="javascript:void(0)" (click)="open(contentShare)" class="btn btn-info">Send Carrot</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <ng-template #contentShare let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-basic-title">Transfer Carrots to this Manager</h5>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="shareForm" (ngSubmit)="submit()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Carrot's Amount</label>
+            <input name="text" type="number" class="form-control here" formControlName="carrot_amt"
+              [(ngModel)]="shareValue.carrot_amt">
+            <div *ngIf="submitted && messageForm.controls.carrot_amt.errors" class="error">
+              <div *ngIf="messageForm.controls.carrot_amt.errors.required">Please insert carrot's amount!</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="form-group">
+              <label>Comments</label>
+              <textarea name="text" type="text" class="form-control here" formControlName="description"
+                [(ngModel)]="shareValue.description"></textarea>
+              <div *ngIf="submitted && messageForm.controls.description.errors" class="error">
+                <div *ngIf="messageForm.controls.description.errors.required">Please insert name!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </div>
+      </form>
+    </ng-template>

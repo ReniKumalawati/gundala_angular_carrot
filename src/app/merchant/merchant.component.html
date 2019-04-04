@@ -38,7 +38,13 @@
             <td>{{bazar.startPeriod}}</td>
             <td>{{bazar.endPeriod}}</td>
             <td>{{bazar.status == true ? 'Active' : 'Inactive' }}</td>
-            <td><a [href]="'edit-bazar/' + bazar.id">Manage</a></td>
+            <td>
+              <a [href]="'edit-bazar/' + bazar.id" class="btn btn-info" >
+                <i class="fas fa-cog"></i>
+                Manage
+              </a>
+
+            </td>
           </tr>
         </table>
       </div>
