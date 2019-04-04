@@ -8,16 +8,19 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Management Group Name</th>
           <th scope="col">Manager Name List</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor = "let group of groupList"> 
           <!-- Nomor Urut -->
           <td>nomor</td>
           <!-- Get Manager List Name -->
-          <td>list nama</td>
+          <td>{{group.name}}</td>
+          <!-- Show manager name -->
+          <td>Manager Name</td>
           <!-- Create Action Button -->
           <td>
             <div>
