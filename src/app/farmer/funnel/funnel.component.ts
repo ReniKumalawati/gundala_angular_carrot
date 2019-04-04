@@ -43,6 +43,7 @@ export class FunnelComponent implements OnInit {
   findAllSeniorManager() {
     this.employeeService.findEmployeeByRole('SENIOR_MANAGER').subscribe(callback => {
       this.employeeData = callback;
+      this.employeeData = this.employeeData.listEmployee;
       console.log(this.employeeData);
     });
   }
