@@ -37,6 +37,7 @@ export class GroupsComponent implements OnInit {
   findAllEmployeeByStatus() {
     this.employeeService.findEmployeeByRole('MANAGER').subscribe(callback => {
       this.manager = callback;
+      this.manager = this.manager.listEmployee;
       console.log(callback)
     });
   }

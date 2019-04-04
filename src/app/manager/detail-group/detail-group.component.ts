@@ -12,7 +12,7 @@ import {BazarService} from '../../service/bazar.service';
   styleUrls: ['./detail-group.component.scss']
 })
 export class DetailGroupComponent implements OnInit {
-  itemGroup: Object;
+  itemGroup: any;
   routeParam: any;
   addEmployee: FormGroup;
   employee: any;
@@ -44,9 +44,8 @@ export class DetailGroupComponent implements OnInit {
     this.idEmployee = [];
     this.employeeService.findAllMemberOfAGroup(this.routeParam.value.id).subscribe(callback => {
       this.employeeByGroup = callback;
-      console.log(this.employeeByGroup)
-      if (this.employeeByGroup != null) {
-        for (let emp of this.employeeByGroup) {
+      if (this.employeeByGroup.listEmployee.length > 0) {
+        for (let emp of this.employeeByGroup.listEmployee) {
           this.idEmployee.push(emp.id);
         }
         this.findAllEmployee();
@@ -66,7 +65,7 @@ export class DetailGroupComponent implements OnInit {
     if (this.routeParam.value.id) {
       this.groupService.findById(this.routeParam.value.id).subscribe(callback => {
         this.itemGroup = callback;
-        console.log(this.itemGroup);
+        this.itemGroup = this.itemGroup.group;
       })
     }
   }
@@ -76,7 +75,7 @@ export class DetailGroupComponent implements OnInit {
       let empav : any;
       empav = callback;
       this.allEmployee = [];
-      for (let emp of empav) {
+      for (let emp of empav.listEmployee) {
         if (!this.idEmployee.includes(emp.id)) {
           this.allEmployee.push(emp);
           console.log(this.allEmployee)

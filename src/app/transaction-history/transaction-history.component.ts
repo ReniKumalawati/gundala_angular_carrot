@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
 import {TransactionService} from '../service/transaction.service';
 import {EmployeeService} from '../service/employee.service';
-import {calcBindingFlags} from '@angular/core/src/view/util';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {any} from 'codelyzer/util/function';
 import {GroupService} from '../service/group.service';
 
 @Component({
@@ -67,8 +65,8 @@ export class TransactionHistoryComponent implements OnInit {
         console.log(g)
         this.groupService.findById(g.id).subscribe(callback => {
           let data: any = callback;
-          if (data.socialFoundations) {
-            data.socialFoundations.forEach(e => {
+          if (data.group.socialFoundations) {
+            data.group.socialFoundations.forEach(e => {
               this.sosFoundData.push(e)
             })
           }
@@ -81,12 +79,11 @@ export class TransactionHistoryComponent implements OnInit {
     this.employeeService.findRecentDOBOfEmployee().subscribe(callback => {
       this.recentDob = callback;
       let i = 0;
-      for (let dob of this.recentDob) {
+      for (let dob of this.recentDob.listBasket) {
         if(dob.employee.id == this.user.id) {
           this.recentDob.splice(i, 1);
         }
         i++;
-        console.log(this.recentDob);
       }
     })
   }
@@ -98,7 +95,7 @@ export class TransactionHistoryComponent implements OnInit {
       this.shared = 0;
       this.bazaar = 0;
       this.reward = 0;
-      for (let transaction of this.transactionLists) {
+      for (let transaction of this.transactionLists.listTransaction) {
         transaction.transactiondate = new Date(transaction.transaction_date).getTime();
         switch (transaction.type) {
           case 'SHARED':
@@ -116,7 +113,6 @@ export class TransactionHistoryComponent implements OnInit {
             break;
         }
       }
-      console.log(this.transactionLists);
     })
   }
 
@@ -175,7 +171,7 @@ export class TransactionHistoryComponent implements OnInit {
     this.transactionService.findTransactionByStatusAndDate({type: this.search.type, from: from, to: to})
       .subscribe(callback => {
         this.transactionLists = callback;
-        for (let transaction of this.transactionLists) {
+        for (let transaction of this.transactionLists.listTransaction) {
           transaction.transactiondate = new Date(transaction.transaction_date).getTime();
         }
       })

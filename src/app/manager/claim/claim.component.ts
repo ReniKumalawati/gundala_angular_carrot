@@ -25,8 +25,8 @@ export class ClaimComponent implements OnInit {
     this.transactionData = [];
     this.transactionService.findAllTransactionByEmployeeId(this.employee.id).subscribe(callback => {
       let transactionData: any = callback
-      if (transactionData) {
-        for (let transaction of transactionData) {
+      if (transactionData.listTransaction) {
+        for (let transaction of transactionData.listTransaction) {
           if (transaction.type === 'REWARD') {
             this.transactionData.push(transaction)
           }

@@ -71,13 +71,10 @@ import {AuthService} from './interceptors/auth.service';
     GroupSocialFoundationComponent,
     AchievementComponent,
     ClaimComponent,
-<<<<<<< HEAD
-    SeniorManagerComponent
-=======
+    SeniorManagerComponent,
     ModalLoadingComponent,
     AchievementListComponent,
     AchievedComponent
->>>>>>> b2b6983033ecf5cc6051938b42fd50fec31cb1c3
   ],
   imports: [
     NgbModule,
@@ -92,4 +89,4 @@ import {AuthService} from './interceptors/auth.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

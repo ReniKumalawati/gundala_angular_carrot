@@ -20,6 +20,7 @@ export class TransactionsComponent implements OnInit {
     this.pendingTransactions = [];
     this.transactionService.findAllTransactionPending().subscribe(callbcak => {
       this.pendingTransactions = callbcak;
+      this.pendingTransactions = this.pendingTransactions.listTransaction
     })
   }
 

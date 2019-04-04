@@ -15,7 +15,7 @@ import { EmployeeService } from '../service/employee.service';
 export class FarmerComponent implements OnInit {
   barnData: Object;
   employeeData: Object;
-  rootAdminData: Object;
+  rootAdminData: any;
   messageForm: FormGroup;
   barnTemp: Object;
   formBarn = {name: '', owner: '', startPeriod: '', endPeriod: '',
@@ -52,6 +52,7 @@ export class FarmerComponent implements OnInit {
   findAllEmployeeByRole() {
     this.emp.findEmployeeByRole('ROOT_ADMIN').subscribe(callback => {
       this.rootAdminData = callback;
+      this.rootAdminData = this.rootAdminData.listEmployee
     });
   }
 

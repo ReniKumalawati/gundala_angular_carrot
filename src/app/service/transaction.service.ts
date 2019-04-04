@@ -10,8 +10,7 @@ export class TransactionService {
   employee : any;
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   findAllTransactionByEmployeeId(id) {
     return this.http.get(environment.endpoint + '/api/transactions/' + id);

@@ -52,9 +52,8 @@ export class GroupSocialFoundationComponent implements OnInit {
     this.socialFoundationId = [];
     this.groupService.findById(this.group.id).subscribe(callback => {
       this.socialFoundationByGroup = callback;
-      console.log(callback);
-      if (this.isRealValue(this.socialFoundationByGroup.socialFoundations)) {
-        this.socialFoundationByGroup = this.socialFoundationByGroup.socialFoundations;
+      if (this.isRealValue(this.socialFoundationByGroup.group.socialFoundations)) {
+        this.socialFoundationByGroup = this.socialFoundationByGroup.group.socialFoundations;
         for (let bzr of this.socialFoundationByGroup) {
           this.socialFoundationId.push(bzr.id);
         }

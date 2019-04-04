@@ -54,6 +54,7 @@ export class ProfileComponent implements OnInit {
       if (this.base64Encode !== '') {
         this.emp.uploadEmployeeImage(this.employee.id, { img: this.base64Encode }).subscribe(callback => {
           this.employee = callback;
+          this.employee = this.employee.employee
           localStorage.setItem('currentUser', JSON.stringify(this.employee));
           console.log('new current employee:   ' + localStorage.currentUser);
           this.retrieveEmp();
@@ -61,6 +62,7 @@ export class ProfileComponent implements OnInit {
         });
       } else {
         this.employee = callback;
+        this.employee = this.employee.employee
         localStorage.setItem('currentUser', JSON.stringify(this.employee));
         console.log('new current employee:   ' + localStorage.currentUser);
         this.retrieveEmp();

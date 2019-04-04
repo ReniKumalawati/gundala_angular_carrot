@@ -60,7 +60,7 @@ export class MerchantTransactionComponent implements OnInit {
         this.transactions = callback;
         this.item = [];
         this.transactionsData = [];
-        for (let transaction of this.transactions) {
+        for (let transaction of this.transactions.listTransaction) {
           transaction.transactiondate = new Date(transaction.transaction_date).getTime();
           this.transactionsData.push(transaction)
           if (this.item.indexOf(transaction.requested_item.itemName) < 0) {

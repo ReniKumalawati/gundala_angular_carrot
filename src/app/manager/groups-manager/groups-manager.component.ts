@@ -21,6 +21,7 @@ export class GroupsManagerComponent implements OnInit {
     this.groupData = [];
     this.groupService.findAllGroup().subscribe(callback => {
       this.groupData = callback;
+      this.groupData = this.groupData.listGroup;
     })
   }
 }
