@@ -33,7 +33,7 @@ export class SeniorManagerComponent implements OnInit {
   // Belum bikin
   findGroupIdByOwner(){
     this.groupList = [];
-    this.groupService.findGroupIdByOwner(this.user.id).subscribe(callback => {
+    this.groupService.findManagementGroupIdByOwner(this.user.id).subscribe(callback => {
       this.groupList = callback;
       console.log(this.groupList);
     })
