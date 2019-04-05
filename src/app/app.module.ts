@@ -41,6 +41,9 @@ import { AchievementListComponent } from './employee/achievement/achievement-lis
 import { AchievedComponent } from './employee/achievement/achieved/achieved.component';
 import {AuthService} from './interceptors/auth.service';
 import { DetailSFComponent } from './employee/detail-sf/detail-sf.component';
+import { SfListComponent } from './farmer/sf-list/sf-list.component';
+import { AllSocialFoundationComponent } from './employee/all-social-foundation/all-social-foundation.component';
+import { EmployeeListComponent } from './farmer/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,10 @@ import { DetailSFComponent } from './employee/detail-sf/detail-sf.component';
     ModalLoadingComponent,
     AchievementListComponent,
     AchievedComponent,
-    DetailSFComponent
+    DetailSFComponent,
+    SfListComponent,
+    AllSocialFoundationComponent,
+    EmployeeListComponent
   ],
   imports: [
     NgbModule,

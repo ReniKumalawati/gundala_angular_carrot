@@ -43,9 +43,10 @@ export class DetailGroupComponent implements OnInit {
     this.employeeByGroup = [];
     this.idEmployee = [];
     this.employeeService.findAllMemberOfAGroup(this.routeParam.value.id).subscribe(callback => {
-      this.employeeByGroup = callback;
-      if (this.employeeByGroup.listEmployee.length > 0) {
-        for (let emp of this.employeeByGroup.listEmployee) {
+      let dt:any = callback;
+      this.employeeByGroup = dt.listEmployee;
+      if (this.employeeByGroup.length > 0) {
+        for (let emp of this.employeeByGroup) {
           this.idEmployee.push(emp.id);
         }
         this.findAllEmployee();
@@ -78,7 +79,6 @@ export class DetailGroupComponent implements OnInit {
       for (let emp of empav.listEmployee) {
         if (!this.idEmployee.includes(emp.id)) {
           this.allEmployee.push(emp);
-          console.log(this.allEmployee)
         }
       }
     })
@@ -88,7 +88,6 @@ export class DetailGroupComponent implements OnInit {
     let data: any;
     data = [{id: this.routeParam.value.id}];
     this.employeeService.insertGroupIntoEmployee(this.employee.id, data).subscribe(callback => {
-      console.log(callback)
       this.close();
       this.findAllMemberOfAGroup();
     });

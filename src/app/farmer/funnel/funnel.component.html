@@ -7,13 +7,15 @@
       <table id="table-mr" class="table table-hover mt-3">
         <thead>
         <tr>
+          <th scope="col">No</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let employee of employeeData">
+        <tr *ngFor="let employee of employeeData; let i = index">
+          <td>{{i + 1}}</td>
           <td>{{employee.name}}</td>
           <td>{{employee.emailAddress}}</td>
           <td><a href="javascript:void(0)" (click)="open(contentShare, employee)" class="btn btn-info">Send Carrot</a></td>

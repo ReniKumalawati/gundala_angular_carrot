@@ -11,7 +11,7 @@ import { SocialFoundationService } from '../../service/social-foundation.service
 })
 export class ImportSocialFoundationSectionComponent implements OnInit {
   sfTemp: Object;
-  socialFoundationData: Object;
+  socialFoundationData: any;
   messageForm: FormGroup;
   formSocialFoundation = {name: '', description: '', min_carrot: '', total_carrot: 0, status: false, id: ''};
   constructor(
@@ -32,6 +32,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   findAllSocialFoundation() {
     this.data.findAllSocialFoundation().subscribe(callback => {
       this.socialFoundationData = callback;
+      this.socialFoundationData = this.socialFoundationData.listSocialFoundation
       console.log('dddd');
     });
   }
@@ -50,8 +51,8 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
       alert('please fulfill the form first');
       return;
     }
-
-    if (this.formSocialFoundation.id != undefined) {
+    console.log(this.formSocialFoundation.id)
+    if (this.formSocialFoundation.id != undefined && this.formSocialFoundation.id != '') {
       let id: any;
       id = this.formSocialFoundation.id;
       delete this.formSocialFoundation.id;

@@ -51,19 +51,24 @@
     <div class="row d-flex align-content-end">
       <div class="col-md-12">
         <hr class="box-title-hr">
-        <h4 class="my-2 box-title">Social Foundation</h4>
+          <h4 class="my-2 box-title">
+            Social Foundation
+            <a href="/social-foundation" class="btn btn-info pull-right">See All</a>
+          </h4>
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-md-4" *ngFor="let item of sf">
-        <div class="card">
-          <img class="card-img-top" src="" alt="Social Foundation">
-          <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
+      <ng-container *ngFor="let item of sf; let i = index">
+        <div class="col-md-4" *ngIf="i < 3">
+          <div class="card">
+            <img class="card-img-top" src="" alt="Social Foundation">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
+            <a href="socialfoundation-detail/{{item.id}}" class="btn btn-carrot">Donate</a>
           </div>
-          <a href="socialfoundation-detail/{{item.id}}" class="btn btn-carrot">Donate</a>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </section>

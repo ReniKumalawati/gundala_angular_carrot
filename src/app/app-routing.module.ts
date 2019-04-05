@@ -18,6 +18,7 @@ import {DetailGroupComponent} from './manager/detail-group/detail-group.componen
 import {MerchantTransactionComponent} from './merchant/merchant-transaction/merchant-transaction.component';
 import {AchievementComponent} from './employee/achievement/achievement.component';
 import {DetailSFComponent} from './employee/detail-sf/detail-sf.component';
+import {AllSocialFoundationComponent} from './employee/all-social-foundation/all-social-foundation.component';
 
 const routes: Routes = [
   { path: '', component: EmployeeComponent, canActivate: [AuthGuard],
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard], data: {permission: []}},
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard], data: {permission: []}},
   { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard],
+    data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
+  { path: 'social-foundation', component: AllSocialFoundationComponent, canActivate: [AuthGuard],
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
   { path: 'socialfoundation-detail/:id', component: DetailSFComponent, canActivate: [AuthGuard],
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
