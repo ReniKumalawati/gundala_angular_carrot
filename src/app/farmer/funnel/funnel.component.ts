@@ -22,9 +22,10 @@ export class FunnelComponent implements OnInit {
   shareForm: FormGroup;
   empTempId: any;
   freezer: any;
+  currentBarn: any;
   shareValue = { from: '', to: '',
                 freezer_to: {id: '', name: '', created_at: '', updated_at: '', employee: {id: '', dob: '', name: '', group: []}},
-                freezer_from: {id: '', name: '', employee: {id: '', name: '', dob: '', group: []}},
+                barn: {id: '', name: '', owner: {id: '', name: '', dob: '', group: []}, startPeriod:'', endPeriod:'', totalCarrot:'', carrotLeft:''},
                 carrot_amt: 0, type: 'FUNNEL', description: ''};
   constructor(
     private auth: AuthenticationService,
@@ -46,6 +47,7 @@ export class FunnelComponent implements OnInit {
     this.user = JSON.parse(this.auth.currentEmployee());
     this.currentFreezer = JSON.parse(this.auth.currentFreezer());
     this.findAllSeniorManager();
+    this.findCurrentBarn();
   }
 
   findAllSeniorManager() {
@@ -55,11 +57,16 @@ export class FunnelComponent implements OnInit {
     });
   }
 
+  findCurrentBarn() {
+    this.farmService.findCurrentBarn().subscribe(callback =>{
+      this.currentBarn = callback;
+    });
+  }
   submit() {
-    this.shareValue.freezer_from = this.currentFreezer;
+    this.shareValue.barn = this.currentBarn;
     this.shareValue.from = this.user.name;
-    delete this.shareValue.freezer_from.employee.dob;
-    delete this.shareValue.freezer_from.employee.group;
+    delete this.shareValue.barn.owner.dob;
+    delete this.shareValue.barn.owner.group;
     this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback => {
       this.freezer = callback;
       this.shareValue.freezer_to = this.freezer;
@@ -67,6 +74,8 @@ export class FunnelComponent implements OnInit {
       delete this.shareValue.freezer_to.employee.group;
       delete this.shareValue.freezer_to.created_at;
       delete this.shareValue.freezer_to.updated_at;
+      delete this.shareValue.barn.startPeriod;
+      delete this.shareValue.barn.endPeriod;
       console.log(this.shareValue);
       this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
         this.close();
@@ -86,15 +95,11 @@ export class FunnelComponent implements OnInit {
     this.groupService.findGroupIdByOwner(this.empTempId).subscribe( callback1 => {
       listGroup = callback1;
       console.log(listGroup[0].id);
-      this.farmService.findCurrentBarn().subscribe(callback2 =>{
-        let barn: any;
-        barn = callback2;
-        this.groupService.findStaffSum(listGroup[0].id).subscribe(callback3 => {
-          let kembalian: any = callback3;
-          console.log(kembalian);
-          this.shareValue.carrot_amt = Math.floor(kembalian*barn.budgetPerStaff*3/4);
-          this.modalService.open(content);
-        });
+      this.groupService.findStaffSum(listGroup[0].id).subscribe(callback3 => {
+        let staffSum: any = callback3;
+        console.log(staffSum);
+        this.shareValue.carrot_amt = Math.floor(staffSum*this.currentBarn.budgetPerStaff*3/4);
+        this.modalService.open(content);
       });
     });
   }
