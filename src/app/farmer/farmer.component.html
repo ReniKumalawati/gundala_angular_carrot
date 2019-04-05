@@ -138,11 +138,11 @@
           </th>
         </div>
         <div class="form-group">
-          <label>Total Carrot</label>
-          <input id="input5" type="number" class="form-control here" formControlName="totalCarrot"
-            [(ngModel)]="formBarn.totalCarrot">
-          <div *ngIf="submitted && messageForm.controls.totalCarrot.errors" class="error">
-            <div *ngIf="messageForm.controls.totalCarrot.errors.required">Please insert the total carrot in this barn!
+          <label>Carrot Budget Per-Staff</label>
+          <input id="input5" type="number" class="form-control here" formControlName="budgetPerStaff"
+            [(ngModel)]="formBarn.budgetPerStaff">
+          <div *ngIf="submitted && messageForm.controls.budgetPerStaff.errors" class="error">
+            <div *ngIf="messageForm.controls.budgetPerStaff.errors.required">Please insert carrot budget for each staff in this barn!
             </div>
           </div>
         </div>
