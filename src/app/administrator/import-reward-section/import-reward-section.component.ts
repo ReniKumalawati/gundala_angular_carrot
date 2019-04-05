@@ -10,7 +10,7 @@ import {ModalLoadingComponent} from '../../partial/modal-loading/modal-loading.c
   styleUrls: ['./import-reward-section.component.scss']
 })
 export class ImportRewardSectionComponent implements OnInit {
-  rewardsData: any;
+  rewardsData: Object;
   messageForm: FormGroup;
   formReward = {title: '', carrot: 0, status: false, description: ''}
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
@@ -28,7 +28,6 @@ export class ImportRewardSectionComponent implements OnInit {
     this.data.findAllRewards().subscribe(callback => {
       // this.close()
       this.rewardsData = callback
-      this.rewardsData = this.rewardsData.listAchievement
     })
   }
 
