@@ -9,7 +9,8 @@
           <div class="col-md-4 my-auto">
             <img
               src="{{employee.profilePicture || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'}}"
-              alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
+              alt="" class="img-fluid rounded-circle black-border" id="profile-picture" 
+              onerror="this.src='https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'">
           </div>
           <div class="col-md-8 my-auto">
             <h4 class="mb-0 text-white">{{employee.name}}</h4>
@@ -57,7 +58,7 @@
     <div class="row mt-3">
       <div class="col-md-4" *ngFor="let item of sf">
         <div class="card">
-          <img class="card-img-top" src="" alt="Social Foundation">
+          <img class="card-img-top" src="" alt="Social Foundation" onerror="this.src='assets/img/donatev2.svg'">
           <div class="card-body">
             <h5 class="card-title">{{item.name}}</h5>
           </div>
@@ -76,7 +77,7 @@
         <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
       <div class="col-md-6 br-1">
-        <img src="{{bzr.items[0].pictureUrl}}" class="img-fluid p-3" alt="">
+        <img src="{{bzr.items[0].pictureUrl}}" class="img-fluid p-3" alt="" onerror="this.src='assets/img/mc-icon-transaction.png'">
       </div>
       <div class="col-md-6 align-self-center p-5">
         <h3>{{bzr.items[0].itemName}}</h3>
@@ -93,9 +94,9 @@
         <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
       <div class="col-md-6 br-1" *ngFor="let itm of bzr.items">
-        <div class="text-center">
-          <img src="{{itm.pictureUrl || ('assets/img/mc-icon-transaction.png')}}" class="img-fluid p-3 bazaar-item mb-3"
-            alt="missing image" onerror="this.src='assets/img/mc-icon-transaction.png'">
+        <div class="text-center" id="itemImage">
+          <img src="itm.pictureUrl" class="img-fluid p-3 bazaar-item mb-3"
+            alt="item image" onerror="this.src='assets/img/mc-icon-transaction.png'">
         </div>
         <div class="px-3">
           <h3>{{itm.itemName}}</h3>
@@ -115,7 +116,7 @@
     <div class="row mt-3" *ngIf="bzr.items.length >= 3">
       <div class="col-md-4" *ngFor="let itm of bzr.items">
         <div class="card">
-          <img class="card-img-top" src="{{itm.pictureUrl}}" alt="Bazaar Item">
+          <img class="card-img-top" src="{{itm.pictureUrl}}" alt="Bazaar Item" onerror="this.src='assets/img/mc-icon-transaction.png'">
           <div class="card-body">
             <h5 class="card-title">{{itm.itemName}}</h5>
             <p class="card-text">{{itm.exchangeRate}} Carrots</p>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RewardsService} from '../../service/rewards.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ModalLoadingComponent} from '../../partial/modal-loading/modal-loading.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RewardsService } from '../../service/rewards.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalLoadingComponent } from '../../partial/modal-loading/modal-loading.component';
 
 @Component({
   selector: 'app-import-reward-section',
@@ -12,7 +12,7 @@ import {ModalLoadingComponent} from '../../partial/modal-loading/modal-loading.c
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
-  formReward = {title: '', carrot: 0, status: false, description: ''}
+  formReward = { title: '', carrot: 0, status: false, description: '' }
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -27,7 +27,9 @@ export class ImportRewardSectionComponent implements OnInit {
     // this.modalService.open(ModalLoadingComponent)
     this.data.findAllRewards().subscribe(callback => {
       // this.close()
-      this.rewardsData = callback
+      var a = JSON.stringify(callback);
+      var b = JSON.parse(a);
+      this.rewardsData = b.listAchievement;
     })
   }
 
@@ -39,7 +41,7 @@ export class ImportRewardSectionComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  submit () {
+  submit() {
     this.modalService.open(ModalLoadingComponent)
     this.data.insertRewardIntoDB(this.formReward).subscribe(callback => {
       console.log(callback)

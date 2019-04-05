@@ -20,4 +20,7 @@ export class FarmService {
   deleteBarnInDB(id) {
     return this.http.delete(environment.endpoint + '/api/barns?id=' + id);
   }
+  findCurrentBarn() {
+    return this.http.get(environment.endpoint + '/api/barns/current-barn');
+  }
 }

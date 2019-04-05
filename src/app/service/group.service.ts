@@ -29,7 +29,7 @@ export class GroupService {
     return this.http.get(environment.endpoint + "/api/groups/getGroupId/" + ownerId);
   }
   findStaffSum(id) {
-    return this.http.get(environment.endpoint + '/api/groups/staff-sum?id=' + id);
+    return this.http.get(environment.endpoint + '/api/groups/staff-sum/' + id);
   }
 
   findManagementGroupIdByOwner(ownerId) {
