@@ -40,6 +40,7 @@ import { ModalLoadingComponent } from './partial/modal-loading/modal-loading.com
 import { AchievementListComponent } from './employee/achievement/achievement-list/achievement-list.component';
 import { AchievedComponent } from './employee/achievement/achieved/achieved.component';
 import {AuthService} from './interceptors/auth.service';
+import { DetailSFComponent } from './employee/detail-sf/detail-sf.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {AuthService} from './interceptors/auth.service';
     SeniorManagerComponent,
     ModalLoadingComponent,
     AchievementListComponent,
-    AchievedComponent
+    AchievedComponent,
+    DetailSFComponent
   ],
   imports: [
     NgbModule,

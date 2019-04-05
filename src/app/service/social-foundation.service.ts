@@ -31,4 +31,8 @@ export class SocialFoundationService {
   deleteSocialFoundationFromDB(id){
     return this.http.delete(environment.endpoint + "/api/socialfoundations/" + id);
   }
+
+  findSFById(id) {
+    return this.http.get(environment.endpoint + "/api/socialfoundations/" + id);
+  }
 }
