@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {BazarService} from '../../service/bazar.service';
-import {AuthenticationService} from '../../service/authentication.service';
-import {TransactionService} from '../../service/transaction.service';
+import {BazarService} from '../../../service/bazar.service';
+import {AuthenticationService} from '../../../service/authentication.service';
+import {TransactionService} from '../../../service/transaction.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
