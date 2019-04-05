@@ -43,7 +43,12 @@ export class ItemDetailComponent implements OnInit {
   findItembyId() {
     if (this.routeParam.value.id) {
       this.itemService.findItemById(this.routeParam.value.id).subscribe(callback => {
-        this.item = callback;
+        var a = JSON.stringify(callback);
+        var b = JSON.parse(a);
+        this.item = b.item;
+        console.log('aa' + b);
+        console.log('bb' + b.item);
+        console.log('cc' + JSON.stringify(this.item));
       })
     }
   }
