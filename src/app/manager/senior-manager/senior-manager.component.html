@@ -15,13 +15,13 @@
       </thead>
       <tbody>
         <!-- <ng-template *ngFor = "let group of groupList"> -->
-            <tr> 
+            <tr *ngFor="let member of memberList; let i = index">
                 <!-- Nomor Urut -->
-                <td>nomor</td>
+                <td>{{i + 1}}</td>
                 <!-- Get Manager List Name -->
-                <td>group</td>
+                <td>{{member.group[0].name}}</td>
                 <!-- Show manager name -->
-                <td>Name</td>
+                <td>{{member.name}}</td>
                 <!-- Create Action Button -->
                 <td>
                   <div>

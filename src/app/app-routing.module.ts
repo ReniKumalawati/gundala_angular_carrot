@@ -35,7 +35,7 @@ const routes: Routes = [
     data: {permission: ['STAFF']}},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
-  { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {permission: ['ROOT_ADMIN', 'MANAGER']}},
+  { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {permission: ['ROOT_ADMIN', 'MANAGER', 'SENIOR_MANAGER']}},
   { path: 'merchant', component: MerchantComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN', 'ADMIN']}},
   { path: 'farmer', component: FarmerComponent, canActivate: [AuthGuard], data: {permission: ['FARMER', 'ROOT_ADMIN']}},
   { path: 'administrator', component: AdministratorComponent, canActivate: [AuthGuard], data: {permission: ['ADMIN', 'ROOT_ADMIN']}},
