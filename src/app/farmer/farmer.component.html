@@ -37,8 +37,8 @@
                   </tr>
                 </thead>
                 <tbody id="tbody">
-                  <tr *ngFor="let barn of barnData">
-                    <td>{{barn.key}}</td>
+                  <tr *ngFor="let barn of barnData; let i = index">
+                    <td>{{i + 1}}</td>
                     <td>{{barn.name}}</td>
                     <td>{{barn.startPeriod}}</td>
                     <td>{{barn.endPeriod}}</td>
