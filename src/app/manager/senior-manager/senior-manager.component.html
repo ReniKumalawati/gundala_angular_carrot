@@ -14,22 +14,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor = "let group of groupList"> 
-          <!-- Nomor Urut -->
-          <td>nomor</td>
-          <!-- Get Manager List Name -->
-          <td>{{group.name}}</td>
-          <!-- Show manager name -->
-          <td>Manager Name</td>
-          <!-- Create Action Button -->
-          <td>
-            <div>
-              <button _ngcontent-c3="" class="btn btn-info" type="button">
-                <i class="fas fa-cog"></i> Manage
-              </button>
-            </div>
-          </td>
-        </tr>
+        <!-- <ng-template *ngFor = "let group of groupList"> -->
+            <tr> 
+                <!-- Nomor Urut -->
+                <td>nomor</td>
+                <!-- Get Manager List Name -->
+                <td>group</td>
+                <!-- Show manager name -->
+                <td>Name</td>
+                <!-- Create Action Button -->
+                <td>
+                  <div>
+                    <button _ngcontent-c3="" class="btn btn-info" type="button">
+                      <i class="fas fa-cog"></i> Manage
+                    </button>
+                  </div>
+                </td>
+              </tr>
+        <!-- </ng-template> -->
       </tbody>
     </table>
   </div>
