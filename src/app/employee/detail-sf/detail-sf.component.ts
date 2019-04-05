@@ -15,7 +15,7 @@ export class DetailSFComponent implements OnInit {
   routeParam: any;
   sf: any;
   sfForm: FormGroup;
-  carrot_amt =  '0';
+  carrot: any;
   data: any;
   user: any;
   basket: any;
@@ -54,14 +54,14 @@ export class DetailSFComponent implements OnInit {
 
   close() {
     this.modalService.dismissAll()
-    this.carrot_amt = '0'
+    this.carrot = '0'
     this.data = {}
   }
 
   submit() {
     let shareValue = {from: this.user.name, to: this.data.name,
       detail_from: this.basket,
-      carrot_amt: parseInt(this.carrot_amt), type: 'DONATION', description: 'donate to ' + this.data.name, socialFoundation: {id: this.data.id, name: this.data.name}};
+      carrot_amt: parseInt(this.carrot), type: 'DONATION', description: 'donate to ' + this.data.name, socialFoundation: {id: this.data.id, name: this.data.name}};
     delete shareValue.detail_from.employee.dob
     delete shareValue.detail_from.employee.group
     this.transactionService.insertTansactionToDB(shareValue).subscribe(callback => {
