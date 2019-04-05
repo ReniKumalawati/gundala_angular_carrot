@@ -75,12 +75,6 @@ export class ProfileComponent implements OnInit {
     location.href = 'employee';
   }
 
-  // imgError(image) {
-  //   image.onerror = '';
-  //   image.src = 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png';
-  //   return true;
-  // }
-
   onFileChange(event) {
     console.log('but why');
     const reader = new FileReader();
