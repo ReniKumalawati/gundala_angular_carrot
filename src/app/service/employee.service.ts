@@ -17,6 +17,10 @@ export class EmployeeService {
     return this.http.get( environment.endpoint + "/api/employees/role?role=" + role);
   }
 
+  findEmployeeByRoles(roles) {
+    return this.http.post( environment.endpoint + "/api/employees/roles", roles);
+  }
+
   findRecentDOBOfEmployee() {
     return this.http.get(environment.endpoint + "/api/employees/recentdob");
   }

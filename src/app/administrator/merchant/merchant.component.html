@@ -29,8 +29,8 @@
             <td>Start</td>
             <td>End</td>
           </tr>
-          <tr *ngFor="let bazar of bazarData">
-            <td>1</td>
+          <tr *ngFor="let bazar of bazarData; let i = index">
+            <td>{{i+1}}</td>
             <td>{{bazar.bazaarName}}</td>
             <td>{{bazar.startPeriod}}</td>
             <td>{{bazar.endPeriod}}</td>

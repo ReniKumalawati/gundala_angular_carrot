@@ -58,9 +58,9 @@ export class FunnelComponent implements OnInit {
   }
 
   findCurrentBarn() {
-    this.farmService.findCurrentBarn().subscribe(callback =>{
-      this.currentBarn = callback;
-    });
+    this.farmService.findCurrentBarns().subscribe(callback => {
+      console.log(callback)
+    })
   }
   submit() {
     this.shareValue.barn = this.currentBarn;
