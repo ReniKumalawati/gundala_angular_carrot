@@ -6,7 +6,7 @@
   </div>
 
 </main>
-<section class="transaction-history my-4">
+<section class="admin-tabs py-3">
   <div class="container">
   <ngb-tabset type="pills">
     <ngb-tab title="Barns">
@@ -80,6 +80,13 @@
           </div>
         </ng-template>
       </ngb-tab>
+    <ngb-tab title="Employee">
+      <ng-template ngbTabContent>
+        <div class="container search-box">
+          <app-employee-list></app-employee-list>
+        </div>
+      </ng-template>
+    </ngb-tab>
   </ngb-tabset>
 </div>
 
