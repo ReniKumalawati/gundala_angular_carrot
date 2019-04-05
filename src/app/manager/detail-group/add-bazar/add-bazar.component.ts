@@ -29,7 +29,6 @@ export class AddBazarComponent implements OnInit {
     this.findAllBazaarByGroup();
   }
    findallBazar() {
-    console.log('gel all data')
      this.bazarService.findAllBazars().subscribe(callback => {
        let bzTemp: any;
        bzTemp = callback;

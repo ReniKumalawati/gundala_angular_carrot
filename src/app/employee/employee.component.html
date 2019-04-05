@@ -7,7 +7,9 @@
       <div class="col-md-4">
         <div class="row box-profile soft-shadow px-0 mr-0">
           <div class="col-md-4 my-auto">
-            <img src="{{employee.profilePicture}}" alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
+            <img
+              src="{{employee.profilePicture || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'}}"
+              alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
           </div>
           <div class="col-md-8 my-auto">
             <h4 class="mb-0 text-white">{{employee.name}}</h4>
@@ -24,7 +26,7 @@
           <div class="col-md-8 my-auto">
             <h4 class="text-white">You've earned {{total}} carrots!</h4>
             <!--<a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">-->
-              <!--Share carrot!-->
+            <!--Share carrot!-->
             <!--</a>-->
           </div>
         </div>
@@ -92,7 +94,8 @@
       </div>
       <div class="col-md-6 br-1" *ngFor="let itm of bzr.items">
         <div class="text-center">
-          <img src="{{itm.pictureUrl}}" class="img-fluid p-3 bazaar-item mb-3" alt="">
+          <img src="{{itm.pictureUrl || ('assets/img/mc-icon-transaction.png')}}" class="img-fluid p-3 bazaar-item mb-3"
+            alt="missing image" onerror="this.src='assets/img/mc-icon-transaction.png'">
         </div>
         <div class="px-3">
           <h3>{{itm.itemName}}</h3>

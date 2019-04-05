@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BazarService} from '../service/bazar.service';
+import {BazarService} from 'src/app/service/bazar.service';
 
 @Component({
   selector: 'app-merchant',

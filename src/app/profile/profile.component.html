@@ -3,8 +3,7 @@
     <div class="col-md-6">
       <h2 class="my-3 pl-0 text-grey ml-0">
         <span class="back-button">
-          <button type="button" class="btn-clear" data-toggle="modal" data-target="#exampleModalCenter"
-            onclick="backToEmployee()"><img src="assets/img/back.png" alt="" class="back"></button>
+            <a href="/employee"><img src="assets/img/back.png" alt="" class="back" /></a>
         </span>
         EMPLOYEE PAGE
       </h2>
@@ -34,7 +33,10 @@
 
                 <div class="image-upload">
                   <label for="file-input" class="text">
-                    <img class="img-fluid rounded-circle" id="blah" [src]="imageSrc" alt="">
+                    <img class="img-fluid rounded-circle" id="blah"
+                      [src]="imageSrc || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'"
+                      alt=""
+                      onerror="this.src='https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'">
                   </label>
                   <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
                     class="form-control here" formControlName="profilePicture" />
@@ -75,7 +77,7 @@
 
               <div class="form-group">
                 <label class="info-label" for="employeePassword">Password:</label>
-                <input class="info-data" id="employeePassword" name="employeePassword" type="textar"
+                <input class="info-data" id="employeePassword" name="employeePassword" type="password"
                   class="form-control here" formControlName="password" value="{{employee.password}}"
                   [(ngModel)]="employeeForm.password">
                 <div *ngIf="submitted && formEmployee.controls.employeePassword.errors" class="error">

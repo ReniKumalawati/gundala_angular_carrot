@@ -6,7 +6,7 @@
   </div>
 
 </main>
-<section class="transaction-history my-4">
+<section class="admin-tabs py-3">
   <div class="container">
   <ngb-tabset type="pills">
     <ngb-tab title="Barns">
@@ -37,8 +37,8 @@
                   </tr>
                 </thead>
                 <tbody id="tbody">
-                  <tr *ngFor="let barn of barnData">
-                    <td>{{barn.key}}</td>
+                  <tr *ngFor="let barn of barnData; let i = index">
+                    <td>{{i + 1}}</td>
                     <td>{{barn.name}}</td>
                     <td>{{barn.startPeriod}}</td>
                     <td>{{barn.endPeriod}}</td>
@@ -80,6 +80,13 @@
           </div>
         </ng-template>
       </ngb-tab>
+    <ngb-tab title="Employee">
+      <ng-template ngbTabContent>
+        <div class="container search-box">
+          <app-employee-list></app-employee-list>
+        </div>
+      </ng-template>
+    </ngb-tab>
   </ngb-tabset>
 </div>
 
@@ -93,14 +100,14 @@
     <form [formGroup]="messageForm" (ngSubmit)="submit()">
       <div class="modal-body">
         <div class="form-group">
-          <label for="input1">Barn Name</label>
+          <label>Barn Name</label>
           <input type="text" class="form-control here" formControlName="name" [(ngModel)]="formBarn.name">
           <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
             <div *ngIf="messageForm.controls.name.errors.required">Please insert barn name!</div>
           </div>
         </div>
         <div class="form-group">
-          <label for="input2">Barn Owner</label>
+          <label>Barn Owner</label>
           <select class="form-control here" formControlName="owner" [(ngModel)]="formBarn.owner">
             <option *ngFor="let employee of rootAdminData" [(ngValue)]="employee">{{employee.name}}</option>
           </select>
@@ -131,11 +138,11 @@
           </th>
         </div>
         <div class="form-group">
-          <label>Total Carrot</label>
-          <input id="input5" type="number" class="form-control here" formControlName="totalCarrot"
-            [(ngModel)]="formBarn.totalCarrot">
-          <div *ngIf="submitted && messageForm.controls.totalCarrot.errors" class="error">
-            <div *ngIf="messageForm.controls.totalCarrot.errors.required">Please insert the total carrot in this barn!
+          <label>Carrot Budget Per-Staff</label>
+          <input id="input5" type="number" class="form-control here" formControlName="budgetPerStaff"
+            [(ngModel)]="formBarn.budgetPerStaff">
+          <div *ngIf="submitted && messageForm.controls.budgetPerStaff.errors" class="error">
+            <div *ngIf="messageForm.controls.budgetPerStaff.errors.required">Please insert carrot budget for each staff in this barn!
             </div>
           </div>
         </div>

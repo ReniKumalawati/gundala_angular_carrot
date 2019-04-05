@@ -17,6 +17,10 @@ export class EmployeeService {
     return this.http.get( environment.endpoint + "/api/employees/role?role=" + role);
   }
 
+  findEmployeeByRoles(roles) {
+    return this.http.post( environment.endpoint + "/api/employees/roles", roles);
+  }
+
   findRecentDOBOfEmployee() {
     return this.http.get(environment.endpoint + "/api/employees/recentdob");
   }
@@ -42,6 +46,14 @@ export class EmployeeService {
   }
 
   findAchievementbyEmployee(id) {
-    return this.http.get(environment.endpoint + "/api/employees/achievement?id=" + id);
+    return this.http.get(environment.endpoint + "/api/employees/achievement?empId=" + id);
+  }
+
+  revoke(id) {
+    return this.http.patch(environment.endpoint + "/api/employees/revoke?id=" + id, {});
+  }
+
+  assign(id) {
+    return this.http.patch(environment.endpoint + "/api/employees/admin?id=" + id, {});
   }
 }

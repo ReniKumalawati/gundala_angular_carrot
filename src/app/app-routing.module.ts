@@ -5,7 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {ManagerComponent} from './manager/manager.component';
-import {MerchantComponent} from './merchant/merchant.component';
+import {MerchantComponent} from './administrator/merchant/merchant.component';
 import {FarmerComponent} from './farmer/farmer.component';
 import {AdministratorComponent} from './administrator/administrator.component';
 import {ItemDetailComponent} from './item-detail/item-detail.component';
@@ -15,8 +15,10 @@ import {CreateBazarComponent} from './create-bazar/create-bazar.component';
 import {TransactionHistoryComponent} from './transaction-history/transaction-history.component';
 import {ProfileComponent} from './profile/profile.component';
 import {DetailGroupComponent} from './manager/detail-group/detail-group.component';
-import {MerchantTransactionComponent} from './merchant/merchant-transaction/merchant-transaction.component';
+import {MerchantTransactionComponent} from './administrator/merchant/merchant-transaction/merchant-transaction.component';
 import {AchievementComponent} from './employee/achievement/achievement.component';
+import {DetailSFComponent} from './employee/detail-sf/detail-sf.component';
+import {AllSocialFoundationComponent} from './employee/all-social-foundation/all-social-foundation.component';
 
 const routes: Routes = [
   { path: '', component: EmployeeComponent, canActivate: [AuthGuard],
@@ -25,11 +27,15 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard], data: {permission: []}},
   { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard],
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
+  { path: 'social-foundation', component: AllSocialFoundationComponent, canActivate: [AuthGuard],
+    data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
+  { path: 'socialfoundation-detail/:id', component: DetailSFComponent, canActivate: [AuthGuard],
+    data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
   { path: 'achievement', component: AchievementComponent, canActivate: [AuthGuard],
     data: {permission: ['STAFF']}},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
-  { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {permission: ['ROOT_ADMIN', 'MANAGER']}},
+  { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {permission: ['ROOT_ADMIN', 'MANAGER', 'SENIOR_MANAGER']}},
   { path: 'merchant', component: MerchantComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN', 'ADMIN']}},
   { path: 'farmer', component: FarmerComponent, canActivate: [AuthGuard], data: {permission: ['FARMER', 'ROOT_ADMIN']}},
   { path: 'administrator', component: AdministratorComponent, canActivate: [AuthGuard], data: {permission: ['ADMIN', 'ROOT_ADMIN']}},
