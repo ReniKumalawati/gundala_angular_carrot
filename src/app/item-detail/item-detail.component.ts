@@ -44,7 +44,6 @@ export class ItemDetailComponent implements OnInit {
     if (this.routeParam.value.id) {
       this.itemService.findItemById(this.routeParam.value.id).subscribe(callback => {
         this.item = callback;
-        console.log(this.basket);
       })
     }
   }
