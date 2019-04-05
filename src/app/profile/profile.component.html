@@ -34,7 +34,7 @@
 
                 <div class="image-upload">
                   <label for="file-input" class="text">
-                    <img class="img-fluid rounded-circle" id="blah" [src]="imageSrc" alt="">
+                    <img class="img-fluid rounded-circle" id="blah" [src]="imageSrc || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'" alt="">
                   </label>
                   <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
                     class="form-control here" formControlName="profilePicture" />
