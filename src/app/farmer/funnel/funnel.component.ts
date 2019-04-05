@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from 'src/app/service/authentication.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import {TransactionService} from 'src/app/service/transaction.service';
+import {FarmService} from "../../service/farm.service";
 import {GroupService} from '../../service/group.service';
+//
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {group} from '@angular/animations';
@@ -28,6 +30,7 @@ export class FunnelComponent implements OnInit {
     private auth: AuthenticationService,
     private employeeService: EmployeeService,
     private transactionService: TransactionService,
+    private farmService: FarmService,
     private groupService: GroupService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal
@@ -75,17 +78,24 @@ export class FunnelComponent implements OnInit {
     return
   }*/
   open(content, data) {
-    this.modalService.open(content);
+    console.log(data);
     this.empTempId = data.id;
-
-    let sum: number;
+    console.log(this.empTempId);
     let listGroup: any;
-    this.groupService.findGroupIdByOwner(this.empTempId).subscribe( callback => {
-      listGroup = callback;
-      console.log(listGroup);
-/*      this.groupService.findStaffSum(listGroup[0]).subscribe(callback => {
-        this.shareValue.carrot_amt = callback;
-      });*/
+
+    this.groupService.findGroupIdByOwner(this.empTempId).subscribe( callback1 => {
+      listGroup = callback1;
+      console.log(listGroup[0].id);
+      this.farmService.findCurrentBarn().subscribe(callback2 =>{
+        let barn: any;
+        barn = callback2;
+        this.groupService.findStaffSum(listGroup[0].id).subscribe(callback3 => {
+          let kembalian: any = callback3;
+          console.log(kembalian);
+          this.shareValue.carrot_amt = Math.floor(kembalian*barn.budgetPerStaff*3/4);
+          this.modalService.open(content);
+        });
+      });
     });
   }
   close() {
