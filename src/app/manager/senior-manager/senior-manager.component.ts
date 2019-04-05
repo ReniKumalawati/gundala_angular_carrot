@@ -37,11 +37,10 @@ export class SeniorManagerComponent implements OnInit {
     this.user = JSON.parse(this.auth.currentEmployee());
     console.log(this.user);
     this.findGroupIdByOwner();
-    
-    let myMap = new Map();
-    myMap.set("Ayam", [15000, 19000, 20000]);
-    myMap.set("Bebek", [17000, 21000, 49999]);
-    console.log(myMap);
+    // let myMap = new Map();
+    // myMap.set("Ayam", [15000, 19000, 20000]);
+    // myMap.set("Bebek", [17000, 21000, 49999]);
+    // console.log(myMap);
   }
 
   // Ambil dari group service
