@@ -26,10 +26,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.retrieveEmp();
-    if(this.employee.profilePicture){
+    if (this.employee.profilePicture) {
       this.imageSrc = this.employee.profilePicture.toString();
     }
-   
+
     console.log(this.imageSrc);
     this.employeeForm.profilePicture = this.imageSrc;
     this.employeeForm.address = this.employee.address;
@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   profileSubmit() {
-      this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
+    this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
       if (this.base64Encode !== '') {
         this.emp.uploadEmployeeImage(this.employee.id, { img: this.base64Encode }).subscribe(callback => {
           this.employee = callback;
@@ -71,11 +71,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-backToEmployee() {
+  backToEmployee() {
     location.href = 'employee';
   }
 
-onFileChange(event) {
+  // imgError(image) {
+  //   image.onerror = '';
+  //   image.src = 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png';
+  //   return true;
+  // }
+
+  onFileChange(event) {
     console.log('but why');
     const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {

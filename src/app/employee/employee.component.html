@@ -6,9 +6,14 @@
     <div class="row">
       <div class="col-md-4">
         <div class="row box-profile soft-shadow px-0 mr-0">
-          <div class="col-md-4 my-auto">
+          <div class="col-md-4 my-auto" *ngIf="employee.profilePicture, else broken">
             <img src="{{employee.profilePicture}}" alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
           </div>
+          <ng-template #broken>
+            <div class="col-md-4 my-auto">
+              <img src="https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png" alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
+            </div>
+          </ng-template>
           <div class="col-md-8 my-auto">
             <h4 class="mb-0 text-white">{{employee.name}}</h4>
             <p class="text-white">{{employee.role}}</p>
@@ -91,8 +96,11 @@
         <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
       <div class="col-md-6 br-1" *ngFor="let itm of bzr.items">
-        <div class="text-center">
+        <div class="text-center" *ngIf="itm.pictureUrl, else itemBroken">
           <img src="{{itm.pictureUrl}}" class="img-fluid p-3 bazaar-item mb-3" alt="">
+        </div>
+        <div class="text-center" #itemBroken>
+          <img src=" assets/img/mc-icon-transaction.png" class="img-fluid p-3 bazaar-item mb-3" alt="">
         </div>
         <div class="px-3">
           <h3>{{itm.itemName}}</h3>
