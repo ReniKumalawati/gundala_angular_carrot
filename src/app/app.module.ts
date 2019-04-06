@@ -34,15 +34,12 @@ import { MerchantTransactionComponent } from './merchant/merchant-transaction/me
 import { GroupSocialFoundationComponent } from './manager/detail-group/group-social-foundation/group-social-foundation.component';
 import { AchievementComponent } from './employee/achievement/achievement.component';
 import { ClaimComponent } from './manager/claim/claim.component';
-<<<<<<< HEAD
 import { FunnelComponent } from './farmer/funnel/funnel.component';
-=======
 import { SeniorManagerComponent } from './manager/senior-manager/senior-manager.component';
 import { ModalLoadingComponent } from './partial/modal-loading/modal-loading.component';
 import { AchievementListComponent } from './employee/achievement/achievement-list/achievement-list.component';
 import { AchievedComponent } from './employee/achievement/achieved/achieved.component';
 import {AuthService} from './interceptors/auth.service';
->>>>>>> d9dcafd4eef52b589646e04284bb1b1542d1c8af
 
 @NgModule({
   declarations: [
@@ -75,17 +72,11 @@ import {AuthService} from './interceptors/auth.service';
     GroupSocialFoundationComponent,
     AchievementComponent,
     ClaimComponent,
-<<<<<<< HEAD
-    FunnelComponent
-=======
-<<<<<<< HEAD
-    SeniorManagerComponent
-=======
+    FunnelComponent,
+    SeniorManagerComponent,
     ModalLoadingComponent,
     AchievementListComponent,
     AchievedComponent
->>>>>>> b2b6983033ecf5cc6051938b42fd50fec31cb1c3
->>>>>>> d9dcafd4eef52b589646e04284bb1b1542d1c8af
   ],
   imports: [
     NgbModule,
