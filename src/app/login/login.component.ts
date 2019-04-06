@@ -36,11 +36,12 @@ export class LoginComponent implements OnInit {
         alert(this.employee.message);
         location.href = '/login';
       } else {
-        let emp = JSON.parse(this.employee.employee)
+        let emp = this.employee.employee
         emp.token = this.employee.token
-        localStorage.setItem("currentUser", JSON.stringify(emp));
-      localStorage.setItem("currentBasket", this.employee.basket);
-      switch (this.employee.role) {
+        localStorage.setItem('currentUser', JSON.stringify(emp));
+        localStorage.setItem('currentBasket', JSON.stringify(this.employee.basket));
+        localStorage.setItem('currentFreezer', JSON.stringify(this.employee.freezer));
+        switch (this.employee.role) {
         case 'MANAGER':
           location.href = '/manager';
           break;

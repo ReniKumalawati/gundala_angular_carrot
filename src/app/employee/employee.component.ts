@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from '../service/authentication.service';
-import {BazarService} from '../service/bazar.service';
-import {ItemServiceService} from '../service/item-service.service';
-import {environment} from '../../environments/environment';
-import {TransactionService} from '../service/transaction.service';
+import { AuthenticationService } from '../service/authentication.service';
+import { BazarService } from '../service/bazar.service';
+import { ItemServiceService } from '../service/item-service.service';
+import { environment } from '../../environments/environment';
+import { TransactionService } from '../service/transaction.service';
 
 
 @Component({
@@ -14,6 +14,7 @@ import {TransactionService} from '../service/transaction.service';
 export class EmployeeComponent implements OnInit {
   employee: any;
   bazar = [];
+  sf = [];
   total = 0;
   basket: any;
   constructor(
@@ -26,36 +27,43 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.employee = JSON.parse(this.auth.currentEmployee());
     this.basket = JSON.parse(this.auth.currentBasket());
-    this.findBazar();
+    this.findBazarAndSF();
     this.getTotalEarnedCarrot();
   }
 
-  getTotalEarnedCarrot () {
+  getTotalEarnedCarrot() {
     this.transactionService.getEarnedCarrot(this.basket.id).subscribe(callback => {
-      let kembalian: any = callback;
+      const kembalian: any = callback;
       if (kembalian.length > 0) {
         this.total = kembalian[0].total;
       }
-    })
+    });
   }
 
-  findBazar() {
+  findBazarAndSF() {
     const group = this.employee.group;
     if (group) {
       const bazars = [];
       let index = 1;
-      for (let g of group) {
+      for (const g of group) {
         if (g.bazaars !== undefined) {
-          for (let b of g.bazaars) {
+          for (const b of g.bazaars) {
             b.items = [];
             this.bazar.push(b);
-            bazars.push({id: b.id});
+            bazars.push({ id: b.id });
           }
         }
+
+        if (g.socialFoundations !== undefined) {
+          for (const b of g.socialFoundations) {
+            this.sf.push(b);
+          }
+        }
+
         if (index === group.length) {
           this.itemService.findItemByMultipleBazarId(bazars).subscribe(callback => {
             const item = callback;
-            for (let singleItem in item) {
+            for (const singleItem in item) {
               if (item.hasOwnProperty(singleItem)) {
                 const indexBazar = bazars.findIndex(x => x.id === item[singleItem].bazaar.id);
                 if (indexBazar > -1) {

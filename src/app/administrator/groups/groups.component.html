@@ -57,24 +57,34 @@
         </div> -->
       </div>
       <div class="form-group">
+        <label>Type</label>
+        <select class="form-control here" formControlName="type" [(ngModel)]="groupValue.type" (change)="detect($event.target.value)">
+          <option value="" selected> Pilih tipe </option>
+          <option *ngFor="let e of dn" [ngValue]="e">{{e}}</option>
+        </select>
+        <!-- <div *ngIf="submitted && messageForm.controls.type.errors" class="error">
+          <div *ngIf="messageForm.controls.type.errors.required">Please insert Carrot's Amount!</div>
+        </div> -->
+      </div>
+      <div class="form-group" *ngIf="type === 'STAFF'">
         <label>Owner</label>
         <select class="form-control here" formControlName="owner" [(ngModel)]="idOwner">
-          <option value="">Choose Manager</option>
+          <option value="">Choose Manager as group owner</option>
           <option *ngFor="let mgr of manager" [ngValue]="mgr.id">{{mgr.name}}</option>
         </select>
         <!--<div *ngIf="submitted && messageForm.controls.owner.errors" class="error">-->
           <!--<div *ngIf="messageForm.controls.owner.errors.required">Please insert name!</div>-->
         <!--</div>-->
       </div>
-      <div class="form-group">
-        <label>Type</label>
-        <select class="form-control here" formControlName="type" [(ngModel)]="groupValue.type">
-          <option value="STAFF">STAFF</option>
-          <option value="MANAGEMENT">MANAGEMENT</option>
+      <div class="form-group" *ngIf="type === 'MANAGEMENT'">
+        <label>Owner</label>
+        <select class="form-control here" formControlName="owner" [(ngModel)]="idOwner">
+          <option value="">Choose Senior Manager as group owner</option>
+          <option *ngFor="let sm of seniorManager" [ngValue]="sm.id">{{sm.name}}</option>
         </select>
-        <!-- <div *ngIf="submitted && messageForm.controls.type.errors" class="error">
-          <div *ngIf="messageForm.controls.type.errors.required">Please insert Carrot's Amount!</div>
-        </div> -->
+        <!--<div *ngIf="submitted && messageForm.controls.owner.errors" class="error">-->
+        <!--<div *ngIf="messageForm.controls.owner.errors.required">Please insert name!</div>-->
+        <!--</div>-->
       </div>
     </div>
     <div class="modal-footer">

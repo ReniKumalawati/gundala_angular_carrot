@@ -8,23 +8,30 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Management Group Name</th>
           <th scope="col">Manager Name List</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trx of transactionData">
-          <td></td>
-          <!-- Get Manager List Name -->
-          <td>{{trx.description}}</td>
-          <!-- Create Action Button -->
-          <td>
-            <div *ngIf="trx.status === 'PENDING'">
-              <!-- <a href="javascript:void(0)" class="btn btn-info" (click)="approve(trx.id)">Approve</a>
-              <a href="javascript:void(0)" (click)="decline(trx.id)" class="btn btn-info">Decline</a> -->
-            </div>
-          </td>
-        </tr>
+        <!-- <ng-template *ngFor = "let group of groupList"> -->
+            <tr *ngFor="let member of memberList; let i = index">
+                <!-- Nomor Urut -->
+                <td>{{i + 1}}</td>
+                <!-- Get Manager List Name -->
+                <td>{{member.group[0].name}}</td>
+                <!-- Show manager name -->
+                <td>{{member.name}}</td>
+                <!-- Create Action Button -->
+                <td>
+                  <div>
+                    <button _ngcontent-c3="" class="btn btn-info" type="button">
+                      <i class="fas fa-cog"></i> Manage
+                    </button>
+                  </div>
+                </td>
+              </tr>
+        <!-- </ng-template> -->
       </tbody>
     </table>
   </div>

@@ -52,7 +52,7 @@
             </tr>
             </thead>
             <tbody *ngIf="employeeByGroup">
-            <tr *ngFor="let emp of employeeByGroup">
+            <tr *ngFor="let emp of employeeByGroup.employeeList">
               <th scope="row"></th>
               <td>{{emp.name}}</td>
               <td>{{emp.emailAddress}}</td>

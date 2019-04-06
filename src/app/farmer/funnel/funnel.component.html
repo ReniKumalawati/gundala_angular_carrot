@@ -7,16 +7,18 @@
       <table id="table-mr" class="table table-hover mt-3">
         <thead>
         <tr>
+          <th scope="col">No</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let employee of employeeData">
+        <tr *ngFor="let employee of employeeData; let i = index">
+          <td>{{i + 1}}</td>
           <td>{{employee.name}}</td>
           <td>{{employee.emailAddress}}</td>
-          <td><a href="javascript:void(0)" (click)="open(contentShare)" class="btn btn-info">Send Carrot</a></td>
+          <td><a href="javascript:void(0)" (click)="open(contentShare, employee)" class="btn btn-info">Send Carrot</a></td>
         </tr>
         </tbody>
       </table>
@@ -37,7 +39,7 @@
             <input name="text" type="number" class="form-control here" formControlName="carrot_amt"
               [(ngModel)]="shareValue.carrot_amt">
             <div *ngIf="submitted && messageForm.controls.carrot_amt.errors" class="error">
-              <div *ngIf="messageForm.controls.carrot_amt.errors.required">Please insert carrot's ammout!</div>
+              <div *ngIf="messageForm.controls.carrot_amt.errors.required">Please insert carrot's amount!</div>
             </div>
           </div>
           

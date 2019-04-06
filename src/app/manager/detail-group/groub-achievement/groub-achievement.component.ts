@@ -46,8 +46,7 @@ export class GroubAchievementComponent implements OnInit {
     this.achievementId = [];
     this.groupService.findById(this.group.id).subscribe(callback => {
       this.achievementByGroup = callback;
-      this.achievementByGroup = this.achievementByGroup.achievements;
-      console.log(this.achievementByGroup)
+      this.achievementByGroup = this.achievementByGroup.group.achievements;
       if (this.achievementByGroup) {
         for (let achievement of this.achievementByGroup) {
           this.achievementId.push(achievement.id);

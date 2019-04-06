@@ -3,7 +3,7 @@ import {EmployeeService} from './employee.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  constructor(private data : EmployeeService) {}
+  constructor(private data: EmployeeService) {}
 
   public currentEmployee() {
     return localStorage.getItem('currentUser');
@@ -11,6 +11,9 @@ export class AuthenticationService {
 
   public currentBasket() {
     return localStorage.getItem('currentBasket');
+  }
+  public currentFreezer() {
+    return localStorage.getItem('currentFreezer');
   }
 
   login(email: string, password: string) {

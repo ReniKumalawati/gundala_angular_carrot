@@ -10,8 +10,7 @@ export class TransactionService {
   employee : any;
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   findAllTransactionByEmployeeId(id) {
     return this.http.get(environment.endpoint + '/api/transactions/' + id);
@@ -43,5 +42,9 @@ export class TransactionService {
 
   findTransactionByStatusAndDate(data) {
     return this.http.get(environment.endpoint + '/api/transactions/by-date-status?type=' + data.type + "&&startDate=" + data.from + "&&endDate=" + data.to);
+  }
+
+  approveDonation(id) {
+    return this.http.patch(environment.endpoint + '/api/transactions/approve-donation?id=' + id, {});
   }
 }

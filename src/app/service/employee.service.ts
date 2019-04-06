@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
-import {environment} from '../../environments/environment'
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class EmployeeService {
 
   findEmployeeByRole(role) {
     return this.http.get( environment.endpoint + "/api/employees/role?role=" + role);
+  }
+
+  findEmployeeByRoles(roles) {
+    return this.http.post( environment.endpoint + "/api/employees/roles", roles);
   }
 
   findRecentDOBOfEmployee() {
@@ -37,11 +41,19 @@ export class EmployeeService {
     return this.http.patch(environment.endpoint + "/api/employees/delgroup/" + id, data);
   }
 
-  findFrezeerByOwner (id) {
+  findFrezeerByOwner(id) {
     return this.http.get(environment.endpoint + "/api/freezer/by-owner/" + id);
   }
 
   findAchievementbyEmployee(id) {
-    return this.http.get(environment.endpoint + "/api/employees/achievement?id=" + id);
+    return this.http.get(environment.endpoint + "/api/employees/achievement?empId=" + id);
+  }
+
+  revoke(id) {
+    return this.http.patch(environment.endpoint + "/api/employees/revoke?id=" + id, {});
+  }
+
+  assign(id) {
+    return this.http.patch(environment.endpoint + "/api/employees/admin?id=" + id, {});
   }
 }

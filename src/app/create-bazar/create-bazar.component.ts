@@ -16,7 +16,7 @@ import {environment} from '../../environments/environment';
 export class CreateBazarComponent implements OnInit {
   bazarItem: Object;
   bazarForm: FormGroup;
-  adminData: Object;
+  adminData: any;
   imageSrc: String;
   formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: '', dob: ''}}
   param: any;
@@ -65,6 +65,7 @@ export class CreateBazarComponent implements OnInit {
   findAllEmployeeByRole() {
     this.emp.findEmployeeByRole('ADMIN').subscribe(callback => {
       this.adminData = callback
+      this.adminData = this.adminData.listEmployee
     })
   }
 

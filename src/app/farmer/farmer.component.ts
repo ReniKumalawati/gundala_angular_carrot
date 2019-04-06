@@ -15,11 +15,11 @@ import { EmployeeService } from '../service/employee.service';
 export class FarmerComponent implements OnInit {
   barnData: Object;
   employeeData: Object;
-  rootAdminData: Object;
+  rootAdminData: any;
   messageForm: FormGroup;
   barnTemp: Object;
   formBarn = {name: '', owner: '', startPeriod: '', endPeriod: '',
-              totalCarrot: '', status: '', released: ''};
+              budgetPerStaff: '', status: '', released: ''};
   constructor(
     private data: FarmService,
     private profile: ProfileService,
@@ -34,7 +34,7 @@ export class FarmerComponent implements OnInit {
       owner: ['', Validators.required],
       startPeriod: ['', Validators.required],
       endPeriod: ['', Validators.required],
-      totalCarrot: ['', Validators.required],
+      budgetPerStaff: ['', Validators.required],
       status: ['', Validators.required],
       released: ['', Validators.required],
       awards: [''],
@@ -52,6 +52,7 @@ export class FarmerComponent implements OnInit {
   findAllEmployeeByRole() {
     this.emp.findEmployeeByRole('ROOT_ADMIN').subscribe(callback => {
       this.rootAdminData = callback;
+      this.rootAdminData = this.rootAdminData.listEmployee
     });
   }
 
@@ -62,7 +63,7 @@ export class FarmerComponent implements OnInit {
     });
   }
 
-  removeBarn(id){
+  removeBarn(id) {
     console.log('id' + id);
     this.data.deleteBarnInDB(id).subscribe();
     this.findAllBarns();
@@ -114,7 +115,7 @@ export class FarmerComponent implements OnInit {
     this.formBarn.owner = data.owner;
     this.formBarn.startPeriod = data.startPeriod;
     this.formBarn.endPeriod = data.endPeriod;
-    this.formBarn.totalCarrot = data.totalCarrot;
+    this.formBarn.budgetPerStaff = data.budgetPerStaff;
     this.formBarn.status = data.status;
     this.formBarn.released = data.released;
     console.log('open edit modal, id =  ' + this.barnTemp);

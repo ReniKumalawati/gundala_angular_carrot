@@ -31,14 +31,15 @@ export class GroupSocialFoundationComponent implements OnInit {
     this.findAllSocialFoundationByGroup();
   }
   findallSocialFoundation() {
-    console.log('gel all data')
     this.socialFoundationData = [];
     this.socialFoundationService.findAllSocialFoundation().subscribe(callback => {
       let bzTemp: any;
       bzTemp = callback;
-      for (let bzr of bzTemp) {
-        if (!this.socialFoundationId.includes(bzr.id) && bzr.status === true) {
-          this.socialFoundationData.push(bzr);
+      if (bzTemp.listSocialFoundation) {
+        for (let bzr of bzTemp.listSocialFoundation) {
+          if (!this.socialFoundationId.includes(bzr.id) && bzr.status === true) {
+            this.socialFoundationData.push(bzr);
+          }
         }
       }
     })
@@ -52,9 +53,9 @@ export class GroupSocialFoundationComponent implements OnInit {
     this.socialFoundationId = [];
     this.groupService.findById(this.group.id).subscribe(callback => {
       this.socialFoundationByGroup = callback;
-      console.log(callback);
-      if (this.isRealValue(this.socialFoundationByGroup.socialFoundations)) {
-        this.socialFoundationByGroup = this.socialFoundationByGroup.socialFoundations;
+      if (this.isRealValue(this.socialFoundationByGroup.group.socialFoundations)) {
+        this.socialFoundationByGroup = this.socialFoundationByGroup.group.socialFoundations;
+        console.log(this.socialFoundationByGroup)
         for (let bzr of this.socialFoundationByGroup) {
           this.socialFoundationId.push(bzr.id);
         }

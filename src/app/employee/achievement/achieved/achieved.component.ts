@@ -21,7 +21,8 @@ export class AchievedComponent implements OnInit {
   findAchievementByEmployee() {
     this.achievementdata = [];
     this.employeeservice.findAchievementbyEmployee(this.employee.id).subscribe(callback => {
-      console.log(callback)
+      this.achievementdata = callback;
+      this.achievementdata = this.achievementdata.listAchievement
     })
   }
 }
