@@ -5,6 +5,7 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FarmService } from "../../service/farm.service";
 import { group } from '@angular/animations';
 
 @Component({
@@ -56,7 +57,9 @@ export class SeniorManagerComponent implements OnInit {
     private groupService: GroupService,
     private auth: AuthenticationService,
     private modalService: NgbModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private transactionService: TransactionService,
+    private farmService: FarmService
   ) {}
 
   ngOnInit() {
@@ -95,6 +98,13 @@ export class SeniorManagerComponent implements OnInit {
       });
   }
 
+  // Finding all current barn
+  findCurrentBarn() {
+    this.farmService.findCurrentBarns().subscribe(callback => {
+      console.log(callback)
+    });
+  }
+
   // Methdos for opening Modal
   openModal(content, managerData) {
     console.log(managerData);
@@ -127,7 +137,7 @@ export class SeniorManagerComponent implements OnInit {
       delete this.shareValue.barn.endPeriod;
       console.log(this.shareValue);
       this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
-        this.close();
+        this.closeModal();
         this.findAllSeniorManager();
       });
     });
