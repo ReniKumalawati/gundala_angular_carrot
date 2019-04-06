@@ -1,6 +1,6 @@
 <div style="background-color: white">
   <div class="col-md-12">
-    <hr class="box-title-hr">
+    <hr class="box-title-hr" />
     <h4 class="my-2 box-title">Senior Manager to Transfer</h4>
   </div>
   <div class="col-md-12">
@@ -14,25 +14,87 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <ng-template *ngFor = "let group of groupList"> -->
-            <tr *ngFor="let member of memberList; let i = index">
-                <!-- Nomor Urut -->
-                <td>{{i + 1}}</td>
-                <!-- Get Manager List Name -->
-                <td>{{member.group[0].name}}</td>
-                <!-- Show manager name -->
-                <td>{{member.name}}</td>
-                <!-- Create Action Button -->
-                <td>
-                  <div>
-                    <button _ngcontent-c3="" class="btn btn-info" type="button">
-                      <i class="fas fa-cog"></i> Manage
-                    </button>
-                  </div>
-                </td>
-              </tr>
-        <!-- </ng-template> -->
+        <tr *ngFor="let member of memberList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ member.group[0].name }}</td>
+          <td>{{ member.name }}</td>
+          <td>
+            <div>
+              <button
+                _ngcontent-c3=""
+                class="btn btn-info"
+                type="button"
+                (click)="openModal(contentSeniorManager, member)"
+              >
+                <i class="fas fa-paper-plane"></i> Send Carrot
+              </button>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<ng-template #contentSeniorManager let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title-senior-manager">
+      Transfer to Manager
+    </h5>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="sendCarrotForm" (ngSubmit)="submit()">
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Receiver Name: </label> <br>
+        <label>{{ receiverName }}</label>
+      </div>
+      <div class="form-group">
+        <label>Carrot's Amount : </label>
+        <input
+          name="text"
+          type="number"
+          class="form-control here"
+          formControlName="carrot_amt"
+          [(ngModel)]="shareValue.carrot_amt"
+        />
+        <div
+          *ngIf="submitted && messageForm.controls.carrot_amt.errors"
+          class="error"
+        >
+          <div *ngIf="messageForm.controls.carrot_amt.errors.required">
+            Please insert carrot's amount!
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea
+          name="text"
+          type="text"
+          class="form-control here"
+          formControlName="description"
+          [(ngModel)]="shareValue.description"
+        ></textarea>
+        <div
+            *ngIf="submitted && messageForm.controls.description.errors"
+            class="error"
+          >
+            <div *ngIf="messageForm.controls.description.errors.required">
+              Please insert name!
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Send</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
