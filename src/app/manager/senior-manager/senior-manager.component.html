@@ -53,7 +53,7 @@
   <form [formGroup]="sendCarrotForm" (ngSubmit)="submit()">
     <div class="modal-body">
       <div class="form-group">
-        <label>Receiver Name: </label> <br>
+        <label>Receiver Name: </label> <br />
         <label>{{ receiverName }}</label>
       </div>
       <div class="form-group">
@@ -84,13 +84,13 @@
           [(ngModel)]="shareValue.description"
         ></textarea>
         <div
-            *ngIf="submitted && messageForm.controls.description.errors"
-            class="error"
-          >
-            <div *ngIf="messageForm.controls.description.errors.required">
-              Please insert name!
-            </div>
+          *ngIf="submitted && messageForm.controls.description.errors"
+          class="error"
+        >
+          <div *ngIf="messageForm.controls.description.errors.required">
+            Please insert name!
           </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-outline-dark">Send</button>

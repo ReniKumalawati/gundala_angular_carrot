@@ -121,25 +121,25 @@ export class SeniorManagerComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  submit() {
-    this.shareValue.barn = this.currentBarn;
-    this.shareValue.from = this.user.name;
-    delete this.shareValue.barn.owner.dob;
-    delete this.shareValue.barn.owner.group;
-    this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback => {
-      this.freezer = callback;
-      this.shareValue.freezer_to = this.freezer;
-      delete this.shareValue.freezer_to.employee.dob;
-      delete this.shareValue.freezer_to.employee.group;
-      delete this.shareValue.freezer_to.created_at;
-      delete this.shareValue.freezer_to.updated_at;
-      delete this.shareValue.barn.startPeriod;
-      delete this.shareValue.barn.endPeriod;
-      console.log(this.shareValue);
-      this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
-        this.closeModal();
-        this.findAllSeniorManager();
-      });
-    });
-  }
+  // submit() {
+  //   this.shareValue.barn = this.currentBarn;
+  //   this.shareValue.from = this.user.name;
+  //   delete this.shareValue.barn.owner.dob;
+  //   delete this.shareValue.barn.owner.group;
+  //   this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback => {
+  //     this.freezer = callback;
+  //     this.shareValue.freezer_to = this.freezer;
+  //     delete this.shareValue.freezer_to.employee.dob;
+  //     delete this.shareValue.freezer_to.employee.group;
+  //     delete this.shareValue.freezer_to.created_at;
+  //     delete this.shareValue.freezer_to.updated_at;
+  //     delete this.shareValue.barn.startPeriod;
+  //     delete this.shareValue.barn.endPeriod;
+  //     console.log(this.shareValue);
+  //     this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
+  //       this.closeModal();
+  //       this.findAllSeniorManager();
+  //     });
+  //   });
+  // }
 }
