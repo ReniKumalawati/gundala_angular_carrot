@@ -26,6 +26,7 @@ export class SeniorManagerComponent implements OnInit {
   receiverFreezer: any;
   receiverFreezerId: any;
   senderName: string; // Optional
+  senderFreezer: any;
   senderFreezerId: any;
   shareValue = {
     from: '',
@@ -69,8 +70,10 @@ export class SeniorManagerComponent implements OnInit {
     console.log(this.user);
 
     // Set sender frezeer id
-    this.senderFreezerId = JSON.parse(this.auth.currentFreezer()).id;
-    console.log(this.senderFreezerId);
+    this.senderFreezer = JSON.parse(this.auth.currentFreezer());
+    // console.log(this.senderFreezer);
+    this.senderFreezerId = this.senderFreezer.id;
+    // console.log(this.senderFreezerId);
 
     this.findGroupIdByOwner();
   }
@@ -100,38 +103,25 @@ export class SeniorManagerComponent implements OnInit {
       });
   }
 
-  // Finding all current barn
-  findCurrentBarn() {
-    this.farmService.findCurrentBarns().subscribe(callback => {
-      console.log(callback);
-    });
-  }
-
   // Activate when submit button pressed
   submit() {
     // Set sharevalue json data
     this.shareValue.from = this.user.name;
     this.shareValue.to = this.receiverName;
 
-    // find receiver freezer 
+    // find receiver freezer
     this.employeeService.findFrezeerByOwner(this.receiverId).subscribe(callback => {
       // Receiver information
       this.receiverFreezer = callback;
       this.receiverFreezerId = this.receiverFreezer.id;
 
-      // Receiver share value form 
-      this.shareValue.freezer_to = this.receiverFreezerId;
-      // delete this.shareValue.freezer_to.employee.dob;
-      // delete this.shareValue.freezer_to.employee.group;
-      // delete this.shareValue.freezer_to.created_at;
-      // delete this.shareValue.freezer_to.updated_at;
+      // Receiver share value form
+      this.shareValue.freezer_to = this.receiverFreezer;
+      console.log(this.shareValue.freezer_to);
 
       // Sender share value form
-      this.shareValue.freezer_from = this.senderFreezerId;
-      // delete this.shareValue.freezer_from.employee.dob;
-      // delete this.shareValue.freezer_from.employee.group;
-      // delete this.shareValue.freezer_from.created_at;
-      // delete this.shareValue.freezer_from.updated_at;
+      this.shareValue.freezer_from = this.senderFreezer;
+      // console.log(this.shareValue.freezer_from);
 
       console.log(this.shareValue);
 
