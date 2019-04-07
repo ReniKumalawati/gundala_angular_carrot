@@ -53,8 +53,8 @@ export class EmployeeComponent implements OnInit {
             bazars.push({ id: b.id });
           }
         }
-
-        if (g.socialFoundations !== undefined) {
+        console.log(g)
+        if (g.socialFoundations !== null && g.socialFoundations !== undefined) {
           for (const b of g.socialFoundations) {
             this.sf.push(b);
           }

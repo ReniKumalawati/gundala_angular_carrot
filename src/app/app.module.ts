@@ -44,6 +44,8 @@ import { DetailSFComponent } from './employee/detail-sf/detail-sf.component';
 import { SfListComponent } from './farmer/sf-list/sf-list.component';
 import { AllSocialFoundationComponent } from './employee/all-social-foundation/all-social-foundation.component';
 import { EmployeeListComponent } from './farmer/employee-list/employee-list.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,8 @@ import { EmployeeListComponent } from './farmer/employee-list/employee-list.comp
     HttpClientModule, // service harus di import
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [NgbActiveModal, {provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true}],
   entryComponents: [
