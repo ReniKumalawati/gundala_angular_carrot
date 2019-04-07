@@ -5,7 +5,7 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FarmService } from "../../service/farm.service";
+import { FarmService } from '../../service/farm.service';
 import { group } from '@angular/animations';
 
 @Component({
@@ -22,9 +22,21 @@ export class SeniorManagerComponent implements OnInit {
   sendCarrotForm: FormGroup;
   nameList: any;
   receiverName: string;
+  receiverId: any;
+  receiverFreezer: any;
+  receiverFreezerId: any;
+  senderName: string; // Optional
+  senderFreezerId: any;
   shareValue = {
     from: '',
     to: '',
+    freezer_from: {
+      id: '',
+      name: '',
+      created_at: '',
+      updated_at: '',
+      employee: { id: '', dob: '', name: '', group: [] }
+    },
     freezer_to: {
       id: '',
       name: '',
@@ -32,25 +44,10 @@ export class SeniorManagerComponent implements OnInit {
       updated_at: '',
       employee: { id: '', dob: '', name: '', group: [] }
     },
-    barn: {
-      id: '',
-      name: '',
-      owner: { id: '', name: '', dob: '', group: [] },
-      startPeriod: '',
-      endPeriod: '',
-      totalCarrot: '',
-      carrotLeft: ''
-    },
     carrot_amt: 0,
     type: 'FUNNEL',
     description: ''
   };
-
-  // Variable for transaction process
-  currentFreezer: any;
-  freezer: any;
-  currentBarn: any;
-  emp
 
   constructor(
     private employeeService: EmployeeService,
@@ -70,7 +67,24 @@ export class SeniorManagerComponent implements OnInit {
 
     this.user = JSON.parse(this.auth.currentEmployee());
     console.log(this.user);
+
+    // Set sender frezeer id
+    this.senderFreezerId = JSON.parse(this.auth.currentFreezer()).id;
+    console.log(this.senderFreezerId);
+
     this.findGroupIdByOwner();
+  }
+
+  // Methods for get all member of management group by management group id
+  findAllManagementGroup(managementGroupId) {
+    this.employeeService
+      .findAllMemberOfAGroup(managementGroupId)
+      .subscribe(callback => {
+        let respons: any;
+        respons = callback;
+        this.memberList = respons.listEmployee;
+        console.log(this.memberList);
+      });
   }
 
   // Methods for finding group id by owner ID
@@ -86,22 +100,35 @@ export class SeniorManagerComponent implements OnInit {
       });
   }
 
-  // Methods for get all member of management group by management group id
-  findAllManagementGroup(managementGroupId) {
-    this.employeeService
-      .findAllMemberOfAGroup(managementGroupId)
-      .subscribe(callback => {
-        let respons: any;
-        respons = callback;
-        this.memberList = respons.listEmployee;
-        console.log(this.memberList);
-      });
-  }
-
   // Finding all current barn
   findCurrentBarn() {
     this.farmService.findCurrentBarns().subscribe(callback => {
-      console.log(callback)
+      console.log(callback);
+    });
+  }
+
+  // Activate when submit button pressed
+  submit() {
+    // Set sharevalue json data
+    this.shareValue.from = this.user.name;
+    this.shareValue.to = this.receiverName;
+
+    // find receiver freezer 
+    this.employeeService.findFrezeerByOwner(this.receiverId).subscribe(callback => {
+      // Receiver information
+      this.receiverFreezer = callback;
+      this.receiverFreezerId = this.receiverFreezer.id;
+
+      this.shareValue.freezer_to = this.receiverFreezerId;
+
+      this.shareValue.freezer_from = this.senderFreezerId;
+
+      console.log(this.shareValue);
+
+      // create transaction
+      this.transactionService.insertTansactionToDB(this.shareValue).subscribe(transactionCallback => {
+        this.closeModal();
+      });
     });
   }
 
@@ -113,6 +140,7 @@ export class SeniorManagerComponent implements OnInit {
     console.log('open content, id = ' + managerData.id);
     console.log(managerData.name);
     this.receiverName = managerData.name;
+    this.receiverId = managerData.id;
   }
 
   // Methods for closing modal
@@ -120,26 +148,4 @@ export class SeniorManagerComponent implements OnInit {
     this.sendCarrotForm.reset();
     this.modalService.dismissAll();
   }
-
-  // submit() {
-  //   this.shareValue.barn = this.currentBarn;
-  //   this.shareValue.from = this.user.name;
-  //   delete this.shareValue.barn.owner.dob;
-  //   delete this.shareValue.barn.owner.group;
-  //   this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback => {
-  //     this.freezer = callback;
-  //     this.shareValue.freezer_to = this.freezer;
-  //     delete this.shareValue.freezer_to.employee.dob;
-  //     delete this.shareValue.freezer_to.employee.group;
-  //     delete this.shareValue.freezer_to.created_at;
-  //     delete this.shareValue.freezer_to.updated_at;
-  //     delete this.shareValue.barn.startPeriod;
-  //     delete this.shareValue.barn.endPeriod;
-  //     console.log(this.shareValue);
-  //     this.transactionService.insertTansactionToDB(this.shareValue).subscribe(callback => {
-  //       this.closeModal();
-  //       this.findAllSeniorManager();
-  //     });
-  //   });
-  // }
 }
