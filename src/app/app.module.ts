@@ -17,15 +17,15 @@ import { MerchantComponent } from './administrator/merchant/merchant.component';
 import { FarmerComponent } from './farmer/farmer.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
-import { ImportRewardSectionComponent } from './administrator/import-reward-section/import-reward-section.component';
-import { ImportAwardSectionComponent } from './administrator/import-award-section/import-award-section.component';
+// import { ImportRewardSectionComponent } from './administrator/import-reward-section/import-reward-section.component';
+// import { ImportAwardSectionComponent } from './administrator/import-award-section/import-award-section.component';
 import { LoginComponent } from './login/login.component';
 import { CreateBazarComponent } from './create-bazar/create-bazar.component';
-import { ImportSocialFoundationSectionComponent } from './administrator/import-social-foundation-section/import-social-foundation-section.component';
+// import { ImportSocialFoundationSectionComponent } from './administrator/import-social-foundation-section/import-social-foundation-section.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { ProfileComponent } from './profile/profile.component';
-import { TransactionsComponent } from './administrator/transactions/transactions.component';
-import { GroupsComponent } from './administrator/groups/groups.component';
+// import { TransactionsComponent } from './administrator/transactions/transactions.component';
+// import { GroupsComponent } from './administrator/groups/groups.component';
 import { GroupsManagerComponent } from './manager/groups-manager/groups-manager.component';
 import { DetailGroupComponent } from './manager/detail-group/detail-group.component';
 import { AddBazarComponent } from './manager/detail-group/add-bazar/add-bazar.component';
@@ -61,15 +61,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FarmerComponent,
     AdministratorComponent,
     ItemDetailComponent,
-    ImportRewardSectionComponent,
-    ImportAwardSectionComponent,
+    // ImportRewardSectionComponent,
+    // ImportAwardSectionComponent,
     LoginComponent,
     CreateBazarComponent,
-    ImportSocialFoundationSectionComponent,
+    // ImportSocialFoundationSectionComponent,
     TransactionHistoryComponent,
     ProfileComponent,
-    TransactionsComponent,
-    GroupsComponent,
+    // TransactionsComponent,
+    // GroupsComponent,
     GroupsManagerComponent,
     DetailGroupComponent,
     AddBazarComponent,
