@@ -119,9 +119,19 @@ export class SeniorManagerComponent implements OnInit {
       this.receiverFreezer = callback;
       this.receiverFreezerId = this.receiverFreezer.id;
 
+      // Receiver share value form 
       this.shareValue.freezer_to = this.receiverFreezerId;
+      // delete this.shareValue.freezer_to.employee.dob;
+      // delete this.shareValue.freezer_to.employee.group;
+      // delete this.shareValue.freezer_to.created_at;
+      // delete this.shareValue.freezer_to.updated_at;
 
+      // Sender share value form
       this.shareValue.freezer_from = this.senderFreezerId;
+      // delete this.shareValue.freezer_from.employee.dob;
+      // delete this.shareValue.freezer_from.employee.group;
+      // delete this.shareValue.freezer_from.created_at;
+      // delete this.shareValue.freezer_from.updated_at;
 
       console.log(this.shareValue);
 

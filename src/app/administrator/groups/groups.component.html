@@ -1,10 +1,7 @@
 <div style="background-color: white">
   <div class="col-md-12">
     <hr class="box-title-hr">
-    <h4 class="my-2 box-title">Group LIST
-    <button type="button" class="btn btn-info pull-right" (click)="open(contentGroup)">
-      <i class="fa fa-plus-circle"></i> ADD Group
-    </button>
+    <h4 class="my-2 box-title">Group LIST 
     </h4>
   </div>
   <div class="col-md-12">
@@ -38,8 +35,17 @@
       </tr>
       </tbody>
     </table>
+    <div class="container mt-3">
+      <div class="col-md-12 py-3 px-md-0 text-center">
+        <button type="button" class="btn btn-info pull-right" (click)="open(contentGroup)">
+          <i class="fa fa-plus-circle"></i> ADD Group
+        </button>
+      </div>
+    </div>
+    
   </div>
 </div>
+
 <ng-template #contentGroup let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h5 class="modal-title" id="modal-basic-title">Add New Manager Reward</h5>
