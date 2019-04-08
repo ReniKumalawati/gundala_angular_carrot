@@ -80,23 +80,23 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   activate(data) {
-    this.modalService.open(ModalLoadingComponent)
-    data.status = true
-    let id = data.id
-    delete data.id
+    this.modalService.open(ModalLoadingComponent);
+    data.status = true;
+    let id = data.id;
+    delete data.id;
     this.data.updateReward(data, id).subscribe(callback => {
-      this.close()
+      this.close();
       this.findAllRewards()
     })
   }
 
   inactive(data) {
-    this.modalService.open(ModalLoadingComponent)
-    data.status = false
-    let id = data.id
-    delete data.id
+    this.modalService.open(ModalLoadingComponent);
+    data.status = false;
+    let id = data.id;
+    delete data.id;
     this.data.updateReward(data, id).subscribe(callback => {
-      this.close()
+      this.close();
       this.findAllRewards()
     })
   }
