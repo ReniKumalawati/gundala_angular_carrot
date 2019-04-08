@@ -31,23 +31,16 @@
               </li>
             </ul>
         <li class="nav-item dropdown">
-          <!--<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-            <!--<i class="fa fa-bell notif-icon"></i>-->
-            <!--<div class="notif-active"></div>-->
-          <!--</a>-->
-          <!--<div class="dropdown-menu right-0" aria-labelledby="navbarDropdown">-->
-            <!--<a class="dropdown-item" href="#"><strong>Komang Teguh Budiyana sent you a Birthday Carrot!</strong></a>-->
-            <!--<a class="dropdown-item" href="#">April Mop Bazaar is ending soon!</a>-->
-            <!--<a class="dropdown-item" href="#">New Bazaar : Easter Bazaar</a>-->
-          <!--</div>-->
-
           <div ngbDropdown class="d-inline-block">
             <a href="javascript:void(0)" class="nav-link dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
               <i class="fa fa-bell notif-icon"></i>
               <div [ngClass]="dropdown.length > 0 ? 'notif-active' : ''"></div>
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <a href="/notification/{{d.id}}" ngbDropdownItem *ngFor="let d of dropdown">{{d.detail}}</a>
+              <a href="javascript:void(0)" (click)="openN(d,openNotif )" ngbDropdownItem
+                 *ngFor="let d of dropdown">
+                {{d.detail}}
+              </a>
             </div>
           </div>
         </li>
@@ -60,3 +53,11 @@
     </div>
   </nav>
 </header>
+<ng-template #openNotif let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4>Notification</h4>
+  </div>
+  <div class="modal-body">
+    <p>{{msg}}</p>
+  </div>
+</ng-template>
