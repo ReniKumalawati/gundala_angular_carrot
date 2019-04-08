@@ -56,4 +56,8 @@ export class EmployeeService {
   assign(id) {
     return this.http.patch(environment.endpoint + "/api/employees/admin?id=" + id, {});
   }
+
+  findEmployeeById(id){
+    return this.http.get(environment.endpoint + '/api/employees/' + id);
+  }
 }

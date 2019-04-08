@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupService } from '../../service/group.service';
+import { GroupService } from '../../../service/group.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmployeeService } from '../../service/employee.service';
+import { EmployeeService } from '../../../service/employee.service';
 
 @Component({
   selector: 'app-groups',

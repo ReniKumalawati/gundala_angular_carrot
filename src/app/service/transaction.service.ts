@@ -47,4 +47,8 @@ export class TransactionService {
   approveDonation(id) {
     return this.http.patch(environment.endpoint + '/api/transactions/approve-donation?id=' + id, {});
   }
+
+  getMostEarner(){
+    return this.http.get(environment.endpoint + '/api/transactions/mostearned');
+  }
 }
