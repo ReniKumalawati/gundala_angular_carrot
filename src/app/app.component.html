@@ -1,4 +1,5 @@
-<app-nav class="nav-margin" *ngIf="currentUrl !== '/login'" [dropdown]="dropdown"></app-nav>
+<app-nav class="nav-margin" *ngIf="currentUrl !== '/login'" [dropdown]="dropdown"
+         (allData)="findAllUnreadNotif()"></app-nav>
 
 <section class="sectiona">
   <simple-notifications></simple-notifications>

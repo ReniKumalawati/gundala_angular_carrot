@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NotificationService} from '../service/notification.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,10 +9,15 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class NavComponent implements OnInit {
   @Input('dropdown') dropdown:any;
+  @Output() allData: EventEmitter<any> = new EventEmitter();
   appTitle = 'Mitrais Carrot';
   jsonNav: any;
   navEmp: any;
-  constructor() { }
+  msg:any = '';
+  constructor(
+    private modal: NgbModal,
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit() {
     const pillElementMgr = document.querySelector('#linkManager');
@@ -82,5 +89,13 @@ export class NavComponent implements OnInit {
   goLogout(){
       location.href = '/';
       localStorage.clear(); //ini bisa juga buat hapus semua data di localStorage
+  }
+
+  openN(data, content) {
+    this.msg(data.detail)
+    this.notificationService.updateNotif(data).subscribe(callback => {
+      this.allData.emit();
+    })
+    this.modal.open(content)
   }
 }
