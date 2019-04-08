@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AwardsService} from '../../service/awards.service';
+import {AwardsService} from '../../../service/awards.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
