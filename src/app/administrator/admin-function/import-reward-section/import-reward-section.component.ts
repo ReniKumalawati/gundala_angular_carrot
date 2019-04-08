@@ -12,7 +12,7 @@ import {ModalLoadingComponent} from '../../../partial/modal-loading/modal-loadin
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
-  formReward = {title: '', carrot: 0, status: false, description: '', id: ''}
+  formReward = {title: '', carrot: 0, status: false, description: '', id: ''};
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -79,22 +79,22 @@ export class ImportRewardSectionComponent implements OnInit {
 
   activate(data) {
     this.modalService.open(ModalLoadingComponent)
-    data.status = true
-    let id = data.id
-    delete data.id
+    data.status = true;
+    let id = data.id;
+    delete data.id;
     this.data.updateReward(data, id).subscribe(callback => {
-      this.close()
+      this.close();
       this.findAllRewards()
     })
   }
 
   inactive(data) {
-    this.modalService.open(ModalLoadingComponent)
-    data.status = false
-    let id = data.id
-    delete data.id
+    this.modalService.open(ModalLoadingComponent);
+    data.status = false;
+    let id = data.id;
+    delete data.id;
     this.data.updateReward(data, id).subscribe(callback => {
-      this.close()
+      this.close();
       this.findAllRewards()
     })
   }
