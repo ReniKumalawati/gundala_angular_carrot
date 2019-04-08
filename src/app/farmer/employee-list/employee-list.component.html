@@ -21,7 +21,7 @@
         <td>{{e.email}}</td>
         <td>
           <a class="btn btn-danger" href="javascript:void(0)" (click)="revoke(e.id)" *ngIf="e.role === 'ADMIN'">Revoke Admin</a>
-          <a class="btn btn-danger" href="javascript:void(0)" (click)="assign(e.id)" *ngIf="e.role === 'STAFF'">Assign Admin</a>
+          <a class="btn btn-info" href="javascript:void(0)" (click)="assign(e.id)" *ngIf="e.role === 'STAFF'">Assign Admin</a>
         </td>
       </tr>
     </tbody>

@@ -18,7 +18,8 @@ export class EmployeeListComponent implements OnInit {
 
   findAllEmployeeStaffAndAdmin() {
     this.employeeService.findEmployeeByRoles([{role: 'STAFF'}, {role: 'ADMIN'}]).subscribe(callback => {
-      this.employeeData = callback
+      console.log(callback);
+      this.employeeData = callback;
       this.employeeData = this.employeeData.listEmployee
     })
   }
