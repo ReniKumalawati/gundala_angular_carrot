@@ -92,10 +92,10 @@ export class NavComponent implements OnInit {
   }
 
   openN(data, content) {
-    this.msg = data.detail
+    this.msg = data.detail;
     this.notificationService.updateNotif(data).subscribe(callback => {
       this.allData.emit();
-    })
+    });
     this.modal.open(content)
   }
 }
