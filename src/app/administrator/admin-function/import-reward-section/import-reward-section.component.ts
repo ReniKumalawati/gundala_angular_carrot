@@ -26,8 +26,10 @@ export class ImportRewardSectionComponent implements OnInit {
   findAllRewards() {
     // this.modalService.open(ModalLoadingComponent)
     this.data.findAllRewards().subscribe(callback => {
+      var a = JSON.stringify(callback);
+      var b = JSON.parse(a);
       // this.close()
-      this.rewardsData = callback
+      this.rewardsData = b.listAchievement;
     })
   }
 
