@@ -48,4 +48,12 @@ export class EmployeeService {
   findAchievementbyEmployee(id) {
     return this.http.get(environment.endpoint + "/api/employees/achievement?empId=" + id);
   }
+
+  revoke(id) {
+    return this.http.patch(environment.endpoint + "/api/employees/revoke?id=" + id, {});
+  }
+
+  assign(id) {
+    return this.http.patch(environment.endpoint + "/api/employees/admin?id=" + id, {});
+  }
 }

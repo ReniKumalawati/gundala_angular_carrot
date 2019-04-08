@@ -1,6 +1,7 @@
-<app-nav class="nav-margin" *ngIf="currentUrl !== '/login'"></app-nav>
+<app-nav class="nav-margin" *ngIf="currentUrl !== '/login'" [dropdown]="dropdown"></app-nav>
 
 <section class="sectiona">
+  <simple-notifications></simple-notifications>
   <router-outlet></router-outlet>
 </section>
 <app-footer *ngIf="currentUrl !== '/login'"></app-footer>

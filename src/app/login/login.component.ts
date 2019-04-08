@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ModalLoadingComponent} from '../partial/modal-loading/modal-loading.component';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private login: AuthenticationService,
+    private notifications: NotificationsService,
     private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -32,11 +34,12 @@ export class LoginComponent implements OnInit {
     this.login.login(this.formLogin.email, this.formLogin.password).subscribe(callback => {
       this.employee = callback;
       this.modalService.dismissAll()
-      if (this.employee.status === 'gagal') {
-        alert(this.employee.message);
+      if (this.employee.status === false) {
+        this.notifications.error('Login', this.employee.message);
         location.href = '/login';
       } else {
-        let emp = this.employee.employee
+        this.notifications.success('Login', this.employee.message);
+        const emp = this.employee.employee
         emp.token = this.employee.token
         localStorage.setItem('currentUser', JSON.stringify(emp));
         localStorage.setItem('currentBasket', JSON.stringify(this.employee.basket));

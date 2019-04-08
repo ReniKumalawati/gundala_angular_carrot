@@ -10,11 +10,15 @@ import { EmployeeService } from '../../service/employee.service';
   styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
+  dn = ['MANAGEMENT', 'STAFF'];
+  type = '';
+
   groupData: any;
   groupForm: FormGroup;
-  groupValue: any = { name: '', type: '', id: '', owner: { id: '' } }
+  groupValue: any = { name: '', type: '', id: '', owner: { id: '' } };
   submitted = false;
   manager: any;
+  seniorManager: any;
   idOwner = '';
   id = '';
   constructor(
@@ -25,20 +29,30 @@ export class GroupsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.groupForm = this.formBuilder.group({
       name: ['', Validators.required],
       type: ['', Validators.required],
       owner: ['', Validators.required]
     });
     this.findAllGroups();
-    this.findAllEmployeeByStatus()
+    this.findAllManager();
+    this.findAllSeniorManager();
   }
 
-  findAllEmployeeByStatus() {
+  findAllManager() {
     this.employeeService.findEmployeeByRole('MANAGER').subscribe(callback => {
       var a = JSON.stringify(callback);
       var b = JSON.parse(a);
       this.manager = b.listEmployee;
+      console.log('managerS: ' + JSON.stringify(this.manager));
+    });
+  }
+  findAllSeniorManager() {
+    this.employeeService.findEmployeeByRole('SENIOR_MANAGER').subscribe(callback => {
+      var a = JSON.stringify(callback);
+      var b = JSON.parse(a);
+      this.seniorManager = b.listEmployee;
       console.log('managerS: ' + JSON.stringify(this.manager));
     });
   }
@@ -61,13 +75,21 @@ export class GroupsComponent implements OnInit {
     this.groupForm.reset();
     this.modalService.dismissAll();
   }
+  detect(e) {
+    let split = e.split(' ');
+    if (split.length > 1) {
+      this.type = split[1]
+    } else {
+      this.type = ''
+    }
+  }
   submit() {
-    console.log(this.id)
+    console.log(this.id);
     if (this.id !== '') {
-      delete this.groupValue.id
-      this.groupValue.owner.id = this.idOwner
+      delete this.groupValue.id;
+      this.groupValue.owner.id = this.idOwner;
       this.groupService.updateGroup(this.id, this.groupValue).subscribe(callback => {
-        this.id = ''
+        this.id = '';
         this.findAllGroups();
         this.close();
       })
@@ -81,9 +103,9 @@ export class GroupsComponent implements OnInit {
   }
 
   openEdit(data, content) {
-    delete data.owner
+    delete data.owner;
     this.id = data.id;
-    this.groupValue = data
+    this.groupValue = data;
     if (!this.groupValue.owner) {
       this.groupValue.owner = { id: '' }
     }
