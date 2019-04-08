@@ -18,6 +18,6 @@ export class NotificationService {
 
   updateNotif(data) {
     data.read = true;
-    return this.http.put(environment.endpoint + '/api/notifications/emp/' + data.id, data);
+    return this.http.put(environment.endpoint + '/api/notifications/' + data.id, data);
   }
 }
