@@ -146,7 +146,7 @@
       <div class="form-group">
         <label for="text">Item's Name</label>
         <input id="text" name="text" type="text" class="form-control here" formControlName="itemName"
-          [(ngModel)]="itemValue.itemName">
+          [(ngModel)]="itemValue.itemName" required>
         <div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">
           <div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>
         </div>
