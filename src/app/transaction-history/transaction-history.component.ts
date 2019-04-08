@@ -95,23 +95,28 @@ export class TransactionHistoryComponent implements OnInit {
       this.shared = 0;
       this.bazaar = 0;
       this.reward = 0;
-      for (let transaction of this.transactionLists.listTransaction) {
-        transaction.transactiondate = new Date(transaction.transaction_date).getTime();
-        switch (transaction.type) {
-          case 'SHARED':
-            if (transaction.from == this.user.name) {
-              this.shared = this.shared + transaction.carrot_amt;
-            }
-            break;
-          case 'DONATION':
+      if (this.transactionLists.listTransaction) {
+        this.transactionLists = this.transactionLists.listTransaction
+        for (let transaction of this.transactionLists.listTransaction) {
+          transaction.transactiondate = new Date(transaction.transaction_date).getTime();
+          switch (transaction.type) {
+            case 'SHARED':
+              if (transaction.from == this.user.name) {
+                this.shared = this.shared + transaction.carrot_amt;
+              }
+              break;
+            case 'DONATION':
               this.reward = this.reward + transaction.carrot_amt;
-            break;
-          case 'BAZAAR':
-            if (transaction.satus == "APPROVED"){
-              this.bazaar = this.bazaar + transaction.carrot_amt;
-            }
-            break;
+              break;
+            case 'BAZAAR':
+              if (transaction.satus == "APPROVED"){
+                this.bazaar = this.bazaar + transaction.carrot_amt;
+              }
+              break;
+          }
         }
+      } else {
+        this.transactionLists = []
       }
     })
   }
@@ -171,9 +176,15 @@ export class TransactionHistoryComponent implements OnInit {
     this.transactionService.findTransactionByStatusAndDate({type: this.search.type, from: from, to: to})
       .subscribe(callback => {
         this.transactionLists = callback;
-        for (let transaction of this.transactionLists.listTransaction) {
-          transaction.transactiondate = new Date(transaction.transaction_date).getTime();
+        if (this.transactionLists.listTransaction){
+          this.transactionLists = this.transactionLists.listTransaction
+          for (let transaction of this.transactionLists.listTransaction) {
+            transaction.transactiondate = new Date(transaction.transaction_date).getTime();
+          }
+        } else{
+          this.transactionLists = []
         }
+
       })
   }
 }
