@@ -16,6 +16,8 @@ import {environment} from '../../environments/environment';
 export class CreateBazarComponent implements OnInit {
   bazarItem: Object;
   bazarForm: FormGroup;
+  submitted = false;
+  submitted1 = false;
   adminData: any;
   imageSrc: String;
   formBaxar = {bazaarName: '', startPeriod: '', endPeriod: '', status: false, bazaarDescription: '', owner: {id: '', dob: ''}}
@@ -39,10 +41,10 @@ export class CreateBazarComponent implements OnInit {
     this.itemForm = this.formBuilder.group({
       itemName: ['', Validators.required],
       itemDescription: ['', Validators.required],
-      exchangeRate: ['', Validators.required],
-      totalItem: ['', Validators.required],
-      approvalStatus: [''],
-      saleStatus: ['']
+      exchangeRate: [0, Validators.required],
+      totalItem: [0, Validators.required],
+      approvalStatus: ['', Validators.required],
+      saleStatus: ['', Validators.required]
     });
     this.param = this.route.params;
     console.log(JSON.stringify(this.param));
@@ -91,13 +93,19 @@ export class CreateBazarComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    if (this.bazarForm.invalid) {
+      return;
+    }
     if (this.param.value.id != null) {
       delete this.formBaxar.owner.dob;
       this.bazarService.updateBazarById(this.param.value.id, this.formBaxar).subscribe(callback => {
+        this.submitted = false
         location.href = '/merchant';
       })
     } else {
       this.bazarService.insertIntoDB(this.formBaxar).subscribe(callback => {
+        this.submitted = false
         console.log(callback)
       })
     }
@@ -110,6 +118,10 @@ export class CreateBazarComponent implements OnInit {
   }
 
   submit () {
+    this.submitted1 = true;
+    if (this.itemForm.invalid) {
+      return;
+    }
     if (this.itemValue.id != '') {
       this.id = this.itemValue.id;
       delete this.itemValue.id;
