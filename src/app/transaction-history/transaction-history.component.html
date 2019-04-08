@@ -113,6 +113,7 @@
             </tr>
           </thead>
           <tbody>
+          <ng-container *ngIf="transactionLists">
             <tr *ngFor="let transaction of transactionLists">
               <th scope="row">1</th>
               <td>{{transaction.type}}</td>
@@ -122,6 +123,7 @@
               <td>{{transaction.transactiondate | date:'medium'}}</td>
               <td>{{transaction.status}}</td>
             </tr>
+          </ng-container>
           </tbody>
         </table>
       </div>
