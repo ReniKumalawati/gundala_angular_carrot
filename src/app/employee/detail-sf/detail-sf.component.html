@@ -14,10 +14,13 @@
         <!--<h4 class="my-2 box-title">{{item.bazaar.bazaarName}}</h4>-->
       </div>
       <div class="col-md-6 br-1">
-        <img src="" class="img-fluid p-3" alt="">
+        <img src="assets/img/donatev2.svg" class="img-fluid p-3" alt="">
       </div>
       <div class="col-md-6 align-self-center p-5" *ngIf="sf">
-        <h3>{{sf.name}}</h3>
+        <i class="fa">{{sf.name}} </i>       
+        <p><strong class="carrot-orange">carrot to be collected: {{sf.min_carrot}}</strong></p>
+        <p>carrot collected until now: {{sf.total_carrot}}</p>
+        <br>
         <p>{{sf.description}}</p>
         <button class="btn btn-carrot radius-5" (click)="openmodal(contentBazaar, sf)" *ngIf="basket.carrot_amt > 0">Donate</button>
         <p class="mt-2" ><small class="text-danger" *ngIf="basket.carrot_amt < 1">You don't have enough carrots to donate.</small></p>
@@ -41,7 +44,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-outline-dark">Sumbit</button>
+      <button type="submit" class="btn btn-outline-dark">Submit</button>
     </div>
   </form>
 </ng-template>

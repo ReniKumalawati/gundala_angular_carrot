@@ -7,6 +7,7 @@
   <div class="container">
     <div class="col-md-12">
       <ngb-tabset type="pills">
+
         <ngb-tab title="Merchant Functions">
           <ng-template ngbTabContent>
             <app-merchant></app-merchant>
@@ -21,41 +22,56 @@
             </div>
           </div>
         </ngb-tab>
+
         <ngb-tab title="Admin Functions">
           <ng-template ngbTabContent>
             <ngb-tabset type="pills">
               <ngb-tab title="Manager Rewards">
                 <ng-template ngbTabContent>
                   <div class="container search-box">
-                    <!--<app-import-reward-section></app-import-reward-section>-->
+                    <app-import-reward-section></app-import-reward-section>
                   </div>
                 </ng-template>
               </ngb-tab>
               <ngb-tab title="Mitrais Awards">
                 <ng-template ngbTabContent>
                   <div class="container search-box">
-                    <!--<app-import-award-section></app-import-award-section>-->
+                    <app-import-award-section></app-import-award-section>
                   </div>
                 </ng-template>
               </ngb-tab>
               <ngb-tab title="Social Foundation">
                 <ng-template ngbTabContent>
                   <div class="container search-box">
-                    <!--<app-import-social-foundation-section></app-import-social-foundation-section>-->
+                    <app-import-social-foundation-section></app-import-social-foundation-section>
                   </div>
                 </ng-template>
               </ngb-tab>
               <ngb-tab title="Transactions">
                 <ng-template ngbTabContent>
                   <div class="container search-box">
-                    <!--<app-transactions></app-transactions>-->
+                    <app-transactions></app-transactions>
                   </div>
                 </ng-template>
               </ngb-tab>
               <ngb-tab title="Groups">
                 <ng-template ngbTabContent>
                   <div class="container search-box">
-                    <!--<app-groups></app-groups>-->
+                    <app-groups></app-groups>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab title="Information Function">
+          <ng-template ngbTabContent>
+            <ngb-tabset type="pills">
+              <ngb-tab title="Carrot Most Earner">
+                <ng-template ngbTabContent>
+                  <div class="container search-box">
+                    <app-earn-most-carrot></app-earn-most-carrot>
                   </div>
                 </ng-template>
               </ngb-tab>

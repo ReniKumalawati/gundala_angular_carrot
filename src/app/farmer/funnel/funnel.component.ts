@@ -59,6 +59,7 @@ export class FunnelComponent implements OnInit {
 
   findCurrentBarn() {
     this.farmService.findCurrentBarns().subscribe(callback => {
+      this.currentBarn = callback;
       console.log(callback)
     })
   }
