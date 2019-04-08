@@ -12,13 +12,14 @@ import {ModalLoadingComponent} from '../../../partial/modal-loading/modal-loadin
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
+  submitted = false;
   formReward = {title: '', carrot: 0, status: false, description: '', id: ''}
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
       title: ['', Validators.required],
-      carrot: ['', Validators.required],
+      carrot: [0, Validators.min(1)],
       description: ['', Validators.required]
     });
     this.findAllRewards()
@@ -42,8 +43,9 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   submit () {
+    this.submitted = true;
     if (this.messageForm.invalid) {
-      alert('please fulfill the form first');
+      // alert('please fulfill the form first');
       return;
     }
     this.modalService.open(ModalLoadingComponent);

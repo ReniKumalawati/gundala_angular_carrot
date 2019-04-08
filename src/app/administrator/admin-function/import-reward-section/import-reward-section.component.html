@@ -61,7 +61,7 @@
       </div>
       <div class="form-group">
         <label for="text1">Carrot</label>
-        <input id="text1" name="text1" type="text" class="form-control here" formControlName="carrot" [(ngModel)]="formReward.carrot">
+        <input id="text1" name="text1" type="number" min="1" class="form-control here" formControlName="carrot" [(ngModel)]="formReward.carrot">
         <div *ngIf="submitted && messageForm.controls.carrot.errors" class="error">
           <div *ngIf="messageForm.controls.carrot.errors.required">Please insert Carrot's Amount!</div>
         </div>
