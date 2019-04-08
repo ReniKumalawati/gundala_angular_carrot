@@ -55,7 +55,6 @@ export class GroupSocialFoundationComponent implements OnInit {
       this.socialFoundationByGroup = callback;
       if (this.isRealValue(this.socialFoundationByGroup.group.socialFoundations)) {
         this.socialFoundationByGroup = this.socialFoundationByGroup.group.socialFoundations;
-        console.log(this.socialFoundationByGroup)
         for (let bzr of this.socialFoundationByGroup) {
           this.socialFoundationId.push(bzr.id);
         }

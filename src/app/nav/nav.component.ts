@@ -22,7 +22,7 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     const pillElementMgr = document.querySelector('#linkManager');
     const pillElementEmp = document.querySelector('#linkEmployee');
-    const pillElementMrc = document.querySelector('#linkMerchant');
+    // const pillElementMrc = document.querySelector('#linkMerchant');
     const pillElementFrm = document.querySelector('#linkFarmer');
     const pillElementAdm = document.querySelector('#linkAdmin');
     const pillElementRwd = document.querySelector('#linkReward');
@@ -39,14 +39,14 @@ export class NavComponent implements OnInit {
       pillElementAdm.remove();
       pillElementFrm.remove();
       pillElementMgr.remove();
-      pillElementMrc.remove();
+      // pillElementMrc.remove();
       break;
 
       case('"SENIOR_MANAGER"'):
       case('"MANAGER"'):
       pillElementAdm.remove();
       pillElementFrm.remove();
-      pillElementMrc.remove();
+      // pillElementMrc.remove();
       pillElementRwd.remove();
       break;
 
@@ -70,8 +70,8 @@ export class NavComponent implements OnInit {
       break;
 
       case ('/merchant'):
-      pillElementMrc.className = 'nav-link active';
-      pillElementMrc.removeAttribute('href');
+      // pillElementMrc.className = 'nav-link active';
+      // pillElementMrc.removeAttribute('href');
       break;
 
       case ('/farmer'):
