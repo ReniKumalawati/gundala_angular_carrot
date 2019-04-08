@@ -12,7 +12,7 @@ import {ModalLoadingComponent} from '../../../partial/modal-loading/modal-loadin
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
-  formReward = {title: '', carrot: 0, status: false, description: ''}
+  formReward = {title: '', carrot: 0, status: false, description: '', id: ''}
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -26,8 +26,10 @@ export class ImportRewardSectionComponent implements OnInit {
   findAllRewards() {
     // this.modalService.open(ModalLoadingComponent)
     this.data.findAllRewards().subscribe(callback => {
+      var a = JSON.stringify(callback);
+      var b = JSON.parse(a);
       // this.close()
-      this.rewardsData = callback
+      this.rewardsData = b.listAchievement;
     })
   }
 
@@ -40,12 +42,25 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   submit () {
-    this.modalService.open(ModalLoadingComponent)
-    this.data.insertRewardIntoDB(this.formReward).subscribe(callback => {
-      console.log(callback)
-      this.findAllRewards();
-      this.close();
-    })
+    if (this.messageForm.invalid) {
+      alert('please fulfill the form first');
+      return;
+    }
+    this.modalService.open(ModalLoadingComponent);
+    console.log(this.formReward.id);
+    if (this.formReward.id != undefined && this.formReward.id != ''){
+      this.data.updateReward(this.formReward, this.formReward.id).subscribe(callback=> {
+        let kembalian = callback;
+        this.findAllRewards();
+        this.close();
+      });
+    } else {
+      this.data.insertRewardIntoDB(this.formReward).subscribe(callback => {
+        console.log(callback)
+        this.findAllRewards();
+        this.close();
+      });
+    }
   }
 
   removeRewardFromDB(id) {
@@ -55,6 +70,7 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   openEditModal(data, content) {
+    this.formReward.id = data.id;
     this.formReward.title = data.title;
     this.formReward.carrot = data.carrot;
     this.formReward.description = data.description;
