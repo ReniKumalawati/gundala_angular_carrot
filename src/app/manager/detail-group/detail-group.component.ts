@@ -72,7 +72,11 @@ export class DetailGroupComponent implements OnInit {
   }
 
   findAllEmployee () {
-    this.employeeService.findEmployeeByRole('STAFF').subscribe(callback => {
+    let role = 'STAFF';
+    if (this.itemGroup.type === 'MANAGEMENT') {
+      role = 'MANAGER'
+    }
+    this.employeeService.findEmployeeByRole(role).subscribe(callback => {
       let empav : any;
       empav = callback;
       this.allEmployee = [];
