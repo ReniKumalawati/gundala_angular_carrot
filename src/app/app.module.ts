@@ -48,6 +48,8 @@ import { EarnMostCarrotComponent } from './administrator/information-function/ea
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RewardsComponent } from './administrator/information-function/rewards/rewards.component';
+import { FreezerComponent } from './manager/freezer/freezer.component';
+import { ButtonShareComponent } from './manager/freezer/button-share/button-share.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { RewardsComponent } from './administrator/information-function/rewards/r
     AllSocialFoundationComponent,
     EmployeeListComponent,
     EarnMostCarrotComponent,
-    RewardsComponent
+    RewardsComponent,
+    FreezerComponent,
+    ButtonShareComponent
   ],
   imports: [
     NgbModule,
