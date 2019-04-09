@@ -37,6 +37,6 @@ export class SocialFoundationService {
   }
 
   uploadImage(id, data) {
-    return this.http.post(environment.endpoint + '/api/socialfoundations/' + id, data);
+    return this.http.post(environment.endpoint + '/api/socialfoundations/uploadImage/' + id, data);
   }
 }

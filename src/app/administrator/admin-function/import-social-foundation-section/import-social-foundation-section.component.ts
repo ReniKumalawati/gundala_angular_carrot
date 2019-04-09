@@ -9,14 +9,15 @@ import { SocialFoundationService } from '../../../service/social-foundation.serv
   styleUrls: ["./import-social-foundation-section.component.scss"]
 })
 export class ImportSocialFoundationSectionComponent implements OnInit {
-  id:any;
-  socialFoundation:any;
+  // id:any;
+  socialFoundationObject: object;
   sfTemp: Object;
   submitted = false;
   socialFoundationData: any;
   messageForm: FormGroup;
+
   base64Image: string;
-  imageSrc: any;
+  imageSrc: string;
 
   formSocialFoundation = {
     name: '',
@@ -56,10 +57,6 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  // retrieveSocialFoundation() {
-  //   this.socialFou
-  // }
-
   close() {
     this.messageForm.reset();
     this.modalService.dismissAll();
@@ -72,22 +69,28 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
       // alert('please fulfill the form first');
       return;
     }
-    console.log(this.formSocialFoundation.id);
+
+    // console.log(this.formSocialFoundation.id);
     if (this.formSocialFoundation.id != undefined && this.formSocialFoundation.id != "") {
-      // let id: any;
-      this.id = this.formSocialFoundation.id;
+      let id: any;
+      id = this.formSocialFoundation.id;
+      // console.log(id);
       delete this.formSocialFoundation.id;
-      this.socialFoundationService.updateSocialFoundation(this.formSocialFoundation, this.id).subscribe(callback => {
+      // console.log(this.formSocialFoundation.pictureUrl);
+      this.socialFoundationService.updateSocialFoundation(this.formSocialFoundation, id).subscribe(callback => {
         let kembalian: any;
         kembalian = callback;
-        console.log(kembalian);
-        if (this.base64Image !== '') {
-            this.socialFoundationService.uploadImage(this.id, {img : this.base64Image}).subscribe(imageCallback => {
-              this.id = '';
+        // console.log(kembalian);
+        if (this.base64Image !== '' || this.base64Image !== null) {
+            this.socialFoundationService.uploadImage(id, {img : this.base64Image}).subscribe(imageCallback => {
+              // console.log(imageCallback);
+              // this.id = '';
               this.findAllSocialFoundation();
+              this.base64Image = '';
               this.close();
             });
           } else {
+            // this.id = '';
             this.findAllSocialFoundation();
             this.close();
           }
@@ -102,17 +105,19 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
       this.socialFoundationService.insertSocialFoundationIntoDB(this.formSocialFoundation).subscribe(callback => {
           let kembalian: any;
           kembalian = callback;
+          // console.log(kembalian);
           if(this.base64Image !== '') {
-            this.socialFoundationService.uploadImage(this.id, {img : this.base64Image}).subscribe(imageCallback => {
+            this.socialFoundationService.uploadImage(kembalian.id, {img : this.base64Image}).subscribe(imageCallback => {
               this.findAllSocialFoundation();
+              this.base64Image = '';
               this.close();
             })
           } else {
             this.findAllSocialFoundation();
             this.close();
           }
-          // this.findAllSocialFoundation();
-          // this.close();
+          this.findAllSocialFoundation();
+          this.close();
         });
     }
   }
@@ -134,8 +139,8 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   }
 
   openEditModal(data, content) {
-    console.log(data);
-    this.sfTemp = data.id;
+    // console.log(data);
+    this.sfTemp = data;
     this.formSocialFoundation.name = data.name;
     this.formSocialFoundation.description = data.description;
     this.formSocialFoundation.pictureUrl = data.pictureUrl;
@@ -143,6 +148,8 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     this.formSocialFoundation.status = data.status;
     this.formSocialFoundation.id = data.id;
     this.open(content);
+    // console.log(this.sfTemp);
+    // console.log(data);
     // console.log(this.formSocialFoundation);
   }
 
@@ -161,6 +168,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
       reader.onload = () => {
         this.imageSrc = reader.result.toString();
         this.base64Image = reader.result.toString().split(',')[1];
+        console.log(this.base64Image);
       };
     }
   }
