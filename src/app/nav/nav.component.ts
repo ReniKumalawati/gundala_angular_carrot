@@ -46,6 +46,7 @@ export class NavComponent implements OnInit {
       case('"MANAGER"'):
       pillElementAdm.remove();
       pillElementFrm.remove();
+      pillElementEmp.remove();
       // pillElementMrc.remove();
       pillElementRwd.remove();
       break;
@@ -54,6 +55,7 @@ export class NavComponent implements OnInit {
       pillElementMgr.remove();
       pillElementFrm.remove();
       pillElementRwd.remove();
+      pillElementEmp.remove();
       break;
 
     }
