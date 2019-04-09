@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../service/authentication.service';
-import {BazarService} from '../../service/bazar.service';
-import {TransactionService} from '../../service/transaction.service';
-import {ItemServiceService} from '../../service/item-service.service';
 
 @Component({
   selector: 'app-all-social-foundation',
@@ -15,10 +12,7 @@ export class AllSocialFoundationComponent implements OnInit {
   sf = [];
   basket: any;
   constructor(
-    private auth: AuthenticationService,
-    private bazarService: BazarService,
-    private transactionService: TransactionService,
-    private itemService: ItemServiceService
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -33,7 +27,9 @@ export class AllSocialFoundationComponent implements OnInit {
       for (let g of group) {
         if (g.socialFoundations !== undefined) {
           for (let b of g.socialFoundations) {
-            this.sf.push(b);
+            if (b.status === true) {
+              this.sf.push(b);
+            }
           }
         }
       }

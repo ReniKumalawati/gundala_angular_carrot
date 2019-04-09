@@ -47,6 +47,7 @@ import { EmployeeListComponent } from './farmer/employee-list/employee-list.comp
 import { EarnMostCarrotComponent } from './administrator/information-function/earn-most-carrot/earn-most-carrot.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RewardsComponent } from './administrator/information-function/rewards/rewards.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SfListComponent,
     AllSocialFoundationComponent,
     EmployeeListComponent,
-    EarnMostCarrotComponent
+    EarnMostCarrotComponent,
+    RewardsComponent
   ],
   imports: [
     NgbModule,

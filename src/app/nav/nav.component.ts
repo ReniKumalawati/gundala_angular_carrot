@@ -58,6 +58,11 @@ export class NavComponent implements OnInit {
       pillElementEmp.remove();
       break;
 
+      case('"ROOT_ADMIN"'):
+      pillElementMgr.remove();
+      pillElementRwd.remove();
+      break;
+
     }
 
     switch (window.location.pathname) {
