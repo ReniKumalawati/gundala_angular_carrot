@@ -169,8 +169,10 @@ export class CreateBazarComponent implements OnInit {
   editItem(id, content) {
     this.itemService.findItemById(id).subscribe(callback => {
       this.singleItem = callback;
+      this.singleItem = this.singleItem.item;
       this.itemValue.id = this.singleItem.id;
       this.itemValue.itemName = this.singleItem.itemName;
+      console.log(this.itemValue.itemName);
       this.itemValue.itemDescription = this.singleItem.itemDescription;
       this.itemValue.exchangeRate = this.singleItem.exchangeRate;
       this.itemValue.totalItem = this.singleItem.totalItem;
