@@ -28,6 +28,7 @@ export class SeniorManagerComponent implements OnInit {
   senderName: string; // Optional
   senderFreezer: any;
   senderFreezerId: any;
+  currentBarn: any;
   shareValue = {
     from: '',
     to: '',
@@ -76,6 +77,7 @@ export class SeniorManagerComponent implements OnInit {
     // console.log(this.senderFreezerId);
 
     this.findGroupIdByOwner();
+    this.findCurrentBarn();
   }
 
   // Methods for get all member of management group by management group id
@@ -102,7 +104,12 @@ export class SeniorManagerComponent implements OnInit {
         }
       });
   }
-
+  findCurrentBarn() {
+    this.farmService.findCurrentBarns().subscribe(callback => {
+      this.currentBarn = callback;
+      console.log(callback)
+    })
+  }
   // Activate when submit button pressed
   submit() {
     // Set sharevalue json data
@@ -132,15 +139,28 @@ export class SeniorManagerComponent implements OnInit {
     });
   }
 
+
   // Methdos for opening Modal
   openModal(content, managerData) {
-    console.log(managerData);
-    this.sendCarrotForm.reset();
-    this.modalService.open(content);
-    console.log('open content, id = ' + managerData.id);
-    console.log(managerData.name);
     this.receiverName = managerData.name;
     this.receiverId = managerData.id;
+    let listGroup: any;
+    /*console.log(managerData);*/
+
+    /*console.log('open content, id = ' + managerData.id);
+    console.log(managerData.name);*/
+    this.groupService.findGroupIdByOwner(this.receiverId).subscribe( callback1 => {
+      listGroup = callback1;
+      console.log(listGroup[0].id);
+      this.groupService.findStaffSum(listGroup[0].id).subscribe(callback2 => {
+        let staffSum: any = callback2;
+        console.log(staffSum);
+        this.shareValue.carrot_amt = Math.floor(staffSum*this.currentBarn.budgetPerStaff*3/4);
+        this.sendCarrotForm.reset();
+        this.modalService.open(content);
+      });
+    });
+
   }
 
   // Methods for closing modal

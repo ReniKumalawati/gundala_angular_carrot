@@ -23,4 +23,7 @@ export class FarmService {
   findCurrentBarns() {
     return this.http.get(environment.endpoint + '/api/barns/current-barn');
   }
+  findBarnById(id) {
+    return this.http.get(environment.endpoint + '/api/barns/' + id)
+  }
 }

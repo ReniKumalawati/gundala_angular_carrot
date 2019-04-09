@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupService } from '../../service/group.service';
+import { GroupService } from '../../../service/group.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmployeeService } from '../../service/employee.service';
+import { EmployeeService } from '../../../service/employee.service';
 
 @Component({
   selector: 'app-groups',
@@ -45,7 +45,6 @@ export class GroupsComponent implements OnInit {
       var a = JSON.stringify(callback);
       var b = JSON.parse(a);
       this.manager = b.listEmployee;
-      console.log('managerS: ' + JSON.stringify(this.manager));
     });
   }
   findAllSeniorManager() {
@@ -53,7 +52,6 @@ export class GroupsComponent implements OnInit {
       var a = JSON.stringify(callback);
       var b = JSON.parse(a);
       this.seniorManager = b.listEmployee;
-      console.log('managerS: ' + JSON.stringify(this.manager));
     });
   }
 
@@ -62,7 +60,6 @@ export class GroupsComponent implements OnInit {
     this.groupService.findAllGroup().subscribe(callback => {
       var a = JSON.stringify(callback);
       var b = JSON.parse(a);
-      console.log('b: ' + JSON.stringify(b.listGroup));
       this.groupData = b.listGroup;
     })
   }
@@ -71,10 +68,11 @@ export class GroupsComponent implements OnInit {
   }
 
   close() {
-    this.id = '';
+    // this.id = '';
     this.groupForm.reset();
     this.modalService.dismissAll();
   }
+
   detect(e) {
     let split = e.split(' ');
     if (split.length > 1) {
@@ -83,8 +81,12 @@ export class GroupsComponent implements OnInit {
       this.type = ''
     }
   }
+
   submit() {
-    console.log(this.id);
+    this.submitted = true;
+    if (this.groupForm.invalid) {
+      return;
+    }
     if (this.id !== '') {
       delete this.groupValue.id;
       this.groupValue.owner.id = this.idOwner;
@@ -103,7 +105,7 @@ export class GroupsComponent implements OnInit {
   }
 
   openEdit(data, content) {
-    delete data.owner;
+    // delete data.owner;
     this.id = data.id;
     this.groupValue = data;
     if (!this.groupValue.owner) {

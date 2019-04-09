@@ -1,10 +1,54 @@
-<main role="main" class="container1">
-  <div class="row d-flex">
-    <!-- <div class="col-md-12"> -->
+<main role="main" class="container">
+  <div class="row d-flex ml-1">
     <h2 class="mt-4 pl-0 text-grey ml-0">MANAGER DASHBOARD</h2>
-    <!-- </div> -->
   </div>
 </main>
+
+<section class="mini-dashboard my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row box-profile soft-shadow px-0 mr-0">
+          <div class="col-md-4 my-auto">
+            <img
+              src="{{employee.profilePicture || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'}}"
+              alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
+          </div>
+          <div class="col-md-8 my-auto">
+            <h4 class="mb-0 text-white">{{employee.name}}</h4>
+            <p class="text-white">{{employee.role}}</p>
+            <a href="profile" class="badge badge-white">Show Profile</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row box-carrot px-0 mr-0">
+          <div class="col-md-4 my-auto">
+            <img src=" assets/img/carrot-receive.svg" alt="" class="img-fluid">
+          </div>
+          <div class="col-md-8 my-auto">
+            <h4 class="text-white">You have {{total}} carrots in your Freezer!</h4>
+            <!--<a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">-->
+            <!--Share carrot!-->
+            <!--</a>-->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row box-additional px-0">
+          <div class="col-md-4 my-auto">
+            <img src=" assets/img/history-transv2.svg" alt="" class="img-fluid rounded-circle">
+          </div>
+          <div class="col-md-8 my-auto">
+            <h4 class="text-white">Carrots Transaction History</h4>
+            <a href="/transaction-histories" class="badge badge-white">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="admin-tabs py-3">
   <div class="container">
     <ngb-tabset type="pills">
@@ -31,40 +75,16 @@
                   <td>Start</td>
                   <td>End</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Barn 2016</td>
-                  <td>1/01/2016</td>
-                  <td>31/12/2016</td>
-                  <td>Sri Diah</td>
-                  <td>100</td>
-                  <td>2</td>
-                  <td>Inactive</td>
-                  <td><a class="link_table" href="manager-freezer.html">View</a></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Barn 2017</td>
-                  <td>1/01/2017</td>
-                  <td>31/12/2017</td>
-                  <td>Hesty</td>
-                  <td>1000<br></td>
-                  <td>200</td>
-                  <td>Inactive</td>
-                  <!-- <td><a href="manager-freezer.html">View</a></td> -->
-                  <td><a class="link_table" href="manager-freezer.html">View</a></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Barn 2018</td>
-                  <td>1/01/2018</td>
-                  <td>31/12/2018</td>
-                  <td>Riyan</td>
-                  <td>2000</td>
-                  <td>900</td>
-                  <td>Active</td>
-                  <!-- <td><a href="manager-freezer.html">Manage</a></td> -->
-                  <td><a class="link_table" href="manager-freezer.html">View</a></td>
+                <tr *ngFor="let barn of barnData; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{barn.name}}</td>
+                  <td>{{barn.startPeriod}}</td>
+                  <td>{{barn.endPeriod}}</td>
+                  <td>{{barn.owner.name}}</td>
+                  <td>{{barn.totalCarrot}}</td>
+                  <td>{{barn.carrotLeft}}</td>
+                  <td>{{barn.status}}</td>
+                  <td><a class="link_table" href="/freezer/{{barn.id}}">View</a></td>
                 </tr>
               </table>
             </div>

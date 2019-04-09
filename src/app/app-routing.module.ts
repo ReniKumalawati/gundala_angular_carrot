@@ -19,6 +19,7 @@ import {MerchantTransactionComponent} from './administrator/merchant/merchant-tr
 import {AchievementComponent} from './employee/achievement/achievement.component';
 import {DetailSFComponent} from './employee/detail-sf/detail-sf.component';
 import {AllSocialFoundationComponent} from './employee/all-social-foundation/all-social-foundation.component';
+import {FreezerComponent} from './manager/freezer/freezer.component';
 
 const routes: Routes = [
   { path: '', component: EmployeeComponent, canActivate: [AuthGuard],
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
   { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {permission: ['ROOT_ADMIN', 'MANAGER', 'SENIOR_MANAGER']}},
+  { path: 'freezer/:id', component: FreezerComponent, canActivate: [AuthGuard], data: {permission: ['ROOT_ADMIN', 'MANAGER', 'SENIOR_MANAGER']}},
   { path: 'merchant', component: MerchantComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN', 'ADMIN']}},
   { path: 'farmer', component: FarmerComponent, canActivate: [AuthGuard], data: {permission: ['FARMER', 'ROOT_ADMIN']}},
   { path: 'administrator', component: AdministratorComponent, canActivate: [AuthGuard], data: {permission: ['ADMIN', 'ROOT_ADMIN']}},
@@ -47,7 +49,7 @@ const routes: Routes = [
   { path: 'edit-bazar/:id', component: CreateBazarComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN','ADMIN']}},
   { path: 'transaction-histories', component: TransactionHistoryComponent, canActivate: [AuthGuard],
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
-  { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthGuard], data: {permission: ['MANAGER', 'ROOT_ADMIN']}},
+  { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthGuard], data: {permission: ['MANAGER', 'ROOT_ADMIN', 'SENIOR_MANAGER']}},
   { path: 'merchant-transaction', component: MerchantTransactionComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN','ADMIN']}},
 ];
 

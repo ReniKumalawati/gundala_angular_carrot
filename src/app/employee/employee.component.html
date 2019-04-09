@@ -34,7 +34,7 @@
       <div class="col-md-4">
         <div class="row box-additional px-0">
           <div class="col-md-4 my-auto">
-            <img src=" assets/img/mc-icon-transaction.png" alt="" class="img-fluid rounded-circle">
+            <img src=" assets/img/history-transv2.svg" alt="" class="img-fluid rounded-circle">
           </div>
           <div class="col-md-8 my-auto">
             <h4 class="text-white">Carrots Transaction History</h4>
@@ -51,13 +51,16 @@
     <div class="row d-flex align-content-end">
       <div class="col-md-12">
         <hr class="box-title-hr">
-        <h4 class="my-2 box-title">Social Foundation</h4>
+        <h4 class="my-2 box-title">
+          Social Foundation
+          <a href="/social-foundation" class="btn btn-info pull-right">See All</a>
+        </h4>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-md-4" *ngFor="let item of sf">
         <div class="card">
-          <img class="card-img-top" src="" alt="Social Foundation">
+          <img class="card-img-top" src="assets/img/heart.svg" alt="Social Foundation">
           <div class="card-body">
             <h5 class="card-title">{{item.name}}</h5>
           </div>
@@ -76,7 +79,7 @@
         <h4 class="my-2 box-title">{{bzr.bazaarName}}</h4>
       </div>
       <div class="col-md-6 br-1">
-        <img src="{{bzr.items[0].pictureUrl}}" class="img-fluid p-3" alt="">
+        <img src="{{bzr.items[0].pictureUrl}}" class="img-fluid p-3" onerror="this.src='assets/img/mc-icon-transaction.png'" alt="">
       </div>
       <div class="col-md-6 align-self-center p-5">
         <h3>{{bzr.items[0].itemName}}</h3>
@@ -115,7 +118,7 @@
     <div class="row mt-3" *ngIf="bzr.items.length >= 3">
       <div class="col-md-4" *ngFor="let itm of bzr.items">
         <div class="card">
-          <img class="card-img-top" src="{{itm.pictureUrl}}" alt="Bazaar Item">
+          <img class="card-img-top" src="{{itm.pictureUrl}}" onerror="this.src='assets/img/mc-icon-transaction.png'" alt="Bazaar Item">
           <div class="card-body">
             <h5 class="card-title">{{itm.itemName}}</h5>
             <p class="card-text">{{itm.exchangeRate}} Carrots</p>

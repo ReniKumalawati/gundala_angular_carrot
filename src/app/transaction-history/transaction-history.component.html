@@ -1,10 +1,12 @@
 <main role="main" class="container">
-  <h2 class="mt-4 pl-0 text-grey ml-0 mt-button">
-    <span class="back-button">
-      <a href="employee"><img src="assets/img/back.png" alt="" class="back" /></a>
-    </span>
-    TRANSACTION HISTORY
-  </h2>
+  <div class="row d-flex ml-1">
+    <h2 class="mt-4 pl-0 text-grey ml-0 mt-button">
+      <span class="back-button">
+        <a href="employee"><img src="assets/img/back.png" alt="" class="back" /></a>
+      </span>
+      TRANSACTION HISTORY
+    </h2>
+  </div>
 </main>
 <section class="mini-dashboard my-4">
   <div class="container">
@@ -17,7 +19,7 @@
           <div class="col-md-8 my-auto">
             <p class="sub-title black-text">Social Foundation</p>
             <h2 class="text-white">{{reward}} Carrots Spent</h2>
-            <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">
+            <a class="badge badge-white" data-toggle="modal" data-target="#exampleModal" href="/social-foundation">
               Donate Carrot</a>
           </div>
         </div>
@@ -113,6 +115,7 @@
             </tr>
           </thead>
           <tbody>
+          <ng-container *ngIf="transactionLists">
             <tr *ngFor="let transaction of transactionLists">
               <th scope="row">1</th>
               <td>{{transaction.type}}</td>
@@ -122,6 +125,7 @@
               <td>{{transaction.transactiondate | date:'medium'}}</td>
               <td>{{transaction.status}}</td>
             </tr>
+          </ng-container>
           </tbody>
         </table>
       </div>

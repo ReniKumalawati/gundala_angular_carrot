@@ -59,17 +59,20 @@ export class FunnelComponent implements OnInit {
 
   findCurrentBarn() {
     this.farmService.findCurrentBarns().subscribe(callback => {
+      this.currentBarn = callback;
       console.log(callback)
     })
   }
   submit() {
     this.shareValue.barn = this.currentBarn;
     this.shareValue.from = this.user.name;
+
     delete this.shareValue.barn.owner.dob;
     delete this.shareValue.barn.owner.group;
     this.employeeService.findFrezeerByOwner(this.empTempId).subscribe(callback => {
       this.freezer = callback;
       this.shareValue.freezer_to = this.freezer;
+      this.shareValue.to = this.freezer.employee.name;
       delete this.shareValue.freezer_to.employee.dob;
       delete this.shareValue.freezer_to.employee.group;
       delete this.shareValue.freezer_to.created_at;

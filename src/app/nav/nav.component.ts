@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NotificationService} from '../service/notification.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,15 +9,20 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class NavComponent implements OnInit {
   @Input('dropdown') dropdown:any;
+  @Output() allData: EventEmitter<any> = new EventEmitter();
   appTitle = 'Mitrais Carrot';
   jsonNav: any;
   navEmp: any;
-  constructor() { }
+  msg:any = '';
+  constructor(
+    private modal: NgbModal,
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit() {
     const pillElementMgr = document.querySelector('#linkManager');
     const pillElementEmp = document.querySelector('#linkEmployee');
-    const pillElementMrc = document.querySelector('#linkMerchant');
+    // const pillElementMrc = document.querySelector('#linkMerchant');
     const pillElementFrm = document.querySelector('#linkFarmer');
     const pillElementAdm = document.querySelector('#linkAdmin');
     const pillElementRwd = document.querySelector('#linkReward');
@@ -32,20 +39,27 @@ export class NavComponent implements OnInit {
       pillElementAdm.remove();
       pillElementFrm.remove();
       pillElementMgr.remove();
-      pillElementMrc.remove();
+      // pillElementMrc.remove();
       break;
 
       case('"SENIOR_MANAGER"'):
       case('"MANAGER"'):
       pillElementAdm.remove();
       pillElementFrm.remove();
-      pillElementMrc.remove();
+      pillElementEmp.remove();
+      // pillElementMrc.remove();
       pillElementRwd.remove();
       break;
 
       case('"ADMIN"'):
       pillElementMgr.remove();
       pillElementFrm.remove();
+      pillElementRwd.remove();
+      pillElementEmp.remove();
+      break;
+
+      case('"ROOT_ADMIN"'):
+      pillElementMgr.remove();
       pillElementRwd.remove();
       break;
 
@@ -63,8 +77,8 @@ export class NavComponent implements OnInit {
       break;
 
       case ('/merchant'):
-      pillElementMrc.className = 'nav-link active';
-      pillElementMrc.removeAttribute('href');
+      // pillElementMrc.className = 'nav-link active';
+      // pillElementMrc.removeAttribute('href');
       break;
 
       case ('/farmer'):
@@ -82,5 +96,13 @@ export class NavComponent implements OnInit {
   goLogout(){
       location.href = '/';
       localStorage.clear(); //ini bisa juga buat hapus semua data di localStorage
+  }
+
+  openN(data, content) {
+    this.msg = data.detail;
+    this.notificationService.updateNotif(data).subscribe(callback => {
+      this.allData.emit();
+    });
+    this.modal.open(content)
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AwardsService} from '../../service/awards.service';
+import {AwardsService} from '../../../service/awards.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,6 +10,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ImportAwardSectionComponent implements OnInit {
   awardsData: Object;
+  submitted = false;
   messageForm: FormGroup;
   formAward = {type_name: '', carrot_amt: 0, active: false, type: ''};
   constructor(private data: AwardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
@@ -37,6 +38,11 @@ export class ImportAwardSectionComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true;
+    if (this.messageForm.invalid) {
+      // alert('please fulfill the form first');
+      return;
+    }
     this.data.insertAwardIntoDB(this.formAward).subscribe(callback => {
       this.findAllAward();
       this.close();

@@ -9,6 +9,11 @@ header {
     color: white;
   }
 
+  .dropdown-menu{
+    position: absolute;
+    left: -200px !important;
+  }
+
   nav {
     justify-self: right;
     // margin-bottom: 2em;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { SocialFoundationService } from '../../service/social-foundation.service';
+import { SocialFoundationService } from '../../../service/social-foundation.service';
 
 
 @Component({
@@ -11,6 +11,7 @@ import { SocialFoundationService } from '../../service/social-foundation.service
 })
 export class ImportSocialFoundationSectionComponent implements OnInit {
   sfTemp: Object;
+  submitted = false;
   socialFoundationData: any;
   messageForm: FormGroup;
   formSocialFoundation = {name: '', description: '', min_carrot: '', total_carrot: 0, status: false, id: ''};
@@ -47,8 +48,9 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true;
     if (this.messageForm.invalid) {
-      alert('please fulfill the form first');
+      // alert('please fulfill the form first');
       return;
     }
     console.log(this.formSocialFoundation.id)

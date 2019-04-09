@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RewardsService} from '../../service/rewards.service';
+import {RewardsService} from '../../../service/rewards.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ModalLoadingComponent} from '../../partial/modal-loading/modal-loading.component';
+import {ModalLoadingComponent} from '../../../partial/modal-loading/modal-loading.component';
 
 @Component({
   selector: 'app-import-reward-section',
@@ -12,13 +12,14 @@ import {ModalLoadingComponent} from '../../partial/modal-loading/modal-loading.c
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
-  formReward = {title: '', carrot: 0, status: false, description: ''}
+  submitted = false;
+  formReward = {title: '', carrot: 0, status: false, description: '', id: ''}
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
       title: ['', Validators.required],
-      carrot: ['', Validators.required],
+      carrot: [0, Validators.min(1)],
       description: ['', Validators.required]
     });
     this.findAllRewards()
@@ -26,8 +27,10 @@ export class ImportRewardSectionComponent implements OnInit {
   findAllRewards() {
     // this.modalService.open(ModalLoadingComponent)
     this.data.findAllRewards().subscribe(callback => {
+      var a = JSON.stringify(callback);
+      var b = JSON.parse(a);
       // this.close()
-      this.rewardsData = callback
+      this.rewardsData = b.listAchievement;
     })
   }
 
@@ -36,16 +39,33 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   close() {
+    this.messageForm.reset();
     this.modalService.dismissAll();
+    this.formReward.id = undefined;
   }
 
   submit () {
-    this.modalService.open(ModalLoadingComponent)
-    this.data.insertRewardIntoDB(this.formReward).subscribe(callback => {
-      console.log(callback)
-      this.findAllRewards();
-      this.close();
-    })
+    this.submitted = true;
+    if (this.messageForm.invalid) {
+      // alert('please fulfill the form first');
+      return;
+    }
+    this.modalService.open(ModalLoadingComponent);
+    console.log(this.formReward.id);
+    if (this.formReward.id != undefined && this.formReward.id != ''){
+      this.data.updateReward(this.formReward, this.formReward.id).subscribe(callback=> {
+        let kembalian = callback;
+        this.findAllRewards();
+        this.close();
+      });
+    } else {
+      delete this.formReward.id;
+      this.data.insertRewardIntoDB(this.formReward).subscribe(callback => {
+        console.log(callback)
+        this.findAllRewards();
+        this.close();
+      });
+    }
   }
 
   removeRewardFromDB(id) {
@@ -55,6 +75,7 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   openEditModal(data, content) {
+    this.formReward.id = data.id;
     this.formReward.title = data.title;
     this.formReward.carrot = data.carrot;
     this.formReward.description = data.description;
@@ -62,23 +83,23 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   activate(data) {
-    this.modalService.open(ModalLoadingComponent)
-    data.status = true
-    let id = data.id
-    delete data.id
+    this.modalService.open(ModalLoadingComponent);
+    data.status = true;
+    let id = data.id;
+    delete data.id;
     this.data.updateReward(data, id).subscribe(callback => {
-      this.close()
+      this.close();
       this.findAllRewards()
     })
   }
 
   inactive(data) {
-    this.modalService.open(ModalLoadingComponent)
-    data.status = false
-    let id = data.id
-    delete data.id
+    this.modalService.open(ModalLoadingComponent);
+    data.status = false;
+    let id = data.id;
+    delete data.id;
     this.data.updateReward(data, id).subscribe(callback => {
-      this.close()
+      this.close();
       this.findAllRewards()
     })
   }

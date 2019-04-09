@@ -26,7 +26,7 @@ export class EmployeeService {
   }
 
   findBasketByEmployeeId(id) {
-    return this.http.get(environment.endpoint + "/api/basket/" + id);
+    return this.http.get(environment.endpoint + "/api/basket/emp?employeeid=" + id);
   }
 
   insertGroupIntoEmployee(id, data) {
@@ -35,6 +35,10 @@ export class EmployeeService {
 
   findAllMemberOfAGroup(id) {
     return this.http.get(environment.endpoint + "/api/employees/group-member/" + id);
+  }
+
+  findAllMemberOfMultipleGroup(id) {
+    return this.http.post(environment.endpoint + "/api/employees/multiple-group-member", id);
   }
 
   removeEmployeeFromGroup(id, data) {
@@ -55,5 +59,9 @@ export class EmployeeService {
 
   assign(id) {
     return this.http.patch(environment.endpoint + "/api/employees/admin?id=" + id, {});
+  }
+
+  findEmployeeById(id){
+    return this.http.get(environment.endpoint + '/api/employees/' + id);
   }
 }
