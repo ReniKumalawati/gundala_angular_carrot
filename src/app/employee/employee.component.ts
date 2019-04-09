@@ -53,10 +53,11 @@ export class EmployeeComponent implements OnInit {
             bazars.push({ id: b.id });
           }
         }
-        console.log(g)
         if (g.socialFoundations !== null && g.socialFoundations !== undefined) {
           for (const b of g.socialFoundations) {
-            this.sf.push(b);
+            if (b.status === true) {
+              this.sf.push(b);
+            }
           }
         }
 
@@ -67,7 +68,9 @@ export class EmployeeComponent implements OnInit {
               if (item.hasOwnProperty(singleItem)) {
                 const indexBazar = bazars.findIndex(x => x.id === item[singleItem].bazaar.id);
                 if (indexBazar > -1) {
-                  this.bazar[indexBazar].items.push(item[singleItem]);
+                  if ( item[singleItem].saleStatus === true ) {
+                    this.bazar[indexBazar].items.push(item[singleItem]);
+                  }
                 }
               }
             }

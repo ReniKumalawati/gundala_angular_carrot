@@ -32,8 +32,10 @@ export class AchievementListComponent implements OnInit {
         console.log(g)
         if (g.achievements) {
           for (let achievement of g.achievements) {
-            achievement.group = g;
-            this.achievementdata.push(achievement);
+            if (achievement.status === true) {
+              achievement.group = g;
+              this.achievementdata.push(achievement);
+            }
           }
         }
       }
