@@ -39,7 +39,9 @@ export class ImportRewardSectionComponent implements OnInit {
   }
 
   close() {
+    this.messageForm.reset();
     this.modalService.dismissAll();
+    this.formReward.id = undefined;
   }
 
   submit () {
@@ -57,6 +59,7 @@ export class ImportRewardSectionComponent implements OnInit {
         this.close();
       });
     } else {
+      delete this.formReward.id;
       this.data.insertRewardIntoDB(this.formReward).subscribe(callback => {
         console.log(callback)
         this.findAllRewards();

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FarmService} from "../service/farm.service";
 
 @Component({
   selector: 'app-manager',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manager.component.scss']
 })
 export class ManagerComponent implements OnInit {
-
-  constructor() { }
+  barnData: any;
+  constructor(
+    private farmService : FarmService
+  ) { }
 
   ngOnInit() {
+    this.findAllBarns();
   }
 
+  findAllBarns(){
+    this.farmService.findAllBarns().subscribe(callback =>{
+      this.barnData = callback;
+    })
+  }
 }

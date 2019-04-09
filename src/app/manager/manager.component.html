@@ -1,5 +1,5 @@
-<main role="main" class="container1">
-  <div class="row d-flex">
+<main role="main" class="container">
+  <div class="row d-flex ml-1">
     <!-- <div class="col-md-12"> -->
     <h2 class="mt-4 pl-0 text-grey ml-0">MANAGER DASHBOARD</h2>
     <!-- </div> -->
@@ -31,39 +31,15 @@
                   <td>Start</td>
                   <td>End</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Barn 2016</td>
-                  <td>1/01/2016</td>
-                  <td>31/12/2016</td>
-                  <td>Sri Diah</td>
-                  <td>100</td>
-                  <td>2</td>
-                  <td>Inactive</td>
-                  <td><a class="link_table" href="manager-freezer.html">View</a></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Barn 2017</td>
-                  <td>1/01/2017</td>
-                  <td>31/12/2017</td>
-                  <td>Hesty</td>
-                  <td>1000<br></td>
-                  <td>200</td>
-                  <td>Inactive</td>
-                  <!-- <td><a href="manager-freezer.html">View</a></td> -->
-                  <td><a class="link_table" href="manager-freezer.html">View</a></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Barn 2018</td>
-                  <td>1/01/2018</td>
-                  <td>31/12/2018</td>
-                  <td>Riyan</td>
-                  <td>2000</td>
-                  <td>900</td>
-                  <td>Active</td>
-                  <!-- <td><a href="manager-freezer.html">Manage</a></td> -->
+                <tr *ngFor="let barn of barnData; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{barn.name}}</td>
+                  <td>{{barn.startPeriod}}</td>
+                  <td>{{barn.endPeriod}}</td>
+                  <td>{{barn.owner.name}}</td>
+                  <td>{{barn.totalCarrot}}</td>
+                  <td>{{barn.carrotLeft}}</td>
+                  <td>{{barn.status}}</td>
                   <td><a class="link_table" href="manager-freezer.html">View</a></td>
                 </tr>
               </table>
