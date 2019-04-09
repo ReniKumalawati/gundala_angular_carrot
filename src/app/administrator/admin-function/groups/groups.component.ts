@@ -83,7 +83,10 @@ export class GroupsComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.id);
+    this.submitted = true;
+    if (this.groupForm.invalid) {
+      return;
+    }
     if (this.id !== '') {
       delete this.groupValue.id;
       this.groupValue.owner.id = this.idOwner;

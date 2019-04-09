@@ -34,7 +34,7 @@ export class GroubAchievementComponent implements OnInit {
     this.achievementData = [];
     this.achievementService.findAllAchievement().subscribe(callback => {
       let achievementData: any = callback;
-      for (let ach of achievementData) {
+      for (let ach of achievementData.listAchievement) {
         if (!this.achievementId.includes(ach.id)) {
           this.achievementData.push(ach);
         }
@@ -44,15 +44,17 @@ export class GroubAchievementComponent implements OnInit {
 
   findAllAchievementByGroup () {
     this.achievementId = [];
+    this.achievementByGroup = []
     this.groupService.findById(this.group.id).subscribe(callback => {
       this.achievementByGroup = callback;
-      this.achievementByGroup = this.achievementByGroup.group.achievements;
-      if (this.achievementByGroup) {
+      if (this.achievementByGroup.group.achievements) {
+        this.achievementByGroup = this.achievementByGroup.group.achievements;
         for (let achievement of this.achievementByGroup) {
           this.achievementId.push(achievement.id);
         }
         this.findallAchievement();
       } else {
+        this.achievementByGroup = [];
         this.findallAchievement();
       }
     });
@@ -68,7 +70,6 @@ export class GroubAchievementComponent implements OnInit {
   }
 
   submit () {
-    console.log(this.achievement)
     this.achievementService.insertAchievementIntoGroup(this.group.id, [{id: this.achievement.id}]).subscribe(callback => {
       this.close();
       this.findAllAchievementByGroup();

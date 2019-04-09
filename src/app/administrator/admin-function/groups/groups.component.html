@@ -29,6 +29,7 @@
         </td>
         <td>
           <a href="javascript:void(0)" class="btn btn-warning" (click)="openEdit(group, contentGroup)">
+            <i class="fas fa-pen"></i>
             Edit
           </a>
         </td>
@@ -37,7 +38,7 @@
     </table>
     <div class="container mt-3">
       <div class="col-md-12 py-3 px-md-0 text-center">
-        <button type="button" class="btn btn-info pull-right" (click)="open(contentGroup)">
+        <button type="button" class="btn btn-info" (click)="open(contentGroup)">
           <i class="fa fa-plus-circle"></i> ADD Group
         </button>
       </div>
@@ -58,9 +59,9 @@
       <div class="form-group">
         <label for="text">Name</label>
         <input id="text" name="text" type="text" class="form-control here" formControlName="name" [(ngModel)]="groupValue.name">
-        <!-- <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
-          <div *ngIf="messageForm.controls.name.errors.required">Please insert name!</div>
-        </div> -->
+         <div *ngIf="submitted && groupForm.controls.name.errors" class="error">
+          <div *ngIf="groupForm.controls.name.errors.required">Please insert name!</div>
+        </div>
       </div>
       <div class="form-group">
         <label>Type</label>
@@ -68,9 +69,9 @@
           <option value="" selected> Pilih tipe </option>
           <option *ngFor="let e of dn" [ngValue]="e">{{e}}</option>
         </select>
-        <!-- <div *ngIf="submitted && messageForm.controls.type.errors" class="error">
-          <div *ngIf="messageForm.controls.type.errors.required">Please insert Carrot's Amount!</div>
-        </div> -->
+        <div *ngIf="submitted && groupForm.controls.type.errors" class="error">
+          <div *ngIf="groupForm.controls.type.errors.required">Please insert Type</div>
+        </div>
       </div>
       <div class="form-group" *ngIf="type === 'STAFF'">
         <label>Owner</label>
@@ -78,9 +79,9 @@
           <option value="">Choose Manager as group owner</option>
           <option *ngFor="let mgr of manager" [ngValue]="mgr.id">{{mgr.name}}</option>
         </select>
-        <!--<div *ngIf="submitted && messageForm.controls.owner.errors" class="error">-->
-          <!--<div *ngIf="messageForm.controls.owner.errors.required">Please insert name!</div>-->
-        <!--</div>-->
+        <div *ngIf="submitted && groupForm.controls.owner.errors" class="error">
+          <div *ngIf="groupForm.controls.owner.errors.required">Please insert the owner!</div>
+        </div>
       </div>
       <div class="form-group" *ngIf="type === 'MANAGEMENT'">
         <label>Owner</label>
@@ -88,9 +89,9 @@
           <option value="">Choose Senior Manager as group owner</option>
           <option *ngFor="let sm of seniorManager" [ngValue]="sm.id">{{sm.name}}</option>
         </select>
-        <!--<div *ngIf="submitted && messageForm.controls.owner.errors" class="error">-->
-        <!--<div *ngIf="messageForm.controls.owner.errors.required">Please insert name!</div>-->
-        <!--</div>-->
+        <div *ngIf="submitted && groupForm.controls.owner.errors" class="error">
+          <div *ngIf="groupForm.controls.owner.errors.required">Please insert the owner!</div>
+        </div>
       </div>
     </div>
     <div class="modal-footer">

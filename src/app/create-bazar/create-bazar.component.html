@@ -25,16 +25,25 @@
                 <label for="barnName">Bazaar Name</label>
                 <input id="barnName" name="barnName" type="text" class="form-control here" formControlName="bazaarName"
                   [(ngModel)]="formBaxar.bazaarName">
+                <div *ngIf="submitted && bazarForm.controls.bazaarName.errors" class="error">
+                  <div *ngIf="bazarForm.controls.bazaarName.errors.required">Please insert Bazaar's Name!</div>
+                </div>
               </div>
               <div class="form-group">
                 <label for="startDate">Start Period</label>
                 <input id="startDate" name="startDate" type="date" class="form-control here"
                   formControlName="startPeriod" [(ngModel)]="formBaxar.startPeriod">
+                <div *ngIf="submitted && bazarForm.controls.startPeriod.errors" class="error">
+                  <div *ngIf="bazarForm.controls.startPeriod.errors.required">Please insert Start Periode!</div>
+                </div>
               </div>
               <div class="form-group">
                 <label for="carrotEmployee">Bazaar Description</label>
                 <input id="carrotEmployee" name="carrotEmployee" type="textar" class="form-control here"
                   formControlName="bazaarDescription" [(ngModel)]="formBaxar.bazaarDescription">
+                <div *ngIf="submitted && bazarForm.controls.bazaarDescription.errors" class="error">
+                  <div *ngIf="bazarForm.controls.bazaarDescription.errors.required">Please insert Bazaar's Description!</div>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
@@ -43,11 +52,17 @@
                 <select class="form-control here" formControlName="owner" [(ngModel)]="formBaxar.owner.id">
                   <option *ngFor="let admin of adminData" [ngValue]="admin.id">{{admin.name}}</option>
                 </select>
+                <div *ngIf="submitted && bazarForm.controls.owner.errors" class="error">
+                  <div *ngIf="bazarForm.controls.owner.errors.required">Please insert Bazaar's Owner!</div>
+                </div>
               </div>
               <div class="form-group">
                 <label for="endDate">End Period</label>
                 <input id="endDate" name="endDate" type="date" class="form-control here" formControlName="endPeriod"
                   [(ngModel)]="formBaxar.endPeriod">
+                <div *ngIf="submitted && bazarForm.controls.endPeriod.errors" class="error">
+                  <div *ngIf="bazarForm.controls.endPeriod.errors.required">Please insert End Periode!</div>
+                </div>
               </div>
               <div class="form-group">
                 <label>Sale Status</label><br>
@@ -60,8 +75,8 @@
                     <input ngbButton type="radio" [value]="true"> True
                   </label>
                 </div>
-                <div *ngIf="submitted && messageForm.controls.status.errors" class="error">
-                  <div *ngIf="messageForm.controls.status.errors.required">Please insert Carrot's Amount!</div>
+                <div *ngIf="submitted && bazarForm.controls.status.errors" class="error">
+                  <div *ngIf="bazarForm.controls.status.errors.required">Please insert Carrot's Amount!</div>
                 </div>
               </div>
             </div>
@@ -147,8 +162,8 @@
         <label for="text">Item's Name</label>
         <input id="text" name="text" type="text" class="form-control here" formControlName="itemName"
           [(ngModel)]="itemValue.itemName" required>
-        <div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">
-          <div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>
+        <div *ngIf="submitted1 && itemForm.controls.itemName.errors" class="error">
+          <div *ngIf="itemForm.controls.itemName.errors.required">Please insert name!</div>
         </div>
       </div>
       <div class="form-group">
@@ -157,32 +172,32 @@
           <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="">
           <input type="file" accept="images" id="avatar" (change)="onFileChange($event)" #fileInput>
         </div>
-        <!--<div *ngIf="submitted && messageForm.controls.itemName.errors" class="error">-->
-        <!--<div *ngIf="messageForm.controls.itemName.errors.required">Please insert name!</div>-->
+        <!--<div *ngIf="submitted && itemForm.controls.itemName.errors" class="error">-->
+        <!--<div *ngIf="itemForm.controls.itemName.errors.required">Please insert name!</div>-->
         <!--</div>-->
       </div>
       <div class="form-group">
         <label for="text">Item's Description</label>
         <input name="text" type="text" class="form-control here" formControlName="itemDescription"
           [(ngModel)]="itemValue.itemDescription">
-        <div *ngIf="submitted && messageForm.controls.itemDescription.errors" class="error">
-          <div *ngIf="messageForm.controls.itemDescription.errors.required">Please insert name!</div>
+        <div *ngIf="submitted1 && itemForm.controls.itemDescription.errors" class="error">
+          <div *ngIf="itemForm.controls.itemDescription.errors.required">Please insert Description!</div>
         </div>
       </div>
       <div class="form-group">
         <label>Exchange Rate</label>
-        <input name="text1" type="text" class="form-control here" formControlName="exchangeRate"
+        <input name="text1" type="number" min="1" class="form-control here" formControlName="exchangeRate"
           [(ngModel)]="itemValue.exchangeRate">
-        <div *ngIf="submitted && messageForm.controls.exchangeRate.errors" class="error">
-          <div *ngIf="messageForm.controls.exchangeRate.errors.required">Please insert Carrot's Amount!</div>
+        <div *ngIf="submitted1 && itemForm.controls.exchangeRate.errors" class="error">
+          <div *ngIf="itemForm.controls.exchangeRate.errors.required">Please insert ExchangeRate!</div>
         </div>
       </div>
       <div class="form-group">
         <label>Total Item</label>
-        <input name="text1" type="text" class="form-control here" formControlName="totalItem"
+        <input name="text1" type="number" min="1" class="form-control here" formControlName="totalItem"
           [(ngModel)]="itemValue.totalItem">
-        <div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">
-          <div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>
+        <div *ngIf="submitted1 && itemForm.controls.totalItem.errors" class="error">
+          <div *ngIf="itemForm.controls.totalItem.errors.required">Please insert Total Item!</div>
         </div>
       </div>
       <div class="form-group">
@@ -196,8 +211,8 @@
             <input ngbButton type="radio" [value]="true"> True
           </label>
         </div>
-        <div *ngIf="submitted && messageForm.controls.approvalStatus.errors" class="error">
-          <div *ngIf="messageForm.controls.approvalStatus.errors.required">Please insert Carrot's Amount!</div>
+        <div *ngIf="submitted1 && itemForm.controls.approvalStatus.errors" class="error">
+          <div *ngIf="itemForm.controls.approvalStatus.errors.required">Please insert Approval status!</div>
         </div>
       </div>
       <div class="form-group">
@@ -211,8 +226,8 @@
             <input ngbButton type="radio" [value]="true"> True
           </label>
         </div>
-        <div *ngIf="submitted && messageForm.controls.saleStatus.errors" class="error">
-          <div *ngIf="messageForm.controls.saleStatus.errors.required">Please insert Carrot's Amount!</div>
+        <div *ngIf="submitted1 && itemForm.controls.saleStatus.errors" class="error">
+          <div *ngIf="itemForm.controls.saleStatus.errors.required">Please insert Sale Status!</div>
         </div>
       </div>
     </div>

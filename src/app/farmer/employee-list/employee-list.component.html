@@ -14,12 +14,15 @@
     </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let e of employeeData; let i=index">
+        <td>{{i + 1}}</td>
+        <td>{{e.name}}</td>
+        <td>{{e.role}}</td>
+        <td>{{e.email}}</td>
+        <td>
+          <a class="btn btn-danger" href="javascript:void(0)" (click)="revoke(e.id)" *ngIf="e.role === 'ADMIN'">Revoke Admin</a>
+          <a class="btn btn-info" href="javascript:void(0)" (click)="assign(e.id)" *ngIf="e.role === 'STAFF'">Assign Admin</a>
+        </td>
       </tr>
     </tbody>
   </table>

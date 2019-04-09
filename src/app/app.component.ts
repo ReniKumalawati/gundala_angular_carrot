@@ -38,7 +38,7 @@ export class AppComponent {
     const that = this;
     this.ws.connect({}, function(frame) {
       that.ws.subscribe('/errors', function(message) {
-        alert('Error ' + message.body);
+        that.notification.error('Notification', message.body);
       });
       that.ws.subscribe('/topic/reply', function(message) {
         const pesan = JSON.parse(message.body);
