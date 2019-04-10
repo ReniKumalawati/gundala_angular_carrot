@@ -65,6 +65,10 @@ export class EmployeeService {
     return this.http.get(environment.endpoint + '/api/employees/' + id);
   }
 
+  findEmployeeByAchievement(id) {
+    return this.http.get(environment.endpoint + '/api/employees/achieved?id=' + id);
+  }
+
   showAllEmployee() {
     return this.http.get(environment.endpoint + '/api/employees');
   }
