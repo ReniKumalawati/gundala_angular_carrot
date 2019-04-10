@@ -35,4 +35,8 @@ export class SocialFoundationService {
   findSFById(id) {
     return this.http.get(environment.endpoint + "/api/socialfoundations/" + id);
   }
+
+  uploadImage(id, data) {
+    return this.http.post(environment.endpoint + '/api/socialfoundations/uploadImage/' + id, data);
+  }
 }
