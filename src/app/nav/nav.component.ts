@@ -104,4 +104,8 @@ export class NavComponent implements OnInit {
     });
     this.modal.open(content)
   }
+
+  goNewsletter() {
+    location.href = 'newsletter';
+  }
 }

@@ -2,48 +2,96 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
     <a class="navbar-brand" href="/">
-      <img id="homeLogo" src="assets/img/mitrais-logo.png" alt="">
+      <img id="homeLogo" src="assets/img/mitrais-logo.png" alt="" />
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
-          <ul class="nav-item nav-pills nav-justified">
-              <li class="nav-item">
-                <a class="nav-link" id="linkEmployee" data-toggle="pill" href="employee">Employee</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="linkReward" data-toggle="pill" href="achievement">Achievement</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="linkManager" data-toggle="pill" href="manager">Manager</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="linkFarmer" data-toggle="pill" href="farmer">Farmer</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="linkAdmin" data-toggle="pill" href="administrator">Admin</a>
-              </li>
-            </ul>
+        <ul class="nav-item nav-pills nav-justified">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="linkEmployee"
+              data-toggle="pill"
+              href="employee"
+              >Employee</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="linkReward"
+              data-toggle="pill"
+              href="achievement"
+              >Achievement</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="linkManager"
+              data-toggle="pill"
+              href="manager"
+              >Manager</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="linkFarmer" data-toggle="pill" href="farmer"
+              >Farmer</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="linkAdmin"
+              data-toggle="pill"
+              href="administrator"
+              >Admin</a
+            >
+          </li>
+        </ul>
+        <!-- NEWS LETTER NAVIGATION BUTTON -->
+        <li class="nav-item newsletter">
+          <a class="nav-link newsletter" id="newsletter-button" (onclick)="goNewsletter()">
+            <i class="fas fa-pen-alt fa-2x"></i>
+          </a>
+        </li>
         <li class="nav-item dropdown">
           <div ngbDropdown class="d-inline-block">
-            <a href="javascript:void(0)" class="nav-link dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
+            <a
+              href="javascript:void(0)"
+              class="nav-link dropdown-toggle"
+              id="dropdownBasic1"
+              ngbDropdownToggle
+            >
               <i class="fa fa-bell notif-icon"></i>
               <div [ngClass]="dropdown.length > 0 ? 'notif-active' : ''"></div>
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <a href="javascript:void(0)" (click)="openN(d,openNotif )" ngbDropdownItem
-                 *ngFor="let d of dropdown">
-                {{d.detail}}
+              <a
+                href="javascript:void(0)"
+                (click)="openN(d, openNotif)"
+                ngbDropdownItem
+                *ngFor="let d of dropdown"
+              >
+                {{ d.detail }}
               </a>
             </div>
           </div>
         </li>
         <li class="nav-item logout">
           <a class="nav-link logout" id="logoutButton" (click)="goLogout()">
-              <i class="fas fa-sign-out-alt fa-2x"></i>
+            <i class="fas fa-sign-out-alt fa-2x"></i>
           </a>
         </li>
       </ul>
@@ -55,6 +103,6 @@
     <h4>Notification</h4>
   </div>
   <div class="modal-body">
-    <p>{{msg}}</p>
+    <p>{{ msg }}</p>
   </div>
 </ng-template>

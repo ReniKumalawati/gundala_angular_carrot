@@ -53,6 +53,8 @@ import { ButtonShareComponent } from './manager/freezer/button-share/button-shar
 import { BirthdayInformationComponent } from './administrator/information-function/birthday-information/birthday-information.component';
 import { AchievedAchievementComponent } from './administrator/information-function/achieved-achievement/achieved-achievement.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +100,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FreezerComponent,
     ButtonShareComponent,
     BirthdayInformationComponent,
-    AchievedAchievementComponent
+    AchievedAchievementComponent,
+    NewsletterComponent
   ],
   imports: [
     NgbModule,
