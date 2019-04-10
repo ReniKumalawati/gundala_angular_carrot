@@ -60,9 +60,11 @@ export class ProfileComponent implements OnInit {
 
   passwordSubmit() {
     if (this.match == true && this.match1 == true) {
+      let token = this.employee.token
       this.emp.updateEmployeeIntoDB({password: this.password}, this.employee.id).subscribe(callback => {
         this.employee = callback;
         this.employee = this.employee.employee;
+        this.employee.token = token
         localStorage.setItem('currentUser', JSON.stringify(this.employee));
         this.retrieveEmp();
         this.close()
@@ -73,11 +75,13 @@ export class ProfileComponent implements OnInit {
   }
 
   profileSubmit() {
+    let token = this.employee.token
     this.emp.updateEmployeeIntoDB(this.employeeForm, this.employee.id).subscribe(callback => {
       if (this.base64Encode !== '') {
         this.emp.uploadEmployeeImage(this.employee.id, { img: this.base64Encode }).subscribe(callback => {
           this.employee = callback;
           this.employee = this.employee.employee;
+          this.employee.token = token
           localStorage.setItem('currentUser', JSON.stringify(this.employee));
           console.log('new current employee:   ' + localStorage.currentUser);
           this.retrieveEmp();
@@ -86,6 +90,7 @@ export class ProfileComponent implements OnInit {
       } else {
         this.employee = callback;
         this.employee = this.employee.employee;
+        this.employee.token = token
         localStorage.setItem('currentUser', JSON.stringify(this.employee));
         console.log('new current employee:   ' + localStorage.currentUser);
         this.retrieveEmp();
@@ -102,8 +107,6 @@ export class ProfileComponent implements OnInit {
   }
 
   close() {
-    this.messageForm.reset();
-    this.formPassword.reset()
     this.oldPassword = ''
     this.password = ''
     this.password1 = ''
