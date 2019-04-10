@@ -10,6 +10,16 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./earn-most-carrot.component.scss']
 })
 export class EarnMostCarrotComponent implements OnInit {
+  rows = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+    { name: 'Dany', gender: 'Male', company: 'KFC' },
+    { name: 'Molly', gender: 'Female', company: 'Burger King' },
+  ];
+  columns = [
+    { prop: 'name' },
+    { name: 'emialAddress' },
+    { name: 'Company' }
+  ];
   employees: any;
   employeeForm: FormGroup;
   employeeValue = { name: '', email: '', role: ''};
@@ -17,7 +27,7 @@ export class EarnMostCarrotComponent implements OnInit {
     private transactionService: TransactionService,
     private empService: EmployeeService,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit() {
@@ -29,8 +39,9 @@ export class EarnMostCarrotComponent implements OnInit {
     this.getEmployeesByCarrotEarned();
   }
   getEmployeesByCarrotEarned() {
-    this.transactionService.getMostEarner().subscribe(callback => {
+    this.empService.showAllEmployee().subscribe(callback => {
       this.employees = callback;
+      this.employees = this.employees.listEmployee
     });
   }
 
