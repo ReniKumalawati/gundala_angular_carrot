@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <h2 class="my-3 pl-0 text-grey ml-0">
         <span class="back-button">
-            <a href="/employee"><img src="assets/img/back.png" alt="" class="back" /></a>
+          <a href="/employee"><img src="assets/img/back.png" alt="" class="back" /></a>
         </span>
         EMPLOYEE PAGE
       </h2>
@@ -75,14 +75,10 @@
                   class="form-control here" formControlName="address" [(ngModel)]="employeeForm.address">
               </div>
 
-              <div class="form-group">
-                <label class="info-label" for="employeePassword">Password:</label>
-                <input class="info-data" id="employeePassword" name="employeePassword" type="password"
-                  class="form-control here" formControlName="password" value="{{employee.password}}"
-                  [(ngModel)]="employeeForm.password">
-                <div *ngIf="submitted && formEmployee.controls.employeePassword.errors" class="error">
-                  <div *ngIf="formEmployee.controls.employeePassword.errors.required">Please insert the picture!</div>
-                </div>
+              <div>
+                <button type="button" class="btn btn-info" (click)="open(changePassword)">
+                  <i class="fa fa-plus-circle"></i> Change Password
+                </button>
               </div>
 
               <div class="container mt-3">
@@ -98,12 +94,59 @@
         </div>
       </div>
     </div>
-    <!-- <div class="container mt-3">
-      <div class="row d-flex">
-        <div class="col-md-12 py-3 px-md-0">
-          <button type="submit" class="btn btn-carrot radius-5 pull-right">Save Changes</button>
+  </form>
+  <ng-template #changePassword let-c="close" let-d="dismiss">
+    <form name="passwordForm" (ngSubmit)="passwordSubmit()">
+      <div class="form-group">
+        <label class="info-label" for="oldPassword">Insert old password:</label>
+        <div>
+          <input class="info-data" type="password" [(ngModel)]="oldPassword" name="oldPassword" required>
+          <!-- <h1>{{myForm.oldPassword.$valid}}</h1> -->
+          <!-- <div class="alert alert-danger" [hidden]="!(myForm.oldPassword)">The old password is required</div> -->
+          <!-- <div class="alert alert-danger" ng-show="myForm.oldPassword.$touched && myForm.oldPassword.$invalid">The old
+            password is required</div> -->
         </div>
       </div>
-    </div> -->
-  </form>
+      <div class="form-group">
+        <!-- for password confirmation -->
+        <label class="info-label" for="password1">Insert new password:</label>
+        <div>
+          <input class="info-data" type="password" [(ngModel)]="password1" name="password1" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="info-label" for="password">Confirm new password:</label>
+        <div>
+          <input class="info-data" type="password" [(ngModel)]="passwordForm.password" name="passwordForm.password" required formControlName="passwordForm.password"> 
+        </div>
+      </div>
+        <!-- <label class="info-label" for="employeePassword">Please insert your old password:</label>
+          <input class="info-data" name="oldPassword" type="password" placeholder="old password" formGroupName="formPassword"
+            class="form-control" formControlName="oldPassword" [(ngModel)]="oldPassword" required #password>
+
+            <label class="info-label" for="employeePassword">Please insert your new password:</label>
+          <input class="info-data" name="password1" type="password" placeholder="new password" formGroupName="formPassword"
+            class="form-control" formControlName="password1" required #password1 [(ngModel)]="password1">
+
+            <label class="info-label" for="employeePassword">Please confirm your new password:</label>
+          <input class="info-data" name="password" type="password" placeholder="new password" formGroupName="formPassword"
+            class="form-control" formControlName="password" required #password [(ngModel)]="password">
+            <div class="alert alert-danger" *ngIf="form.controls.password.errors?.MatchPassword">Password not match</div> -->
+
+        <!-- <div *ngIf="password.invalid && (formPassword.submitted || formPassword.touched)" class="alert alert-danger">
+                <div *ngIf="password.errors.required"> Password is required. </div>
+                <div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+              </div> -->
+
+        <!-- <div *ngIf="submitted && formPassword.controls.employeePassword.errors" class="error">
+            <div *ngIf="formPassword.controls.employeePassword.errors.required">Please insert the picture!
+            </div>
+          </div> -->
+      <div class="row d-flex">
+        <div class="col-md-12 py-3 px-md-0 text-center">
+          <button type="submit" class="btn btn-carrot radius-5">Update Password</button>
+        </div>
+      </div>
+    </form>
+  </ng-template>
 </section>
