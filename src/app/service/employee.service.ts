@@ -64,4 +64,8 @@ export class EmployeeService {
   findEmployeeById(id){
     return this.http.get(environment.endpoint + '/api/employees/' + id);
   }
+
+  showAllEmployee() {
+    return this.http.get(environment.endpoint + '/api/employees');
+  }
 }
