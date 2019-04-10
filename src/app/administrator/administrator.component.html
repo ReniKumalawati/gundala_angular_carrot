@@ -132,29 +132,36 @@
         <ngb-tab title="Information Function">
           <ng-template ngbTabContent>
             <div class="container search-box">
-              <ngb-tabset type="tabs">
-                <ngb-tab title="Carrot Most Earner">
-                  <ng-template ngbTabContent>
-                    <div class="container search-box">
-                      <app-earn-most-carrot></app-earn-most-carrot>
-                    </div>
-                  </ng-template>
-                </ngb-tab>
-                <ngb-tab title="Rewards">
-                  <ng-template ngbTabContent>
-                    <div class="container search-box">
-                      <app-rewards></app-rewards>
-                    </div>
-                  </ng-template>
-                </ngb-tab>
-                <ngb-tab title="Birthday Information">
+            <ngb-tabset type="tabs">
+              <ngb-tab title="Carrot Most Earner">
+                <ng-template ngbTabContent>
+                  <div class="container search-box">
+                    <app-earn-most-carrot></app-earn-most-carrot>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Rewards">
+                <ng-template ngbTabContent>
+                  <div class="container search-box">
+                    <app-rewards></app-rewards>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Achievements">
+                <ng-template ngbTabContent>
+                  <div class="container search-box">
+                    <app-achieved-achievement></app-achieved-achievement>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Birthday Information">
                   <ng-template ngbTabContent>
                     <div class="container search-box">
                       <app-birthday-information></app-birthday-information>
                     </div>
                   </ng-template>
                 </ngb-tab>
-              </ngb-tabset>
+            </ngb-tabset>
             </div>
           </ng-template>
         </ngb-tab>

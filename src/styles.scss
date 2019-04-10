@@ -694,3 +694,11 @@ a:hover {
 .error {
   color: red;
 }
+.rounded-circle {
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  //background-position: top center;
+}

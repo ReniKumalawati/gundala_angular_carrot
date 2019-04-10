@@ -55,4 +55,8 @@ export class TransactionService {
   getMostEarner(){
     return this.http.get(environment.endpoint + '/api/transactions/mostearned');
   }
+
+  getAchievedAchievementThisMonth(){
+    return this.http.get(environment.endpoint + '/api/transactions/achieved-achievements');
+  }
 }

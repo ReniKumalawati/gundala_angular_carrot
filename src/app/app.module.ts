@@ -51,6 +51,7 @@ import { RewardsComponent } from './administrator/information-function/rewards/r
 import { FreezerComponent } from './manager/freezer/freezer.component';
 import { ButtonShareComponent } from './manager/freezer/button-share/button-share.component';
 import { BirthdayInformationComponent } from './administrator/information-function/birthday-information/birthday-information.component';
+import { AchievedAchievementComponent } from './administrator/information-function/achieved-achievement/achieved-achievement.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { BirthdayInformationComponent } from './administrator/information-functi
     RewardsComponent,
     FreezerComponent,
     ButtonShareComponent,
-    BirthdayInformationComponent
+    BirthdayInformationComponent,
+    AchievedAchievementComponent
   ],
   imports: [
     NgbModule,
