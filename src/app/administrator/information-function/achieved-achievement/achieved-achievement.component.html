@@ -4,13 +4,12 @@
     <h4 class="my-2 box-title">Achievements which was achieved by employees this year</h4>
   </div>
   <div class="col-md-12">
-    <table id="table-mr" class="table table-hover mt-3">
+    <table id="table-mr" class="table table-borderless table-hover mt-3">
       <thead>
       <tr>
         <th scope="col">No</th>
         <th scope="col">Month</th>
         <th scope="col" class="text-center">Achievements</th>
-        <th scope="col">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -24,6 +23,7 @@
               <th scope="col">Name</th>
               <th scope="col">Carrot</th>
               <th scope="col" class="text-center">Description</th>
+              <th scope="col">Who Achieved This?</th>
             </tr>
             </thead>
             <tbody>
@@ -31,43 +31,46 @@
                 <td>{{achievement.title}}</td>
                 <td>{{achievement.carrot}}</td>
                 <td>{{achievement.description}}</td>
+                <td>
+                  <button type="button" class="btn btn-info" (click)="open(achievement, employeeList)">
+                    <i class="fas fa-user"></i> View
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
         </td>
-        <td><a href="javascript:void(0)" (click)="open(detailEmployee, employee.detail.employee)" class="btn btn-info">VIew profile</a></td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<ng-template #detailEmployee let-c="close" let-d="dismiss">
+<ng-template #employeeList let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h5 class="modal-title" id="modal-basic-title">Employee Profile</h5>
+    <h5 class="modal-title" id="modal-basic-title">Employees Achieved This Achievement</h5>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form [formGroup]="employeeForm">
-    <div class="modal-body">
-      <div class="form-group">
-        <label>Name</label>
-        <input name="text" type="text" class="form-control here" formControlName="name" disabled
-               [(ngModel)]="employeeValue.name">
-      </div>
-
-      <div class="form-group">
-        <label>Email</label>
-        <input name="text" type="text" class="form-control here" formControlName="email" disabled
-               [(ngModel)]="employeeValue.email">
-      </div>
-
-      <div class="form-group">
-        <label>Role</label>
-        <input name="text" type="text" class="form-control here" formControlName="role" disabled
-               [(ngModel)]="employeeValue.role">
-      </div>
-    </div>
-  </form>
+  <div>
+    <table id="table-ach" class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employee; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.role}}</td>
+          <td>{{emp.emailAddress}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ng-template>
