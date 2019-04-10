@@ -3,6 +3,7 @@ import { ProfileService } from '../service/profile.service';
 import { AuthenticationService } from '../service/authentication.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NotificationsService} from 'angular2-notifications';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private auth: AuthenticationService,
+    private notification: NotificationsService,
   ) { }
   employee: any;
   employeeData: Object;
@@ -29,33 +31,20 @@ export class ProfileComponent implements OnInit {
   password: any;
   employeeForm = { address: '', profilePicture: '' };
   passwordForm = { password: '' };
-
-//   MatchPassword(AC: AbstractControl) {
-//     this.password1 = AC.get('password1').value; // to get value in input tag
-//     this.password = AC.get('password').value; // to get value in input tag
-//     if(this.password1 != this.password) {
-//          console.log('false');
-//          AC.get('password').setErrors( {MatchPassword: true} );
-//      } else {
-//          console.log('true');
-//          return null;
-//      }
-//  }
+  match= true;
+  match1= true;
 
   ngOnInit() {
     this.retrieveEmp();
     if (this.employee.profilePicture) {
       this.imageSrc = this.employee.profilePicture.toString();
     }
-
-    console.log(this.imageSrc);
     this.employeeForm.profilePicture = this.imageSrc;
     this.employeeForm.address = this.employee.address;
     this.formEmployee = this.formBuilder.group({
       address: ['', Validators.required],
       profilePicture: ['', Validators.required]
     });
-    this.oldPassword = this.employee.password;
     this.formPassword = this.formBuilder.group({
       password: ['', Validators.required]
     });
@@ -70,15 +59,17 @@ export class ProfileComponent implements OnInit {
   }
 
   passwordSubmit() {
-    console.log('password data sent: ' + JSON.stringify(this.passwordForm));
-    this.emp.updateEmployeeIntoDB(this.passwordForm, this.employee.id).subscribe(callback => {
-      this.employee = callback;
-      this.employee = this.employee.employee;
-      localStorage.setItem('currentUser', JSON.stringify(this.employee));
-      console.log('new current employee:   ' + localStorage.currentUser);
-      this.retrieveEmp();
-      window.alert('password updated');
-    });
+    if (this.match == true && this.match1 == true) {
+      this.emp.updateEmployeeIntoDB({password: this.password}, this.employee.id).subscribe(callback => {
+        this.employee = callback;
+        this.employee = this.employee.employee;
+        localStorage.setItem('currentUser', JSON.stringify(this.employee));
+        this.retrieveEmp();
+        this.close()
+        this.notification.info('Update', 'password updated');
+      });
+    }
+    // console.log('password data sent: ' + JSON.stringify(this.passwordForm));
   }
 
   profileSubmit() {
@@ -112,6 +103,10 @@ export class ProfileComponent implements OnInit {
 
   close() {
     this.messageForm.reset();
+    this.formPassword.reset()
+    this.oldPassword = ''
+    this.password = ''
+    this.password1 = ''
     this.modalService.dismissAll();
   }
 
@@ -125,6 +120,20 @@ export class ProfileComponent implements OnInit {
         this.imageSrc = reader.result.toString();
         this.base64Encode = reader.result.toString().split(',')[1];
       };
+    }
+  }
+  checkOld() {
+    if (this.oldPassword != this.employee.password) {
+      this.match = false;
+    } else {
+      this.match = true;
+    }
+  }
+  checknew() {
+    if (this.password != this.password1) {
+      this.match1 = false;
+    } else {
+      this.match1 = true;
     }
   }
 }
