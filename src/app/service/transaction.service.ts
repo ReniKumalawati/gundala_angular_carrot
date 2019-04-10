@@ -41,7 +41,11 @@ export class TransactionService {
   }
 
   findTransactionByStatusAndDate(data) {
-    return this.http.get(environment.endpoint + '/api/transactions/by-date-status?type=' + data.type + "&&startDate=" + data.from + "&&endDate=" + data.to);
+    if (data.type != false) {
+      return this.http.get(environment.endpoint + '/api/transactions/by-date-status?type=' + data.type + "&&startDate=" + data.from + "&&endDate=" + data.to);
+    } else {
+      return this.http.get(environment.endpoint + '/api/transactions/by-date-status?startDate=' + data.from + "&&endDate=" + data.to);
+    }
   }
 
   approveDonation(id) {

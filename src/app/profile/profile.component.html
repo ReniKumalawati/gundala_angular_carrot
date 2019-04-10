@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <main role="main" class="container12">
   <div class="row d-flex">
     <div class="col-md-6">
@@ -10,9 +11,22 @@
     </div>
     <div class="col-md-6">
     </div>
+=======
+<main role="main" class="container">
+  <div class="row d-flex ml-1">
+    <h2 class="mt-4 pl-0 text-grey ml-0">
+      <span class="back-button">
+        <a *ngIf="employee.role == 'STAFF'" href="/employee"><img src="assets/img/back.png" alt="" class="back" /></a>
+        <a *ngIf="employee.role == 'MANAGER'" href="/manager"><img src="assets/img/back.png" alt="" class="back" /></a>
+        <a *ngIf="employee.role == 'SENIOR_MANAGER'" href="/manager"><img src="assets/img/back.png" alt="" class="back" /></a>
+        <a *ngIf="employee.role == 'ADMIN'" href="/administrator"><img src="assets/img/back.png" alt="" class="back" /></a>
+      </span>
+      EMPLOYEE PAGE
+    </h2>
+>>>>>>> 3baf5ee4d8d8430309db3db2e05686810baaf6d9
   </div>
 </main>
-<section class="create-employee-form pt-2 pb-5">
+<section class="create-employee-form pt-2 pb-5 my-4">
   <form [formGroup]="formEmployee" (ngSubmit)="profileSubmit()">
     <div class="container search-box pt-2" *ngIf="employee">
       <div class="row">
@@ -147,6 +161,12 @@
           <button type="submit" class="btn btn-carrot radius-5">Update Password</button>
         </div>
       </div>
+<<<<<<< HEAD
     </form>
   </ng-template>
 </section>
+=======
+    </div> -->
+  </form>
+</section>
+>>>>>>> 3baf5ee4d8d8430309db3db2e05686810baaf6d9

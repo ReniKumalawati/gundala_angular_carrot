@@ -1,0 +1,94 @@
+<main role="main" class="container" *ngIf="barn">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="mt-4 pl-0 text-grey ml-0">
+              <span class="back-button">
+                <a href="/manager"><img src="assets/img/back.png" alt="" class="back" /></a>
+              </span>
+          MANAGER FREEZER
+        </h2>
+      </div>
+      <div class="col-md-6 pr-0" *ngIf="timestamp >= barn.timestampStart && timestamp <= barn.timestampEnd">
+        <div class="btn-group mt-4 pull-right " role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-outline-success" (click)="open(contentRequest)">Request Frozen Carrot</button>
+          <button type="button" class="btn btn-success" (click)="open(contentRewardEmployee)">Reward Employee</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<ng-template #contentRewardEmployee let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Reward Employee</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="rewardEmployee" (ngSubmit)="submit()">
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Employee</label>
+        <select class="form-control here" formControlName="employee" [(ngModel)]="reward.employee">
+          <option *ngFor="let employee of employeeData" [ngValue]="employee">{{employee.name}}</option>
+        </select>
+        <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
+        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
+        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+      <div class="form-group">
+        <label>Achievement</label>
+        <select class="form-control here" formControlName="reward" [(ngModel)]="reward.achievementClaimed" (change)="change()">
+          <option *ngFor="let data of achievementData" [ngValue]="data">{{data.title}}</option>
+        </select>
+        <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
+        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
+        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+      <div class="form-group">
+        <label>Carrot Amount</label>
+        <input  name="text1" type="text" class="form-control here" formControlName="carrot" [(ngModel)]="reward.carrot_amt" disabled>
+        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
+        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input  name="text1" type="text" class="form-control here" formControlName="description" [(ngModel)]="reward.description">
+        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
+        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+      <div class="form-group">
+        <input type="submit" value="submit" class="btn btn-success">
+      </div>
+    </div>
+  </form>
+</ng-template>
+<ng-template #contentRequest let-c="close" let-d="dismiss">
+  <form [formGroup]="request" (ngSubmit)="submitReq()">
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Barn Name</label>
+      <input type="text" value="submit" class="form-control here" value="{{barn.name}}" disabled>
+    </div>
+    <div class="form-group">
+      <label>Owner</label>
+      <input type="text" value="submit" class="form-control here" value="{{barn.owner.name}}" disabled>
+    </div>
+    <div class="form-group">
+      <label>Carrot Amount</label>
+      <input type="text" value="submit" class="form-control here" [(ngModel)]="requestValue.carrot_amt" formControlName="carrot" >
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" value="submit" class="form-control here" [(ngModel)]="requestValue.description" formControlName="description">
+    </div>
+    <div class="form-group">
+      <input type="submit" value="submit" class="btn btn-success">
+    </div>
+  </div>
+  </form>
+</ng-template>
