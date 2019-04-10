@@ -59,7 +59,6 @@ export class NavComponent implements OnInit {
       break;
 
       case('"ROOT_ADMIN"'):
-      pillElementMgr.remove();
       pillElementRwd.remove();
       break;
 
