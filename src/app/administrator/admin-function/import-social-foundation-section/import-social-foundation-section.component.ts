@@ -1,28 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { SocialFoundationService } from '../../../service/social-foundation.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { SocialFoundationService } from "../../../service/social-foundation.service";
 
 @Component({
   selector: "app-import-social-foundation-section",
   templateUrl: "./import-social-foundation-section.component.html",
   styleUrls: ["./import-social-foundation-section.component.scss"]
 })
+
 export class ImportSocialFoundationSectionComponent implements OnInit {
-  // id:any;
-  socialFoundationObject: object;
   sfTemp: Object;
   submitted = false;
   socialFoundationData: any;
   messageForm: FormGroup;
-
+  imageSource: string;
   base64Image: string;
-  imageSrc: string;
 
   formSocialFoundation = {
     name: '',
     description: '',
-    pictureUrl: '',
     min_carrot: '',
     total_carrot: 0,
     status: false,
@@ -30,7 +27,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   };
 
   constructor(
-    private socialFoundationService: SocialFoundationService,
+    private data: SocialFoundationService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder
   ) {}
@@ -39,14 +36,14 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     this.messageForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      pictureUrl: ['', Validators.required],
       min_carrot: ['', Validators.required]
+      // pictureUrl: ['', Validators.required]
     });
     this.findAllSocialFoundation();
   }
 
   findAllSocialFoundation() {
-    this.socialFoundationService.findAllSocialFoundation().subscribe(callback => {
+    this.data.findAllSocialFoundation().subscribe(callback => {
       this.socialFoundationData = callback;
       this.socialFoundationData = this.socialFoundationData.listSocialFoundation;
       // console.log("dddd");
@@ -54,6 +51,8 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
   }
 
   open(content) {
+    // console.log(content);
+    // this.imageSource = '';
     this.modalService.open(content);
   }
 
@@ -61,6 +60,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     this.messageForm.reset();
     this.modalService.dismissAll();
     this.sfTemp = undefined;
+    this.imageSource = ''; 
   }
 
   submit() {
@@ -69,55 +69,54 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
       // alert('please fulfill the form first');
       return;
     }
-
-    // console.log(this.formSocialFoundation.id);
-    if (this.formSocialFoundation.id != undefined && this.formSocialFoundation.id != "") {
+    
+    console.log(this.formSocialFoundation.id);
+    if (this.formSocialFoundation.id != undefined && this.formSocialFoundation.id != '') {
       let id: any;
       id = this.formSocialFoundation.id;
-      // console.log(id);
       delete this.formSocialFoundation.id;
-      // console.log(this.formSocialFoundation.pictureUrl);
-      this.socialFoundationService.updateSocialFoundation(this.formSocialFoundation, id).subscribe(callback => {
-        let kembalian: any;
-        kembalian = callback;
-        // console.log(kembalian);
-        if (this.base64Image !== '' || this.base64Image !== null) {
-            this.socialFoundationService.uploadImage(id, {img : this.base64Image}).subscribe(imageCallback => {
-              // console.log(imageCallback);
-              // this.id = '';
+      this.data.updateSocialFoundation(this.formSocialFoundation, id).subscribe(callback => {
+          let kembalian: any;
+          kembalian = callback;
+          console.log(kembalian);
+          if (this.base64Image !== '' || this.base64Image !== null ) {
+            this.data.uploadImage(id, { img : this.base64Image }).subscribe(imageCallback => {
+              // console.log('base64 not ""  and not null')
+              id = '';
               this.findAllSocialFoundation();
               this.base64Image = '';
+              // console.log('base64' + this.base64Image);
+              // this.imageSource = '';
               this.close();
             });
           } else {
-            // this.id = '';
+            // console.log('base64 gaada')
+            id = '';
             this.findAllSocialFoundation();
             this.close();
           }
-          // let kembalian: any;
-          // kembalian = callback;
-          // console.log(kembalian);
-          // this.findAllSocialFoundation();
-          // this.close();
         });
     } else {
+      console.log('lari kesini')
       delete this.formSocialFoundation.id;
-      this.socialFoundationService.insertSocialFoundationIntoDB(this.formSocialFoundation).subscribe(callback => {
+      this.data.insertSocialFoundationIntoDB(this.formSocialFoundation).subscribe(callback => {
           let kembalian: any;
           kembalian = callback;
-          // console.log(kembalian);
-          if(this.base64Image !== '') {
-            this.socialFoundationService.uploadImage(kembalian.id, {img : this.base64Image}).subscribe(imageCallback => {
+
+          if (this.base64Image !== '' || this.base64Image !== null) {
+            this.data.uploadImage(kembalian.id, { img : this.base64Image }).subscribe(imageCallback => {
               this.findAllSocialFoundation();
               this.base64Image = '';
+              // this.imageSource = '';
               this.close();
-            })
+            });
           } else {
             this.findAllSocialFoundation();
             this.close();
           }
-          this.findAllSocialFoundation();
-          this.close();
+
+          // this.findAllSocialFoundation();
+          // this.close();
         });
     }
   }
@@ -130,31 +129,28 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
     }
 
     console.log(socialFoundation);
-    this.socialFoundationService
-      .updateSocialFoundation(socialFoundation, socialFoundation.id)
-      .subscribe(callback => {
+    this.data.updateSocialFoundation(socialFoundation, socialFoundation.id).subscribe(callback => {
         this.findAllSocialFoundation();
         this.close();
       });
   }
 
   openEditModal(data, content) {
-    // console.log(data);
-    this.sfTemp = data;
+    // console.log(content);
+    this.sfTemp = data.id;
     this.formSocialFoundation.name = data.name;
     this.formSocialFoundation.description = data.description;
-    this.formSocialFoundation.pictureUrl = data.pictureUrl;
     this.formSocialFoundation.min_carrot = data.min_carrot;
     this.formSocialFoundation.status = data.status;
     this.formSocialFoundation.id = data.id;
+    this.imageSource = data.pictureUrl;
+    // console.log(this.imageSource);
     this.open(content);
-    // console.log(this.sfTemp);
-    // console.log(data);
-    // console.log(this.formSocialFoundation);
+    // this.imageSource = '';
   }
 
   removeSocialFoundationFromDB(id) {
-    this.socialFoundationService.deleteSocialFoundationFromDB(id).subscribe(callback => {
+    this.data.deleteSocialFoundationFromDB(id).subscribe(callback => {
       this.findAllSocialFoundation();
       this.close();
     });
@@ -162,15 +158,14 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
 
   onFileChange(event) {
     let reader = new FileReader();
-    if(event.target.files && event.target.files.length > 0) {
+    if (event.target.files && event.target.files.length > 0) {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.imageSrc = reader.result.toString();
+        this.imageSource = reader.result.toString();
         this.base64Image = reader.result.toString().split(',')[1];
         console.log(this.base64Image);
       };
     }
   }
-
 }

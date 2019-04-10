@@ -23,7 +23,7 @@
           <td>{{ socialFoundation.name }}</td>
           <td>{{ socialFoundation.description }}</td>
           <td>
-            {{socialFoundation.pictureUrl}}
+            <img src="{{ socialFoundation.pictureUrl }}" class="table-image" alt="" *ngIf="socialFoundation.pictureUrl">
           </td>
           <td>{{ socialFoundation.min_carrot }}</td>
           <td>{{ socialFoundation.total_carrot }}</td>
@@ -88,13 +88,22 @@
         <label class="center" for="text">Social Foundation Picture</label>
         <div class="image-upload">
           <label for="file-input" class="text">
-            <img class="img-fluid" id="blah" 
-              [src]="imageSrc"
+            <img
+              class="img-fluid"
+              id="blah"
+              [src]="imageSource"
               alt=""
-              onerror="this.src ='https://res.cloudinary.com/dc1lp90qy/image/upload/v1554800066/pictures/heart.png'">
+              onerror="this.src ='https://res.cloudinary.com/dc1lp90qy/image/upload/v1554800066/pictures/heart.png'"
+            />
           </label>
-          <input id="file-input" type="file" accept="images" (change)="onFileChange($event)" class="form-control here"
-            formControlName="pictureUrl" />
+          <input
+            id="file-input"
+            type="file"
+            accept="images"
+            (change)="onFileChange($event)"
+            class="form-control here"
+          >
+          <!-- formControlName="pictureUrl" -->
         </div>
       </div>
       <div class="form-group">

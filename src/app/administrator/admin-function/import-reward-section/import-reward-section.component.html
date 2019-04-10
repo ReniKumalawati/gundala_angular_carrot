@@ -23,14 +23,14 @@
         <td>{{reward.description}}</td>
         <td> {{reward.status ? 'Active' : 'Inactive' }}</td>
         <td>
-          <a class="delete-row" href="javascript:void(0)" (click)="inactive(reward)" *ngIf="reward.status">
+          <a class="btn btn-info" href="javascript:void(0)" (click)="inactive(reward)" *ngIf="reward.status">
             Inactive
           </a>
-          <a class="delete-row" href="javascript:void(0)" (click)="activate(reward)" *ngIf="!reward.status">
+          <a class="btn btn-info" href="javascript:void(0)" (click)="activate(reward)" *ngIf="!reward.status">
             Activate
-          </a>|
-          <a class="delete-row" href="javascript:void(0)" (click)="removeRewardFromDB(reward.id)">Delete</a> |
-          <a class="edit-row" href="javascript:void(0)" (click)="openEditModal(reward, contentReward)"> Edit</a>
+          </a>
+          <a class="btn btn-danger" href="javascript:void(0)" (click)="removeRewardFromDB(reward.id)">Delete</a> 
+          <a class="edit-row btn btn-info" href="javascript:void(0)" (click)="openEditModal(reward, contentReward)"> Edit</a>
         </td>
       </tr>
       </tbody>

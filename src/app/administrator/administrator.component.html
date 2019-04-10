@@ -12,12 +12,18 @@
         <div class="row box-profile soft-shadow px-0 mr-0">
           <div class="col-md-4 my-auto">
             <img
-              src="{{employee.profilePicture || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'}}"
-              alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
+              src="{{
+                employee.profilePicture ||
+                  'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'
+              }}"
+              alt=""
+              class="img-fluid rounded-circle black-border"
+              id="profile-picture"
+            />
           </div>
           <div class="col-md-8 my-auto">
-            <h4 class="mb-0 text-white">{{employee.name}}</h4>
-            <p class="text-white">{{employee.role}}</p>
+            <h4 class="mb-0 text-white">{{ employee.name }}</h4>
+            <p class="text-white">{{ employee.role }}</p>
             <a href="profile" class="badge badge-white">Show Profile</a>
           </div>
         </div>
@@ -25,10 +31,14 @@
       <div class="col-md-4">
         <div class="row box-carrot px-0 mr-0">
           <div class="col-md-4 my-auto">
-            <img src=" assets/img/carrot-receive.svg" alt="" class="img-fluid">
+            <img
+              src=" assets/img/carrot-receive.svg"
+              alt=""
+              class="img-fluid"
+            />
           </div>
           <div class="col-md-8 my-auto">
-            <h4 class="text-white">You've earned {{total}} carrots!</h4>
+            <h4 class="text-white">You've earned {{ total }} carrots!</h4>
             <!--<a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">-->
             <!--Share carrot!-->
             <!--</a>-->
@@ -38,7 +48,11 @@
       <div class="col-md-4">
         <div class="row box-additional px-0">
           <div class="col-md-4 my-auto">
-            <img src=" assets/img/history-transv2.svg" alt="" class="img-fluid rounded-circle">
+            <img
+              src=" assets/img/history-transv2.svg"
+              alt=""
+              class="img-fluid rounded-circle"
+            />
           </div>
           <div class="col-md-8 my-auto">
             <h4 class="text-white">Carrots Transaction History</h4>
@@ -53,7 +67,6 @@
   <div class="container">
     <div class="col-md-12">
       <ngb-tabset type="pills">
-
         <ngb-tab title="Merchant Functions">
           <ng-template ngbTabContent>
             <app-merchant></app-merchant>
@@ -61,7 +74,10 @@
           <div class="container mt-3">
             <div class="row d-flex">
               <div class="col-md-12 py-3 px-md-0">
-                <button type="submit" class="btn btn-carrot radius-5 pull-right">
+                <button
+                  type="submit"
+                  class="btn btn-carrot radius-5 pull-right"
+                >
                   CREATE BAZAAR
                 </button>
               </div>
@@ -72,43 +88,43 @@
         <ngb-tab title="Admin Functions">
           <ng-template ngbTabContent>
             <div class="container search-box">
-            <ngb-tabset type="tabs">
-              <ngb-tab title="Manager Rewards">
-                <ng-template ngbTabContent>
-                  <div class="container search-box">
-                    <app-import-reward-section></app-import-reward-section>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-              <ngb-tab title="Mitrais Awards">
-                <ng-template ngbTabContent>
-                  <div class="container search-box">
-                    <app-import-award-section></app-import-award-section>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-              <ngb-tab title="Social Foundation">
-                <ng-template ngbTabContent>
-                  <div class="container search-box">
-                    <app-import-social-foundation-section></app-import-social-foundation-section>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-              <ngb-tab title="Transactions">
-                <ng-template ngbTabContent>
-                  <div class="container search-box">
-                    <app-transactions></app-transactions>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-              <ngb-tab title="Groups">
-                <ng-template ngbTabContent>
-                  <div class="container search-box">
-                    <app-groups></app-groups>
-                  </div>
-                </ng-template>
-              </ngb-tab>
-            </ngb-tabset>
+              <ngb-tabset type="tabs">
+                <ngb-tab title="Manager Rewards">
+                  <ng-template ngbTabContent>
+                    <div class="container search-box">
+                      <app-import-reward-section></app-import-reward-section>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Mitrais Awards">
+                  <ng-template ngbTabContent>
+                    <div class="container search-box">
+                      <app-import-award-section></app-import-award-section>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Social Foundation">
+                  <ng-template ngbTabContent>
+                    <div class="container search-box">
+                      <app-import-social-foundation-section></app-import-social-foundation-section>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Transactions">
+                  <ng-template ngbTabContent>
+                    <div class="container search-box">
+                      <app-transactions></app-transactions>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Groups">
+                  <ng-template ngbTabContent>
+                    <div class="container search-box">
+                      <app-groups></app-groups>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
             </div>
           </ng-template>
         </ngb-tab>
@@ -131,6 +147,20 @@
                   </div>
                 </ng-template>
               </ngb-tab>
+              <ngb-tab title="Achievements">
+                <ng-template ngbTabContent>
+                  <div class="container search-box">
+                    <app-achieved-achievement></app-achieved-achievement>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Birthday Information">
+                  <ng-template ngbTabContent>
+                    <div class="container search-box">
+                      <app-birthday-information></app-birthday-information>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
             </ngb-tabset>
             </div>
           </ng-template>

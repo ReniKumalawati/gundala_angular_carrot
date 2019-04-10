@@ -50,6 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RewardsComponent } from './administrator/information-function/rewards/rewards.component';
 import { FreezerComponent } from './manager/freezer/freezer.component';
 import { ButtonShareComponent } from './manager/freezer/button-share/button-share.component';
+import { BirthdayInformationComponent } from './administrator/information-function/birthday-information/birthday-information.component';
+import { AchievedAchievementComponent } from './administrator/information-function/achieved-achievement/achieved-achievement.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { ButtonShareComponent } from './manager/freezer/button-share/button-shar
     EarnMostCarrotComponent,
     RewardsComponent,
     FreezerComponent,
-    ButtonShareComponent
+    ButtonShareComponent,
+    BirthdayInformationComponent,
+    AchievedAchievementComponent
   ],
   imports: [
     NgbModule,

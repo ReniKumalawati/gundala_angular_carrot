@@ -1,108 +1,95 @@
-<main role="main" class="container">
-  <div class="row d-flex ml-1">
-    <h2 class="mt-4 pl-0 text-grey ml-0">
-      <span class="back-button">
-        <a *ngIf="employee.role == 'STAFF'" href="/employee"><img src="assets/img/back.png" alt="" class="back" /></a>
-        <a *ngIf="employee.role == 'MANAGER'" href="/manager"><img src="assets/img/back.png" alt="" class="back" /></a>
-        <a *ngIf="employee.role == 'SENIOR_MANAGER'" href="/manager"><img src="assets/img/back.png" alt="" class="back" /></a>
-        <a *ngIf="employee.role == 'ADMIN'" href="/administrator"><img src="assets/img/back.png" alt="" class="back" /></a>
-      </span>
-      EMPLOYEE PAGE
-    </h2>
+
+<main role="main" class="container12">
+  <div class="row d-flex">
+    <div class="col-md-6">
+    </div>
   </div>
 </main>
 <section class="create-employee-form pt-2 pb-5 my-4">
   <form [formGroup]="formEmployee" (ngSubmit)="profileSubmit()">
-    <div class="container search-box pt-2" *ngIf="employee">
+    <div class="container" *ngIf="employee">
       <div class="row">
-        <div class="col-md-12 ">
-          <hr class="box-title-hr">
-          <h4 class="mt-2 mb-4 box-title">EMPLOYEE DETAILS</h4>
-          <div class="row justify-content-center align-items-center">
-            <div class="col-md-6">
+        <div class="col-md-5 search-box pad">
+          <div class="row align-items-center">
+            <div class="col-md-12">
               <div class="form-group">
-                <label class="center" for="text">Profile picture</label>
-                <!-- <img class="thumbnailpicture" src="imageSrc" alt="" *ngIf="employee.profilePicture"> -->
-                <!-- <div class="container">
-                  <img class="img-fluid rounded-circle center" id="blah" [src]="imageSrc" alt="">
-                  <button class="edit-button"> edot</button>
-                  <input type="file" accept="images" id="avatar" (change)="onFileChange($event)"
-                    class="form-control here" formControlName="profilePicture">
-                </div> -->
-
-                <div class="image-upload">
+                <div class="image-upload backgroudProfile">
                   <label for="file-input" class="text">
                     <img class="img-fluid rounded-circle" id="blah"
-                      [src]="imageSrc || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'"
-                      alt=""
-                      onerror="this.src='https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'">
+                         [src]="imageSrc || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'"
+                         alt=""
+                         onerror="this.src='https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'">
                   </label>
                   <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
-                    class="form-control here" formControlName="profilePicture" />
+                         class="form-control here" formControlName="profilePicture" />
                 </div>
               </div>
 
-              <!-- <div class="form-group">
-                <input id="file-input" type="file" accept="images" (change)="onFileChange($event)"
-                    class="form-control here" formControlName="profilePicture" />
-              </div> -->
-
-              <div class="form-group">
-                <label class="info-label">Name:</label> <br />
-                <label class="info-data">{{employee.name}}</label>
+              <div class="form-group justify-content-center">
+                <h1 class="name">{{employee.name}}</h1>
               </div>
 
               <div class="form-group">
-                <label class="info-label" for="employeeEmail">Email Address: </label> <br />
-                <label class="info-data">{{employee.emailAddress}}</label>
+                <label class=""><i class="far fa-paper-plane"></i> : {{employee.emailAddress}}</label>
               </div>
-
               <div class="form-group">
-                <label class="info-label" for="employeeDoB">Date of Birth: </label> <br />
-                <label class="info-data">{{employee.dob.day}} - {{employee.dob.month}} - {{employee.dob.year}}</label>
+                <label class=""><i class="fas fa-pen-alt"></i> : {{employee.role}}</label>
               </div>
-
               <div class="form-group">
-                <label class="info-label">Role: </label> <br />
-                <label class="info-data">{{employee.role}}</label>
+                <label class=""><i class="fas fa-baby"></i>  : {{employee.dob.day}} - {{employee.dob.month}} - {{employee.dob.year}}</label>
               </div>
-
-              <div class="form-group">
-                <label class="info-label" for="employeeAddress">Address: </label> <br />
-                <!-- <label>{{employee.address}}</label> -->
-                <input class="info-data" id="employeeAddress" name="employeeAddress" type="textar"
-                  class="form-control here" formControlName="address" [(ngModel)]="employeeForm.address">
-              </div>
-
-              <div class="form-group">
-                <label class="info-label" for="employeePassword">Password:</label>
-                <input class="info-data" id="employeePassword" name="employeePassword" type="password"
-                  class="form-control here" formControlName="password" value="{{employee.password}}"
-                  [(ngModel)]="employeeForm.password">
-                <div *ngIf="submitted && formEmployee.controls.employeePassword.errors" class="error">
-                  <div *ngIf="formEmployee.controls.employeePassword.errors.required">Please insert the picture!</div>
-                </div>
-              </div>
-
-              <div class="container mt-3">
-                <div class="row d-flex">
-                  <div class="col-md-12 py-3 px-md-0 text-center">
-                    <button type="submit" class="btn btn-carrot radius-5">Save Changes</button>
-                  </div>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
+        <div class="col-md-6 search-box pad">
+          <div class="form-group">
+            <label class="info-label" >Password: </label> <br />
+            <div class="input-group">
+              <input class="form-control" value="********" disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-info" type="button" (click)="open(changePassword)"><i class="fa fa-key" ></i></button>
+              </span>
+            </div>
+          </div>
+        <div class="form-group">
+          <label class="info-label" >Address: </label> <br />
+          <textarea class="form-control" formControlName="address" [(ngModel)]="employeeForm.address">
+          </textarea>
+        </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-carrot btn-block">Save Changes</button>
+          </div>
+      </div>
       </div>
     </div>
-    <!-- <div class="container mt-3">
-      <div class="row d-flex">
-        <div class="col-md-12 py-3 px-md-0">
-          <button type="submit" class="btn btn-carrot radius-5 pull-right">Save Changes</button>
-        </div>
-      </div>
-    </div> -->
   </form>
 </section>
+
+<ng-template #changePassword let-c="close" let-d="dismiss">
+  <form [formGroup]="formPassword" (ngSubmit)="passwordSubmit()">
+    <div class="form-group">
+      <label >Old Password </label> <br />
+      <input class="form-control" type="password" formControlName="password" [(ngModel)]="oldPassword" (keyup)="checkOld()">
+      <div *ngIf="match == false" class="error">
+        <div>Old Password Doesn't match!!</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>New Password: </label> <br />
+      <input class="form-control" type="password" formControlName="password" [(ngModel)]="password" (keyup)="checknew()">
+      <div *ngIf="match1 == false" class="error">
+        <div>New Password Doesn't match!!</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Retype New Password: </label> <br />
+      <input class="form-control" type="password" formControlName="password" [(ngModel)]="password1" (keyup)="checknew()">
+      <div *ngIf="match1 == false" class="error">
+        <div>New Password Doesn't match!!</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Update" class="btn btn-success btn-block">
+    </div>
+  </form>
+</ng-template>
