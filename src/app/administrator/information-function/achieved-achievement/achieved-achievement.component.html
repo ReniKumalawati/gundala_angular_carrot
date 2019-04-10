@@ -1,25 +1,40 @@
 <div style="background-color: white">
   <div class="col-md-12">
     <hr class="box-title-hr">
-    <h4 class="my-2 box-title">Achievements which was achieved by employees this month</h4>
+    <h4 class="my-2 box-title">Achievements which was achieved by employees this year</h4>
   </div>
   <div class="col-md-12">
     <table id="table-mr" class="table table-hover mt-3">
       <thead>
       <tr>
         <th scope="col">No</th>
-        <th scope="col">Name</th>
-        <th scope="col">Carrot Earned</th>
-        <th scope="col">Description</th>
+        <th scope="col">Month</th>
+        <th scope="col" class="text-center">Achievements</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let achievement of achievements; let i = index">
+      <tr *ngFor="let month of achievements; let i = index">
         <td>{{i + 1}}</td>
-        <td>{{achievement.title}}</td>
-        <td>{{achievement.carrot}}</td>
-        <td>{{achievement.description}}</td>
+        <td>{{month.month}}</td>
+        <td>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Carrot</th>
+              <th scope="col" class="text-center">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let achievement of month.achievements">
+                <td>{{achievement.title}}</td>
+                <td>{{achievement.carrot}}</td>
+                <td>{{achievement.description}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
         <td><a href="javascript:void(0)" (click)="open(detailEmployee, employee.detail.employee)" class="btn btn-info">VIew profile</a></td>
       </tr>
       </tbody>
