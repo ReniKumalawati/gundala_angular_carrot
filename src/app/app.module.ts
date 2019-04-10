@@ -52,7 +52,7 @@ import { FreezerComponent } from './manager/freezer/freezer.component';
 import { ButtonShareComponent } from './manager/freezer/button-share/button-share.component';
 import { BirthdayInformationComponent } from './administrator/information-function/birthday-information/birthday-information.component';
 import { AchievedAchievementComponent } from './administrator/information-function/achieved-achievement/achieved-achievement.component';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +108,8 @@ import { AchievedAchievementComponent } from './administrator/information-functi
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    NgxDatatableModule
   ],
   providers: [NgbActiveModal, {provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true}],
   entryComponents: [

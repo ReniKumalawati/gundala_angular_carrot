@@ -4,24 +4,28 @@
     <h4 class="my-2 box-title">EMPLOYEES SORTED BY EARNED CARROT</h4>
   </div>
   <div class="col-md-12">
-    <table id="table-mr" class="table table-hover mt-3">
-      <thead>
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">Name</th>
-        <th scope="col">Carrot Earned</th>
-        <th scope="col">Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let employee of employees; let i = index">
-        <td>{{i + 1}}</td>
-        <td>{{employee.detail.employee.name}}</td>
-        <td>{{employee.total}}</td>
-        <td><a href="javascript:void(0)" (click)="open(detailEmployee, employee.detail.employee)" class="btn btn-info">VIew profile</a></td>
-      </tr>
-      </tbody>
-    </table>
+    <ngx-datatable
+      [rows]="employees"
+      [columns]="columns">
+    </ngx-datatable>
+    <!--<table id="dttbl" class="table table-hover mt-3">-->
+      <!--<thead>-->
+      <!--<tr>-->
+        <!--<th scope="col">No</th>-->
+        <!--<th scope="col">Name</th>-->
+        <!--<th scope="col">Carrot Earned</th>-->
+        <!--<th scope="col">Action</th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr *ngFor="let employee of employees; let i = index">-->
+        <!--<td>{{i + 1}}</td>-->
+        <!--<td>{{employee.name}}</td>-->
+        <!--<td>{{employee.name}}</td>-->
+        <!--<td><a href="javascript:void(0)" (click)="open(detailEmployee, employee)" class="btn btn-info">VIew profile</a></td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
   </div>
 </div>
 
