@@ -35,10 +35,10 @@
               <div class="form-group">
                 <label>Status</label>
                 <select class="form-control here" formControlName="status" [(ngModel)]="search.status">
-                  <option value="ALL">ALL</option>
-                  <option value="PENDING">PENDING</option>
-                  <option value="APPROVED">APPROVED</option>
-                  <option value="DECLINE">DECLINE</option>
+                  <option [ngValue]="'ALL'">ALL</option>
+                  <option [ngValue]="'PENDING'">PENDING</option>
+                  <option [ngValue]="'APPROVED'">APPROVED</option>
+                  <option [ngValue]="'DECLINE'">DECLINE</option>
                 </select>
               </div>
             </div>

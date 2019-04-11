@@ -16,7 +16,7 @@ export class MerchantTransactionComponent implements OnInit {
   transactions: any;
   transactionsData = [];
   selectedIdTransaction = [];
-  search = {item: 'ALL', status: 'ALL  ', from: '', to: ''};
+  search = {item: 'ALL', status: 'ALL', from: '', to: ''};
   item = [];
   constructor(
     private bazaarService: BazarService,
@@ -61,8 +61,9 @@ export class MerchantTransactionComponent implements OnInit {
   getTransactionByBazar (id) {
       this.transactionService.findTransactionByBazar(id).subscribe(callback => {
         this.transactions = callback;
+        this.transactions = this.transactions.listTransaction
         this.item = [];
-        for (let transaction of this.transactions.listTransaction) {
+        for (let transaction of this.transactions) {
           transaction.transactiondate = new Date(transaction.transaction_date).getTime();
           this.transactionsData.push(transaction)
           if (this.item.indexOf(transaction.requested_item.itemName) < 0) {
