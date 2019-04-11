@@ -10,11 +10,11 @@ import { NewsletterService } from '../service/newsletter.service';
 })
 export class NewsletterComponent implements OnInit {
   currentUser: any;
-  name: string;
+  // name: string;
 
   form: FormGroup;
 
-  newsletterForm: {
+  newsletterValue = {
     newsletterSubject: '',
     newsletterContent: '',
     senderName: ''
@@ -27,8 +27,9 @@ export class NewsletterComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser.name);
-    this.name = this.currentUser.name;
+    console.log(this.currentUser);
+    this.newsletterValue.senderName = this.currentUser.name;
+    console.log(this.newsletterValue.senderName);
 
     this.form = this.formBuilder.group({
       subject: ['', Validators.required],
@@ -36,7 +37,15 @@ export class NewsletterComponent implements OnInit {
     });
   }
 
-  sendNewsletter() {
+  onSubmit() {
     // this.newsletterService.postNewsletter(data).subscribe()
+    if (this.form.invalid) {
+      console.log('form invalid')
+      return;
+    }
+    
+    console.log('disini' + this.form.get('subject').value);
+    // console.log(this.newsletterValue.newsletterContent);
+
   }
 }
