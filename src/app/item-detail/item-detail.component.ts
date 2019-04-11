@@ -34,7 +34,7 @@ export class ItemDetailComponent implements OnInit {
   }
 
   findBasketByEmployeeId() {
-    this.employeeService.findBasketByEmployeeId(this.basketData.id).subscribe(callback => {
+    this.employeeService.findBasketByEmployeeId(this.basketData.employee.id).subscribe(callback => {
       this.basket = callback;
       console.log(this.basket);
     })
