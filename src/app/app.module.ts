@@ -54,6 +54,7 @@ import { BirthdayInformationComponent } from './administrator/information-functi
 import { AchievedAchievementComponent } from './administrator/information-function/achieved-achievement/achieved-achievement.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { FarmerTransactionsComponent } from './farmer/farmer-transactions/farmer-transactions.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     ButtonShareComponent,
     BirthdayInformationComponent,
     AchievedAchievementComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    FarmerTransactionsComponent,
   ],
   imports: [
     NgbModule,
