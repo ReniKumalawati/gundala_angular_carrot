@@ -1,0 +1,76 @@
+<div style="background-color: white">
+  <div class="col-md-12">
+    <hr class="box-title-hr">
+    <h4 class="my-2 box-title">Achievements which was achieved by employees this year</h4>
+  </div>
+  <div class="col-md-12">
+    <table id="table-mr" class="table table-borderless table-hover mt-3">
+      <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Month</th>
+        <th scope="col" class="text-center">Achievements</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let month of achievements; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{month.month}}</td>
+        <td>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Carrot</th>
+              <th scope="col" class="text-center">Description</th>
+              <th scope="col">Who Achieved This?</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let achievement of month.achievements">
+                <td>{{achievement.title}}</td>
+                <td>{{achievement.carrot}}</td>
+                <td>{{achievement.description}}</td>
+                <td>
+                  <button type="button" class="btn btn-info" (click)="open(achievement, employeeList)">
+                    <i class="fas fa-user"></i> View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #employeeList let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Employees Achieved This Achievement</h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div>
+    <table id="table-ach" class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employee; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.role}}</td>
+          <td>{{emp.emailAddress}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

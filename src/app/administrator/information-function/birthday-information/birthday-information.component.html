@@ -1,34 +1,31 @@
 <div style="background-color: white">
   <div class="col-md-12">
     <hr class="box-title-hr">
-    <h4 class="my-2 box-title">EMPLOYEES SORTED BY EARNED CARROT</h4>
+    <h4 class="my-2 box-title">Birth Date List of All Employee</h4>
   </div>
   <div class="col-md-12">
-    <ngx-datatable
-      [rows]="employees"
-      [columns]="columns">
-    </ngx-datatable>
-    <!--<table id="dttbl" class="table table-hover mt-3">-->
-      <!--<thead>-->
-      <!--<tr>-->
-        <!--<th scope="col">No</th>-->
-        <!--<th scope="col">Name</th>-->
-        <!--<th scope="col">Carrot Earned</th>-->
-        <!--<th scope="col">Action</th>-->
-      <!--</tr>-->
-      <!--</thead>-->
-      <!--<tbody>-->
-      <!--<tr *ngFor="let employee of employees; let i = index">-->
-        <!--<td>{{i + 1}}</td>-->
-        <!--<td>{{employee.name}}</td>-->
-        <!--<td>{{employee.name}}</td>-->
-        <!--<td><a href="javascript:void(0)" (click)="open(detailEmployee, employee)" class="btn btn-info">VIew profile</a></td>-->
-      <!--</tr>-->
-      <!--</tbody>-->
-    <!--</table>-->
+    <table id="table-mr" class="table table-hover mt-3">
+      <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Birth Date</th>
+        <th scope="col">Role</th>
+      </tr>
+      </thead>
+      <tbody>
+        {{employeeList}}
+      <tr *ngFor="let employee of employeesList; let i = index"> <!-- *ngFor="let employee of employees; let i = index -->
+        <td>{{ i + 1 }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.dob }}</td>
+        <td>{{ employee.role }}</td> <!-- <a href="javascript:void(0)" (click)="open(detailEmployee, employee.detail.employee)" class="btn btn-info">VIew profile</a> -->
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
-
+<!-- 
 <ng-template #detailEmployee let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h5 class="modal-title" id="modal-basic-title">Employee Profile</h5>
@@ -57,4 +54,4 @@
       </div>
     </div>
   </form>
-</ng-template>
+</ng-template> -->

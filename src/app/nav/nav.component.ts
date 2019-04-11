@@ -59,7 +59,6 @@ export class NavComponent implements OnInit {
       break;
 
       case('"ROOT_ADMIN"'):
-      pillElementMgr.remove();
       pillElementRwd.remove();
       break;
 
@@ -104,5 +103,9 @@ export class NavComponent implements OnInit {
       this.allData.emit();
     });
     this.modal.open(content)
+  }
+
+  goNewsletter() {
+    location.href = 'newsletter';
   }
 }
