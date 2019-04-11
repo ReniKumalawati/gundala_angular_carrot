@@ -68,7 +68,7 @@ export class DetailSFComponent implements OnInit {
       let hasil:any = callback
       this.close();
       alert(hasil.message)
-      location.href = '/transaction-histories'
+      // location.href = '/transaction-histories'
     });
   }
 

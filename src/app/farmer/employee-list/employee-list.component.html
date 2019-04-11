@@ -20,8 +20,9 @@
         <td>{{e.role}}</td>
         <td>{{e.email}}</td>
         <td>
-          <a class="btn btn-danger" href="javascript:void(0)" (click)="revoke(e.id)" *ngIf="e.role === 'ADMIN'">Revoke Admin</a>
-          <a class="btn btn-info" href="javascript:void(0)" (click)="assign(e.id)" *ngIf="e.role === 'STAFF'">Assign Admin</a>
+          <a class="btn btn-danger" href="javascript:void(0)" (click)="revoke(e.id)" *ngIf="e.role === 'ADMIN' || e.role ==='MANAGER'">Revoke Role</a>
+          <a class="btn btn-info" href="javascript:void(0)" (click)="assign(e.id, admin)" *ngIf="e.role === 'STAFF' || e.role ==='MANAGER'">Assign Admin</a>
+          <a class="btn btn-info" href="javascript:void(0)" (click)="assign(e.id, manager)" *ngIf="e.role === 'STAFF' || e.role==='ADMIN'">Assign Manager</a>
         </td>
       </tr>
     </tbody>

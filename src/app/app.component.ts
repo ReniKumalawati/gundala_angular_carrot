@@ -44,6 +44,7 @@ export class AppComponent {
       });
       that.ws.subscribe('/topic/reply', function(message) {
         const pesan = JSON.parse(message.body);
+        console.log(pesan);
         if (that.employee.id === pesan.owner.id) {
           if (pesan.show === true) {
             that.notification.info('Notification', pesan.detail);
@@ -55,7 +56,7 @@ export class AppComponent {
               })
               if (that.employee.role === 'MANAGER' || that.employee.role === 'SENIOR_MANAGER') {
                 that.employeeService.findFrezeerByOwner(that.employee.id).subscribe(callback1 => {
-                  localStorage.setItem("currentBasket", JSON.stringify(callback1))
+                  localStorage.setItem("currentFreezer", JSON.stringify(callback1))
                 })
               }
             }

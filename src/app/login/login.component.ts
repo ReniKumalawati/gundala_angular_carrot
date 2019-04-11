@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           location.href = '/administrator';
           break;
         case 'ROOT_ADMIN':
-          location.href = '/';
+          location.href = '/farmer';
           break;
         default:
           location.href = '/employee';

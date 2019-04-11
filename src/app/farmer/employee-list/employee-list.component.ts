@@ -8,6 +8,8 @@ import {EmployeeService} from '../../service/employee.service';
 })
 export class EmployeeListComponent implements OnInit {
   employeeData: any;
+  admin: string = 'ADMIN';
+  manager: string = 'MANAGER';
   constructor(
     private employeeService: EmployeeService
   ) { }
@@ -17,7 +19,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   findAllEmployeeStaffAndAdmin() {
-    this.employeeService.findEmployeeByRoles([{role: 'STAFF'}, {role: 'ADMIN'}]).subscribe(callback => {
+    this.employeeService.findEmployeeByRoles([{role: 'STAFF'}, {role: 'ADMIN'}, {role: 'MANAGER'}]).subscribe(callback => {
       console.log(callback);
       this.employeeData = callback;
       this.employeeData = this.employeeData.listEmployee
@@ -30,8 +32,10 @@ export class EmployeeListComponent implements OnInit {
     })
   }
 
-  assign(id) {
-    this.employeeService.assign(id).subscribe(callback => {
+  assign(id,role) {
+    console.log(id);
+    console.log(role);
+    this.employeeService.assign(id,role).subscribe(callback => {
       this.findAllEmployeeStaffAndAdmin()
     })
   }

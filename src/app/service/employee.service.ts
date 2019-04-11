@@ -57,8 +57,8 @@ export class EmployeeService {
     return this.http.patch(environment.endpoint + "/api/employees/revoke?id=" + id, {});
   }
 
-  assign(id) {
-    return this.http.patch(environment.endpoint + "/api/employees/admin?id=" + id, {});
+  assign(id,role) {
+    return this.http.patch(environment.endpoint + "/api/employees/change-role?id=" + id + "&role=" + role, {});
   }
 
   findEmployeeById(id){
