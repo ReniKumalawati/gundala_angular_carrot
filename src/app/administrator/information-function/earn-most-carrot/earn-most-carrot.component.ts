@@ -31,7 +31,7 @@ export class EarnMostCarrotComponent implements OnInit {
       {prop: 'donation', name: 'Donation', width: 120},
       {prop: 'shared', name: 'Shared', width: 120},
       {prop: 'reward', name: 'Reward', width: 120},
-      {prop: 'carrotthisMonth', name: 'Carrot Earned this Month', width: 120},
+      {prop: 'carrotThisMonth', name: 'Carrot Earned this Month', width: 120},
       {headerTemplate: this.hdrTpl, name:'Actions', cellTemplate: this.editTmpl, prop: 'employee'}
   ];
     this.employeeForm = this.formBuilder.group({
@@ -48,8 +48,8 @@ export class EarnMostCarrotComponent implements OnInit {
       for (let t of kembalian) {
         let data = {name: t.detail.employee.name, carrotEarned: t.total
           , carrotLeft: t.detail.carrot_amt, employee: t.detail.employee,
-          donation: t.donation, shared: t.shared, reward: t.reward}
-        this.employees.push(data)
+          donation: t.donation, shared: t.shared, reward: t.reward, carrotThisMonth: t.carrotThisMonth};
+        this.employees.push(data);
         this.employees = [...this.employees]
       }
     });
