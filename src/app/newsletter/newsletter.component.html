@@ -1,7 +1,41 @@
 <main role="main" class="container">
   <div class="row d-flex ml-1">
     <h2 class="mt-4 pl-0 text-grey ml-0">
-      ADMINISTRATOR DASHBOARD
+      Newsletter
     </h2>
   </div>
 </main>
+
+<div class="container search-box">
+  <div class="row">
+    <div class="col-md-12">
+      <hr class="box-title-hr" />
+      <h5 class="my-2 box-title">Write a Newsletter</h5>
+    </div>
+  </div>
+
+  <form>
+    <div class="form-group">
+      <!-- <label>News Letter Subject</label> -->
+      <input
+        type="text"
+        id="subjek"
+        name="subjek"
+        class="form-control"
+        placeholder="Subject"
+        required=""
+        autofocus=""
+      >
+    </div>
+
+    <div class="form-group">
+      <textarea rows= "13" class="form-control" placeholder="Insert your message here"></textarea>
+    </div>
+
+    <div class="text-center">
+        <button type="button" class="btn btn-info" >
+            <i class="fas fa-paper-plane"></i> Send
+        </button>
+      </div>
+  </form>
+</div>
