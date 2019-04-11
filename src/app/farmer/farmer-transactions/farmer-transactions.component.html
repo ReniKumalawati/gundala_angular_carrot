@@ -15,7 +15,7 @@
       </thead>
       <tbody>
       <ng-container *ngFor="let transaction of pendingTransactions">
-        <tr *ngIf="transaction.type !== 'BAZAAR'">
+        <tr *ngIf="transaction.type === 'REQUEST' || transaction.type === 'FUNNEL'">
           <td>{{transaction.from}}</td>
           <td>{{transaction.type}}</td>
           <td>{{transaction.description}}</td>

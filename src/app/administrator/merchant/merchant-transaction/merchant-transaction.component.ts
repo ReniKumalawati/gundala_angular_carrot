@@ -16,7 +16,7 @@ export class MerchantTransactionComponent implements OnInit {
   transactions: any;
   transactionsData = [];
   selectedIdTransaction = [];
-  search = {item: 'ALL', status: 'ALL  ', from: '', to: ''};
+  search = {item: 'ALL', status: 'ALL', from: '', to: ''};
   item = [];
   constructor(
     private bazaarService: BazarService,
@@ -46,21 +46,24 @@ export class MerchantTransactionComponent implements OnInit {
   }
 
   getBazaarByOwner () {
+    this.transactionsData = [];
     this.bazaarService.findBazaarByOwnerId(this.user.id).subscribe(callback => {
       this.bazaar = callback;
       console.log(this.bazaar)
       if (this.bazaar) {
-        this.getTransactionByBazar();
+        for (let bz of this.bazaar) {
+          this.getTransactionByBazar(bz.id);
+        }
       }
     });
   }
 
-  getTransactionByBazar () {
-      this.transactionService.findTransactionByBazar(this.bazaar.id).subscribe(callback => {
+  getTransactionByBazar (id) {
+      this.transactionService.findTransactionByBazar(id).subscribe(callback => {
         this.transactions = callback;
+        this.transactions = this.transactions.listTransaction
         this.item = [];
-        this.transactionsData = [];
-        for (let transaction of this.transactions.listTransaction) {
+        for (let transaction of this.transactions) {
           transaction.transactiondate = new Date(transaction.transaction_date).getTime();
           this.transactionsData.push(transaction)
           if (this.item.indexOf(transaction.requested_item.itemName) < 0) {
@@ -74,7 +77,7 @@ export class MerchantTransactionComponent implements OnInit {
     this.selectedIdTransaction.forEach((e, index) => {
       this.transactionService.approve(e).subscribe(callback => {
         if (index == (this.selectedIdTransaction.length - 1)) {
-          this.getTransactionByBazar()
+          this.getBazaarByOwner()
         }
       })
     })
@@ -84,7 +87,7 @@ export class MerchantTransactionComponent implements OnInit {
     this.selectedIdTransaction.forEach((e, index) => {
       this.transactionService.decline(e).subscribe(callback => {
         if (index == (this.selectedIdTransaction.length - 1)) {
-          this.getTransactionByBazar()
+          this.getBazaarByOwner()
         }
       })
     })

@@ -12,6 +12,7 @@
         <th scope="col">Carrot</th>
         <th scope="col">Description</th>
         <th scope="col">Status</th>
+        <th scope="col">Reason</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
@@ -22,8 +23,9 @@
         <td>{{reward.carrot}}</td>
         <td>{{reward.description}}</td>
         <td> {{reward.status ? 'Active' : 'Inactive' }}</td>
+        <td> {{reward.reasoning }}</td>
         <td>
-          <a class="btn btn-info" href="javascript:void(0)" (click)="inactive(reward)" *ngIf="reward.status">
+          <a class="delete-row" href="javascript:void(0)" (click)="inactive(reward, contentMessage)" *ngIf="reward.status">
             Inactive
           </a>
           <a class="btn btn-info" href="javascript:void(0)" (click)="activate(reward)" *ngIf="!reward.status">
@@ -79,4 +81,28 @@
     </div>
   </form>
 </ng-template>
-<!--<app-modal-loading></app-modal-loading>-->
+<ng-template #contentMessage let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title">Reason Why Achievement disable</h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="disableForm" (ngSubmit)="submitMessage()">
+      <div class="form-group">
+        <label for="text1">Message</label>
+        <textarea name="text1" type="number" min="1" class="form-control here" formControlName="msg" [(ngModel)]="msg"></textarea>
+        <!--<div *ngIf="submitted && messageForm.controls.carrot.errors" class="error">-->
+          <!--<div *ngIf="messageForm.controls.carrot.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+      <div class="form-group">
+        <input type="submit" value="submit" class="btn btn-success btn-block">
+        <!--<div *ngIf="submitted && messageForm.controls.carrot.errors" class="error">-->
+        <!--<div *ngIf="messageForm.controls.carrot.errors.required">Please insert Carrot's Amount!</div>-->
+        <!--</div>-->
+      </div>
+    </form>
+  </div>
+</ng-template>

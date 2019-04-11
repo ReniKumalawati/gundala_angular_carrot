@@ -4,31 +4,37 @@
     <h4 class="my-2 box-title">Reward List</h4>
   </div>
   <div class="col-md-12">
-    <table id="table-mr" class="table table-hover mt-3">
-      <thead>
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Sale Status</th>
-        <th scope="col">Approval Status</th>
-        <th scope="col">Exchange Rate</th>
-        <th scope="col">Total Item</th>
-        <th scope="col">Item Sold</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of itemData; let i = index">
-        <td>{{i + 1}}</td>
-        <td>{{item.itemName}}</td>
-        <td>{{item.itemDescription}}</td>
-        <td>{{item.saleStatus}}</td>
-        <td>{{item.approvalStatus}}</td>
-        <td>{{item.exchangeRate}}</td>
-        <td>{{item.totalItem}}</td>
-        <td>{{item.itemSold}}</td>
-      </tr>
-      </tbody>
-    </table>
+    <ngx-datatable
+      [rows]="itemData"
+      [rowHeight]="'auto'"
+      [headerHeight]="'auto'"
+      [columns]="columns">
+    </ngx-datatable>
+    <!--<table id="table-mr" class="table table-hover mt-3">-->
+      <!--<thead>-->
+      <!--<tr>-->
+        <!--<th scope="col">No</th>-->
+        <!--<th scope="col">Name</th>-->
+        <!--<th scope="col">Description</th>-->
+        <!--<th scope="col">Sale Status</th>-->
+        <!--<th scope="col">Approval Status</th>-->
+        <!--<th scope="col">Exchange Rate</th>-->
+        <!--<th scope="col">Total Item</th>-->
+        <!--<th scope="col">Item Sold</th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr *ngFor="let item of itemData; let i = index">-->
+        <!--<td>{{i + 1}}</td>-->
+        <!--<td>{{item.itemName}}</td>-->
+        <!--<td>{{item.itemDescription}}</td>-->
+        <!--<td>{{item.saleStatus}}</td>-->
+        <!--<td>{{item.approvalStatus}}</td>-->
+        <!--<td>{{item.exchangeRate}}</td>-->
+        <!--<td>{{item.totalItem}}</td>-->
+        <!--<td>{{item.itemSold}}</td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
   </div>
 </div>

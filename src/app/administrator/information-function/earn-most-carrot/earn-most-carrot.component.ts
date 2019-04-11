@@ -1,26 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {TransactionService} from '../../../service/transaction.service';
 import {EmployeeService} from '../../../service/employee.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
+declare var $;
 @Component({
   selector: 'app-earn-most-carrot',
   templateUrl: './earn-most-carrot.component.html',
   styleUrls: ['./earn-most-carrot.component.scss']
 })
 export class EarnMostCarrotComponent implements OnInit {
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
-  columns = [
-    { prop: 'name' },
-    { name: 'emialAddress' },
-    { name: 'Company' }
-  ];
-  employees: any;
+  @ViewChild('hdrTpl') hdrTpl: TemplateRef<any>;
+  @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
+  columns = []
+  employees = [];
   employeeForm: FormGroup;
   employeeValue = { name: '', email: '', role: ''};
   constructor(
@@ -31,6 +24,16 @@ export class EarnMostCarrotComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.columns = [
+      { prop: 'name', name: 'Name', sortable: false},
+      { prop: 'carrotEarned', name: 'Total Carrot Earned', width: 100 },
+      {prop: 'carrotLeft', name: 'Carrot Left', width: 120},
+      {prop: 'donation', name: 'Donation', width: 120},
+      {prop: 'shared', name: 'Shared', width: 120},
+      {prop: 'reward', name: 'Reward', width: 120},
+      {prop: 'carrotthisMonth', name: 'Carrot Earned this Month', width: 120},
+      {headerTemplate: this.hdrTpl, name:'Actions', cellTemplate: this.editTmpl, prop: 'employee'}
+  ];
     this.employeeForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -39,9 +42,16 @@ export class EarnMostCarrotComponent implements OnInit {
     this.getEmployeesByCarrotEarned();
   }
   getEmployeesByCarrotEarned() {
-    this.empService.showAllEmployee().subscribe(callback => {
-      this.employees = callback;
-      this.employees = this.employees.listEmployee
+    this.employees = []
+    this.transactionService.getMostEarner().subscribe(callback => {
+      let kembalian:any = callback;
+      for (let t of kembalian) {
+        let data = {name: t.detail.employee.name, carrotEarned: t.total
+          , carrotLeft: t.detail.carrot_amt, employee: t.detail.employee,
+          donation: t.donation, shared: t.shared, reward: t.reward}
+        this.employees.push(data)
+        this.employees = [...this.employees]
+      }
     });
   }
 

@@ -4,6 +4,7 @@ import * as SockJS from 'sockjs-client';
 import {AuthenticationService} from './service/authentication.service';
 import {NotificationsService} from 'angular2-notifications';
 import {NotificationService} from './service/notification.service';
+import {EmployeeService} from './service/employee.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +24,8 @@ export class AppComponent {
   constructor(
     private auth: AuthenticationService,
     private notification: NotificationsService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private employeeService: EmployeeService
   ) {}
   ngOnInit() {
     this.employee = JSON.parse(this.auth.currentEmployee());
@@ -43,8 +45,21 @@ export class AppComponent {
       that.ws.subscribe('/topic/reply', function(message) {
         const pesan = JSON.parse(message.body);
         if (that.employee.id === pesan.owner.id) {
-          that.notification.info('Notification', pesan.detail);
-          that.dropdown.push(pesan);
+          if (pesan.show === true) {
+            that.notification.info('Notification', pesan.detail);
+            that.dropdown.push(pesan);
+          } else {
+            if (pesan.type === 'update') {
+              that.employeeService.findBasketByEmployeeId(that.employee.id).subscribe(callback1 => {
+                localStorage.setItem("currentBasket", JSON.stringify(callback1))
+              })
+              if (that.employee.role === 'MANAGER' || that.employee.role === 'SENIOR_MANAGER') {
+                that.employeeService.findFrezeerByOwner(that.employee.id).subscribe(callback1 => {
+                  localStorage.setItem("currentBasket", JSON.stringify(callback1))
+                })
+              }
+            }
+          }
         }
       });
       that.disabled = true;

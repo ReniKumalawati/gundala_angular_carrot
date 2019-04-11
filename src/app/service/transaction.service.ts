@@ -28,6 +28,10 @@ export class TransactionService {
     return this.http.patch(environment.endpoint + '/api/transactions/approve?id=' + id, {});
   }
 
+  approveRequest (id) {
+    return this.http.patch(environment.endpoint + '/api/transactions/approve-request?id=' + id, {});
+  }
+
   decline (id) {
     return this.http.patch(environment.endpoint + '/api/transactions/decline?id=' + id, {});
   }

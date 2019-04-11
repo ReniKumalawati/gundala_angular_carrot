@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   employee: any;
   submitted = false;
-  formLogin = {email: '', password: ''}
+  formLogin = {email: '', password: ''};
   load: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required, ],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -46,14 +46,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('currentFreezer', JSON.stringify(this.employee.freezer));
         console.log(emp.role);
         switch (emp.role) {
-        case 'MANAGER' || 'SENIOR_MANAGER':
+        case 'MANAGER':
           location.href = '/manager';
           break;
         case 'ADMIN':
           location.href = '/administrator';
           break;
         case 'ROOT_ADMIN':
-          location.href = '/farmer';
+          location.href = '/';
           break;
         default:
           location.href = '/employee';

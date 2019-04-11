@@ -12,7 +12,10 @@ import {ModalLoadingComponent} from '../../../partial/modal-loading/modal-loadin
 export class ImportRewardSectionComponent implements OnInit {
   rewardsData: Object;
   messageForm: FormGroup;
+  disableForm: FormGroup;
   submitted = false;
+  msg = '';
+  dataInactive: any;
   formReward = {title: '', carrot: 0, status: false, description: '', id: ''}
   constructor(private data: RewardsService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
@@ -21,6 +24,9 @@ export class ImportRewardSectionComponent implements OnInit {
       title: ['', Validators.required],
       carrot: [0, Validators.min(1)],
       description: ['', Validators.required]
+    });
+    this.disableForm = this.formBuilder.group({
+      msg: ['', Validators.required],
     });
     this.findAllRewards()
   }
@@ -87,18 +93,24 @@ export class ImportRewardSectionComponent implements OnInit {
     data.status = true;
     let id = data.id;
     delete data.id;
+    this.dataInactive.reasoning = '';
     this.data.updateReward(data, id).subscribe(callback => {
       this.close();
       this.findAllRewards()
     })
   }
 
-  inactive(data) {
-    this.modalService.open(ModalLoadingComponent);
-    data.status = false;
-    let id = data.id;
-    delete data.id;
-    this.data.updateReward(data, id).subscribe(callback => {
+  inactive(data, content) {
+    this.dataInactive = data;
+    this.modalService.open(content);
+  }
+
+  submitMessage() {
+    this.dataInactive.status = false;
+    let id = this.dataInactive.id;
+    this.dataInactive.reasoning = this.msg;
+    delete this.dataInactive.id;
+    this.data.updateReward(this.dataInactive, id).subscribe(callback => {
       this.close();
       this.findAllRewards()
     })
