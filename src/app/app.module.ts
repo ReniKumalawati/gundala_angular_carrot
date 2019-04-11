@@ -50,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RewardsComponent } from './administrator/information-function/rewards/rewards.component';
 import { FreezerComponent } from './manager/freezer/freezer.component';
 import { ButtonShareComponent } from './manager/freezer/button-share/button-share.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { ButtonShareComponent } from './manager/freezer/button-share/button-shar
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    DataTablesModule
   ],
   providers: [NgbActiveModal, {provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true}],
   entryComponents: [

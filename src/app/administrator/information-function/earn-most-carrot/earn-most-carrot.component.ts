@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../../../service/transaction.service';
 import {EmployeeService} from '../../../service/employee.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
+declare var $;
 @Component({
   selector: 'app-earn-most-carrot',
   templateUrl: './earn-most-carrot.component.html',

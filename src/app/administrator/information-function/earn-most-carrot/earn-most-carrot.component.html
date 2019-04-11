@@ -1,15 +1,16 @@
 <div style="background-color: white">
   <div class="col-md-12">
     <hr class="box-title-hr">
-    <h4 class="my-2 box-title">EMPLOYEES SORTED BY EARNED CARROT</h4>
+    <h4 class="my-2 box-title">EMPLOYEES</h4>
   </div>
   <div class="col-md-12">
-    <table id="table-mr" class="table table-hover mt-3">
+    <table  class="table table-striped">
       <thead>
       <tr>
         <th scope="col">No</th>
         <th scope="col">Name</th>
         <th scope="col">Carrot Earned</th>
+        <th scope="col">Carrot Left</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
@@ -18,6 +19,7 @@
         <td>{{i + 1}}</td>
         <td>{{employee.detail.employee.name}}</td>
         <td>{{employee.total}}</td>
+        <td>{{employee.detail.carrot_amt}}</td>
         <td><a href="javascript:void(0)" (click)="open(detailEmployee, employee.detail.employee)" class="btn btn-info">VIew profile</a></td>
       </tr>
       </tbody>
