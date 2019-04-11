@@ -702,3 +702,15 @@ a:hover {
   object-fit: cover;
   //background-position: top center;
 }
+.datatable-body-cell.datatable-body-cell.sort-active {
+  border: 1px solid #dee2e6
+}
+.datatable-header-cell.datatable-header-cell {
+  border: 1px solid #dee2e6
+}
+.datatable-header-cell-template-wrap {
+  text-align: center;
+}
+.datatable-body-cell-label {
+  text-align: center;
+}

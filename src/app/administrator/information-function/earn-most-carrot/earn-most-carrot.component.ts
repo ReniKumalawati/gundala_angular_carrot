@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {TransactionService} from '../../../service/transaction.service';
 import {EmployeeService} from '../../../service/employee.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -10,17 +10,30 @@ declare var $;
   styleUrls: ['./earn-most-carrot.component.scss']
 })
 export class EarnMostCarrotComponent implements OnInit {
-  employees: any;
+  @ViewChild('hdrTpl') hdrTpl: TemplateRef<any>;
+  @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
+  columns = []
+  employees = [];
   employeeForm: FormGroup;
   employeeValue = { name: '', email: '', role: ''};
   constructor(
     private transactionService: TransactionService,
     private empService: EmployeeService,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit() {
+    this.columns = [
+      { prop: 'name', name: 'Name', sortable: false},
+      { prop: 'carrotEarned', name: 'Total Carrot Earned', width: 100 },
+      {prop: 'carrotLeft', name: 'Carrot Left', width: 120},
+      {prop: 'donation', name: 'Donation', width: 120},
+      {prop: 'shared', name: 'Shared', width: 120},
+      {prop: 'reward', name: 'Reward', width: 120},
+      {prop: 'carrotthisMonth', name: 'Carrot Earned this Month', width: 120},
+      {headerTemplate: this.hdrTpl, name:'Actions', cellTemplate: this.editTmpl, prop: 'employee'}
+  ];
     this.employeeForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -29,8 +42,16 @@ export class EarnMostCarrotComponent implements OnInit {
     this.getEmployeesByCarrotEarned();
   }
   getEmployeesByCarrotEarned() {
+    this.employees = []
     this.transactionService.getMostEarner().subscribe(callback => {
-      this.employees = callback;
+      let kembalian:any = callback;
+      for (let t of kembalian) {
+        let data = {name: t.detail.employee.name, carrotEarned: t.total
+          , carrotLeft: t.detail.carrot_amt, employee: t.detail.employee,
+          donation: t.donation, shared: t.shared, reward: t.reward}
+        this.employees.push(data)
+        this.employees = [...this.employees]
+      }
     });
   }
 

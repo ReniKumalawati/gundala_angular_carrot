@@ -4,26 +4,38 @@
     <h4 class="my-2 box-title">EMPLOYEES</h4>
   </div>
   <div class="col-md-12">
-    <table  class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">Name</th>
-        <th scope="col">Carrot Earned</th>
-        <th scope="col">Carrot Left</th>
-        <th scope="col">Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let employee of employees; let i = index">
-        <td>{{i + 1}}</td>
-        <td>{{employee.detail.employee.name}}</td>
-        <td>{{employee.total}}</td>
-        <td>{{employee.detail.carrot_amt}}</td>
-        <td><a href="javascript:void(0)" (click)="open(detailEmployee, employee.detail.employee)" class="btn btn-info">VIew profile</a></td>
-      </tr>
-      </tbody>
-    </table>
+    <!--<table  class="table table-striped">-->
+      <!--<thead>-->
+      <!--<tr>-->
+        <!--<th scope="col">No</th>-->
+        <!--<th scope="col">Name</th>-->
+        <!--<th scope="col">Carrot Earned</th>-->
+        <!--<th scope="col">Carrot Left</th>-->
+        <!--<th scope="col">Action</th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr *ngFor="let employee of employees; let i = index">-->
+        <!--<td>{{i + 1}}</td>-->
+        <!--<td>{{employee.detail.employee.name}}</td>-->
+        <!--<td>{{employee.total}}</td>-->
+        <!--<td>{{employee.detail.carrot_amt}}</td>-->
+        <!--<td><a href="javascript:void(0)" (click)="open(detailEmployee, employee.detail.employee)" class="btn btn-info">VIew profile</a></td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
+    <ngx-datatable
+      [rows]="employees"
+      [rowHeight]="'auto'"
+      [headerHeight]="'auto'"
+      [columns]="columns">
+    </ngx-datatable>
+    <ng-template #hdrTpl let-column="column" >
+      {{column.name}}
+    </ng-template>
+    <ng-template #editTmpl let-row="row" let-value="value">
+      <a href="javascript:void(0)" (click)="open(detailEmployee, value)" class="btn btn-info">VIew profile</a>
+    </ng-template>
   </div>
 </div>
 

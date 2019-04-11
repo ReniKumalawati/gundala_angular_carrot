@@ -50,7 +50,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RewardsComponent } from './administrator/information-function/rewards/rewards.component';
 import { FreezerComponent } from './manager/freezer/freezer.component';
 import { ButtonShareComponent } from './manager/freezer/button-share/button-share.component';
-import { DataTablesModule } from 'angular-datatables';
+import { BirthdayInformationComponent } from './administrator/information-function/birthday-information/birthday-information.component';
+import { AchievedAchievementComponent } from './administrator/information-function/achieved-achievement/achieved-achievement.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { FarmerTransactionsComponent } from './farmer/farmer-transactions/farmer-transactions.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +99,11 @@ import { DataTablesModule } from 'angular-datatables';
     EarnMostCarrotComponent,
     RewardsComponent,
     FreezerComponent,
-    ButtonShareComponent
+    ButtonShareComponent,
+    BirthdayInformationComponent,
+    AchievedAchievementComponent,
+    NewsletterComponent,
+    FarmerTransactionsComponent,
   ],
   imports: [
     NgbModule,
@@ -106,7 +114,7 @@ import { DataTablesModule } from 'angular-datatables';
     FormsModule,
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
-    DataTablesModule
+    NgxDatatableModule
   ],
   providers: [NgbActiveModal, {provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true}],
   entryComponents: [

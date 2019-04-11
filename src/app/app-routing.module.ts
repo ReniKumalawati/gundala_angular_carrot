@@ -20,6 +20,7 @@ import {AchievementComponent} from './employee/achievement/achievement.component
 import {DetailSFComponent} from './employee/detail-sf/detail-sf.component';
 import {AllSocialFoundationComponent} from './employee/all-social-foundation/all-social-foundation.component';
 import {FreezerComponent} from './manager/freezer/freezer.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 
 const routes: Routes = [
   { path: '', component: EmployeeComponent, canActivate: [AuthGuard],
@@ -51,6 +52,7 @@ const routes: Routes = [
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
   { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthGuard], data: {permission: ['MANAGER', 'ROOT_ADMIN', 'SENIOR_MANAGER']}},
   { path: 'merchant-transaction', component: MerchantTransactionComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN','ADMIN']}},
+  { path: 'newsletter', component: NewsletterComponent, canActivate: [AuthGuard], data:{permission: ['ADMIN']}},
 ];
 
 @NgModule({
