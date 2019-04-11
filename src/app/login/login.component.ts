@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   employee: any;
   submitted = false;
-  formLogin = {email: '', password: ''}
+  formLogin = {email: '', password: ''};
   load: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
@@ -30,21 +30,22 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.modalService.open(ModalLoadingComponent)
+    this.modalService.open(ModalLoadingComponent);
     this.login.login(this.formLogin.email, this.formLogin.password).subscribe(callback => {
       this.employee = callback;
-      this.modalService.dismissAll()
+      this.modalService.dismissAll();
       if (this.employee.status === false) {
         this.notifications.error('Login', this.employee.message);
         location.href = '/login';
       } else {
         this.notifications.success('Login', this.employee.message);
-        const emp = this.employee.employee
-        emp.token = this.employee.token
+        const emp = this.employee.employee;
+        emp.token = this.employee.token;
         localStorage.setItem('currentUser', JSON.stringify(emp));
         localStorage.setItem('currentBasket', JSON.stringify(this.employee.basket));
         localStorage.setItem('currentFreezer', JSON.stringify(this.employee.freezer));
-        switch (this.employee.role) {
+        console.log(emp.role);
+        switch (emp.role) {
         case 'MANAGER':
           location.href = '/manager';
           break;
