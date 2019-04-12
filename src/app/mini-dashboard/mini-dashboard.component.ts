@@ -28,7 +28,8 @@ export class MiniDashboardComponent implements OnInit {
     this.basket = JSON.parse(this.auth.currentBasket());
 
     this.getTotalEarnedCarrot();
-    this.getTotalCarrotInFreezer()
+    this.getTotalCarrotInFreezer();
+    console.log(this.employee);
   }
 
   getTotalEarnedCarrot() {

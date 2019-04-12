@@ -15,8 +15,10 @@
           </div>
         </div>
       </div>
+      <!-- Carrot Basket or Manager Freezer -->
       <div class="col-md-4">
-        <div class="row box-carrot px-0 mr-0">
+        <!-- For Employee -->
+        <div class="row box-carrot px-0 mr-0" *ngIf="employee.role === 'STAFF'">
           <div class="col-md-4 my-auto">
             <img src=" assets/img/carrot-receive.svg" alt="" class="img-fluid">
           </div>
@@ -28,6 +30,20 @@
             <!--Share carrot!-->
             <!--</a>-->
           </div>
+        </div>
+        <!-- For Manager -->
+        <div class="row box-carrot px-0 mr-0 non-staff" *ngIf="employee.role !== 'STAFF'" style="background:#189ec0">
+            <div class="col-md-4 my-auto">
+              <img src=" assets/img/freezer-carrotv2.svg" alt="" class="img-fluid">
+            </div>
+            <div class="col-md-8 my-auto">
+              <!-- <h4 class="text-white">You've earned {{totalEarned}} carrots!</h4> -->
+              <br>
+              <h4 class="text-white">And you still have {{totalEarned}} frozen carrots left...</h4>
+              <!--<a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">-->
+              <!--Share carrot!-->
+              <!--</a>-->
+            </div>
         </div>
       </div>
       <div class="col-md-4">
