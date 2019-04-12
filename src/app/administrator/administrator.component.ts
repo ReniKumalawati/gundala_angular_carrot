@@ -22,7 +22,23 @@ export class AdministratorComponent implements OnInit {
   ngOnInit() {
     this.employee = JSON.parse(this.auth.currentEmployee());
     this.basket = JSON.parse(this.auth.currentBasket());
-
+  }
+  getTotalCarrotInFreezer(){
+    this.empService.findFrezeerByOwner(this.employee.id).subscribe(callback => {
+      const freezer: any = callback;
+      if(freezer != null && freezer.carrot_amt !== null){
+        this.total = freezer.carrot_amt;
+      }
+      
+    })
+  }
+  getTotalEarnedCarrot() {
+    this.transactionService.getEarnedCarrot(this.basket.id).subscribe(callback => {
+      const kembalian: any = callback;
+      if (kembalian.length > 0) {
+        this.total = kembalian[0].total;
+      }
+    });
   }
 
 }

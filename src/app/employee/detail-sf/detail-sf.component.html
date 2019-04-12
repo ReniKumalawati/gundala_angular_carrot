@@ -1,30 +1,27 @@
-<main role="main" class="container1">
-  <h2 class="my-4 pl-0 text-grey ml-0">
-         <span class="back-button">
-           <a href="/employee"><img src="assets/img/back.png" alt="" class="back" /></a>
-         </span>
-  </h2>
-</main>
-
 <section class="bazaar-1-item mb-4">
-  <div class="container search-box pb-4">
-    <div class="row d-flex">
-      <div class="col-md-12">
-        <hr class="box-title-hr">
-        <!--<h4 class="my-2 box-title">{{item.bazaar.bazaarName}}</h4>-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 search-box1 imgnya">
+        <img class="pictureDetailSF"
+          [src]="sf.pictureUrl" alt="Social Foundation"
+          onerror="this.src='assets/img/heart.svg'">
+        <div class="bottom-right">{{sf.name}}</div>
       </div>
-      <div class="col-md-6 br-1">
-        <img src="assets/img/heart.svg" class="img-fluid p-3" alt="">
+      <div class="col-md-4 search-box1" data-toggle="tooltip" data-placement="left" title="Carrot to be collected">
+         <span class="icon-holder">
+           <i class="fas fa-hand-holding-heart fa-5x f4be"></i>
+         </span><br>
+        <span class="title"> {{sf.min_carrot}}</span>
       </div>
-      <div class="col-md-6 align-self-center p-5" *ngIf="sf">
-        <i class="title-sf">{{sf.name}} </i>       
-        <p><strong class="carrot-orange">carrot to be collected: {{sf.min_carrot}}</strong></p>
-        <p>carrot collected until now: {{sf.total_carrot}}</p>
-        <br>
-        <p>{{sf.description}}</p>
-        <button class="btn btn-carrot radius-5" (click)="openmodal(contentBazaar, sf)" *ngIf="basket.carrot_amt > 0">Donate</button>
-        <p class="mt-2" ><small class="text-danger" *ngIf="basket.carrot_amt < 1">You don't have enough carrots to donate.</small></p>
+      <div class="col-md-4 search-box1" data-toggle="tooltip" data-placement="left" title="Carrot Collected">
+        <span class="icon-holder">
+           <i class="fas fa-angle-double-down fa-5x"></i>
+         </span><br>
+        <span class="title"> {{sf.total_carrot}}</span>
       </div>
+    </div>
+    <div class="row deskripsi">
+      <p class="content">{{sf.description}}</p>
     </div>
   </div>
 </section>
@@ -48,3 +45,6 @@
     </div>
   </form>
 </ng-template>
+<a href="javascript:void(0)" class="float" (click)="openmodal(contentBazaar, sf)" *ngIf="basket.carrot_amt > 0">
+  <i class="fa fa-heart my-float fa-2x"></i>
+</a>

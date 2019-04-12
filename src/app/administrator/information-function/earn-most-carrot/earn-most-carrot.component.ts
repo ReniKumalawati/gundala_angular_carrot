@@ -28,9 +28,9 @@ export class EarnMostCarrotComponent implements OnInit {
       { prop: 'name', name: 'Name', sortable: false},
       { prop: 'carrotEarned', name: 'Total Carrot Earned', width: 100 },
       {prop: 'carrotLeft', name: 'Carrot Left', width: 120},
-      {prop: 'donation', name: 'Donation', width: 120},
-      {prop: 'shared', name: 'Shared', width: 120},
-      {prop: 'reward', name: 'Reward', width: 120},
+      {prop: 'donation', name: 'Donation', width: 100},
+      {prop: 'shared', name: 'Shared', width: 100},
+      {prop: 'reward', name: 'Reward', width: 100},
       {prop: 'carrotThisMonth', name: 'Carrot Earned this Month', width: 120},
       {headerTemplate: this.hdrTpl, name:'Actions', cellTemplate: this.editTmpl, prop: 'employee'}
   ];
