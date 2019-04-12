@@ -56,6 +56,8 @@ export class NewsletterComponent implements OnInit {
     // Post newsletter to all employee
     this.postNewsletter(this.newsletterValue);
     console.log('sent!!!')
+    
+    // Clear up the values
     this.newsletterValue.newsletterSubject = '';
     this.newsletterValue.newsletterContent = '';
   }

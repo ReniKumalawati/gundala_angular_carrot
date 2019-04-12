@@ -52,7 +52,7 @@ const routes: Routes = [
     data: {permission: ['ROOT_ADMIN', 'ADMIN', 'STAFF', 'MANAGER', 'SENIOR_MANAGER', 'STAKEHOLDER']}},
   { path: 'detail-group/:id', component: DetailGroupComponent, canActivate: [AuthGuard], data: {permission: ['MANAGER', 'ROOT_ADMIN', 'SENIOR_MANAGER']}},
   { path: 'merchant-transaction', component: MerchantTransactionComponent, canActivate: [AuthGuard], data: {permission: ['MERCHANT', 'ROOT_ADMIN','ADMIN']}},
-  { path: 'newsletter', component: NewsletterComponent, canActivate: [AuthGuard], data:{permission: ['ADMIN']}},
+  { path: 'newsletter', component: NewsletterComponent, canActivate: [AuthGuard], data:{permission: ['ADMIN', 'ROOT_ADMIN']}},
 ];
 
 @NgModule({
