@@ -63,6 +63,7 @@ export class NavComponent implements OnInit {
 
       case('"ROOT_ADMIN"'):
       pillElementRwd.remove();
+      pillElementEmp.remove();
       break;
 
     }

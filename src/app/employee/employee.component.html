@@ -1,53 +1,7 @@
 <main role="main" class="container">
   <h2 class="mt-4 pt-4 pl-0 text-grey ml-0">DASHBOARD</h2>
 </main>
-<section class="mini-dashboard my-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="row box-profile soft-shadow px-0 mr-0">
-          <div class="col-md-4 my-auto">
-            <img
-              src="{{employee.profilePicture || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'}}"
-              alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
-          </div>
-          <div class="col-md-8 my-auto">
-            <h4 class="mb-0 text-white">{{employee.name}}</h4>
-            <p class="text-white">{{employee.role}}</p>
-            <a href="profile" class="badge badge-white">Show Profile</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row box-carrot px-0 mr-0">
-          <div class="col-md-4 my-auto">
-            <img src=" assets/img/carrot-receive.svg" alt="" class="img-fluid">
-          </div>
-          <div class="col-md-8 my-auto">
-            <h4 class="text-white">You've earned {{total}} carrots!</h4>
-            <br>
-            <h4 class="text-white">And you still have {{basket.carrot_amt}} carrots left...</h4>
-            <!--<a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">-->
-            <!--Share carrot!-->
-            <!--</a>-->
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row box-additional px-0">
-          <div class="col-md-4 my-auto">
-            <img src=" assets/img/history-transv2.svg" alt="" class="img-fluid">
-          </div>
-          <div class="col-md-8 my-auto">
-            <a href="/transaction-histories" class="badge badge-white">View</a>
-            <h4 class="text-white">Carrots Transaction History</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<app-mini-dashboard></app-mini-dashboard>
 <section class="bazaar-1-item mb-4">
   <div class="container search-box pb-4">
     <div class="row d-flex align-content-end">
