@@ -67,7 +67,7 @@
         </ng-template>
       </ngb-tab>
       <!-- SENIOR MANAGER TAB -->
-      <ngb-tab title="Senior Manager">
+      <ngb-tab title="Senior Manager" *ngIf="employee.role ==='SENIOR_MANAGER'">
         <ng-template ngbTabContent>
           <div class="container search-box">
             <app-senior-manager></app-senior-manager>
