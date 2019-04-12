@@ -13,7 +13,7 @@
         <th scope="col">Description</th>
         <th scope="col">Status</th>
         <th scope="col">Reason</th>
-        <th scope="col">Action</th>
+        <th scope="col" width="120px">Action</th>
       </tr>
       </thead>
       <tbody id="tbodyRewardtype" *ngIf="rewardsData">
@@ -40,10 +40,10 @@
             Activate
           </a> -->
           <a class="btn btn-danger" href="javascript:void(0)" (click)="removeRewardFromDB(reward.id)">
-            <i class="fas fa-trash-alt"></i> Delete
+            <i class="fas fa-trash-alt"></i>
           </a> 
           <a class="edit-row btn btn-info" href="javascript:void(0)" (click)="openEditModal(reward, contentReward)"> 
-            <i class="fas fa-cog"></i> Edit
+            <i class="fas fa-pencil-alt"></i>
           </a>
         </td>
       </tr>
