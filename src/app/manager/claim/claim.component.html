@@ -22,8 +22,8 @@
         <td>{{trx.status}}</td>
         <td>
           <div *ngIf="trx.status === 'PENDING'">
-            <a href="javascript:void(0)" class="btn btn-info" (click)="approve(trx.id)">Approve</a>
-            <a href="javascript:void(0)" (click)="decline(trx.id)" class="btn btn-info">Decline</a>
+            <a href="javascript:void(0)" class="btn btn-success" (click)="approve(trx.id)">Approve</a>
+            <a href="javascript:void(0)" class="btn btn-danger" (click)="decline(trx.id)" >Decline</a>
           </div>
         </td>
       </tr>
