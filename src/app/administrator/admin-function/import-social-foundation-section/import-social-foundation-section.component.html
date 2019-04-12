@@ -7,12 +7,12 @@
     <table class="table table-hover mt-3">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Foundation Name</th>
-          <th scope="col">Foundation Description</th>
+          <th width=1% scope="col">#</th>
+          <th width=6% scope="col">Foundation Name</th>
+          <th width=25% scope="col">Foundation Description</th>
           <th scope="col">Images</th>
-          <th scope="col">Minimum Carrot</th>
-          <th scope="col">Carrot Received</th>
+          <th width=1% scope="col">Minimum Carrot</th>
+          <th width=1% scope="col">Carrot Received</th>
           <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
@@ -26,37 +26,43 @@
             <img src="{{ socialFoundation.pictureUrl }}" class="table-image" alt="" *ngIf="socialFoundation.pictureUrl">
           </td>
           <td>{{ socialFoundation.min_carrot }}</td>
-          <td>{{ socialFoundation.total_carrot }}</td>
-          <td>{{ socialFoundation.status ? "Active" : "Inactive" }}</td>
           <td>
+            {{ socialFoundation.total_carrot }}
+          </td>
+          <td>
+            <!-- {{ socialFoundation.status ? "Active" : "Inactive" }} -->
             <a
-              class="status-row"
+              class="btn btn-warning"
               href="javascript:void(0)"
               *ngIf="socialFoundation.status === true"
               (click)="active(socialFoundation, false)"
             >
-              Deactivate
-            </a>
-            <a
-              class="status-row"
+            Deactivate
+           </a>
+           <a
+              class="btn btn-success"
               href="javascript:void(0)"
               *ngIf="socialFoundation.status === false"
               (click)="active(socialFoundation, true)"
             >
-              Activate
+            Activate
             </a>
+          </td>
+          <td>
             <a
-              class="edit-row"
+              class="btn btn-info"
               href="javascript:void(0)"
               (click)="openEditModal(socialFoundation, contentSocialFoundation)"
-              >| Edit |</a
             >
+              <i class="fas fa-cog"></i>Edit 
+            </a>
             <a
-              class="delete-row"
+              class="btn btn-danger"
               href="javascript:void(0)"
               (click)="removeSocialFoundationFromDB(socialFoundation.id)"
-              >Delete</a
             >
+              <i class="fas fa-trash-alt"></i>Delete
+            </a>
           </td>
         </tr>
       </tbody>

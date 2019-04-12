@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EmployeeService} from '../../service/employee.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {BazarService} from '../../service/bazar.service';
+import {AuthenticationService} from "../../service/authentication.service";
 
 @Component({
   selector: 'app-detail-group',
@@ -12,6 +13,7 @@ import {BazarService} from '../../service/bazar.service';
   styleUrls: ['./detail-group.component.scss']
 })
 export class DetailGroupComponent implements OnInit {
+  user: any;
   itemGroup: any;
   routeParam: any;
   addEmployee: FormGroup;
@@ -26,10 +28,12 @@ export class DetailGroupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private modalService: NgbModal,
-    private bazaarService: BazarService
+    private bazaarService: BazarService,
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {
+    this.user = JSON.parse(this.auth.currentEmployee());
     this.routeParam = this.route.params;
     this.addEmployee = this.formBuilder.group({
       employee: ['', Validators.required]

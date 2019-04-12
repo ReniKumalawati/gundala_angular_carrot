@@ -4,50 +4,7 @@
   </div>
 </main>
 
-<section class="mini-dashboard my-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="row box-profile soft-shadow px-0 mr-0">
-          <div class="col-md-4 my-auto">
-            <img
-              src="{{employee.profilePicture || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'}}"
-              alt="" class="img-fluid rounded-circle black-border" id="profile-picture">
-          </div>
-          <div class="col-md-8 my-auto">
-            <h4 class="mb-0 text-white">{{employee.name}}</h4>
-            <p class="text-white">{{employee.role}}</p>
-            <a href="profile" class="badge badge-white">Show Profile</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row box-carrot px-0 mr-0">
-          <div class="col-md-4 my-auto">
-            <img src=" assets/img/carrot-receive.svg" alt="" class="img-fluid">
-          </div>
-          <div class="col-md-8 my-auto">
-            <h4 class="text-white">You have {{total}} carrots in your Freezer!</h4>
-            <!--<a class="badge badge-white" data-toggle="modal" data-target="#exampleModal">-->
-            <!--Share carrot!-->
-            <!--</a>-->
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row box-additional px-0">
-          <div class="col-md-4 my-auto">
-            <img src=" assets/img/history-transv2.svg" alt="" class="img-fluid">
-          </div>
-          <div class="col-md-8 my-auto">
-            <h4 class="text-white">Carrots Transaction History</h4>
-            <a href="/transaction-histories" class="badge badge-white">View</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<app-mini-dashboard></app-mini-dashboard>
 
 <section class="admin-tabs py-3">
   <div class="container">

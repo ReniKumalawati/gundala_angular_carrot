@@ -28,16 +28,6 @@ export class EmployeeComponent implements OnInit {
     this.employee = JSON.parse(this.auth.currentEmployee());
     this.basket = JSON.parse(this.auth.currentBasket());
     this.findBazarAndSF();
-    this.getTotalEarnedCarrot();
-  }
-
-  getTotalEarnedCarrot() {
-    this.transactionService.getEarnedCarrot(this.basket.id).subscribe(callback => {
-      const kembalian: any = callback;
-      if (kembalian.length > 0) {
-        this.total = kembalian[0].total;
-      }
-    });
   }
 
   findBazarAndSF() {

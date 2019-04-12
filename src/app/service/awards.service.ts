@@ -23,4 +23,11 @@ export class AwardsService {
   deleteAwardFromDB(id) {
     return this.http.delete(environment.endpoint + "/api/awards/" + id);
   }
+  insertAwardIntoGroup(id, data) {
+    return this.http.patch(environment.endpoint + "/api/groups/add-award/"+ id , data);
+  }
+  removeAwardFromGroup(id, data) {
+    return this.http.patch(environment.endpoint + "/api/groups/del-award/" + id, data);
+  }
+
 }

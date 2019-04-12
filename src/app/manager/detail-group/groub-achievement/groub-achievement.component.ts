@@ -14,7 +14,7 @@ export class GroubAchievementComponent implements OnInit {
   achievementData = [];
   achievement: any;
   addAchievement: FormGroup;
-  achievementByGroup: any
+  achievementByGroup: any;
   achievementId = [];
   constructor(
     private bazarService : BazarService,

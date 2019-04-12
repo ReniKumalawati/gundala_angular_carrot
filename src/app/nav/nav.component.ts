@@ -26,6 +26,7 @@ export class NavComponent implements OnInit {
     const pillElementFrm = document.querySelector('#linkFarmer');
     const pillElementAdm = document.querySelector('#linkAdmin');
     const pillElementRwd = document.querySelector('#linkReward');
+    const pillElementNewsletter = document.querySelector('#newsletter-button');
 
     this.jsonNav = JSON.parse(localStorage.currentUser);
     this.navEmp = JSON.stringify(this.jsonNav.role);
@@ -39,6 +40,7 @@ export class NavComponent implements OnInit {
       pillElementAdm.remove();
       pillElementFrm.remove();
       pillElementMgr.remove();
+      pillElementNewsletter.remove();
       // pillElementMrc.remove();
       break;
 
@@ -49,6 +51,7 @@ export class NavComponent implements OnInit {
       pillElementEmp.remove();
       // pillElementMrc.remove();
       pillElementRwd.remove();
+      pillElementNewsletter.remove();
       break;
 
       case('"ADMIN"'):
@@ -60,6 +63,7 @@ export class NavComponent implements OnInit {
 
       case('"ROOT_ADMIN"'):
       pillElementRwd.remove();
+      pillElementEmp.remove();
       break;
 
     }

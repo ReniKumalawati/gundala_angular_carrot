@@ -55,6 +55,8 @@ import { AchievedAchievementComponent } from './administrator/information-functi
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { FarmerTransactionsComponent } from './farmer/farmer-transactions/farmer-transactions.component';
+import { GroupAwardComponent } from './manager/detail-group/group-award/group-award.component';
+import { MiniDashboardComponent } from './mini-dashboard/mini-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +106,8 @@ import { FarmerTransactionsComponent } from './farmer/farmer-transactions/farmer
     AchievedAchievementComponent,
     NewsletterComponent,
     FarmerTransactionsComponent,
+    GroupAwardComponent,
+    MiniDashboardComponent,
   ],
   imports: [
     NgbModule,

@@ -37,15 +37,28 @@ export class NewsletterComponent implements OnInit {
     });
   }
 
+  postNewsletter(data) {
+    this.newsletterService.postNewsletter(data).subscribe(callback => {
+      let postData: any = callback;
+      console.log(postData);
+    });
+  }
+
   onSubmit() {
     // this.newsletterService.postNewsletter(data).subscribe()
     if (this.form.invalid) {
       console.log('form invalid')
       return;
     }
-    
-    console.log('disini' + this.form.get('subject').value);
-    // console.log(this.newsletterValue.newsletterContent);
 
+    // console.log('disini' + this.newsletterValue.newsletterSubject + "   " + this.newsletterValue.newsletterContent);
+
+    // Post newsletter to all employee
+    this.postNewsletter(this.newsletterValue);
+    console.log('sent!!!')
+    
+    // Clear up the values
+    this.newsletterValue.newsletterSubject = '';
+    this.newsletterValue.newsletterContent = '';
   }
 }

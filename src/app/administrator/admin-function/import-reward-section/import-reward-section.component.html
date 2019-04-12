@@ -22,17 +22,29 @@
         <td>{{reward.title}}</td>
         <td>{{reward.carrot}}</td>
         <td>{{reward.description}}</td>
-        <td> {{reward.status ? 'Active' : 'Inactive' }}</td>
+        <td> 
+          <!-- {{reward.status ? 'Active' : 'Inactive' }} -->
+          <a class="btn btn-warning" href="javascript:void(0)" (click)="inactive(reward, contentMessage)" *ngIf="reward.status">
+              Deactivate
+          </a>
+          <a class="btn btn-success" href="javascript:void(0)" (click)="activate(reward)" *ngIf="!reward.status">
+              Activate
+          </a>
+        </td>
         <td> {{reward.reasoning }}</td>
         <td>
-          <a class="delete-row" href="javascript:void(0)" (click)="inactive(reward, contentMessage)" *ngIf="reward.status">
+          <!-- <a class="delete-row" href="javascript:void(0)" (click)="inactive(reward, contentMessage)" *ngIf="reward.status">
             Inactive
           </a>
           <a class="btn btn-info" href="javascript:void(0)" (click)="activate(reward)" *ngIf="!reward.status">
             Activate
+          </a> -->
+          <a class="btn btn-danger" href="javascript:void(0)" (click)="removeRewardFromDB(reward.id)">
+            <i class="fas fa-trash-alt"></i> Delete
+          </a> 
+          <a class="edit-row btn btn-info" href="javascript:void(0)" (click)="openEditModal(reward, contentReward)"> 
+            <i class="fas fa-cog"></i> Edit
           </a>
-          <a class="btn btn-danger" href="javascript:void(0)" (click)="removeRewardFromDB(reward.id)">Delete</a> 
-          <a class="edit-row btn btn-info" href="javascript:void(0)" (click)="openEditModal(reward, contentReward)"> Edit</a>
         </td>
       </tr>
       </tbody>

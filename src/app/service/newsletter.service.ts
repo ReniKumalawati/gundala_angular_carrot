@@ -10,6 +10,6 @@ export class NewsletterService {
   constructor(private http: HttpClient) { }
 
   postNewsletter(data) {
-    return this.http.post(environment.endpoint + 'api/newsletter', data);
+    return this.http.post(environment.endpoint + '/api/newsletter', data);
   }
 }
