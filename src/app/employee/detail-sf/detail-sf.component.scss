@@ -7,3 +7,73 @@
     color: black;
     // padding-bottom: 15pt;
   }
+
+.pictureDetailSF {
+  max-height: 200px;
+  display: block;
+  margin: 0 auto;
+  border: solid 1px white;
+  border-radius: 5%;
+  object-fit: contain;
+}
+
+.deskripsi {
+  background: white;
+  margin-top: 1%;
+}
+
+.content {
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.search-box1 {
+  background: white;
+  margin: .5% 0% 0% .5%;
+  background: white;
+}
+
+span.title {
+  font-size: 7vw;
+  float: right;
+  color: #11bfbf;
+}
+.row {
+  flex-wrap: nowrap;
+}
+.col-md-4 {
+  flex: 0 0 32.8%;
+  border-radius: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.bottom-right {
+  position: absolute;
+  bottom: 34px;
+  color: #f7f4f4;
+  left: 50px;
+  font-weight: bold;
+}
+
+.imgnya {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:60px;
+  right:40px;
+  background-color:#0C9;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+  margin-top:18px;
+}

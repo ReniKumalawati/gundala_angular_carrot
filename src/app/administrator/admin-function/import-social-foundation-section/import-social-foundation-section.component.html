@@ -85,19 +85,19 @@
   <form [formGroup]="messageForm" (ngSubmit)="submit()">
     <div class="modal-body">
       <div class="form-group">
-        <label class="center" for="text">Social Foundation Picture</label>
         <div class="image-upload">
-          <label for="file-input" class="text">
+          <label for="profileImage">
             <img
-              class="img-fluid"
-              id="blah"
-              [src]="imageSource"
-              alt=""
-              onerror="this.src ='https://res.cloudinary.com/dc1lp90qy/image/upload/v1554800066/pictures/heart.png'"
-            />
+                class="img-socialFoundation"
+                id="blah"
+                height="100px"
+                [src]="imageSource"
+                alt=""
+                onerror="this.src ='https://res.cloudinary.com/dc1lp90qy/image/upload/v1554800066/pictures/heart.png'"
+              />
           </label>
           <input
-            id="file-input"
+            id="profileImage"
             type="file"
             accept="images"
             (change)="onFileChange($event)"

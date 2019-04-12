@@ -28,7 +28,7 @@ export class AdministratorComponent implements OnInit {
   getTotalCarrotInFreezer(){
     this.empService.findFrezeerByOwner(this.employee.id).subscribe(callback => {
       const freezer: any = callback;
-      if(freezer.carrot_amt !== null){
+      if(freezer != null && freezer.carrot_amt !== null){
         this.total = freezer.carrot_amt;
       }
       

@@ -104,7 +104,7 @@ export class ImportSocialFoundationSectionComponent implements OnInit {
           kembalian = callback;
 
           if (this.base64Image !== '' || this.base64Image !== null) {
-            this.data.uploadImage(kembalian.id, { img : this.base64Image }).subscribe(imageCallback => {
+            this.data.uploadImage(kembalian.socialFoundation.id, { img : this.base64Image }).subscribe(imageCallback => {
               this.findAllSocialFoundation();
               this.base64Image = '';
               // this.imageSource = '';
