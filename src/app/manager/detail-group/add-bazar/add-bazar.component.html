@@ -20,8 +20,8 @@
         </tr>
         </thead>
         <tbody *ngIf="bazaarByGroup">
-        <tr *ngFor="let bazar of bazaarByGroup">
-          <th scope="row"></th>
+        <tr *ngFor="let bazar of bazaarByGroup; let i = index">
+          <td> {{i+1}}</td>
           <td>{{bazar.bazaarName}}</td>
           <td>{{bazar.bazaarDescription}}</td>
           <td>{{bazar.startPeriod}}</td>

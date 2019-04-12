@@ -104,7 +104,7 @@ export class GroupsComponent implements OnInit {
     }
   }
 
-  openEdit(data, content) {
+/*  openEdit(data, content) {
     // delete data.owner;
     this.id = data.id;
     this.groupValue = data;
@@ -112,5 +112,6 @@ export class GroupsComponent implements OnInit {
       this.groupValue.owner = { id: '' }
     }
     this.open(content);
-  }
+  }*/
+
 }
