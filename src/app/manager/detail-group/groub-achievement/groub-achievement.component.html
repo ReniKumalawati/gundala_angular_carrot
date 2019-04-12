@@ -19,8 +19,8 @@
         </tr>
         </thead>
         <tbody *ngIf="achievementByGroup">
-        <tr *ngFor="let achievement of achievementByGroup">
-          <th scope="row"></th>
+        <tr *ngFor="let achievement of achievementByGroup; let i = index">
+          <td>{{i +1}}</td>
           <td>{{achievement.title}}</td>
           <td>{{achievement.description}}</td>
           <td>{{achievement.carrot}}</td>

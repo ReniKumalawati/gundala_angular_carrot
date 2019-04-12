@@ -2,11 +2,11 @@
   <div class="row pb-md-3">
     <div class="col-md-12">
       <hr class="box-title-hr">
-      <h4 class="my-2 box-title">Group's Social Foundation</h4>
+      <h4 class="my-2 box-title">Group's Awards</h4>
     </div>
     <div class="col-md-12">
-      <a href="javascript:void(0)"  class="btn btn-info pull-right" (click)="open(contentSocialFoundation)">
-        <i class="fa fa-plus-circle"></i> ADD MORE Social Foundation
+      <a href="javascript:void(0)"  class="btn btn-info pull-right" (click)="open(contentAwards)">
+        <i class="fa fa-plus-circle"></i> ADD MORE Awards
       </a>
       <table class="table table-hover mt-3">
         <thead>
@@ -14,22 +14,18 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
-          <th scope="col">status</th>
-          <th scope="col">Min Carrot</th>
-          <th scope="col">Total Carrot</th>
+          <th scope="col">Carrot</th>
           <th scope="col" class="priority-table">Action</th>
         </tr>
         </thead>
-        <tbody *ngIf="socialFoundationByGroup">
-        <tr *ngFor="let sosFound of socialFoundationByGroup; let i = index">
+        <tbody *ngIf="awardByGroup">
+        <tr *ngFor="let award of awardByGroup; let i =index">
           <td>{{i+1}}</td>
-          <td>{{sosFound.name}}</td>
-          <td>{{sosFound.description}}</td>
-          <td>{{sosFound.status}}</td>
-          <td>{{sosFound.min_carrot}}</td>
-          <td>{{sosFound.total_carrot}}</td>
+          <td>{{award.type_name}}</td>
+          <td>{{award.note}}</td>
+          <td>{{award.carrot_amt}}</td>
           <td>
-            <a href="javascript:void(0)" (click)="removeSocialFoundationFromGroup(sosFound.id)">Delete</a>
+            <a href="javascript:void(0)" (click)="removeAwardFromGroup(award.id)">Delete</a>
           </td>
         </tr>
         </tbody>
@@ -37,20 +33,19 @@
     </div>
   </div>
 </div>
-<ng-template #contentSocialFoundation let-c="close" let-d="dismiss">
+<ng-template #contentAwards let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h5 class="modal-title" id="modal-basic-title">Add Social Foundation For Group</h5>
+    <h5 class="modal-title" id="modal-basic-title">Add Award For Group</h5>
     <button type="button" class="close" aria-label="Close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form [formGroup]="addSocialFoundation" (ngSubmit)="submit()" >
+  <form [formGroup]="addAward" (ngSubmit)="submit()" >
     <div class="modal-body">
       <div class="form-group">
-        <label>Social Foundation</label>
-        <select class="form-control here" formControlName="bazaar" [(ngModel)]="socialFoundation">
-            <option  *ngFor="let singleSocialFoundation of socialFoundationData"
-                    [ngValue]="singleSocialFoundation">{{singleSocialFoundation.name}}</option>
+        <label>Award</label>
+        <select class="form-control here" formControlName="award" [(ngModel)]="award">
+          <option *ngFor="let singleAward of awardData" [ngValue]="singleAward">{{singleAward.type_name}}</option>
         </select>
         <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
         <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->

@@ -1,7 +1,11 @@
-<main role="main" class="container1">
+<main role="main" class="container">
   <div class="row d-flex">
-    <div class="col-md-6">
+    <div class="col-md-6 mt-2">
       <h2 class="my-3 pl-0 text-grey ml-0">
+        <span class="back-button">
+        <a *ngIf="user.role == 'SENIOR_MANAGER'|| user.role =='ROOT_ADMIN' || user.role == 'MANAGER'" href="/manager"><img src="assets/img/back.png" alt="" class="back" /></a>
+        <a *ngIf="user.role == 'ADMIN'" href="/administrator"><img src="assets/img/back.png" alt="" class="back" /></a>
+      </span>
         GROUP DETAILS
       </h2>
     </div>
@@ -52,8 +56,8 @@
             </tr>
             </thead>
             <tbody *ngIf="employeeByGroup">
-            <tr *ngFor="let emp of employeeByGroup">
-              <th scope="row"></th>
+            <tr *ngFor="let emp of employeeByGroup; let i = index">
+              <td>{{i+1}}</td>
               <td>{{emp.name}}</td>
               <td>{{emp.emailAddress}}</td>
               <td>
@@ -68,6 +72,7 @@
   <app-add-bazar *ngIf="itemGroup" [group]="itemGroup"></app-add-bazar>
   <app-group-social-foundation *ngIf="itemGroup" [group]="itemGroup"></app-group-social-foundation>
   <app-groub-achievement *ngIf="itemGroup" [group]="itemGroup"></app-groub-achievement>
+  <app-group-award *ngIf="itemGroup" [group]="itemGroup"></app-group-award>
 </section>
 <ng-template #contentEmployee let-c="close" let-d="dismiss">
   <div class="modal-header">
