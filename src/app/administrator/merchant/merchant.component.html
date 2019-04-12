@@ -1,22 +1,11 @@
-<div class="row d-flex ">
-  <!-- <div class="col-md-6"></div> -->
-  <div class="col-md-6">
-    <div
-      class="btn-group pull-right"
-      role="group"
-      aria-label="Basic example">
-      <a href="/merchant-transaction" class="btn btn-outline-success">Transaction List</a>
-      <a href="/create-bazar" class="btn btn-success">Create Bazaar</a>
-    </div>
-  </div>
-</div>
-
 <section class="transaction-history my-4">
   <div class="container search-box">
     <div class="row">
       <div class="col-md-12">
         <hr class="box-title-hr" />
-        <h4 class="my-2 box-title">LIST OF Bazaars</h4>
+        <h4 class="my-2 box-title">
+          LIST OF Bazaars
+        </h4>
       </div>
       <div class="col-md-12">
         <table class="table table-bordered mt-3">
@@ -38,7 +27,7 @@
             <td>{{ bazar.endPeriod }}</td>
             <td>{{ bazar.status == true ? "Active" : "Inactive" }}</td>
             <td>
-              <a [href]="'edit-bazar/' + bazar.id" class="btn btn-info">
+              <a [href]="'edit-bazar/' + bazar.id" class="btn btn-default">
                 <i class="fas fa-cog"></i>
                 Manage
               </a>
@@ -56,3 +45,24 @@
     </div>
   </div>
 </section>
+
+<div id="container-floating">
+  <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Reminder">
+    <a href="/merchant-transaction">
+      <img class="reminder">
+      <p class="letter"><i class="fa fa-list"></i></p>
+    </a>
+  </div>
+  <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Edoardo@live.it">
+    <a href="/create-bazar">
+      <img class="reminder">
+      <p class="letter"><i class="fa fa-plus"></i> </p>
+    </a>
+  </div>
+
+  <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create">
+    <p class="plus">+</p>
+    <img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png">
+  </div>
+
+</div>
