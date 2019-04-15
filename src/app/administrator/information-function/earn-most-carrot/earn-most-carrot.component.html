@@ -46,6 +46,13 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
+  <div class="col-md-4 my-auto">
+    <img
+      src="{{employeeValue.profilePicture || 'https://res.cloudinary.com/dc1lp90qy/image/upload/v1553927628/pictures/user.png'}}"
+      alt="" class="img-fluid rounded-circle black-border mt-3 ml-2" id="profile-picture">
+  </div>
+
   <form [formGroup]="employeeForm">
     <div class="modal-body">
       <div class="form-group">

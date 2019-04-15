@@ -12,10 +12,10 @@ declare var $;
 export class EarnMostCarrotComponent implements OnInit {
   @ViewChild('hdrTpl') hdrTpl: TemplateRef<any>;
   @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
-  columns = []
+  columns = [];
   employees = [];
   employeeForm: FormGroup;
-  employeeValue = { name: '', email: '', role: ''};
+  employeeValue = { name: '', profilePicture:'', email: '', role: ''};
   constructor(
     private transactionService: TransactionService,
     private empService: EmployeeService,
@@ -57,8 +57,8 @@ export class EarnMostCarrotComponent implements OnInit {
 
   open(content, data) {
     this.empService.findEmployeeById(data.id).subscribe(callback => {
-      let empTemp: any;
-      empTemp = callback;
+      let empTemp: any = callback;
+      this.employeeValue.profilePicture = empTemp.employee.profilePicture;
       this.employeeValue.name = empTemp.employee.name;
       this.employeeValue.email = empTemp.employee.emailAddress;
       this.employeeValue.role = empTemp.employee.role;
