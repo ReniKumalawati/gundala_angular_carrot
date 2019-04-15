@@ -32,37 +32,35 @@
         <select class="form-control here" formControlName="employee" [(ngModel)]="reward.employee">
           <option *ngFor="let employee of employeeData" [ngValue]="employee">{{employee.name}}</option>
         </select>
-        <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
-        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
-        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
+        <div *ngIf="submitted && rewardEmployee.controls.employee.errors" class="error">
+        <div *ngIf="rewardEmployee.controls.employee.errors.required">Please Select one employee from list</div>
+        </div>
       </div>
       <div class="form-group">
         <label>Achievement</label>
         <select class="form-control here" formControlName="reward" [(ngModel)]="reward.achievementClaimed" (change)="change()">
           <option *ngFor="let data of achievementData" [ngValue]="data">{{data.title}}</option>
         </select>
-        <!--<input  name="text1" type="text" class="form-control here" formControlName="totalItem" [(ngModel)]="itemValue.totalItem">-->
-        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
-        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
+        <div *ngIf="submitted && rewardEmployee.controls.reward.errors" class="error">
+        <div *ngIf="rewardEmployee.controls.reward.errors.required">Please Reward type</div>
+        </div>
       </div>
       <div class="form-group">
         <label>Carrot Amount</label>
         <input  name="text1" type="text" class="form-control here" formControlName="carrot" [(ngModel)]="reward.carrot_amt" disabled>
-        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
-        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
+        <div *ngIf="submitted && rewardEmployee.controls.carrot.errors" class="error">
+        <div *ngIf="rewardEmployee.controls.carrot.errors.required">Please insert Carrot's Amount!</div>
+        </div>
       </div>
       <div class="form-group">
         <label>Description</label>
         <input  name="text1" type="text" class="form-control here" formControlName="description" [(ngModel)]="reward.description">
-        <!--<div *ngIf="submitted && messageForm.controls.totalItem.errors" class="error">-->
-        <!--<div *ngIf="messageForm.controls.totalItem.errors.required">Please insert Carrot's Amount!</div>-->
-        <!--</div>-->
+        <div *ngIf="submitted && rewardEmployee.controls.description.errors" class="error">
+        <div *ngIf="rewardEmployee.controls.description.errors.required">Please insert description</div>
+        </div>
       </div>
       <div class="form-group">
-        <input type="submit" value="submit" class="btn btn-success">
+        <input type="submit" value="submit" class="btn btn-success" [disabled]="btnRewardSubmit">
       </div>
     </div>
   </form>
@@ -87,7 +85,7 @@
       <input type="text" value="submit" class="form-control here" [(ngModel)]="requestValue.description" formControlName="description">
     </div>
     <div class="form-group">
-      <input type="submit" value="submit" class="btn btn-success">
+      <input type="submit" value="submit" class="btn btn-success" [disabled]="btnReqSubmit">
     </div>
   </div>
   </form>

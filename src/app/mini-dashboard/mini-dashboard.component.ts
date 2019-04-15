@@ -44,7 +44,10 @@ export class MiniDashboardComponent implements OnInit {
   getTotalCarrotInFreezer(){
     this.empService.findFrezeerByOwner(this.employee.id).subscribe(callback => {
       const freezer: any = callback;
-      this.totalInFreezer = freezer.carrot_amt;
+      console.log(freezer);
+      if (freezer != null) {
+        this.totalInFreezer = freezer.carrot_amt;
+      }
     })
   }
 

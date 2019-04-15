@@ -6,6 +6,8 @@ import {EmployeeService} from '../../../service/employee.service';
 import {GroupService} from '../../../service/group.service';
 import {AchievementService} from '../../../service/achievement.service';
 import {TransactionService} from '../../../service/transaction.service';
+import {ModalLoadingComponent} from '../../../partial/modal-loading/modal-loading.component';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'app-button-share',
@@ -24,6 +26,9 @@ export class ButtonShareComponent implements OnInit {
   request: FormGroup;
   reward:any = {employee: {}, achievementClaimed: {}, carrot_amt: 0, description: '', type: 'REWARD'}
   requestValue:any = {carrot_amt: 0, description: ''}
+  btnReqSubmit = false;
+  btnRewardSubmit = false;
+  submitted = false;
   constructor(
     private modal: NgbModal,
     private formBuilder: FormBuilder,
@@ -31,7 +36,8 @@ export class ButtonShareComponent implements OnInit {
     private employeeService: EmployeeService,
     private groupService: GroupService,
     private achievementService: AchievementService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private notif: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -86,6 +92,12 @@ export class ButtonShareComponent implements OnInit {
     this.modal.open(content)
   }
   submit() {
+    this.submitted = true;
+    if (this.rewardEmployee.invalid) {
+      return;
+    }
+    this.btnRewardSubmit = true;
+    this.modal.open(ModalLoadingComponent)
     this.employeeService.findBasketByEmployeeId(this.reward.employee.id).subscribe(callback => {
       this.reward.from = this.employee.name
       this.reward.to = this.reward.employee.name
@@ -97,14 +109,23 @@ export class ButtonShareComponent implements OnInit {
       this.transactionService.insertTansactionToDB(this.reward).subscribe(callback => {
         let trs: any = callback;
         this.transactionService.approve(trs.transaction.id).subscribe(callback1 => {
+          let hasil: any = callback1
           this.close();
+          this.btnRewardSubmit = false;
           this.allData.emit();
+          if (hasil.status) {
+            this.notif.success('Reward', 'Reward Successfully sent to employee');
+          } else {
+            this.notif.error('Reward', hasil.message);
+          }
         })
       })
     })
   }
 
   submitReq() {
+    this.btnReqSubmit = true;
+    this.modal.open(ModalLoadingComponent);
     this.requestValue.freezer_to = this.freezer
     this.requestValue.barn = this.barn
     this.requestValue.type= 'REQUEST'
@@ -115,8 +136,17 @@ export class ButtonShareComponent implements OnInit {
     delete this.requestValue.freezer_to.employee.dob
     delete this.requestValue.freezer_to.employee.group
     this.transactionService.insertTansactionToDB(this.requestValue).subscribe(callback => {
+      let hasil: any = callback
+      this.btnReqSubmit = false;
       this.close();
+      this.requestValue.carrot_amt = 0;
+      this.requestValue.description = '';
       this.allData.emit();
+      if (hasil.status) {
+        this.notif.success('Reward', 'Reward Successfully sent to employee');
+      } else {
+        this.notif.error('Reward', hasil.message);
+      }
     });
   }
   change() {

@@ -11,8 +11,20 @@ import { NewsletterService } from '../service/newsletter.service';
 export class NewsletterComponent implements OnInit {
   currentUser: any;
   // name: string;
-
+  submitted = false;
   form: FormGroup;
+  config: any = {
+    height: '200px',
+    uploadImagePath: '/api/upload',
+    toolbar: [
+      ['misc', ['codeview','codeBlock']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']],
+      ['insert', ['link']],
+      ['customButtons', ['testBtn']]
+    ]
+  };
 
   newsletterValue = {
     newsletterSubject: '',
@@ -45,6 +57,7 @@ export class NewsletterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     // this.newsletterService.postNewsletter(data).subscribe()
     if (this.form.invalid) {
       console.log('form invalid')

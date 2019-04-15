@@ -57,6 +57,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 import { FarmerTransactionsComponent } from './farmer/farmer-transactions/farmer-transactions.component';
 import { GroupAwardComponent } from './manager/detail-group/group-award/group-award.component';
 import { MiniDashboardComponent } from './mini-dashboard/mini-dashboard.component';
+import { NgxSummernoteModule } from 'ngx-summernote';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { MiniDashboardComponent } from './mini-dashboard/mini-dashboard.componen
     MiniDashboardComponent,
   ],
   imports: [
+    NgxSummernoteModule,
     NgbModule,
     BrowserModule,
     AppRoutingModule,

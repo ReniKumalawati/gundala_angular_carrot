@@ -1,5 +1,5 @@
 <section class="bazaar-1-item mb-4">
-  <div class="container">
+  <div class="container" *ngIf="sf">
     <div class="row">
       <div class="col-md-4 search-box1 imgnya">
         <img class="pictureDetailSF"
@@ -36,12 +36,29 @@
     <div class="modal-body">
       <div class="form-group">
         <label>Carrot</label>
-        <input id="barnName" name="barnName" type="text" class="form-control here" formControlName="carrot"
+        <input id="barnName" name="barnName" type="number" min="0" max="{{basket.carrot_amt}}" class="form-control here" formControlName="carrot"
                [(ngModel)]="carrot">
+        <div
+          *ngIf="submitted && sfForm.controls.carrot.errors"
+          class="error"
+        >
+          <div *ngIf="sfForm.controls.carrot.errors.required">
+            Please insert carrot amount!
+          </div>
+          <div *ngIf="sfForm.controls.carrot.errors.pattern">
+            Number Only
+          </div>
+          <div *ngIf="sfForm.controls.carrot.errors.min">
+            Please Input Amount greather than 0
+          </div>
+          <div *ngIf="sfForm.controls.carrot.errors.max">
+            Please Input Amount less than {{basket.carrot_amt}}
+          </div>
       </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </div>
     </div>
   </form>
 </ng-template>
