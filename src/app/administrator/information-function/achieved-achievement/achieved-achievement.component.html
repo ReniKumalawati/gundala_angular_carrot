@@ -55,7 +55,7 @@
   </div>
   <div>
     <table id="table-ach" class="table table-hover mt-3">
-      <thead>
+      <thead *ngIf="employee.length != 0">
         <tr>
           <th scope="col">No</th>
           <th scope="col">Name</th>
@@ -70,6 +70,9 @@
           <td>{{emp.role}}</td>
           <td>{{emp.emailAddress}}</td>
         </tr>
+        <h2 *ngIf="employee.length == 0">
+          There is no employee which achieved this achievement yet!
+        </h2>
       </tbody>
     </table>
   </div>

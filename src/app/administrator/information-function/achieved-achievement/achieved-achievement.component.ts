@@ -27,6 +27,7 @@ export class AchievedAchievementComponent implements OnInit {
   findAchievementsThisMonth(){
     this.transactionService.getAchievedAchievementThisMonth().subscribe(callback =>{
       this.achievements = callback;
+      console.log(JSON.stringify(this.achievements));
     })
   }
 

@@ -154,6 +154,7 @@
           <option value="">Choose your Colleague</option>
           <option *ngFor="let item of recentDob" [ngValue]="item">
             {{item.employee.name}}
+            {{debugger}}
           </option>
         </select>
         <div *ngIf="submitted && messageForm.controls.employee.errors" class="error">

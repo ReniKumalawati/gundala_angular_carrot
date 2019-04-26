@@ -76,15 +76,23 @@ export class TransactionHistoryComponent implements OnInit {
   }
 
   findAllRecentDob () {
+    console.log('findAllRecentDob');
     this.employeeService.findRecentDOBOfEmployee().subscribe(callback => {
       this.recentDob = callback;
+      // console.log('callback' + callback);
+      // console.log(JSON.stringify(callback));
       let i = 0;
       for (let dob of this.recentDob.listBasket) {
+        // console.log('dob' + JSON.stringify(dob));
         if(dob.employee.id == this.user.id) {
           this.recentDob.splice(i, 1);
         }
         i++;
+        // console.log('i' + i);
       }
+      console.log('this recent dob: ' + JSON.stringify(this.recentDob));
+      console.log('this recent dob.listbasket: ' + JSON.stringify(this.recentDob.listBasket));
+      console.log('this recent dob.listbasket.employee: ' + JSON.stringify(this.recentDob.listBasket.employee));
     })
   }
 
